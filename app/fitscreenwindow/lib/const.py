@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------------
 # Python modules
 # -------------------------------------------------------------------------
-import os
+import os, sys
 from enum import Enum, unique, auto
 
 # -------------------------------------------------------------------------
@@ -19,8 +19,12 @@ class MoveResizeDirection(Enum): # base number:1
 # プロジェクトの名前
 PROGRAM_NAME = "FitScreenWindow"
 
-# 現在のディレクトリ
-THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+# 現在のディレクトリ 
+if getattr(sys, 'frozen', False): # Pyinstallerでビルドされたか判定
+    _this_dir = os.path.dirname(os.path.abspath(sys.executable)) # sys.executableがビルドしたexeのパスを返す
+else:
+    _this_dir = os.path.dirname(os.path.abspath(__file__))
+THIS_DIR = _this_dir
 
 # faviconのパス
 IMAGES_DIR = THIS_DIR + r"\..\..\images"

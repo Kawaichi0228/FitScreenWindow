@@ -1,29 +1,14 @@
 # -------------------------------------------------------------------------
-# Python modules
-# -------------------------------------------------------------------------
-from dataclasses import dataclass
-
-# -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
 from windowstate import *
 from counter import *
 from const import MoveResizeDirection
+from config import Size
 
 # -------------------------------------------------------------------------
 # Class
 # -------------------------------------------------------------------------
-@dataclass(frozen=False) # False: セッタ可能にする
-class Size:
-    """SizeCalclatorAtCounter専用のパラメータオブジェクト"""
-    # MEMO: jsonの読込失敗時等のために初期値を設定している
-    # TODO: 将来的にJSONからconfigとして変更できるようにする
-    resize_max_cnt: int = 4 # 段階リサイズを実行できる最大回数
-    resize_ratio: float = 3 # リサイズごと(カウンタと連動)の拡大倍率(基準サイズから×n倍するか)
-    base_width_toleft_px: int = 500 # 初期リサイズ時のウィンドウサイズ
-    base_width_toright_px: int = 500 # 初期リサイズ時のウィンドウサイズ
-    adjust_width_px: int = 15 # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの枠のサイズ？)
-
 class SizeCalclatorAtCounter:
     """ホットキーを押下するたびに段階的にリサイズさせるためのカウンタを用意し、
     そのカウンタに基づきサイズを計算する"""
