@@ -1,0 +1,24 @@
+// MEMO: コロンを付ける($<var>:xxx)ことで任意引数化 + 初期値定義
+// ※コンポーネント側でdefault指定したほうが安全で集約されていて
+// 見やすいと思ったのでコメントアウトした 
+//@mixin fadein($fadeinTime:1s, $beginPosY:0px, $endPosY:0px){
+
+@mixin fadein($fadeinTime, $beginPosY, $endPosY) {
+  animation-name: fadein;
+  opacity: 0;
+
+  /* CSS固有のanimationプロパティ */
+  animation-duration: $fadeinTime;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+      transform: translateY($beginPosY);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY($endPosY);
+    }
+  }
+}
