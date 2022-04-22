@@ -1,4 +1,4 @@
-# Fit Screen Window
+# FitScreenWindow
 
 ![FitScreenWindow](logo-promotion.png "Title")
 
