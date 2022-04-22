@@ -87,7 +87,7 @@ h2#main-text2 {
 }
 
 img#main-image {
-  height: 500px;
+  height: 400px;
   margin-top: 15px;
   position: relative;
   bottom: -10px;
