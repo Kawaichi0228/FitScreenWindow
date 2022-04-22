@@ -1,6 +1,6 @@
 # Fit Screen Window
 
-![FitScreenWindow](logo-promotion.png "Title")
+<img src="logo-promotion.png" width="350px">
 
 FitScreenWindowは、Windows用のウィンドウ移動・リサイズツールです。
 
