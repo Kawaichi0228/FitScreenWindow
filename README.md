@@ -9,10 +9,11 @@ FitScreenWindowは、Windows用のウィンドウ移動・リサイズツール�
 ***
 
 ## 著作権
+
 本アプリの著作権は、Kawaichi0228 に帰属する。
 
 ***
 
 ## 公式サイト
 
-https://***
+https://kawaichi0228.github.io/FitScreenWindow/
