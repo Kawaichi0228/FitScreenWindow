@@ -67,9 +67,13 @@ export default {
   }
 
   h1#main-text {
-    font-size: 54pt;
     font-weight: bold;
     margin: 0px;
+
+    font-size: 54pt;
+    @include tab {
+      font-size: 34pt;
+    }
   }
 
   div#logo-short-wrap {

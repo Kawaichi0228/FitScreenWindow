@@ -13,9 +13,11 @@
 
 <style scoped>
 #Demonstration{
-  height: var(--section-height);
   padding: var(--section-padding);
-
   background-color: var(--theme-color-white);
+}
+
+#main-image{
+  height: 250px;
 }
 </style>
