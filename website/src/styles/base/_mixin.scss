@@ -3,33 +3,56 @@
 // - @mixinで作成するミックスインは、このファイルにまとめて記述する
 // - ファイル名の先頭に_を付けることでこのファイルはパーシャルとなり、コンパイル時にCSSファイルを生成しない
 // -------------------------------------------------------------
+// [Scss記法 example]
+// $g-var1: gold; // グローバル変数
+// $g-var2: 500px !default; // 「!default」を付けると初期値
+//.content {
+//  $var: silver;  // ローカル変数
+//  color: $var;  // ローカルを参照
+//}
 
+// -------------------------------------------------------------------------
+// メディアクエリ(デスクトップファースト)
 // -------------------------------------------------------------------------
 // 各ブレイクポイント(表示が切り替わる端末の画面幅)を定義
-// -------------------------------------------------------------------------
-// デスクトップファースト
-
-// グローバル変数
-//$pc:
-$tab: 1024px;
-$sp: 600px; // sp:SmartPhone
-// MEMO:「!default」を付けると初期値設定できる
-// $sp: 500px !default;
+$_tab: 1024px;
+$_sp: 600px; // sp:SmartPhone
 
 @mixin tab {
-  @media screen and (max-width: ($tab)) {
+  @media screen and (max-width: ($_tab)) {
     @content;
   }
 }
 
 @mixin sp {
-  @media screen and (max-width: ($sp)) {
+  @media screen and (max-width: ($_sp)) {
     @content;
   }
 }
 
-// MEMO:ローカル変数を参照もできる
-//.content {
-//  $var: silver;  /*ローカル*/
-//  color: $var;  /*ローカルを参照（silver）*/
-//}
+// -------------------------------------------------------------------------
+// Utils
+// -------------------------------------------------------------------------
+@mixin _ini-center {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin center {
+  /*水平・垂直中央*/
+  @include horizontal-center;
+  @include vertical-center;
+}
+
+@mixin horizontal-center {
+  /*水平中央*/
+  @include _ini-center;
+  justify-content: center;
+}
+
+@mixin vertical-center {
+  /*垂直中央*/
+  @include _ini-center;
+  align-items: center;
+}
+

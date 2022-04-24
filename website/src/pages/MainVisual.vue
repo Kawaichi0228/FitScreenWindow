@@ -47,71 +47,64 @@ export default {
 <style lang="scss" scoped>
 @import "../styles/base/_mixin.scss";
 @import "../styles/base/_variables.scss";
+@import "../styles/function/_rem.scss";
 
 div#main-visual {
   overflow: hidden; // ブロックからはみ出した要素を隠す
-  padding-top: 60px;
+  padding-top: rem(40);
   background-color: $color-lightred;
   color: $color-white;
 }
 
 div#title-wrap {
-  // ---垂直中央寄せ---
-  display: flex;
-  flex-direction: row;
-  justify-content: center; // 水平中央
-  align-items: center; // 垂直中央
+  @include center;
 
   @include tab {
     display: block;
   }
 
   h1#main-text {
+    font-size: $font-size-title-firstrow;
     font-weight: bold;
     margin: 0px;
-
-    font-size: 54pt;
-    @include tab {
-      font-size: 34pt;
-    }
   }
 
   div#logo-short-wrap {
     img#logo-short {
-      height: 80px;
-      margin-right: 30px;
+      height: rem(80);
+      margin-right: rem(30);
     }
   }
 }
 
 h2#main-text2 {
-  font-size: 20pt;
+  font-size: $font-size-title-secondrow;
   font-weight: bold;
-  margin: 0px;
+  margin: 0;
 }
 
 img#main-image {
   width: 100%;
-  max-width: 400px;
+  max-width: rem(400);
 
-  margin-top: 15px;
+  margin-top: rem(15);
   position: relative;
-  bottom: -10px;
+  bottom: rem(-10);
 }
 
 div#button-wrap {
-  margin: 30px;
+  margin: rem(30);
   
   button.btn {
-      font-size: 18pt;
+      font-size: $font-size-h2;
       font-weight: bold;
       background-color: $color-white;
       color: $color-gray;
 
+      padding: rem(16) rem(50); // ボタンの大きさ
       border-radius: 6px; // 線の丸み
       border: 3px solid $color-gray;
       box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
-      padding: 18px 60px;
       transition: .3s;
 
       display: inline-block;
@@ -129,21 +122,15 @@ div#button-wrap {
 }
 
 div#github-wrap {
-  // ---垂直中央寄せ---
-  display: flex;
-  flex-direction: row;
-  justify-content: center; // 水平中央
-  // -----------------------------
+  @include horizontal-center;
   
   div#github-hoverarea {
-    width: 300px;
-    height: 60px;
-    font-size: 20px;
+    @include center;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center; // 水平中央
-    align-items: center; // 垂直中央
+    width: rem(300);
+    height: rem(30);
+    margin-bottom: rem(18);
+    font-size: $font-size-h2;
     
     transition: 0.3s;
     &:hover {
@@ -156,13 +143,14 @@ div#github-wrap {
     }
 
     .github-text {
+      font-size: $font-size-base;
       text-decoration: underline;
     }
 
     .github {
       color: $color-white;
-      margin-left: 15px;
-      font-size: 2.3em; /* アイコンの大きさ */
+      margin-left: rem(15);
+      font-size: 2em; /* アイコンの大きさ */
     }
   }
 }

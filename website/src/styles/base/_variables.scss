@@ -2,6 +2,7 @@
 // Sassのグローバル変数管理ファイル
 // -------------------------------------------------------------
 @import "../function/_rem.scss";
+@import "_mixin.scss";
 
 // -------------------------------------------------------------
 // 余白
@@ -28,6 +29,8 @@ $color-gray: #666;
 // 本文のフォントサイズ と 各見出しのジャンプ率の設定
 $font-size-base: rem(16);
 // TODO: 見出しはメディアクエリ化したい(tabで小さく)
+$font-size-title-firstrow: rem(54);
+$font-size-title-secondrow: rem(28);
 $font-size-h1: rem(25.888);
 $font-size-h2: rem(20);
 $font-size-small: rem(13);

@@ -23,22 +23,22 @@
 
 <style lang="scss" scoped>
 @import "../styles/base/_variables.scss";
+@import "../styles/base/_mixin.scss";
 
 div#ReleaseNote{
   padding: $section-padding;
   background-color: $color-whitelightgray;
 
 div#release-list{
-  display: flex;
-  justify-content: center;
+  @include horizontal-center;
   
   ul {
     list-style: disc;
     line-height: 25pt;
   }
   li {
-    text-align:left;
-    margin:30px 0px;
+    text-align: left;
+    margin: 30px 0px;
   }
 }
 }
