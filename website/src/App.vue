@@ -54,7 +54,7 @@ export default {
 
 <style lang="scss">
 /*MEMO:App.vueのstyleで、appブロックに対して全体のフォントを指定*/
-@import "styles/_mixin.scss";
+@import "base/_mixin.scss";
 // Webフォントのインポート
 // *** Google Fonts *** https://fonts.google.com/
 //@import url("https://fonts.googleapis.com/css?family=Quicksand");
@@ -79,7 +79,7 @@ export default {
   --section-padding: 50px;
   
   /* メディアクエリ */
-  --pc-font-size-lv1: 26pt;
+  --pc-font-size-lv1: 3rem;
   --pc-font-size-lv2: 14pt;
 
   --tab-font-size-lv1: 18pt;
@@ -104,9 +104,14 @@ export default {
   --fadein-time: 0.5s;
 }
 
+html {
+  font-size: 62.5%; // ブラウザのデフォルト16px x 62.5% = 10pxとすることで、1remを10pxすることができる
+}
+
 body {
   margin: 0; // ヘッダの余白を消す
   color: var(--theme-color-gray);
+
 }
 
 a {

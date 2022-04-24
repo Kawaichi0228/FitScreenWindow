@@ -45,7 +45,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@import "../styles/_mixin.scss";
+@import "../base/_mixin.scss";
 
 div#main-visual {
   overflow: hidden; // ブロックからはみ出した要素を隠す
@@ -93,7 +93,7 @@ h2#main-text2 {
 img#main-image {
   width: 100%;
   max-width: 400px;
-  
+
   margin-top: 15px;
   position: relative;
   bottom: -10px;

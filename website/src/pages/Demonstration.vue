@@ -12,7 +12,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "../styles/_mixin.scss";
+@import "../base/_mixin.scss";
 
 div#Demonstration{
   padding: var(--section-padding);
