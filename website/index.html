@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+    <!-- ------------------------------------------ -->
+    <!-- メタ情報 -->
+    <!-- ------------------------------------------ -->
+    <!-- 文字コードの指定 -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- ページの説明文(検索エンジンやSNSシェアで説明文として使用) -->
+    <meta name="description" content="アクティブウィンドウを すばやく画面にフィットすることができる Windows向けのアプリ">
+
+    <!-- 画面サイズ、初期、最小・最大ズーム倍率、ピンチインによるズーム処理の許可などを定義 -->
+    <!-- MEMO: 主にレスポンシブデザイン用 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+
+    <!-- 検索エンジンに対する設定を定義 -->
+    <!-- Parameters: -->
+    <!--   index || noindex: 検索結果に表示させるか -->
+    <!--   follow || nofollow: ページのリンク先へPageRankを渡すか -->
+    <meta name="robots" content="index,follow">
+
+    <!-- 電話番号・メール等の文字列を自動でリンクに変換するか定義 -->
+    <!-- MEMO: ブラウザやOS毎に設定が異なり、特に、デフォルトONのiOSでは -->
+    <!--「数値が電話番号として誤認識」が発生しやすいためオフにしているオフにしている -->
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- ファビコンとタイトル -->
     <link rel="icon" href="<%= BASE_URL %>favicon__.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   </head>
+
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
