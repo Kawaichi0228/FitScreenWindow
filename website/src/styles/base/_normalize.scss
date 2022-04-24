@@ -2,10 +2,6 @@
 // ブラウザごとの初期スタイル調整用CSS
 // (各ブラウザ表示の差異をなくすリセットCSSの一つ)
 // -------------------------------------------------------------
-html {
-  font-size: 62.5%; // ブラウザのデフォルト16px x 62.5% = 10pxとすることで、1remを10pxすることができる
-}
-
 body {
   margin: 0; // ヘッダの余白を消す
 }
@@ -18,7 +14,7 @@ ul {
 a {
   // aタグ初期値防止(初期値でブルーandパープル化等してしまうため)
   color: var(--theme-color-gray);
-  &:visited {color: var(--theme-color-gray);} 
+  &:visited {color: var(--theme-color-gray);}
 
   // リンクの下線なくす
   text-decoration: none;

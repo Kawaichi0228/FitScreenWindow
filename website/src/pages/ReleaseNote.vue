@@ -40,13 +40,4 @@ div#release-list{
   }
 }
 }
-
-div#SeparatorLine {
-  width: 60%;
-  margin: auto;
-
-  hr {
-    border-top: 4px solid var(--theme-color-lightgray);
-  }
-}
 </style>

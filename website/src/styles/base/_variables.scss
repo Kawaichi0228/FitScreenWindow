@@ -1,6 +1,34 @@
 // -------------------------------------------------------------
 // Sassのグローバル変数管理ファイル
 // -------------------------------------------------------------
+$color-white: #FCFCFC;
+$color-black: #000;
+
+$color-blackgray: #2C2C2C;
+$color-lightred: #FF5F5F;
+$color-lightblue: #83FFE6;
+
+$color-whitelightgray: #EEE;
+$color-lightgray: #CCC;
+$color-gray: #666;
+
+// 本文のフォントサイズ と 各見出しのジャンプ率の設定
+$font-size-base: rem(16);
+$font-size-ratio: 1.615;
+
+$_modularscale: (
+  base: $font-size-base,
+  ratio: $font-size-ratio,
+);
+@function modularScale($ms) {
+  // TODO: 二乗できていない(* $msの部分)
+  @return map-get($_modularscale, base) * map-get($_modularscale, ratio) * $ms;
+}
+
+// 見出しのジャンプ率の設定
+$font-size-h1: modularScale(1);
+
+
 /* グローバルCSS変数 */
 :root {
   /* セクション */
