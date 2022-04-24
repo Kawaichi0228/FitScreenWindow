@@ -52,7 +52,6 @@ div#main-visual {
   padding-top: 60px;
   background-color: var(--theme-color-lightred);
   color: var(--theme-color-white);
-  
 }
 
 div#title-wrap {

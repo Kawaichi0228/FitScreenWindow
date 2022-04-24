@@ -1,0 +1,17 @@
+// -------------------------------------------------------------
+// サイト固有のHTMLエレメント基本スタイル
+// -------------------------------------------------------------
+// Webフォントのインポート
+// *** Google Fonts *** https://fonts.google.com/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url("https://use.fontawesome.com/releases/v5.6.4/css/all.css");
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  color: var(--theme-color-gray);
+  text-align: center;
+}
+
+h1 {
+  font-size: var(--pc-font-size-lv1);
+}

@@ -1,0 +1,36 @@
+// -------------------------------------------------------------
+// Sassのグローバル変数管理ファイル
+// -------------------------------------------------------------
+/* グローバルCSS変数 */
+:root {
+  /* セクション */
+  --section-height: 600px;
+  --section-padding: 50px;
+  
+  /* メディアクエリ */
+  --pc-font-size-lv1: 3rem;
+  --pc-font-size-lv2: 14pt;
+
+  --tab-font-size-lv1: 18pt;
+  --tab-font-size-lv2: 12pt;
+
+  --sp-font-size-lv1: 18pt;
+  --sp-font-size-lv2: 12pt;
+
+  /* テーマカラー */
+  --theme-color-white: #FCFCFC;
+  --theme-color-black: #000;
+
+  --theme-color-blackgray: #2C2C2C;
+  --theme-color-lightred: #FF5F5F;
+  --theme-color-lightblue: #83FFE6;
+
+  --theme-color-whitelightgray: #EEE;
+  --theme-color-lightgray: #CCC;
+  --theme-color-gray: #666;
+
+  /* フェードインが完了するまでの時間 */
+  --fadein-time: 0.5s;
+}
+
+
