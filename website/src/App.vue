@@ -58,8 +58,6 @@ export default {
 // -------------------------------------------------------------
 // .scssファイルのインポート
 // -------------------------------------------------------------
-@import "styles/base/_variables.scss";
-@import "styles/base/_mixin.scss";
 @import "styles/base/_normalize.scss";
 @import "styles/base/_html_element.scss";
 
