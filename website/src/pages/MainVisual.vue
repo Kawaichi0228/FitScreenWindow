@@ -46,12 +46,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "../styles/base/_mixin.scss";
+@import "../styles/base/_variables.scss";
 
 div#main-visual {
   overflow: hidden; // ブロックからはみ出した要素を隠す
   padding-top: 60px;
-  background-color: var(--theme-color-lightred);
-  color: var(--theme-color-white);
+  background-color: $color-lightred;
+  color: $color-white;
 }
 
 div#title-wrap {
@@ -96,10 +97,6 @@ img#main-image {
   margin-top: 15px;
   position: relative;
   bottom: -10px;
-
-  @include tab {
-    height: 300px;
-  }
 }
 
 div#button-wrap {
@@ -108,11 +105,11 @@ div#button-wrap {
   button.btn {
       font-size: 18pt;
       font-weight: bold;
-      background-color: var(--theme-color-white);
-      color: var(--theme-color-gray);
+      background-color: $color-white;
+      color: $color-gray;
 
       border-radius: 6px; // 線の丸み
-      border: 3px solid var(--theme-color-gray);
+      border: 3px solid $color-gray;
       box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
       padding: 18px 60px;
       transition: .3s;
@@ -124,8 +121,8 @@ div#button-wrap {
       
       &:hover {
           cursor: pointer; // マウスオン時にカーソルを指にする(aタグのように)
-          background-color: var(--theme-color-lightblue);
-          color: var(--theme-color-white);
+          background-color: $color-lightblue;
+          color: $color-white;
           letter-spacing: 0.2rem;
       }
   }
@@ -155,7 +152,7 @@ div#github-wrap {
     }
 
     a {
-      color: var(--theme-color-white);
+      color: $color-white;
     }
 
     .github-text {
@@ -163,7 +160,7 @@ div#github-wrap {
     }
 
     .github {
-      color: var(--theme-color-white);
+      color: $color-white;
       margin-left: 15px;
       font-size: 2.3em; /* アイコンの大きさ */
     }

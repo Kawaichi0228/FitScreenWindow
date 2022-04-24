@@ -13,15 +13,17 @@
 
 <style lang="scss" scoped>
 @import "../styles/base/_mixin.scss";
+@import "../styles/base/_variables.scss";
+@import "../styles/function/_rem.scss";
 
 div#Demonstration{
-  padding: var(--section-padding);
-  background-color: var(--theme-color-white);
+  padding: $section-padding;
+  background-color: $color-white;
 }
 
 img#main-image{
   width: 100%;
-  max-width: 800px;
+  max-width: rem(600);
 }
 
 </style>

@@ -23,6 +23,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../styles/base/_variables.scss";
+
 #header-section {
   /*画面上部に固定(「ウィンドウ全体」を基準に絶対値表示指定のため、背面要素の上から上書きされて描画される)*/
   position: fixed;
@@ -32,7 +34,7 @@ export default {
   /*position: sticky;*/
   /*top: 0; 追尾開始のスクロール位置(0で最上部から追尾開始)*/
 
-  background-color: var(--theme-color-blackgray);
+  background-color: $color-blackgray;
   width: 100%;
   z-index: 1;
 }
@@ -43,7 +45,7 @@ export default {
   display: flex;
 
   .sam {
-    color: var(--theme-color-white);
+    color: $color-white;
     padding: 15px 0px;
     margin: unset;
     cursor: pointer;

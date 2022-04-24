@@ -22,9 +22,11 @@
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/base/_variables.scss";
+
 div#ReleaseNote{
-  padding: var(--section-padding);
-  background-color: var(--theme-color-whitelightgray);
+  padding: $section-padding;
+  background-color: $color-whitelightgray;
 
 div#release-list{
   display: flex;

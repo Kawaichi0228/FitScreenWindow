@@ -13,11 +13,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "../styles/base/_variables.scss";
 /* -------------------------------------------------------- */
 /* スクロールトップボタン */
 /* -------------------------------------------------------- */
 #scroll-top-button {
+  background: $color-gray;
+
   /* ボタンの大きさ */
   --page-top-width-and-height: 70px;
   width: var(--page-top-width-and-height);
@@ -27,8 +30,7 @@ export default {
   position: fixed; /* 「ウィンドウ全体」を基準に絶対値表示指定 */
   right: 20px;
   bottom: 20px;
-
-  background: var(--theme-color-gray);
+  
   border-radius: 50%;
   opacity: 0.6;
   z-index: 1; /* レイヤー前面背面順 */
@@ -44,6 +46,8 @@ export default {
   text-decoration: none;
 }
 #scroll-top-button a::before{
+  color: $color-white;
+
   /* 上矢印の大きさ */
   --page-top-uparrow: 50px;
   font-size: var(--page-top-uparrow);
@@ -53,7 +57,6 @@ export default {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   content: '\f106';
-  color: var(--theme-color-white);
   position: absolute;
   top: -8px;
   bottom: 0;

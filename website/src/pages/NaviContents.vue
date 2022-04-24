@@ -16,7 +16,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "../styles/base/_variables.scss";
+
 #navicontents {
 }
 
@@ -31,6 +33,7 @@ export default {
   outline: none;
 }
 .navi-button:before {
+  background: $color-gray; /* 文字下線の色 */
   position: absolute;
   content: '';
   width: 100%;
@@ -38,7 +41,6 @@ export default {
   top:100%;
   left: 0;
   border-radius: 0.5px;
-  background:var(--theme-color-gray); /* 文字下線の色 */
   transition: .3s;
 }
 .navi-button:hover:before {
