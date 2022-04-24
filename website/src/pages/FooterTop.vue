@@ -100,7 +100,7 @@
 </script>
 
 <style lang="scss" scoped>
-@import "../base/_mixin.scss";
+@import "../styles/base/_mixin.scss";
 
 #footer-top {
   background-color: var(--theme-color-lightgray);

@@ -45,7 +45,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@import "../base/_mixin.scss";
+@import "../styles/base/_mixin.scss";
 
 div#main-visual {
   overflow: hidden; // ブロックからはみ出した要素を隠す

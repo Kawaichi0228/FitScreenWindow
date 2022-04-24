@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../base/_fadein.scss";
+@import "../styles/base/_fadein.scss";
 
 .fadein {
   //@prm
