@@ -45,75 +45,66 @@ export default {
 
 
 <style lang="scss" scoped>
-@import "../styles/_mixin.scss";
+@import "../styles/base/_mixin.scss";
+@import "../styles/base/_variables.scss";
+@import "../styles/function/_rem.scss";
 
-#main-visual {
+div#main-visual {
   overflow: hidden; // ブロックからはみ出した要素を隠す
-  padding-top: 60px;
-  background-color: var(--theme-color-lightred);
-  color: var(--theme-color-white);
-  
+  padding-top: rem(40);
+  background-color: $color-lightred;
+  color: $color-white;
 }
 
-#title-wrap {
-  // ---垂直中央寄せ---
-  display: flex;
-  flex-direction: row;
-  justify-content: center; // 水平中央
-  align-items: center; // 垂直中央
+div#title-wrap {
+  @include center;
 
   @include tab {
     display: block;
   }
 
   h1#main-text {
+    font-size: $font-size-title-firstrow;
     font-weight: bold;
     margin: 0px;
-
-    font-size: 54pt;
-    @include tab {
-      font-size: 34pt;
-    }
   }
 
   div#logo-short-wrap {
     img#logo-short {
-      height: 80px;
-      margin-right: 30px;
+      height: rem(80);
+      margin-right: rem(30);
     }
   }
 }
 
 h2#main-text2 {
-  font-size: 20pt;
+  font-size: $font-size-title-secondrow;
   font-weight: bold;
-  margin: 0px;
+  margin: 0;
 }
 
 img#main-image {
-  height: 400px;
-  margin-top: 15px;
-  position: relative;
-  bottom: -10px;
+  width: 100%;
+  max-width: rem(400);
 
-  @include tab {
-    height: 300px;
-  }
+  margin-top: rem(15);
+  position: relative;
+  bottom: rem(-10);
 }
 
-#button-wrap {
-  margin: 30px;
+div#button-wrap {
+  margin: rem(30);
   
-  .btn {
-      font-size: 18pt;
+  button.btn {
+      font-size: $font-size-h2;
       font-weight: bold;
-      background-color: var(--theme-color-white);
-      color: var(--theme-color-gray);
+      background-color: $color-white;
+      color: $color-gray;
 
+      padding: rem(16) rem(50); // ボタンの大きさ
       border-radius: 6px; // 線の丸み
-      border: 3px solid var(--theme-color-gray);
+      border: 3px solid $color-gray;
       box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
-      padding: 18px 60px;
       transition: .3s;
 
       display: inline-block;
@@ -123,29 +114,23 @@ img#main-image {
       
       &:hover {
           cursor: pointer; // マウスオン時にカーソルを指にする(aタグのように)
-          background-color: var(--theme-color-lightblue);
-          color: var(--theme-color-white);
+          background-color: $color-lightblue;
+          color: $color-white;
           letter-spacing: 0.2rem;
       }
   }
 }
 
-#github-wrap {
-  // ---垂直中央寄せ---
-  display: flex;
-  flex-direction: row;
-  justify-content: center; // 水平中央
-  // -----------------------------
+div#github-wrap {
+  @include horizontal-center;
   
-  #github-hoverarea {
-    width: 300px;
-    height: 60px;
-    font-size: 20px;
+  div#github-hoverarea {
+    @include center;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center; // 水平中央
-    align-items: center; // 垂直中央
+    width: rem(300);
+    height: rem(30);
+    margin-bottom: rem(18);
+    font-size: $font-size-h2;
     
     transition: 0.3s;
     &:hover {
@@ -154,17 +139,18 @@ img#main-image {
     }
 
     a {
-      color: var(--theme-color-white);
+      color: $color-white;
     }
 
     .github-text {
+      font-size: $font-size-base;
       text-decoration: underline;
     }
 
     .github {
-      color: var(--theme-color-white);
-      margin-left: 15px;
-      font-size: 2.3em; /* アイコンの大きさ */
+      color: $color-white;
+      margin-left: rem(15);
+      font-size: 2em; /* アイコンの大きさ */
     }
   }
 }

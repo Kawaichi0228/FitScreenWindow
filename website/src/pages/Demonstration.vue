@@ -11,13 +11,19 @@
   </div>
 </template>
 
-<style scoped>
-#Demonstration{
-  padding: var(--section-padding);
-  background-color: var(--theme-color-white);
+<style lang="scss" scoped>
+@import "../styles/base/_mixin.scss";
+@import "../styles/base/_variables.scss";
+@import "../styles/function/_rem.scss";
+
+div#Demonstration{
+  padding: $section-padding;
+  background-color: $color-white;
 }
 
-#main-image{
-  height: 250px;
+img#main-image{
+  width: 100%;
+  max-width: rem(600);
 }
+
 </style>

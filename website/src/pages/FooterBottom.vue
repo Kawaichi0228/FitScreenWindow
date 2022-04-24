@@ -4,7 +4,8 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../styles/base/_variables.scss";
 
 #footer-bottom {
   /* フッターのデフォルトマージンを削除 */
@@ -14,11 +15,8 @@
   /*position: sticky;*/
   /*bottom: 0;*/
 
-  background-color: var(--theme-color-lightgray);
-}
-
-.text-footer {
-  font-weight: 400;
+  font-size: $font-size-small;
+  background-color: $color-lightgray;
 }
 
 </style>

@@ -1,0 +1,25 @@
+// -------------------------------------------------------------
+// ブラウザごとの初期スタイル調整用CSS
+// (各ブラウザ表示の差異をなくすリセットCSSの一つ)
+// -------------------------------------------------------------
+@import "_variables.scss";
+
+body {
+  margin: 0; // ヘッダの余白を消す
+}
+
+ul {
+  list-style-type: none; // liタグの初期の「点」を消す
+  padding-left: 0px; // 行頭の空白を消す
+}
+
+a {
+  // aタグ初期値防止(初期値でブルーandパープル化等してしまうため)
+  color: $color-gray;
+  &:visited {color: $color-gray;}
+
+  // リンクの下線なくす
+  text-decoration: none;
+
+  display: inline-flex;
+}

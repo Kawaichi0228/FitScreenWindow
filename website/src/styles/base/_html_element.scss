@@ -1,0 +1,35 @@
+// -------------------------------------------------------------
+// サイト固有のHTMLエレメント基本スタイル
+// -------------------------------------------------------------
+@import "variables.scss";
+
+// Webフォントのインポート
+// *** Google Fonts *** https://fonts.google.com/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url("https://use.fontawesome.com/releases/v5.6.4/css/all.css");
+
+body {
+  $base-font: "Noto Sans JP";
+  font-family: $base-font, sans-serif;
+
+  color: $color-gray;
+  font-size: $font-size-base;
+  text-align: center;
+}
+
+h1 {
+  font-size: $font-size-h1;
+}
+
+h2 {
+  font-size: $font-size-h2;
+}
+
+div#SeparatorLine {
+  width: 60%;
+  margin: auto;
+
+  hr {
+    border-top: 4px solid $color-lightgray;
+  }
+}

@@ -2,7 +2,7 @@
   <div id="ReleaseNote">
 
     <div id="SeparatorLine">
-      <h2>バージョン履歴</h2>
+      <h1>バージョン履歴</h1>
       <hr>
     </div>
 
@@ -22,31 +22,24 @@
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/base/_variables.scss";
+@import "../styles/base/_mixin.scss";
+
 div#ReleaseNote{
-  padding: var(--section-padding);
-  background-color: var(--theme-color-whitelightgray);
+  padding: $section-padding;
+  background-color: $color-whitelightgray;
 
 div#release-list{
-  display: flex;
-  justify-content: center;
+  @include horizontal-center;
   
   ul {
     list-style: disc;
     line-height: 25pt;
   }
   li {
-    text-align:left;
-    margin:30px 0px;
+    text-align: left;
+    margin: 30px 0px;
   }
 }
-}
-
-div#SeparatorLine {
-  width: 60%;
-  margin: auto;
-
-  hr {
-    border-top: 4px solid var(--theme-color-lightgray);
-  }
 }
 </style>

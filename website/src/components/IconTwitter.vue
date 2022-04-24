@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/_mixin.scss";
+@import "../styles/base/_mixin.scss";
 
 .link-icon {
   margin: 0px 16px 0px 0px; /* アイコン同士のマージン */

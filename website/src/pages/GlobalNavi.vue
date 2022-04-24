@@ -29,10 +29,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../styles/_mixin.scss";
+@import "../styles/base/_variables.scss";
 
 #navi-bar {
-  font-size: var(--pc-font-size-lv2);
 }
 
 #pc-navi-bar{
