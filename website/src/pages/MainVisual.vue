@@ -47,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 @import "../styles/_mixin.scss";
 
-#main-visual {
+div#main-visual {
   overflow: hidden; // ブロックからはみ出した要素を隠す
   padding-top: 60px;
   background-color: var(--theme-color-lightred);
@@ -55,7 +55,7 @@ export default {
   
 }
 
-#title-wrap {
+div#title-wrap {
   // ---垂直中央寄せ---
   display: flex;
   flex-direction: row;
@@ -91,7 +91,9 @@ h2#main-text2 {
 }
 
 img#main-image {
-  height: 400px;
+  width: 100%;
+  max-width: 400px;
+  
   margin-top: 15px;
   position: relative;
   bottom: -10px;
@@ -101,10 +103,10 @@ img#main-image {
   }
 }
 
-#button-wrap {
+div#button-wrap {
   margin: 30px;
   
-  .btn {
+  button.btn {
       font-size: 18pt;
       font-weight: bold;
       background-color: var(--theme-color-white);
@@ -130,14 +132,14 @@ img#main-image {
   }
 }
 
-#github-wrap {
+div#github-wrap {
   // ---垂直中央寄せ---
   display: flex;
   flex-direction: row;
   justify-content: center; // 水平中央
   // -----------------------------
   
-  #github-hoverarea {
+  div#github-hoverarea {
     width: 300px;
     height: 60px;
     font-size: 20px;

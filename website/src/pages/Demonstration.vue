@@ -11,13 +11,17 @@
   </div>
 </template>
 
-<style scoped>
-#Demonstration{
+<style lang="scss" scoped>
+@import "../styles/_mixin.scss";
+
+div#Demonstration{
   padding: var(--section-padding);
   background-color: var(--theme-color-white);
 }
 
-#main-image{
-  height: 250px;
+img#main-image{
+  width: 100%;
+  max-width: 800px;
 }
+
 </style>
