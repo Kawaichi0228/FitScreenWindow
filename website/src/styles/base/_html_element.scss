@@ -1,6 +1,8 @@
 // -------------------------------------------------------------
 // サイト固有のHTMLエレメント基本スタイル
 // -------------------------------------------------------------
+@import "variables.scss";
+
 // Webフォントのインポート
 // *** Google Fonts *** https://fonts.google.com/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
@@ -17,6 +19,10 @@ body {
 
 h1 {
   font-size: $font-size-h1;
+}
+
+h2 {
+  font-size: $font-size-h2;
 }
 
 div#SeparatorLine {

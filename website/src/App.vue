@@ -58,14 +58,6 @@ export default {
 // -------------------------------------------------------------
 // .scssファイルのインポート
 // -------------------------------------------------------------
-// MEMO: 記述順が重要。上から順に読み込まる。
-// グローバル変数・関数のscssを先に読み込ませることで、
-// それ以降のscss内で使用できるようになる
-
-// function
-@import "styles/function/_rem.scss";
-
-// base
 @import "styles/base/_variables.scss";
 @import "styles/base/_mixin.scss";
 @import "styles/base/_normalize.scss";

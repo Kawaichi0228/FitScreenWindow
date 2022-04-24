@@ -2,7 +2,7 @@
   <div id="ReleaseNote">
 
     <div id="SeparatorLine">
-      <h2>バージョン履歴</h2>
+      <h1>バージョン履歴</h1>
       <hr>
     </div>
 

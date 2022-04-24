@@ -101,9 +101,11 @@
 
 <style lang="scss" scoped>
 @import "../styles/base/_mixin.scss";
+@import "../styles/base/_variables.scss";
 
 #footer-top {
-  background-color: var(--theme-color-lightgray);
+  background-color: $color-lightgray;
+  font-size: $font-size-small;
 
   text-align: left;
   padding-left: 40px;
@@ -140,7 +142,7 @@
   display: inline-flex;
   padding-left: 5%;
   padding-right: 5%;
-  padding: var(--section-padding);
+  padding: $section-padding;
 
   @include tab {
     text-align: center;
@@ -196,16 +198,16 @@
     font-size: 2em; /* アイコンの大きさ */
     padding: 0.3em;
     border-radius: 50%;
-    background-color: var(--theme-color-gray);
-    &:hover {color: var(--theme-color-gray);}
+    background-color: $color-gray;
+    &:hover {color: $color-gray;}
   }
     .twitter {
-      color: var(--theme-color-white);
-      &:hover {background-color: var(--theme-color-white);}
+      color: $color-white;
+      &:hover {background-color: $color-white;}
     }
     .github {
-      color: var(--theme-color-white);
-      &:hover {background-color: var(--theme-color-white);}
+      color: $color-white;
+      &:hover {background-color: $color-white;}
     }
 }
 
