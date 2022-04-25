@@ -11,7 +11,7 @@
       </div>
 
       <div class="column-sub">
-        <h2>Made Possible By</h2>
+        <h2>開発環境</h2>
 
         <ul>
           <li class="text-footer">
@@ -67,7 +67,7 @@
       </div>
 
       <div class="column-sub">
-        <h2>Contact</h2>
+        <h2>連絡先</h2>
         
         <div>
           <a
@@ -108,14 +108,16 @@
 @import "../styles/base/_variables.scss";
 
 #footer-w {
+  
   background-color: $color-lightgray;
   font-size: $font-size-small;
-
-  text-align: left;
-  padding-left: 40px;
+  
   @include tab {
-    text-align: center;
     padding: 30px 0px 30px 0px;
+  }
+
+  h2 {
+    font-size: $font-size-base;
   }
 
   a {
@@ -137,19 +139,20 @@
   }
 
   li {
-    margin: 12px 0px;
+    margin: 8px 0px;
   }
 }
 
 .footer-component {
+  padding: $section-padding;
+  margin-right: 15%;
+  
   text-align: left;
   display: inline-flex;
   padding-left: 5%;
   padding-right: 5%;
-  padding: $section-padding;
 
   @include tab {
-    text-align: center;
     flex-direction: column;
   }
 
@@ -174,15 +177,14 @@
 
 .column-sub {
   max-width: 350px;
-  margin: 0 80px;
-  @include tab {margin: 0 auto;}
+  margin: 0 60px;
+  @include tab {margin: 0 0;}
 }
 
 .text-footer {
-  font-weight: 400;
   @include vertical-center;
   img.item-img {
-    --img-size: 23px; // 各言語のイメージサイズ
+    --img-size: 20px; // 各言語のイメージサイズ
     height: var(--img-size);
     width: var(--img-size);
     margin-right: 15px;
