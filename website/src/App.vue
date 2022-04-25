@@ -12,8 +12,7 @@
     <MainVisual></MainVisual>
     <Demonstration id="Demonstration"></Demonstration>
     <ReleaseNote id="ReleaseNote"></ReleaseNote>
-    <FooterTop id="footer-top"></FooterTop>
-    <FooterBottom></FooterBottom>
+    <FooterPj></FooterPj> <!--MEMO: 「Footer.vue」は組み込みと名前衝突しておかしくなってしまうためPjをSuffixした -->
   </div>
 </template>
 
@@ -24,8 +23,7 @@
 import MainVisual from './pages/MainVisual.vue';
 import Demonstration from './pages/Demonstration.vue';
 import ReleaseNote from './pages/ReleaseNote.vue';
-import FooterTop from './pages/FooterTop.vue';
-import FooterBottom from './pages/FooterBottom.vue';
+import FooterPj from './pages/FooterPj.vue';
 
 // -------------------------------------------------------------
 // Components
@@ -42,8 +40,7 @@ export default {
     MainVisual,
     Demonstration,
     ReleaseNote,
-    FooterTop,
-    FooterBottom,
+    FooterPj,
 
     // -------------------------------------------------------------
     // Components

@@ -1,5 +1,5 @@
 <template>
-  <div id="footer-top">
+  <div id="footer-w">
     <div class="footer-component">
       <div class="column-main">
         <h2><img class="footer-logo" src="../assets/logo-long.png" alt=""/></h2>
@@ -93,6 +93,10 @@
       </div>
     </div>
 
+    <div id="footer-bottom">
+      <p class="text-footer">© Kawaichi. All rights reserved</p>
+    </div>
+
   </div>
 </template>
 
@@ -103,7 +107,7 @@
 @import "../styles/base/_mixin.scss";
 @import "../styles/base/_variables.scss";
 
-#footer-top {
+#footer-w {
   background-color: $color-lightgray;
   font-size: $font-size-small;
 
@@ -176,11 +180,7 @@
 
 .text-footer {
   font-weight: 400;
-  // ---垂直中央寄せ---
-  display: flex;
-  flex-direction: row;
-  align-items: center; // 垂直中央
-  // -----------------------------
+  @include vertical-center;
   img.item-img {
     --img-size: 23px; // 各言語のイメージサイズ
     height: var(--img-size);
@@ -209,6 +209,10 @@
       color: $color-white;
       &:hover {background-color: $color-white;}
     }
+}
+
+div#footer-bottom {
+  @include horizontal-center;
 }
 
 </style>
