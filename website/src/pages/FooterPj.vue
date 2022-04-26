@@ -108,13 +108,8 @@
 @import "../styles/base/_variables.scss";
 
 #footer-w {
-  
   background-color: $color-lightgray;
   font-size: $font-size-small;
-  
-  @include tab {
-    padding: 30px 0px 30px 0px;
-  }
 
   h2 {
     font-size: $font-size-base;
@@ -149,8 +144,6 @@
   
   text-align: left;
   display: inline-flex;
-  padding-left: 5%;
-  padding-right: 5%;
 
   @include tab {
     flex-direction: column;
@@ -167,11 +160,6 @@
   img.footer-logo {
     height: 55px;
     object-fit: contain; /* 画像縦横比を維持したまま、heightに対してリサイズする(ブロックに対してではない) */
-
-    // グレースケール有効
-    //filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-    //filter: gray;
-    //-webkit-filter: grayscale(100%);
   }
 }
 
@@ -187,7 +175,7 @@
     --img-size: 20px; // 各言語のイメージサイズ
     height: var(--img-size);
     width: var(--img-size);
-    margin-right: 15px;
+    margin-right: 13px;
   }
 }
 // -------------------------------------------------------------------------
