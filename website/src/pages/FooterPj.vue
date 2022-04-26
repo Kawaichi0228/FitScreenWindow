@@ -139,7 +139,7 @@
   }
 
   li {
-    margin: 8px 0px;
+    margin: 10px 0px;
   }
 }
 

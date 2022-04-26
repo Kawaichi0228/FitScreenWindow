@@ -2,12 +2,12 @@
   <div id="app">
     <link rel="stylesheet" href="styles/base/_variables.scss">
 
-    <ToggleVisbleAtScrollEvent
+    <!--<ToggleVisbleAtScrollEvent
       startPostionToVisible="100" startPostionToHidden="90">
       <template #fadein-slot>
           <ScrollTopButton></ScrollTopButton>
       </template>
-    </ToggleVisbleAtScrollEvent>
+    </ToggleVisbleAtScrollEvent>-->
 
     <MainVisual></MainVisual>
     <Demonstration id="Demonstration"></Demonstration>
@@ -28,8 +28,8 @@ import FooterPj from './pages/FooterPj.vue';
 // -------------------------------------------------------------
 // Components
 // -------------------------------------------------------------
-import ScrollTopButton from './components/ScrollTopButton.vue';
-import ToggleVisbleAtScrollEvent from "./components/ToggleVisbleAtScrollEvent.vue";
+//import ScrollTopButton from './components/ScrollTopButton.vue';
+//import ToggleVisbleAtScrollEvent from "./components/ToggleVisbleAtScrollEvent.vue";
 
 export default {
   name: "App",
@@ -45,8 +45,8 @@ export default {
     // -------------------------------------------------------------
     // Components
     // -------------------------------------------------------------
-    ScrollTopButton,
-    ToggleVisbleAtScrollEvent,
+    //ScrollTopButton,
+    //ToggleVisbleAtScrollEvent,
   },
 };
 </script>
