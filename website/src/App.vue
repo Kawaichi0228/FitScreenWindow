@@ -51,10 +51,13 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
 // -------------------------------------------------------------
 // .scssファイルのインポート
 // -------------------------------------------------------------
 @import "styles/base/_normalize.scss";
 @import "styles/base/_html_element.scss";
+#app {
+  overflow: hidden; // XXX: スマホ表示に右に謎の余白があったため無理矢理隠した
+}
 </style>
