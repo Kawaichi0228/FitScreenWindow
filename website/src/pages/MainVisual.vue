@@ -127,9 +127,8 @@ div#github-wrap {
   div#github-hoverarea {
     @include center;
 
-    width: rem(300);
     height: rem(30);
-    margin-bottom: rem(18);
+    margin-bottom: rem(14);
     font-size: $font-size-h2;
     
     transition: 0.3s;
