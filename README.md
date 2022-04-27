@@ -4,13 +4,19 @@
 
 FitScreenWindowは、Windows用のウィンドウ移動・リサイズツールです。
 
-また、本アプリはPythonで開発されたフリーソフトウェアプロジェクトです。
+また、本アプリはPythonで開発されたオープンソースソフトウェアです。
+
+***
+
+## 機能
+
+準備中
 
 ***
 
 ## 著作権
 
-本アプリの著作権は、Kawaichi0228 に帰属する。
+[MIT License](https://opensource.org/licenses/MIT)
 
 ***
 
