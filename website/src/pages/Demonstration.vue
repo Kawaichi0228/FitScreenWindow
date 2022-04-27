@@ -23,7 +23,7 @@ div#Demonstration{
 
 img#main-image{
   width: 100%;
-  max-width: rem(400);
+  max-width: rem(500);
 }
 
 </style>
