@@ -3,7 +3,7 @@
     <div class="footer-component">
       <div class="column-main">
         <h2><img class="footer-logo" src="../assets/logo-long.png" alt=""/></h2>
-        <p class="text-footer">アクティブウィンドウを、すばやく画面にフィットすることができるWindows向けのアプリです。
+        <p class="text-footer">選択中のアクティブなウィンドウを、すばやく画面にフィットすることができるWindows向けのアプリです。
           <br>
           <br>
           Free and Open Source software. Created by Kawaichi.
