@@ -85,9 +85,7 @@ h2#main-text2 {
 
 img#main-image {
   width: 100%;
-  max-width: rem(400);
-
-  margin-top: rem(15);
+  max-width: rem(450);
   position: relative;
   bottom: rem(-10);
 }

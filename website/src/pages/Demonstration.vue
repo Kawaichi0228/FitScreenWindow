@@ -1,13 +1,20 @@
 <template>
   <div id="Demonstration">
-    <h1 id="content-title">アクティブウィンドウを すばやく画面にフィット</h1>
-    <img id="main-image" src="../assets/demonstration.gif" alt="" />
-    <p>それぞれフィットさせたいウィンドウをアクティブにした状態で<br>
-    ショートカットキーを押すごとに最大4段階のサイズ変化 + 画面の端に<br>
-    合わせるように自動的に配置します。</p>
-    <p>[ショートカットキー]</p>
-    <p>ウィンドウ左寄せ：Ctrl + Alt + ←</p>
-    <p>ウィンドウ右寄せ：Ctrl + Alt + →</p>
+    <h1 id="content-title">選択中のウィンドウを すばやく画面にフィット</h1>
+
+    <ul>
+      <li class="card">
+        <img class="card-img" src="../assets/demonstration.gif" alt="">
+        <div class="card-text">
+          <p>選択中のアクティブなウィンドウに対して、ショートカットキーを押すごとに、画面の端に合わせて自動的に配置 & サイズを段階的に変化させます。</p>
+          <div class="line"></div>
+          <p><b>- ショートカットキー -</b></p>
+          <p class="demo-hotkey">左方向へ配置：<b>Shift + Alt + ←</b></p>
+          <p class="demo-hotkey">右方向へ配置：<b>Shift + Alt + →</b></p>
+        </div>
+      </li>
+    </ul>
+
   </div>
 </template>
 
@@ -21,9 +28,42 @@ div#Demonstration{
   background-color: $color-white;
 }
 
-img#main-image{
-  width: 100%;
-  max-width: rem(400);
+// TODO: hrタグCSSを共通化
+.line {
+	border-top: 3px solid $color-lightgray;
+  width: 80%;
+  margin: 0 auto;
 }
+
+li.card {
+  display: inline-block;
+  padding: rem(30) 0;
+  max-width: rem(550);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #ccc;
+
+  $_content-width: 85%;
+  img.card-img {
+    border-radius: 5px 5px 0 0;
+    width: $_content-width; // 親要素に対してのwidth比率
+  }
+  div.card-text {
+    width: $_content-width;
+    margin: 0 auto;
+    line-height: rem(30);
+  }
+}
+
+.demo-hotkey{
+  border: 2px solid $color-lightblue;
+  background-color: $color-lightblue;
+  color: $color-gray;
+  text-decoration: none;
+  margin-bottom: 25px;
+  //width: 50%;
+  padding: 1px 10px;
+  border-radius: 5px;
+}
+
 
 </style>

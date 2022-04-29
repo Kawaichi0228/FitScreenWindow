@@ -3,10 +3,10 @@
     <div class="footer-component">
       <div class="column-main">
         <h2><img class="footer-logo" src="../assets/logo-long.png" alt=""/></h2>
-        <p class="text-footer">アクティブウィンドウを、すばやく画面にフィットすることができるWindows向けのアプリです。
+        <p class="text-footer">選択中のアクティブなウィンドウを、すばやく画面にフィットすることができるWindows向けのアプリです。
           <br>
           <br>
-          Free Software, Created by Kawaichi
+          Free and Open Source software. Created by Kawaichi.
         </p>
       </div>
 
@@ -64,6 +64,18 @@
           </li>
         </ul>
 
+      </div>
+
+      <div class="column-sub">
+        <h2>著作権</h2>
+        <ul>
+          <li class="text-footer">
+            <a href="https://opensource.org/licenses/MIT">
+              MIT
+            </a>
+            <span>(FitScreenWindow)</span>
+          </li>
+        </ul>
       </div>
 
       <div class="column-sub">
@@ -148,14 +160,12 @@
   @include tab {
     flex-direction: column;
   }
-
-  @include sp {
-  }
 }
 
 .column-main {
-  margin: 0 0px;
+  margin-right: 20px;
   max-width: 350px;
+  @include tab {margin: 0 0;}
 
   img.footer-logo {
     height: 55px;
@@ -164,8 +174,9 @@
 }
 
 .column-sub {
+  white-space: nowrap; // 改行を禁止
   max-width: 350px;
-  margin: 0 60px;
+  margin: 0 40px;
   @include tab {margin: 0 0;}
 }
 
