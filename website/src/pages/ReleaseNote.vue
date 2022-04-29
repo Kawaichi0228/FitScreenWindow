@@ -8,7 +8,7 @@
 
     <div id="release-list">
       <ul>
-        <li><b>[更新日:2022/4/29 バージョン:1.0(for <b>Python</b>)]</b>
+        <li><b>[更新日:2022/4/29 バージョン:1.0(for Python)]</b>
           <br>リニューアル版を公開しました。</li>
         <li><b>[更新日:2022/3/08 バージョン:1.0.0.0(for Autohotkey)]</b>
           <br>初回版を公開しました。</li>
@@ -24,6 +24,16 @@
 <style lang="scss" scoped>
 @import "../styles/base/_variables.scss";
 @import "../styles/base/_mixin.scss";
+
+h1 {
+  font-size: $font-size-h2;
+}
+
+// TODO: hrタグを共通化
+hr {
+	border-top: 3px solid $color-lightgray;
+  width: 80%;
+}
 
 div#ReleaseNote{
   padding: $section-padding;

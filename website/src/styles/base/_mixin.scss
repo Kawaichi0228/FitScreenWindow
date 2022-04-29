@@ -33,26 +33,28 @@ $_sp: 600px; // sp:SmartPhone
 // -------------------------------------------------------------------------
 // Utils
 // -------------------------------------------------------------------------
-@mixin _ini-center {
+// HACK: margin: 0 auto; との違いがまだよく分かっていない。関数追加したほうがいいかも。
+// width: n%;と併用するときに使うのか？
+@mixin _ini-center($flex-direction: row) {
   display: flex;
-  flex-direction: row;
+  flex-direction: $flex-direction;
 }
 
-@mixin center {
+@mixin center($flex-direction: row) {
   /*水平・垂直中央*/
-  @include horizontal-center;
-  @include vertical-center;
+  @include horizontal-center($flex-direction);
+  @include vertical-center($flex-direction);
 }
 
-@mixin horizontal-center {
+@mixin horizontal-center($flex-direction: row) {
   /*水平中央*/
-  @include _ini-center;
+  @include _ini-center($flex-direction);
   justify-content: center;
 }
 
-@mixin vertical-center {
+@mixin vertical-center($flex-direction: row) {
   /*垂直中央*/
-  @include _ini-center;
+  @include _ini-center($flex-direction);
   align-items: center;
 }
 
