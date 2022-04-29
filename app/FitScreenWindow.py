@@ -3,9 +3,9 @@
 # ===============================================================================
 # - FitScreenWindow -
 #
-# Copyright (C) Kawaichi
+# Copyright (C) Kawaichi0228
 # ===============================================================================
 
-import fitscreenwindow.fitscreenwindowapp as app
+import src.fitscreenwindowapp as app
 
 app.main()
