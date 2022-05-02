@@ -5,7 +5,6 @@
 #
 # Copyright (C) Kawaichi0228
 # ===============================================================================
-
 import src.fitscreenwindowapp as app
 
 app.main()
