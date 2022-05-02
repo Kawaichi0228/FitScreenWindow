@@ -241,6 +241,16 @@ class ApplicationService(IThread):
 # Local functions
 # -------------------------------------------------------------------------
 def main() -> None:
+    # 多重起動防止(既に起動しているか判定し、起動していたら起動せずに終了)
+    import sys, win32api, win32security, win32event
+    sa = win32security.SECURITY_ATTRIBUTES()
+    sa.SECURITY_DESCRIPTOR.SetSecurityDescriptorDacl(True, None, False)
+    mutex = win32event.CreateMutex(sa, False, 'unique-string...')
+    error = win32api.GetLastError()
+    if not error == 0: # 既に起動している場合
+        sys.exit(-1)
+
+    # アプリ起動
     app = ApplicationService()
     app.run()
 
