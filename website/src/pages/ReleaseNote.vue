@@ -8,13 +8,19 @@
 
     <div id="release-list">
       <ul>
-        <li><b>[更新日:2022/4/30 バージョン:1.0(for Python)]</b>
+        <li><b>[更新日:2022/5/3 バージョン:1.1]</b>
+          <br>軽微な不具合を修正しました。</li>
+        <li><b>[更新日:2022/4/30 バージョン:1.0]</b>
           <br>リニューアル版を公開しました。</li>
-        <li><b>[更新日:2022/3/08 バージョン:1.0.0.0(for Autohotkey)]</b>
-          <br>初回版を公開しました。</li>
       </ul>
     </div>
     
+    <span class="releases-description">(変更点の詳細等は
+      <a href="https://github.com/Kawaichi0228/FitScreenWindow/releases">
+        GitHub
+      </a>
+    より確認できます)</span>
+
   </div>
 </template>
 
@@ -27,6 +33,15 @@
 
 h1 {
   font-size: $font-size-h2;
+}
+
+.releases-description {
+  font-size: $font-size-small;
+
+  a {
+    text-decoration: underline;
+    &:hover {text-decoration: none;}
+  }
 }
 
 // TODO: hrタグを共通化
