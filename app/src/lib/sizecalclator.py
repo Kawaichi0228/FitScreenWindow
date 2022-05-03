@@ -4,7 +4,7 @@
 from src.lib.windowstate import *
 from src.lib.counter import *
 from src.lib.const import MoveResizeDirection
-from src.lib.config import Size
+from src.lib.config import Config
 
 # -------------------------------------------------------------------------
 # Class
@@ -45,25 +45,25 @@ class SizeCalclatorAtCounter:
             screen_width = getScreenWidth()
             memorywin = self.__getMemoryWindowState()
             memory_width = memorywin["width"]
-            width = screen_width - memory_width + Size.adjust_width_px
+            width = screen_width - memory_width + Config.Size.adjust_width_px
             return width
 
         # リサイズWidthを計算
         base_magni = 1 # 倍率100%から開始
-        magni = (self.cnt.get() / 10) * Size.resize_ratio # 整数intのカウンタを取得し、floatの0.n単位にしている
+        magni = (self.cnt.get() / 10) * Config.Size.resize_ratio # 整数intのカウンタを取得し、floatの0.n単位にしている
         width_magnification = base_magni + magni # 1.n倍の形式へフォーマット
 
         if direction == MoveResizeDirection.LEFT:
-            width_base = Size.base_width_toleft_px
+            width_base = Config.Size.base_width_toleft_px
         elif direction == MoveResizeDirection.RIGHT:
-            width_base = Size.base_width_toright_px
+            width_base = Config.Size.base_width_toright_px
 
-        width = int(round(width_base * width_magnification + Size.adjust_width_px))
+        width = int(round(width_base * width_magnification + Config.Size.adjust_width_px))
         return width
 
     def calclateHeight(self) -> int:
         # configのintをboolへ変換
-        isSubtractTaskBar = True if Size.is_subtract_taskbar == 1 else False
+        isSubtractTaskBar = True if Config.Size.is_subtract_taskbar == 1 else False
 
         # タスクバーのheight分をマイナスするかどうか
         if isSubtractTaskBar:
@@ -82,7 +82,7 @@ class SizeCalclatorAtCounter:
         memorywin = self.__getMemoryWindowState()
 
         if not self.__isEqualMemoryDirection(direction): return True # メモリした移動・リサイズ方向と今回実行した方向が違う場合
-        if self.cnt.get() > Size.resize_max_cnt: return True # 設定したリサイズ上限値を超えていた場合
+        if self.cnt.get() > Config.Size.resize_max_cnt: return True # 設定したリサイズ上限値を超えていた場合
         if not actvwin["hwnd"] == memorywin["hwnd"]: return True # 前回処理したウィンドウと違うウィンドウだった場合
         if not actvwin["xy"] == memorywin["xy"]: return True # 前回処理後の位置から移動していた場合
         return False

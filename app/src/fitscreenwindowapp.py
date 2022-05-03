@@ -16,7 +16,7 @@ from src.lib.configconverter import ConfigConverter
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.errordialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
-from src.lib.config import Size, Position, HotkeyWindowLeft, HotkeyWindowRight
+from src.lib.config import Config
 from src.lib.const import (
     MoveResizeDirection,
     CONFIG_JSON_PATH,
@@ -80,8 +80,8 @@ class GlobalHotkeyService(IThread):
         
         # Config.pyに格納された各ホットキーの値をKeycodeへ変換し、dictとして取得
         key_converter = ConfigConverter()
-        keycombination_windowleft = key_converter.convertHotkeyConfigToKeycode(HotkeyWindowLeft)
-        keycombination_windowright = key_converter.convertHotkeyConfigToKeycode(HotkeyWindowRight)
+        keycombination_windowleft = key_converter.convertHotkeyConfigToKeycode(Config.HotkeyWindowLeft)
+        keycombination_windowright = key_converter.convertHotkeyConfigToKeycode(Config.HotkeyWindowRight)
 
         # 登録するホットキーとそれにバインドするイベント処理を定義
         register = {}
@@ -181,29 +181,29 @@ class JsonService:
         
         # config.pyをjsonで読みとった値で書き換え
         json_size = json_dict["size"]
-        Size.resize_max_cnt = json_size["resize_max_cnt"]
-        Size.resize_ratio = json_size["resize_ratio"]
-        Size.base_width_toleft_px = json_size["base_width_toleft_px"]
-        Size.base_width_toright_px = json_size["base_width_toright_px"]
-        Size.adjust_width_px = json_size["adjust_width_px"]
-        Size.is_subtract_taskbar = json_size["is_subtract_taskbar"]
+        Config.Size.resize_max_cnt = json_size["resize_max_cnt"]
+        Config.Size.resize_ratio = json_size["resize_ratio"]
+        Config.Size.base_width_toleft_px = json_size["base_width_toleft_px"]
+        Config.Size.base_width_toright_px = json_size["base_width_toright_px"]
+        Config.Size.adjust_width_px = json_size["adjust_width_px"]
+        Config.Size.is_subtract_taskbar = json_size["is_subtract_taskbar"]
         
         json_position = json_dict["position"]
-        Position.adjust_x_px = json_position["adjust_x_px"]
+        Config.Position.adjust_x_px = json_position["adjust_x_px"]
 
         json_hotkey_windowleft = json_dict["hotkey_windowleft"]
-        HotkeyWindowLeft.mod_ctrl = json_hotkey_windowleft["mod_ctrl"]
-        HotkeyWindowLeft.mod_shift = json_hotkey_windowleft["mod_shift"]
-        HotkeyWindowLeft.mod_alt = json_hotkey_windowleft["mod_alt"]
-        HotkeyWindowLeft.mod_win = json_hotkey_windowleft["mod_win"]
-        HotkeyWindowLeft.hotkey = json_hotkey_windowleft["hotkey"]
+        Config.HotkeyWindowLeft.mod_ctrl = json_hotkey_windowleft["mod_ctrl"]
+        Config.HotkeyWindowLeft.mod_shift = json_hotkey_windowleft["mod_shift"]
+        Config.HotkeyWindowLeft.mod_alt = json_hotkey_windowleft["mod_alt"]
+        Config.HotkeyWindowLeft.mod_win = json_hotkey_windowleft["mod_win"]
+        Config.HotkeyWindowLeft.hotkey = json_hotkey_windowleft["hotkey"]
 
         json_hotkey_windowright = json_dict["hotkey_windowright"]
-        HotkeyWindowRight.mod_ctrl = json_hotkey_windowright["mod_ctrl"]
-        HotkeyWindowRight.mod_shift = json_hotkey_windowright["mod_shift"]
-        HotkeyWindowRight.mod_alt = json_hotkey_windowright["mod_alt"]
-        HotkeyWindowRight.mod_win = json_hotkey_windowright["mod_win"]
-        HotkeyWindowRight.hotkey = json_hotkey_windowright["hotkey"]
+        Config.HotkeyWindowRight.mod_ctrl = json_hotkey_windowright["mod_ctrl"]
+        Config.HotkeyWindowRight.mod_shift = json_hotkey_windowright["mod_shift"]
+        Config.HotkeyWindowRight.mod_alt = json_hotkey_windowright["mod_alt"]
+        Config.HotkeyWindowRight.mod_win = json_hotkey_windowright["mod_win"]
+        Config.HotkeyWindowRight.hotkey = json_hotkey_windowright["hotkey"]
 
         assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
