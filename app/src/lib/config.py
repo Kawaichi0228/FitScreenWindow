@@ -4,41 +4,81 @@
 from dataclasses import dataclass
 
 # -------------------------------------------------------------------------
+# App modules
+# -------------------------------------------------------------------------
+from src.lib.keylist import ModifireKey, Hotkey
+
+# -------------------------------------------------------------------------
 # Class
 # -------------------------------------------------------------------------
 class Config:
+    # MEMO: 各ConfigのValidate(数値範囲制限)は今のところGUI作成ツールで設定している(このクラスでは定義していない)
     """
     - データクラス化はクラス変数のため、全インスタンス共通のグローバル変数のように扱うことができる
     - 内部クラス化することでネストされたクラスをPrivate化することができる(外部参照不可)
-    - config.jsonを使用しなくても動作させられるように、初期値をクラスに定義している
     """
     @dataclass(frozen=False) # frozen=False: セッタ可能にする
     class Size:
         """SizeCalclatorAtCounter専用のパラメータオブジェクト"""
-        resize_max_cnt: int = 4 # 段階リサイズを実行できる最大回数
-        resize_ratio: float = 3.5 # リサイズごと(カウンタと連動)の拡大倍率(基準サイズから×n倍するか)
-        base_width_toleft_px: int = 500 # 初期リサイズ時のウィンドウサイズ
-        base_width_toright_px: int = 500 # 初期リサイズ時のウィンドウサイズ
-        adjust_width_px: int = 15 # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの枠のサイズ？)
+        resize_max_cnt: int # 段階リサイズを実行できる最大回数
+        resize_ratio: float # リサイズごと(カウンタと連動)の拡大倍率(基準サイズから×n倍するか)
+        base_width_toleft_px: int # 初期リサイズ時のウィンドウサイズ
+        base_width_toright_px: int # 初期リサイズ時のウィンドウサイズ
+        adjust_width_px: int # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの枠のサイズ？)
 
     @dataclass(frozen=False)
     class Position:
         """PositionCalclator専用のパラメータオブジェクト"""
-        adjust_x_px: int = 5 # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの角丸枠のサイズ？)
+        adjust_x_px: int # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの角丸枠のサイズ？)
 
     @dataclass(frozen=False)
     class HotkeyWindowLeft:
-        mod_ctrl: int = 1
-        mod_shift: int = 1
-        mod_alt: int = 0
-        hotkey: str = "g"
+        mod_ctrl: int # bool 1 or 0
+        mod_shift: int # bool 1 or 0
+        mod_alt: int # bool 1 or 0
+        hotkey: str
 
     @dataclass(frozen=False)
     class HotkeyWindowRight:
-        mod_ctrl: int = 1
-        mod_shift: int = 1
-        mod_alt: int = 0
-        hotkey: str = "h"
+        mod_ctrl: int # bool 1 or 0
+        mod_shift: int # bool 1 or 0
+        mod_alt: int # bool 1 or 0
+        hotkey: str
+
+    @staticmethod
+    def getKeycodeforHotkeyWindowLeft() -> dict:
+        return Config.__convertHotkeyWindowToKeycode(Config.HotkeyWindowLeft)
+
+    @staticmethod
+    def getKeycodeforHotkeyWindowRight() -> dict:
+        return Config.__convertHotkeyWindowToKeycode(Config.HotkeyWindowRight)
+
+    @staticmethod
+    def __convertHotkeyWindowToKeycode(HotkeyWindowLeftRight) -> dict:
+        """
+        Config.pyに格納された各ホットキーの値を、
+        wxPython対応のキーコードへ変換する
+        return:
+            修飾キーの組み合わせと単体ホットキーのキーコードをdictとして返す
+        prm:
+            HotkeyWindowLeftRight: クラスの HotkeyWindowLeft または HotkeyWindowRightを渡す
+        other:
+            Configクラスを用いたダックタイピングを使用
+        """
+        # 修飾キー(configのValueが 1 だった場合に変換して格納する)
+        modk = ModifireKey()
+        if HotkeyWindowLeftRight.mod_ctrl == 1: modk.add(modk.CTRLKEY)
+        if HotkeyWindowLeftRight.mod_shift == 1: modk.add(modk.SHIFTKEY)
+        if HotkeyWindowLeftRight.mod_alt == 1: modk.add(modk.ALTKEY)
+        if HotkeyWindowLeftRight.mod_win == 1: modk.add(modk.WINKEY)
+        mod_combination = modk.getCombinationKeycode()
+        
+        # ホットキー
+        hk = Hotkey()
+        hotkey = hk.getKeycode(HotkeyWindowLeftRight.hotkey)
+
+        return {"mod_combination": mod_combination, "hotkey": hotkey}
+
 
 class ConfigJsonToPython:
     def __init__(self, json_dict) -> None:

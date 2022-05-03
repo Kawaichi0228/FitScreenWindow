@@ -12,7 +12,6 @@ from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.tasktray import Tasktray
 from src.lib.jsoncontroller import JsonController
-from src.lib.configconverter import ConfigConverter
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.errordialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
@@ -79,9 +78,8 @@ class GlobalHotkeyService(IThread):
         mr = MoveResizeWindowService()
         
         # Config.pyに格納された各ホットキーの値をKeycodeへ変換し、dictとして取得
-        key_converter = ConfigConverter()
-        keycombination_windowleft = key_converter.convertHotkeyConfigToKeycode(Config.HotkeyWindowLeft)
-        keycombination_windowright = key_converter.convertHotkeyConfigToKeycode(Config.HotkeyWindowRight)
+        keycombination_windowleft = Config.getKeycodeforHotkeyWindowLeft()
+        keycombination_windowright = Config.getKeycodeforHotkeyWindowRight()
 
         # 登録するホットキーとそれにバインドするイベント処理を定義
         register = {}
@@ -181,7 +179,7 @@ class JsonService:
         config_json.overWriteConfig()
         assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
-    def convertJsonToKeyCode(self, json_obj) -> dict:
+    def getDictJson(self, json_obj) -> dict:
         """jsonのvalueをkeycodeへ変換した2次元Dictを取得"""
         return self.jc.getDictionary(json_obj)
 
@@ -210,7 +208,7 @@ class ApplicationService(IThread):
         json_object = json_service.read()
 
         # jsonからkeycodeへ変換
-        json_dict = json_service.convertJsonToKeyCode(json_object)
+        json_dict = json_service.getDictJson(json_object)
 
         # config.pyの各データクラスの値を上書きする
         json_service.overWriteConfig(json_dict)
