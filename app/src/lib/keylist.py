@@ -2,6 +2,7 @@
 # Python modules
 # -------------------------------------------------------------------------
 import wx
+import itertools
 
 # -------------------------------------------------------------------------
 # Class
@@ -40,10 +41,12 @@ class Hotkey:
         self.allow = ("left", "right", "up", "down")
 
     def getKeyList(self) -> list:
+        # MEMO: append位置 = 返されるリストのソート順が決まる
         key_list = []
-        key_list.append(self.number)
         key_list.append(self.alphabet)
+        key_list.append(self.number)
         key_list.append(self.allow)
+        key_list = list(itertools.chain.from_iterable(key_list)) # 多次元リストを一次元化
         return key_list
 
     def getKeycode(self, value: str) -> int:
