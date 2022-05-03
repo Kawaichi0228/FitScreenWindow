@@ -7,4 +7,7 @@
 # ===============================================================================
 import src.fitscreenwindowapp as app
 
-app.main()
+from src.gui.guimain import GuiService
+gui_service = GuiService()
+gui_service.start()
+#app.main()

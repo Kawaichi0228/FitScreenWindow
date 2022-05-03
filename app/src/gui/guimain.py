@@ -9,7 +9,8 @@ from PySide2.QtWidgets import *
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
-from settinggui import Ui_Setting
+from src.gui.settinggui import Ui_Setting
+from src.lib.keylist import Hotkey
 
 # -------------------------------------------------------------------------
 # Class
@@ -151,13 +152,14 @@ class GuiService:
     def __setupTab_ShortcutKey(self):
         """ショートカットキータブのsetup"""
         # ComboBox
-        json_dict_combobox = ["uhohohohoh", "unyannyanna", "fadfaf;;", "fdadfa"]
+        hk = Hotkey()
+        key_list = hk.getKeyList()
         combobox_list = []
         # - WindowLeft
-        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, json_dict_combobox)
+        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, key_list)
         combobox_list.append(combobox_item)
         # - WindowRight
-        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowRight, json_dict_combobox)
+        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowRight, key_list)
         combobox_list.append(combobox_item)
         # - setup
         self.gui.setupComboBox(combobox_list)
@@ -185,10 +187,3 @@ class GuiService:
         # - setup
         self.gui.setupCheckBox(checkbox_list)
 
-
-# -------------------------------------------------------------------------
-# Local functions
-# -------------------------------------------------------------------------
-if __name__ == '__main__':
-    gui_service = GuiService()
-    gui_service.start()

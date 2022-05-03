@@ -39,6 +39,13 @@ class Hotkey:
         )
         self.allow = ("left", "right", "up", "down")
 
+    def getKeyList(self) -> list:
+        key_list = []
+        key_list.append(self.number)
+        key_list.append(self.alphabet)
+        key_list.append(self.allow)
+        return key_list
+
     def getKeycode(self, value: str) -> int:
         if any([
             self.__isNumberString(value),
