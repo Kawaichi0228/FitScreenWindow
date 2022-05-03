@@ -16,7 +16,7 @@ from src.lib.configconverter import ConfigConverter
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.errordialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
-from src.lib.config import Config
+from src.lib.config import Config, ConfigJsonToPython
 from src.lib.const import (
     MoveResizeDirection,
     CONFIG_JSON_PATH,
@@ -174,39 +174,16 @@ class JsonService:
             ErrorDialog().showFileNotFound("config.json")
             ErrorHandling().quitApp()
         return json_obj
-    
-    def overWriteConfig(self, json_obj) -> None:
-        # jsonのvalueからkeycodeへ変換したdictを取得
-        json_dict = self.jc.getDictionary(json_obj) # JSONファイルの内容を2次元dictとして取得
-        
+
+    def overWriteConfig(self, json_dict) -> None:
         # config.pyをjsonで読みとった値で書き換え
-        json_size = json_dict["size"]
-        Config.Size.resize_max_cnt = json_size["resize_max_cnt"]
-        Config.Size.resize_ratio = json_size["resize_ratio"]
-        Config.Size.base_width_toleft_px = json_size["base_width_toleft_px"]
-        Config.Size.base_width_toright_px = json_size["base_width_toright_px"]
-        Config.Size.adjust_width_px = json_size["adjust_width_px"]
-        Config.Size.is_subtract_taskbar = json_size["is_subtract_taskbar"]
-        
-        json_position = json_dict["position"]
-        Config.Position.adjust_x_px = json_position["adjust_x_px"]
-
-        json_hotkey_windowleft = json_dict["hotkey_windowleft"]
-        Config.HotkeyWindowLeft.mod_ctrl = json_hotkey_windowleft["mod_ctrl"]
-        Config.HotkeyWindowLeft.mod_shift = json_hotkey_windowleft["mod_shift"]
-        Config.HotkeyWindowLeft.mod_alt = json_hotkey_windowleft["mod_alt"]
-        Config.HotkeyWindowLeft.mod_win = json_hotkey_windowleft["mod_win"]
-        Config.HotkeyWindowLeft.hotkey = json_hotkey_windowleft["hotkey"]
-
-        json_hotkey_windowright = json_dict["hotkey_windowright"]
-        Config.HotkeyWindowRight.mod_ctrl = json_hotkey_windowright["mod_ctrl"]
-        Config.HotkeyWindowRight.mod_shift = json_hotkey_windowright["mod_shift"]
-        Config.HotkeyWindowRight.mod_alt = json_hotkey_windowright["mod_alt"]
-        Config.HotkeyWindowRight.mod_win = json_hotkey_windowright["mod_win"]
-        Config.HotkeyWindowRight.hotkey = json_hotkey_windowright["hotkey"]
-
+        config_json = ConfigJsonToPython(json_dict)
+        config_json.overWriteConfig()
         assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
+    def convertJsonToKeyCode(self, json_obj) -> dict:
+        """jsonのvalueをkeycodeへ変換した2次元Dictを取得"""
+        return self.jc.getDictionary(json_obj)
 
 class ApplicationService(IThread):
     def __init__(self) -> None:
@@ -228,10 +205,15 @@ class ApplicationService(IThread):
         self.t_service.stopThread()
 
     def run(self) -> None:
-        # config.jsonを読み取り、config.pyの各データクラスを上書きする
+        # config.jsonから値を読み取り
         json_service = JsonService()
-        json_obj = json_service.read()
-        json_service.overWriteConfig(json_obj)
+        json_object = json_service.read()
+
+        # jsonからkeycodeへ変換
+        json_dict = json_service.convertJsonToKeyCode(json_object)
+
+        # config.pyの各データクラスの値を上書きする
+        json_service.overWriteConfig(json_dict)
 
         # スレッド開始
         self.startThread()

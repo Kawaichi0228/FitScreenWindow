@@ -39,3 +39,36 @@ class Config:
         mod_shift: int = 1
         mod_alt: int = 0
         hotkey: str = "h"
+
+class ConfigJsonToPython:
+    def __init__(self, json_dict) -> None:
+        self.json_dict = json_dict
+
+    def overWriteConfig(self) -> None:
+        """config.pyをjsonで読みとった値で書き換え"""
+        json_size = self.json_dict["size"]
+        
+        Config.Size.resize_max_cnt = json_size["resize_max_cnt"]
+        Config.Size.resize_ratio = json_size["resize_ratio"]
+        Config.Size.base_width_toleft_px = json_size["base_width_toleft_px"]
+        Config.Size.base_width_toright_px = json_size["base_width_toright_px"]
+        Config.Size.adjust_width_px = json_size["adjust_width_px"]
+        Config.Size.is_subtract_taskbar = json_size["is_subtract_taskbar"]
+        
+        json_position = self.json_dict["position"]
+        Config.Position.adjust_x_px = json_position["adjust_x_px"]
+
+        json_hotkey_windowleft = self.json_dict["hotkey_windowleft"]
+        Config.HotkeyWindowLeft.mod_ctrl = json_hotkey_windowleft["mod_ctrl"]
+        Config.HotkeyWindowLeft.mod_shift = json_hotkey_windowleft["mod_shift"]
+        Config.HotkeyWindowLeft.mod_alt = json_hotkey_windowleft["mod_alt"]
+        Config.HotkeyWindowLeft.mod_win = json_hotkey_windowleft["mod_win"]
+        Config.HotkeyWindowLeft.hotkey = json_hotkey_windowleft["hotkey"]
+
+        json_hotkey_windowright = self.json_dict["hotkey_windowright"]
+        Config.HotkeyWindowRight.mod_ctrl = json_hotkey_windowright["mod_ctrl"]
+        Config.HotkeyWindowRight.mod_shift = json_hotkey_windowright["mod_shift"]
+        Config.HotkeyWindowRight.mod_alt = json_hotkey_windowright["mod_alt"]
+        Config.HotkeyWindowRight.mod_win = json_hotkey_windowright["mod_win"]
+        Config.HotkeyWindowRight.hotkey = json_hotkey_windowright["hotkey"]
+
