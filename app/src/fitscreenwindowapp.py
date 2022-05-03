@@ -173,10 +173,10 @@ class JsonService:
             ErrorHandling().quitApp()
         return json_obj
 
-    def overWriteConfig(self, json_dict) -> None:
+    def setupConfig(self, json_dict) -> None:
         # config.pyをjsonで読みとった値で書き換え
         config_json = ConfigJsonToPython(json_dict)
-        config_json.overWriteConfig()
+        config_json.setupConfig()
         assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
     def getDictJson(self, json_obj) -> dict:
@@ -207,11 +207,11 @@ class ApplicationService(IThread):
         json_service = JsonService()
         json_object = json_service.read()
 
-        # jsonからkeycodeへ変換
+        # 生成されたObjectから、jsonのValueが格納されたDictを取得
         json_dict = json_service.getDictJson(json_object)
 
         # config.pyの各データクラスの値を上書きする
-        json_service.overWriteConfig(json_dict)
+        json_service.setupConfig(json_dict)
 
         # スレッド開始
         self.startThread()

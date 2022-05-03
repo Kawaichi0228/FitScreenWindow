@@ -84,7 +84,7 @@ class ConfigJsonToPython:
     def __init__(self, json_dict) -> None:
         self.json_dict = json_dict
 
-    def overWriteConfig(self) -> None:
+    def setupConfig(self) -> None:
         """config.pyをjsonで読みとった値で書き換え"""
         json_size = self.json_dict["size"]
         
