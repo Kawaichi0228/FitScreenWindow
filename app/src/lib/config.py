@@ -7,6 +7,14 @@ from dataclasses import dataclass
 # -------------------------------------------------------------------------
 # Class
 # -------------------------------------------------------------------------
+class Config:
+    """ここに全て集約する"""
+    def __init__(self) -> None:
+        self.Size = Size()
+        self.Position = Position()
+        self.HotkeyWindowLeft = HotkeyWindowLeft()
+        self.HotkeyWindowRight = HotkeyWindowRight()
+
 @dataclass(frozen=False) # frozen=False: セッタ可能にする
 class Size:
     """SizeCalclatorAtCounter専用のパラメータオブジェクト"""
