@@ -53,10 +53,17 @@ class SettingGUI(AbstractGui, QDialog):
     # QtDesigner作成後に追加で設定するセットアップを定義
     # =========================================================================
     # -------------------------------------------------------------------------
+    # Window
+    # -------------------------------------------------------------------------
+    def setupWindow_CloseButtonOnly(self) -> None:
+        """閉じるボタンのみ表示(ウィンドウに表示するTypeとHints)"""
+        self.setWindowFlags(
+            Qt.Window|Qt.WindowCloseButtonHint
+        )
+    # -------------------------------------------------------------------------
     # PushButton
     # -------------------------------------------------------------------------
     def setupPushButton(self, list_) -> None:
-        """イベント登録(シグナル/スロット)"""
         self.__bindOnClick_PushButton_FromList(list_)
 
     def __bindOnClick_PushButton_FromList(self, list_) -> None:
@@ -64,6 +71,7 @@ class SettingGUI(AbstractGui, QDialog):
             self.__bindOnClick_PushButton(list_[i][0], list_[i][1])
     
     def __bindOnClick_PushButton(self, push_button, on_event_function) -> None:
+        """イベント登録(シグナル/スロット)"""
         push_button.clicked.connect(lambda: on_event_function())
     # -------------------------------------------------------------------------
     # ComboBox

@@ -18,7 +18,7 @@ class Ui_Setting(object):
     def setupUi(self, Setting):
         if not Setting.objectName():
             Setting.setObjectName(u"Setting")
-        Setting.resize(345, 241)
+        Setting.resize(307, 232)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -29,27 +29,14 @@ class Ui_Setting(object):
         Setting.setWindowIcon(icon)
         self.gridLayout = QGridLayout(Setting)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.pustButton_ok = QPushButton(Setting)
-        self.pustButton_ok.setObjectName(u"pustButton_ok")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.pustButton_ok.sizePolicy().hasHeightForWidth())
-        self.pustButton_ok.setSizePolicy(sizePolicy1)
-        self.pustButton_ok.setContextMenuPolicy(Qt.PreventContextMenu)
-
-        self.gridLayout.addWidget(self.pustButton_ok, 1, 0, 1, 1)
-
-        self.pustButton_cancel = QPushButton(Setting)
-        self.pustButton_cancel.setObjectName(u"pustButton_cancel")
-        sizePolicy1.setHeightForWidth(self.pustButton_cancel.sizePolicy().hasHeightForWidth())
-        self.pustButton_cancel.setSizePolicy(sizePolicy1)
-        self.pustButton_cancel.setContextMenuPolicy(Qt.PreventContextMenu)
-
-        self.gridLayout.addWidget(self.pustButton_cancel, 1, 1, 1, 1)
-
+        self.gridLayout.setSizeConstraint(QLayout.SetFixedSize)
         self.tabWidget = QTabWidget(Setting)
         self.tabWidget.setObjectName(u"tabWidget")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
+        self.tabWidget.setSizePolicy(sizePolicy1)
         self.tabWidget.setTabBarAutoHide(False)
         self.tab_size = QWidget()
         self.tab_size.setObjectName(u"tab_size")
@@ -187,91 +174,112 @@ class Ui_Setting(object):
         self.tab_shortcutkey.setObjectName(u"tab_shortcutkey")
         self.gridLayout_3 = QGridLayout(self.tab_shortcutkey)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.label_A_4 = QLabel(self.tab_shortcutkey)
-        self.label_A_4.setObjectName(u"label_A_4")
-        self.label_A_4.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-
-        self.gridLayout_3.addWidget(self.label_A_4, 0, 0, 1, 2)
-
-        self.label_A_6 = QLabel(self.tab_shortcutkey)
-        self.label_A_6.setObjectName(u"label_A_6")
-        self.label_A_6.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-
-        self.gridLayout_3.addWidget(self.label_A_6, 0, 2, 1, 2)
-
-        self.checkBox_windowleft_mod_ctrl = QCheckBox(self.tab_shortcutkey)
+        self.groupBox = QGroupBox(self.tab_shortcutkey)
+        self.groupBox.setObjectName(u"groupBox")
+        self.gridLayout_5 = QGridLayout(self.groupBox)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.checkBox_windowleft_mod_ctrl = QCheckBox(self.groupBox)
         self.checkBox_windowleft_mod_ctrl.setObjectName(u"checkBox_windowleft_mod_ctrl")
         self.checkBox_windowleft_mod_ctrl.setChecked(True)
 
-        self.gridLayout_3.addWidget(self.checkBox_windowleft_mod_ctrl, 1, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.checkBox_windowleft_mod_ctrl, 0, 0, 1, 2)
 
-        self.checkBox_windowright_mod_ctrl = QCheckBox(self.tab_shortcutkey)
-        self.checkBox_windowright_mod_ctrl.setObjectName(u"checkBox_windowright_mod_ctrl")
-        self.checkBox_windowright_mod_ctrl.setChecked(True)
-
-        self.gridLayout_3.addWidget(self.checkBox_windowright_mod_ctrl, 1, 2, 1, 1)
-
-        self.checkBox_windowleft_mod_shift = QCheckBox(self.tab_shortcutkey)
+        self.checkBox_windowleft_mod_shift = QCheckBox(self.groupBox)
         self.checkBox_windowleft_mod_shift.setObjectName(u"checkBox_windowleft_mod_shift")
         self.checkBox_windowleft_mod_shift.setChecked(True)
 
-        self.gridLayout_3.addWidget(self.checkBox_windowleft_mod_shift, 2, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.checkBox_windowleft_mod_shift, 1, 0, 1, 2)
 
-        self.checkBox_windowright_mod_shift = QCheckBox(self.tab_shortcutkey)
-        self.checkBox_windowright_mod_shift.setObjectName(u"checkBox_windowright_mod_shift")
-        self.checkBox_windowright_mod_shift.setChecked(True)
-
-        self.gridLayout_3.addWidget(self.checkBox_windowright_mod_shift, 2, 2, 1, 1)
-
-        self.checkBox_windowleft_mod_alt = QCheckBox(self.tab_shortcutkey)
+        self.checkBox_windowleft_mod_alt = QCheckBox(self.groupBox)
         self.checkBox_windowleft_mod_alt.setObjectName(u"checkBox_windowleft_mod_alt")
         self.checkBox_windowleft_mod_alt.setChecked(True)
 
-        self.gridLayout_3.addWidget(self.checkBox_windowleft_mod_alt, 3, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.checkBox_windowleft_mod_alt, 2, 0, 1, 2)
 
-        self.checkBox_windowright_mod_alt = QCheckBox(self.tab_shortcutkey)
-        self.checkBox_windowright_mod_alt.setObjectName(u"checkBox_windowright_mod_alt")
-        self.checkBox_windowright_mod_alt.setChecked(True)
-
-        self.gridLayout_3.addWidget(self.checkBox_windowright_mod_alt, 3, 2, 1, 1)
-
-        self.checkBox_windowleft_mod_win = QCheckBox(self.tab_shortcutkey)
+        self.checkBox_windowleft_mod_win = QCheckBox(self.groupBox)
         self.checkBox_windowleft_mod_win.setObjectName(u"checkBox_windowleft_mod_win")
         self.checkBox_windowleft_mod_win.setChecked(True)
 
-        self.gridLayout_3.addWidget(self.checkBox_windowleft_mod_win, 4, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.checkBox_windowleft_mod_win, 3, 0, 1, 2)
 
-        self.checkBox_windowright_mod_win = QCheckBox(self.tab_shortcutkey)
-        self.checkBox_windowright_mod_win.setObjectName(u"checkBox_windowright_mod_win")
-        self.checkBox_windowright_mod_win.setChecked(True)
-
-        self.gridLayout_3.addWidget(self.checkBox_windowright_mod_win, 4, 2, 1, 1)
-
-        self.label_A_3 = QLabel(self.tab_shortcutkey)
+        self.label_A_3 = QLabel(self.groupBox)
         self.label_A_3.setObjectName(u"label_A_3")
         self.label_A_3.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.gridLayout_3.addWidget(self.label_A_3, 5, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.label_A_3, 4, 0, 1, 1)
 
-        self.comboBox_Hotkey_WindowLeft = QComboBox(self.tab_shortcutkey)
+        self.comboBox_Hotkey_WindowLeft = QComboBox(self.groupBox)
         self.comboBox_Hotkey_WindowLeft.setObjectName(u"comboBox_Hotkey_WindowLeft")
 
-        self.gridLayout_3.addWidget(self.comboBox_Hotkey_WindowLeft, 5, 1, 1, 1)
+        self.gridLayout_5.addWidget(self.comboBox_Hotkey_WindowLeft, 4, 1, 1, 1)
 
-        self.label_A_5 = QLabel(self.tab_shortcutkey)
+
+        self.gridLayout_3.addWidget(self.groupBox, 0, 0, 1, 1)
+
+        self.groupBox_2 = QGroupBox(self.tab_shortcutkey)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.gridLayout_6 = QGridLayout(self.groupBox_2)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.checkBox_windowright_mod_ctrl = QCheckBox(self.groupBox_2)
+        self.checkBox_windowright_mod_ctrl.setObjectName(u"checkBox_windowright_mod_ctrl")
+        self.checkBox_windowright_mod_ctrl.setChecked(True)
+
+        self.gridLayout_6.addWidget(self.checkBox_windowright_mod_ctrl, 0, 0, 1, 2)
+
+        self.checkBox_windowright_mod_shift = QCheckBox(self.groupBox_2)
+        self.checkBox_windowright_mod_shift.setObjectName(u"checkBox_windowright_mod_shift")
+        self.checkBox_windowright_mod_shift.setChecked(True)
+
+        self.gridLayout_6.addWidget(self.checkBox_windowright_mod_shift, 1, 0, 1, 2)
+
+        self.checkBox_windowright_mod_alt = QCheckBox(self.groupBox_2)
+        self.checkBox_windowright_mod_alt.setObjectName(u"checkBox_windowright_mod_alt")
+        self.checkBox_windowright_mod_alt.setChecked(True)
+
+        self.gridLayout_6.addWidget(self.checkBox_windowright_mod_alt, 2, 0, 1, 1)
+
+        self.checkBox_windowright_mod_win = QCheckBox(self.groupBox_2)
+        self.checkBox_windowright_mod_win.setObjectName(u"checkBox_windowright_mod_win")
+        self.checkBox_windowright_mod_win.setChecked(True)
+
+        self.gridLayout_6.addWidget(self.checkBox_windowright_mod_win, 3, 0, 1, 1)
+
+        self.label_A_5 = QLabel(self.groupBox_2)
         self.label_A_5.setObjectName(u"label_A_5")
         self.label_A_5.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.gridLayout_3.addWidget(self.label_A_5, 5, 2, 1, 1)
+        self.gridLayout_6.addWidget(self.label_A_5, 4, 0, 1, 1)
 
-        self.comboBox_Hotkey_WindowRight = QComboBox(self.tab_shortcutkey)
+        self.comboBox_Hotkey_WindowRight = QComboBox(self.groupBox_2)
         self.comboBox_Hotkey_WindowRight.setObjectName(u"comboBox_Hotkey_WindowRight")
 
-        self.gridLayout_3.addWidget(self.comboBox_Hotkey_WindowRight, 5, 3, 1, 1)
+        self.gridLayout_6.addWidget(self.comboBox_Hotkey_WindowRight, 4, 1, 1, 1)
+
+
+        self.gridLayout_3.addWidget(self.groupBox_2, 0, 1, 1, 1)
 
         self.tabWidget.addTab(self.tab_shortcutkey, "")
 
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 2)
+
+        self.pustButton_ok = QPushButton(Setting)
+        self.pustButton_ok.setObjectName(u"pustButton_ok")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.pustButton_ok.sizePolicy().hasHeightForWidth())
+        self.pustButton_ok.setSizePolicy(sizePolicy2)
+        self.pustButton_ok.setContextMenuPolicy(Qt.PreventContextMenu)
+
+        self.gridLayout.addWidget(self.pustButton_ok, 1, 0, 1, 1)
+
+        self.pustButton_cancel = QPushButton(Setting)
+        self.pustButton_cancel.setObjectName(u"pustButton_cancel")
+        sizePolicy2.setHeightForWidth(self.pustButton_cancel.sizePolicy().hasHeightForWidth())
+        self.pustButton_cancel.setSizePolicy(sizePolicy2)
+        self.pustButton_cancel.setContextMenuPolicy(Qt.PreventContextMenu)
+
+        self.gridLayout.addWidget(self.pustButton_cancel, 1, 1, 1, 1)
 
 
         self.retranslateUi(Setting)
@@ -284,8 +292,6 @@ class Ui_Setting(object):
 
     def retranslateUi(self, Setting):
         Setting.setWindowTitle(QCoreApplication.translate("Setting", u"Fit Screen Window - \u8a2d\u5b9a", None))
-        self.pustButton_ok.setText(QCoreApplication.translate("Setting", u"OK", None))
-        self.pustButton_cancel.setText(QCoreApplication.translate("Setting", u"\u30ad\u30e3\u30f3\u30bb\u30eb", None))
         self.label_F.setText(QCoreApplication.translate("Setting", u"\u30ea\u30b5\u30a4\u30ba\u6700\u5927\u56de\u6570", None))
         self.label_F_2.setText(QCoreApplication.translate("Setting", u"\u56de", None))
         self.label_G.setText(QCoreApplication.translate("Setting", u"\u30ea\u30b5\u30a4\u30ba\u500d\u7387", None))
@@ -297,23 +303,25 @@ class Ui_Setting(object):
         self.label_F_5.setText(QCoreApplication.translate("Setting", u"px", None))
         self.label_A_2.setText(QCoreApplication.translate("Setting", u"\u8abf\u6574\u7528\u52a0\u7b97\u30b5\u30a4\u30ba", None))
         self.label_F_6.setText(QCoreApplication.translate("Setting", u"px", None))
-        self.checkBox_is_subtract_taskbar.setText(QCoreApplication.translate("Setting", u"\u30bf\u30b9\u30af\u30d0\u30fc\u306e\u9ad8\u3055\u3092\u6e1b\u7b97\u3057\u3066\u30ea\u30b5\u30a4\u30ba", None))
+        self.checkBox_is_subtract_taskbar.setText(QCoreApplication.translate("Setting", u"\u30bf\u30b9\u30af\u30d0\u30fc\u306e\u9ad8\u3055\u3092\u6e1b\u7b97\u3057\u3066\u30ea\u30b5\u30a4\u30ba(\u4e0b\u4f4d\u7f6e\u306e\u307f)", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_size), QCoreApplication.translate("Setting", u"\u30b5\u30a4\u30ba", None))
         self.label_B_2.setText(QCoreApplication.translate("Setting", u"\u8abf\u6574\u7528\u79fb\u52d5\u4f4d\u7f6e(x)", None))
         self.label_F_7.setText(QCoreApplication.translate("Setting", u"px", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_position), QCoreApplication.translate("Setting", u"\u4f4d\u7f6e", None))
-        self.label_A_4.setText(QCoreApplication.translate("Setting", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u5de6\u914d\u7f6e", None))
-        self.label_A_6.setText(QCoreApplication.translate("Setting", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u53f3\u914d\u7f6e", None))
-        self.checkBox_windowleft_mod_ctrl.setText(QCoreApplication.translate("Setting", u"Ctrl\u30ad\u30fc", None))
-        self.checkBox_windowright_mod_ctrl.setText(QCoreApplication.translate("Setting", u"Ctrl\u30ad\u30fc", None))
-        self.checkBox_windowleft_mod_shift.setText(QCoreApplication.translate("Setting", u"Shift\u30ad\u30fc", None))
-        self.checkBox_windowright_mod_shift.setText(QCoreApplication.translate("Setting", u"Shift\u30ad\u30fc", None))
-        self.checkBox_windowleft_mod_alt.setText(QCoreApplication.translate("Setting", u"Alt\u30ad\u30fc", None))
-        self.checkBox_windowright_mod_alt.setText(QCoreApplication.translate("Setting", u"Alt\u30ad\u30fc", None))
-        self.checkBox_windowleft_mod_win.setText(QCoreApplication.translate("Setting", u"Win\u30ad\u30fc", None))
-        self.checkBox_windowright_mod_win.setText(QCoreApplication.translate("Setting", u"Win\u30ad\u30fc", None))
+        self.groupBox.setTitle(QCoreApplication.translate("Setting", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u5de6\u914d\u7f6e", None))
+        self.checkBox_windowleft_mod_ctrl.setText(QCoreApplication.translate("Setting", u"Ctrl", None))
+        self.checkBox_windowleft_mod_shift.setText(QCoreApplication.translate("Setting", u"Shift", None))
+        self.checkBox_windowleft_mod_alt.setText(QCoreApplication.translate("Setting", u"Alt", None))
+        self.checkBox_windowleft_mod_win.setText(QCoreApplication.translate("Setting", u"Win", None))
         self.label_A_3.setText(QCoreApplication.translate("Setting", u"\u901a\u5e38\u30ad\u30fc", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("Setting", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u53f3\u914d\u7f6e", None))
+        self.checkBox_windowright_mod_ctrl.setText(QCoreApplication.translate("Setting", u"Ctrl", None))
+        self.checkBox_windowright_mod_shift.setText(QCoreApplication.translate("Setting", u"Shift", None))
+        self.checkBox_windowright_mod_alt.setText(QCoreApplication.translate("Setting", u"Alt", None))
+        self.checkBox_windowright_mod_win.setText(QCoreApplication.translate("Setting", u"Win", None))
         self.label_A_5.setText(QCoreApplication.translate("Setting", u"\u901a\u5e38\u30ad\u30fc", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_shortcutkey), QCoreApplication.translate("Setting", u"\u30b7\u30e7\u30fc\u30c8\u30ab\u30c3\u30c8\u30ad\u30fc", None))
+        self.pustButton_ok.setText(QCoreApplication.translate("Setting", u"OK", None))
+        self.pustButton_cancel.setText(QCoreApplication.translate("Setting", u"\u30ad\u30e3\u30f3\u30bb\u30eb", None))
     # retranslateUi
 
