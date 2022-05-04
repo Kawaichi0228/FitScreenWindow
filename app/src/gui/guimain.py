@@ -10,39 +10,38 @@ from PySide2.QtWidgets import *
 # App modules
 # -------------------------------------------------------------------------
 from src.gui.settinggui import Ui_Setting
-from src.lib.keylist import Hotkey
 
 # -------------------------------------------------------------------------
 # Class
 # -------------------------------------------------------------------------
 class RootGUI():
-    def __init__(self):
+    def __init__(self) -> None:
         root = QApplication(sys.argv)
         self.root = root
 
-    def start(self, GUIClass):
+    def start(self, GUIClass) -> None:
         gui_ = GUIClass()
         gui_.visible()
         sys.exit(self.root.exec_()) # MEMO: これを記述しておかないとモーダル状態にならない(すぐ消えてしまう)
         
-    def stop(self):
+    def stop(self) -> None:
         sys.exit(self.root.exec_())
 
 
 class AbstractGui:
     """個別uiイベント登録用のメソッド"""
-    def visible(self):
+    def visible(self) -> None:
         self.show()
     
-    def hidden(self):
+    def hidden(self) -> None:
         self.hide()
 
-    def quit(self):
+    def quit(self) -> None:
         self.close()
 
 
 class SettingGUI(AbstractGui, QDialog):
-    def __init__(self, root, parent=None):
+    def __init__(self, root, parent=None) -> None:
         super(SettingGUI, self).__init__(parent)
         self.root = root
         self.ui = Ui_Setting() # ここに表示させるguiを定義
@@ -56,134 +55,52 @@ class SettingGUI(AbstractGui, QDialog):
     # -------------------------------------------------------------------------
     # PushButton
     # -------------------------------------------------------------------------
-    def setupPushButton(self, list_):
+    def setupPushButton(self, list_) -> None:
         """イベント登録(シグナル/スロット)"""
         self.__bindOnClick_PushButton_FromList(list_)
 
-    def __bindOnClick_PushButton_FromList(self, list_):
+    def __bindOnClick_PushButton_FromList(self, list_) -> None:
         for i in range(0, len(list_)):
             self.__bindOnClick_PushButton(list_[i][0], list_[i][1])
     
-    def __bindOnClick_PushButton(self, push_button, on_event_function):
+    def __bindOnClick_PushButton(self, push_button, on_event_function) -> None:
         push_button.clicked.connect(lambda: on_event_function())
     # -------------------------------------------------------------------------
     # ComboBox
     # -------------------------------------------------------------------------
-    def setupComboBox(self, list_):
+    def setupComboBox(self, list_) -> None:
         self.__addItems_ComboBox_FromList(list_)
+        self.__setItem_ComboBox_FromList(list_)
 
-    def __addItems_ComboBox_FromList(self, list_):
-        """example.
-        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, json_dict_combobox)
-        """
+    def __setItem_ComboBox_FromList(self, list_) -> None:
+        for i in range(0, len(list_)):
+            self.__setItem_ComboBox(list_[i][0], list_[i][2])
+
+    def __setItem_ComboBox(self, combo_box, select_itemtext) -> None:
+        """指定したTextのItemをコンボボックスの初期選択とする"""
+        combo_box.setCurrentIndex(
+            combo_box.findText(select_itemtext)
+        )
+
+    def __addItems_ComboBox_FromList(self, list_) -> None:
         for i in range(0, len(list_)):
             self.__addItems_ComboBox(list_[i][0], list_[i][1])
     
-    def __addItems_ComboBox(self, combo_box, list_):
+    def __addItems_ComboBox(self, combo_box, list_) -> None:
+        """コンボボックスにリストアイテムを追加する"""
         combo_box.addItems(list_)
     # -------------------------------------------------------------------------
     # CheckBox
     # -------------------------------------------------------------------------
-    def setupCheckBox(self, list_):
+    def setupCheckBox(self, list_) -> None:
         self.__checked_CheckBox_FromList(list_)
 
-    def __checked_CheckBox_FromList(self, list_):
+    def __checked_CheckBox_FromList(self, list_) -> None:
         """example.
         checkbox_item = (self.gui.ui.checkBox_windowleft_mod_ctrl, False)
         """
         for i in range(0, len(list_)):
             self.__checked_CheckBox(list_[i][0], list_[i][1])
 
-    def __checked_CheckBox(self, check_box, b: bool):
+    def __checked_CheckBox(self, check_box, b: bool) -> None:
         check_box.setChecked(b)
-
-
-class GuiService:
-    """
-    QtDesigner作成後に追加で設定する、個別のuiのsetup
-        MEMO: .uiから.pyへ変換したpythonファイルから、このクラスの各setupメソッドへ
-        外部定義したいコードをコピペすればOK
-        (ただし、追加で ".ui" を付けること <ex. self.ui.comboBox...>)
-    """
-    def __init__(self):
-        root = RootGUI()
-        self.root = root
-
-        gui = SettingGUI(root)
-        self.gui = gui
-
-    def start(self):
-        # 各タブのItemの値をJsonから書き換え
-        # TODO: ここにjsonのread処理(以下、gui表示時の書き換え処理)
-        self.__setupWidget()
-        self.__setupTab_Size()
-        self.__setupTab_Position()
-        self.__setupTab_ShortcutKey()
-
-        # gui開始(表示させる)
-        self.root.start(lambda: self.gui)
-
-    def __setupWidget(self):
-        """ウィジェット全体のsetup(全タブ共通)"""
-        # PushButton
-        pushbutton_list = []
-        # - OKButton
-        pushbutton_item = (self.gui.ui.pustButton_ok, self.gui.quit) # TODO: quitの前に、jsonのread -> 書き換え処理を入れた関数へ変更する
-        pushbutton_list.append(pushbutton_item)
-        # - CancelButton
-        pushbutton_item = (self.gui.ui.pustButton_cancel, self.gui.quit)
-        pushbutton_list.append(pushbutton_item)
-        # - setup
-        self.gui.setupPushButton(pushbutton_list)
-
-    def __setupTab_Size(self):
-        """サイズタブのsetup"""
-        self.gui.ui.spinBox_resize_max_cnt.setValue(2)
-        self.gui.ui.doubleSpinBox_resize_ratio.setValue(3)
-        self.gui.ui.spinBox_base_width_toleft_px.setValue(4)
-        self.gui.ui.spinBox_base_width_toright_px.setValue(5)
-        self.gui.ui.spinBox_adjust_width_px.setValue(6)
-        self.gui.ui.checkBox_is_subtract_taskbar.setChecked(False)
-
-    def __setupTab_Position(self):
-        """位置タブのsetup"""
-        self.gui.ui.spinBox_adjust_x_px.setValue(100)
-
-    def __setupTab_ShortcutKey(self):
-        """ショートカットキータブのsetup"""
-        # ComboBox
-        hk = Hotkey()
-        key_list = hk.getKeyList()
-        combobox_list = []
-        # - WindowLeft
-        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, key_list)
-        combobox_list.append(combobox_item)
-        # - WindowRight
-        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowRight, key_list)
-        combobox_list.append(combobox_item)
-        # - setup
-        self.gui.setupComboBox(combobox_list)
-
-        # CheckBox
-        checkbox_list = []
-        # - WindowLeft
-        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_ctrl, False)
-        checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_shift, True)
-        checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_alt, False)
-        checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_win, True)
-        checkbox_list.append(checkbox_item)
-        # - WindowRight
-        checkbox_item = (self.gui.ui.checkBox_windowright_mod_ctrl, False)
-        checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowright_mod_shift, True)
-        checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowright_mod_alt, False)
-        checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowright_mod_win, True)
-        checkbox_list.append(checkbox_item)
-        # - setup
-        self.gui.setupCheckBox(checkbox_list)
-

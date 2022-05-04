@@ -9,7 +9,7 @@
         "is_subtract_taskbar": 1
     },
     "position": {
-        "adjust_x_px": 5
+        "adjust_x_px": 50
     },
     "hotkey_windowleft": {
         "mod_ctrl": 0,
