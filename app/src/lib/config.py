@@ -150,8 +150,8 @@ class ConfigJsonRepository:
             ErrorHandling().quitApp()
         return json_obj
 
-    def write(self) -> None:
-        self.__jc.saveOverWrite(self.json_dict)
+    def save(self) -> None:
+        self.__jc.save(self.json_dict)
 
 
 class GuiService:

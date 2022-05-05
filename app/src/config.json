@@ -2,7 +2,7 @@
     "size": {
         "resize_max_cnt": 4,
         "resize_ratio": 3,
-        "base_width_toleft_px": 800,
+        "base_width_toleft_px": 1000,
         "base_width_toright_px": 400,
         "adjust_width_px": 28,
         "is_subtract_taskbar": 1

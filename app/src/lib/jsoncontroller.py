@@ -21,8 +21,11 @@ class JsonController:
         json_dict = json.load(json_obj)
         return json_dict
 
-    def saveOverWrite(self, json_dict: dict, indent_space: int=4) -> None:
-        """書き換える値が格納されたリストを渡して、jsonを上書き保存する"""
+    def save(self, json_dict: dict, indent_space: int=4) -> None:
+        """
+        書き換える値が格納されたリストを渡して、jsonを上書き保存する
+        MEMO: 指定パスのファイルが存在しない場合は新規作成される(エラーは出ない)
+        """
         with open(self.__json_path, "w", encoding="utf-8") as js: # 'w'はwrite
             json.dump(
                 json_dict, js, indent=indent_space, ensure_ascii=False
