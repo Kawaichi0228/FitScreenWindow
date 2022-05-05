@@ -86,6 +86,8 @@ class Config:
 
 
 class ConfigJsonRepository:
+    """※Jsonの値を参照したいときは、このクラスのsetupメソッドでConfigクラスを書き換えて、
+    それを参照すること(直接このクラスの永続化されたJson値を参照しない)"""
     def __init__(self) -> None:
         # jsonを読み込み、dictionaryとしてインスタンス変数化(永続化)
         jc = JsonController(CONFIG_JSON_PATH)
@@ -94,11 +96,36 @@ class ConfigJsonRepository:
         json_dict = self.__jc.getDictionary(json_object)
         self.json_dict = json_dict
 
-        # 永続化したdictionaryの各Valueをメンバ変数として参照できるように集約
-        self.Size = _Size(self.json_dict)
-        self.Position = _Position(self.json_dict)
-        self.HotkeyWindowLeft = _HotkeyWindowLeft(self.json_dict)
-        self.HotkeyWindowRight = _HotkeyWindowRight(self.json_dict)
+        # 永続化したdictionaryの各Valueを集約
+        self.__Size = _Size(self.json_dict)
+        self.__Position = _Position(self.json_dict)
+        self.__HotkeyWindowLeft = _HotkeyWindowLeft(self.json_dict)
+        self.__HotkeyWindowRight = _HotkeyWindowRight(self.json_dict)
+
+    def setupConfigPython(self) -> None:
+        """config.pyをjsonで読みとった値で書き換え"""
+        Config.Size.resize_max_cnt = self.__Size.resize_max_cnt
+        Config.Size.resize_ratio = self.__Size.resize_ratio
+        Config.Size.base_width_toleft_px = self.__Size.base_width_toleft_px
+        Config.Size.base_width_toright_px = self.__Size.base_width_toright_px
+        Config.Size.adjust_width_px = self.__Size.adjust_width_px
+        Config.Size.is_subtract_taskbar = self.__Size.is_subtract_taskbar
+        
+        Config.Position.adjust_x_px = self.__Position.adjust_x_px
+
+        Config.HotkeyWindowLeft.mod_ctrl = self.__HotkeyWindowLeft.mod_ctrl
+        Config.HotkeyWindowLeft.mod_shift = self.__HotkeyWindowLeft.mod_shift
+        Config.HotkeyWindowLeft.mod_alt = self.__HotkeyWindowLeft.mod_alt
+        Config.HotkeyWindowLeft.mod_win = self.__HotkeyWindowLeft.mod_win
+        Config.HotkeyWindowLeft.hotkey = self.__HotkeyWindowLeft.hotkey
+
+        Config.HotkeyWindowRight.mod_ctrl = self.__HotkeyWindowRight.mod_ctrl
+        Config.HotkeyWindowRight.mod_shift = self.__HotkeyWindowRight.mod_shift
+        Config.HotkeyWindowRight.mod_alt = self.__HotkeyWindowRight.mod_alt
+        Config.HotkeyWindowRight.mod_win = self.__HotkeyWindowRight.mod_win
+        Config.HotkeyWindowRight.hotkey = self.__HotkeyWindowRight.hotkey
+
+        assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
     def __read(self) -> object:
         # jsonファイルを読み込む
@@ -109,31 +136,6 @@ class ConfigJsonRepository:
             ErrorDialog().showFileNotFound("config.json")
             ErrorHandling().quitApp()
         return json_obj
-
-    def setupConfigPython(self) -> None:
-        """config.pyをjsonで読みとった値で書き換え"""
-        Config.Size.resize_max_cnt = self.Size.resize_max_cnt
-        Config.Size.resize_ratio = self.Size.resize_ratio
-        Config.Size.base_width_toleft_px = self.Size.base_width_toright_px
-        Config.Size.base_width_toright_px = self.Size.base_width_toright_px
-        Config.Size.adjust_width_px = self.Size.adjust_width_px
-        Config.Size.is_subtract_taskbar = self.Size.is_subtract_taskbar
-        
-        Config.Position.adjust_x_px = self.Position.adjust_x_px
-
-        Config.HotkeyWindowLeft.mod_ctrl = self.HotkeyWindowLeft.mod_ctrl
-        Config.HotkeyWindowLeft.mod_shift = self.HotkeyWindowLeft.mod_shift
-        Config.HotkeyWindowLeft.mod_alt = self.HotkeyWindowLeft.mod_alt
-        Config.HotkeyWindowLeft.mod_win = self.HotkeyWindowLeft.mod_win
-        Config.HotkeyWindowLeft.hotkey = self.HotkeyWindowLeft.hotkey
-
-        Config.HotkeyWindowRight.mod_ctrl = self.HotkeyWindowRight.mod_ctrl
-        Config.HotkeyWindowRight.mod_shift = self.HotkeyWindowRight.mod_shift
-        Config.HotkeyWindowRight.mod_alt = self.HotkeyWindowRight.mod_alt
-        Config.HotkeyWindowRight.mod_win = self.HotkeyWindowRight.mod_win
-        Config.HotkeyWindowRight.hotkey = self.HotkeyWindowRight.hotkey
-
-        assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
 class _Size:
     def __init__(self, json_dict) -> None:
@@ -186,7 +188,7 @@ class GuiService:
 
         gui = SettingGUI(root)
         self.gui = gui
-        
+
         # config.jsonから値を読み取り、jsonのValueが格納されたDictを取得
         json_repository = ConfigJsonRepository()
         # config.pyの各データクラスの値を上書きする
