@@ -8,6 +8,7 @@ from dataclasses import dataclass
 # -------------------------------------------------------------------------
 from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
+from src.gui.guimain import RootGUI, SettingGUI
 
 # -------------------------------------------------------------------------
 # Class
@@ -81,39 +82,10 @@ class Config:
         return {"mod_combination": mod_combination, "hotkey": hotkey}
 
 
-class ConfigJsonToPython:
-    def __init__(self) -> None:
-        json = ConfigJsonRepository()
-        self.json = json
-
-    def setupConfig(self) -> None:
-        """config.pyをjsonで読みとった値で書き換え"""
-        Config.Size.resize_max_cnt = self.json.Size.resize_max_cnt
-        Config.Size.resize_ratio = self.json.Size.resize_ratio
-        Config.Size.base_width_toleft_px = self.json.Size.base_width_toright_px
-        Config.Size.base_width_toright_px = self.json.Size.base_width_toright_px
-        Config.Size.adjust_width_px = self.json.Size.adjust_width_px
-        Config.Size.is_subtract_taskbar = self.json.Size.is_subtract_taskbar
-        
-        Config.Position.adjust_x_px = self.json.Position.adjust_x_px
-
-        Config.HotkeyWindowLeft.mod_ctrl = self.json.HotkeyWindowLeft.mod_ctrl
-        Config.HotkeyWindowLeft.mod_shift = self.json.HotkeyWindowLeft.mod_shift
-        Config.HotkeyWindowLeft.mod_alt = self.json.HotkeyWindowLeft.mod_alt
-        Config.HotkeyWindowLeft.mod_win = self.json.HotkeyWindowLeft.mod_win
-        Config.HotkeyWindowLeft.hotkey = self.json.HotkeyWindowLeft.hotkey
-
-        Config.HotkeyWindowRight.mod_ctrl = self.json.HotkeyWindowRight.mod_ctrl
-        Config.HotkeyWindowRight.mod_shift = self.json.HotkeyWindowRight.mod_shift
-        Config.HotkeyWindowRight.mod_alt = self.json.HotkeyWindowRight.mod_alt
-        Config.HotkeyWindowRight.mod_win = self.json.HotkeyWindowRight.mod_win
-        Config.HotkeyWindowRight.hotkey = self.json.HotkeyWindowRight.hotkey
-
-
 class ConfigJsonRepository:
     def __init__(self) -> None:
         # jsonを読み込み、dictionaryとしてインスタンス変数化(永続化)
-        json_path = r"GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\src\config.json"
+        json_path = r"C:\Users\tmgtmg\GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\src\config.json"
         jc = JsonController(json_path)
         self.__jc = jc
         json_object = self.__jc.read()
@@ -163,3 +135,127 @@ class _HotkeyWindowRight:
         self.mod_win = self.json_hotkey_windowright["mod_win"]
         self.hotkey = self.json_hotkey_windowright["hotkey"]
 
+
+class GuiService:
+    """
+    QtDesigner作成後に追加で設定する、個別のuiのsetup
+        MEMO: .uiから.pyへ変換したpythonファイルから、このクラスの各setupメソッドへ
+        外部定義したいコードをコピペすればOK
+        (ただし、追加で ".ui" を付けること <ex. self.ui.comboBox...>)
+    """
+    def __init__(self):
+        root = RootGUI()
+        self.root = root
+
+        gui = SettingGUI(root)
+        self.gui = gui
+        
+        # config.jsonから値を読み取り
+        json = ConfigJsonRepository()
+        self.json = json
+
+    def start(self):
+        # --- 各タブのItemの値をJsonから書き換え ---
+        self.__setupWidget()
+        self.__setupTab_Size()
+        self.__setupTab_Position()
+        self.__setupTab_ShortcutKey()
+
+        # gui開始(表示させる)
+        self.root.start(lambda: self.gui)
+
+    def __setupWidget(self):
+        """ウィジェット全体のsetup(全タブ共通)"""
+        # Window
+        self.gui.setupWindow_CloseButtonOnly()
+
+        # PushButton
+        pushbutton_list = []
+        # - OKButton
+        pushbutton_item = (self.gui.ui.pustButton_ok, self.gui.quit) # TODO: quitの前に、jsonのread -> 書き換え処理を入れた関数へ変更する
+        pushbutton_list.append(pushbutton_item)
+        # - CancelButton
+        pushbutton_item = (self.gui.ui.pustButton_cancel, self.gui.quit)
+        pushbutton_list.append(pushbutton_item)
+        # - setup
+        self.gui.setupPushButton(pushbutton_list)
+
+    def __setupTab_Size(self):
+        """サイズタブのsetup"""
+        self.gui.ui.spinBox_resize_max_cnt.setValue(self.json.Size.resize_max_cnt)
+        self.gui.ui.doubleSpinBox_resize_ratio.setValue(self.json.Size.resize_ratio)
+        self.gui.ui.spinBox_base_width_toleft_px.setValue(self.json.Size.base_width_toleft_px)
+        self.gui.ui.spinBox_base_width_toright_px.setValue(self.json.Size.base_width_toright_px)
+        self.gui.ui.spinBox_adjust_width_px.setValue(self.json.Size.adjust_width_px)
+        self.gui.ui.checkBox_is_subtract_taskbar.setChecked(self.json.Size.is_subtract_taskbar)
+
+    def __setupTab_Position(self):
+        """位置タブのsetup"""
+        self.gui.ui.spinBox_adjust_x_px.setValue(self.json.Position.adjust_x_px)
+
+    def __setupTab_ShortcutKey(self):
+        """ショートカットキータブのsetup"""
+        # ComboBox
+        hk = Hotkey()
+        key_list = hk.getKeyList()
+        combobox_list = []
+        # - WindowLeft
+        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, key_list, self.json.HotkeyWindowLeft.hotkey)
+        combobox_list.append(combobox_item)
+        # - WindowRight
+        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowRight, key_list, self.json.HotkeyWindowRight.hotkey)
+        combobox_list.append(combobox_item)
+        # - setup
+        self.gui.setupComboBox(combobox_list)
+
+        # CheckBox
+        checkbox_list = []
+        # - WindowLeft
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_ctrl,self.json.HotkeyWindowLeft.mod_ctrl)
+        checkbox_list.append(checkbox_item)
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_shift, self.json.HotkeyWindowLeft.mod_shift)
+        checkbox_list.append(checkbox_item)
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_alt, self.json.HotkeyWindowLeft.mod_alt)
+        checkbox_list.append(checkbox_item)
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_win, self.json.HotkeyWindowLeft.mod_win)
+        checkbox_list.append(checkbox_item)
+        # - WindowRight
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_ctrl, self.json.HotkeyWindowRight.mod_ctrl)
+        checkbox_list.append(checkbox_item)
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_shift, self.json.HotkeyWindowRight.mod_shift)
+        checkbox_list.append(checkbox_item)
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_alt, self.json.HotkeyWindowRight.mod_alt)
+        checkbox_list.append(checkbox_item)
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_win, self.json.HotkeyWindowRight.mod_win)
+        checkbox_list.append(checkbox_item)
+        # - setup
+        self.gui.setupCheckBox(checkbox_list)
+
+
+class ConfigJsonToPython:
+    def __init__(self) -> None:
+        json = ConfigJsonRepository()
+        self.json = json
+
+    def setupConfig(self) -> None:
+        """config.pyをjsonで読みとった値で書き換え"""
+        Config.Size.resize_max_cnt = self.json.Size.resize_max_cnt
+        Config.Size.resize_ratio = self.json.Size.resize_ratio
+        Config.Size.base_width_toleft_px = self.json.Size.base_width_toright_px
+        Config.Size.base_width_toright_px = self.json.Size.base_width_toright_px
+        Config.Size.adjust_width_px = self.json.Size.adjust_width_px
+        Config.Size.is_subtract_taskbar = self.json.Size.is_subtract_taskbar
+        
+        Config.Position.adjust_x_px = self.json.Position.adjust_x_px
+
+        Config.HotkeyWindowLeft.mod_ctrl = self.json.HotkeyWindowLeft.mod_ctrl
+        Config.HotkeyWindowLeft.mod_shift = self.json.HotkeyWindowLeft.mod_shift
+        Config.HotkeyWindowLeft.mod_alt = self.json.HotkeyWindowLeft.mod_alt
+        Config.HotkeyWindowLeft.mod_win = self.json.HotkeyWindowLeft.mod_win
+        Config.HotkeyWindowLeft.hotkey = self.json.HotkeyWindowLeft.hotkey
+
+        Config.HotkeyWindowRight.mod_ctrl = self.json.HotkeyWindowRight.mod_ctrl
+        Config.HotkeyWindowRight.mod_shift = self.json.HotkeyWindowRight.mod_shift
+        Config.HotkeyWindowRight.mod_alt = self.json.HotkeyWindowRight.mod_alt
+        Config.HotkeyWindowRight.mod_win = self.json.HotkeyWindowRight.mod_win
+        Config.HotkeyWindowRight.hotkey = self.json.HotkeyWindowRight.hotkey
