@@ -5,11 +5,11 @@
         "resize_ratio": 3,
         "base_width_toleft_px": 400,
         "base_width_toright_px": 400,
-        "adjust_width_px": 15,
+        "adjust_width_px": 28,
         "is_subtract_taskbar": 1
     },
     "position": {
-        "adjust_x_px": 50
+        "adjust_x_px": 10
     },
     "hotkey_windowleft": {
         "mod_ctrl": 0,

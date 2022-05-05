@@ -9,6 +9,9 @@ from dataclasses import dataclass
 from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
 from src.gui.guimain import RootGUI, SettingGUI
+from src.lib.errordialog import ErrorDialog
+from src.lib.errorhandling import ErrorHandling
+from src.lib.const import CONFIG_JSON_PATH
 
 # -------------------------------------------------------------------------
 # Class
@@ -85,10 +88,9 @@ class Config:
 class ConfigJsonRepository:
     def __init__(self) -> None:
         # jsonを読み込み、dictionaryとしてインスタンス変数化(永続化)
-        json_path = r"C:\Users\tmgtmg\GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\src\config.json"
-        jc = JsonController(json_path)
+        jc = JsonController(CONFIG_JSON_PATH)
         self.__jc = jc
-        json_object = self.__jc.read()
+        json_object = self.__read()
         json_dict = self.__jc.getDictionary(json_object)
         self.json_dict = json_dict
 
@@ -97,6 +99,41 @@ class ConfigJsonRepository:
         self.Position = _Position(self.json_dict)
         self.HotkeyWindowLeft = _HotkeyWindowLeft(self.json_dict)
         self.HotkeyWindowRight = _HotkeyWindowRight(self.json_dict)
+
+    def __read(self) -> object:
+        # jsonファイルを読み込む
+        try:
+            json_obj = self.__jc.read()
+            assert print("メッセージ: config.jsonの読込が正常に完了しました") == None
+        except FileNotFoundError:
+            ErrorDialog().showFileNotFound("config.json")
+            ErrorHandling().quitApp()
+        return json_obj
+
+    def setupConfigPython(self) -> None:
+        """config.pyをjsonで読みとった値で書き換え"""
+        Config.Size.resize_max_cnt = self.Size.resize_max_cnt
+        Config.Size.resize_ratio = self.Size.resize_ratio
+        Config.Size.base_width_toleft_px = self.Size.base_width_toright_px
+        Config.Size.base_width_toright_px = self.Size.base_width_toright_px
+        Config.Size.adjust_width_px = self.Size.adjust_width_px
+        Config.Size.is_subtract_taskbar = self.Size.is_subtract_taskbar
+        
+        Config.Position.adjust_x_px = self.Position.adjust_x_px
+
+        Config.HotkeyWindowLeft.mod_ctrl = self.HotkeyWindowLeft.mod_ctrl
+        Config.HotkeyWindowLeft.mod_shift = self.HotkeyWindowLeft.mod_shift
+        Config.HotkeyWindowLeft.mod_alt = self.HotkeyWindowLeft.mod_alt
+        Config.HotkeyWindowLeft.mod_win = self.HotkeyWindowLeft.mod_win
+        Config.HotkeyWindowLeft.hotkey = self.HotkeyWindowLeft.hotkey
+
+        Config.HotkeyWindowRight.mod_ctrl = self.HotkeyWindowRight.mod_ctrl
+        Config.HotkeyWindowRight.mod_shift = self.HotkeyWindowRight.mod_shift
+        Config.HotkeyWindowRight.mod_alt = self.HotkeyWindowRight.mod_alt
+        Config.HotkeyWindowRight.mod_win = self.HotkeyWindowRight.mod_win
+        Config.HotkeyWindowRight.hotkey = self.HotkeyWindowRight.hotkey
+
+        assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
 class _Size:
     def __init__(self, json_dict) -> None:
@@ -230,32 +267,3 @@ class GuiService:
         checkbox_list.append(checkbox_item)
         # - setup
         self.gui.setupCheckBox(checkbox_list)
-
-
-class ConfigJsonToPython:
-    def __init__(self) -> None:
-        json = ConfigJsonRepository()
-        self.json = json
-
-    def setupConfig(self) -> None:
-        """config.pyをjsonで読みとった値で書き換え"""
-        Config.Size.resize_max_cnt = self.json.Size.resize_max_cnt
-        Config.Size.resize_ratio = self.json.Size.resize_ratio
-        Config.Size.base_width_toleft_px = self.json.Size.base_width_toright_px
-        Config.Size.base_width_toright_px = self.json.Size.base_width_toright_px
-        Config.Size.adjust_width_px = self.json.Size.adjust_width_px
-        Config.Size.is_subtract_taskbar = self.json.Size.is_subtract_taskbar
-        
-        Config.Position.adjust_x_px = self.json.Position.adjust_x_px
-
-        Config.HotkeyWindowLeft.mod_ctrl = self.json.HotkeyWindowLeft.mod_ctrl
-        Config.HotkeyWindowLeft.mod_shift = self.json.HotkeyWindowLeft.mod_shift
-        Config.HotkeyWindowLeft.mod_alt = self.json.HotkeyWindowLeft.mod_alt
-        Config.HotkeyWindowLeft.mod_win = self.json.HotkeyWindowLeft.mod_win
-        Config.HotkeyWindowLeft.hotkey = self.json.HotkeyWindowLeft.hotkey
-
-        Config.HotkeyWindowRight.mod_ctrl = self.json.HotkeyWindowRight.mod_ctrl
-        Config.HotkeyWindowRight.mod_shift = self.json.HotkeyWindowRight.mod_shift
-        Config.HotkeyWindowRight.mod_alt = self.json.HotkeyWindowRight.mod_alt
-        Config.HotkeyWindowRight.mod_win = self.json.HotkeyWindowRight.mod_win
-        Config.HotkeyWindowRight.hotkey = self.json.HotkeyWindowRight.hotkey

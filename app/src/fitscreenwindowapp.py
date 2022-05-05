@@ -11,15 +11,12 @@ from src.lib.globalhotkey import GlobalHotkey
 from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.tasktray import Tasktray
-from src.lib.jsoncontroller import JsonController
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.errordialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
-from src.lib.config import Config, ConfigJsonToPython
-from src.lib.keylist import Hotkey
+from src.lib.config import Config, ConfigJsonRepository
 from src.lib.const import (
     MoveResizeDirection,
-    CONFIG_JSON_PATH,
     PROGRAM_NAME,
     FAVICON_IMAGE_PATH,
 )
@@ -159,32 +156,6 @@ class TasktrayService(IThread):
         self.t.addItem(value, on_click_function)
 
 
-class JsonService:
-    def __init__(self) -> None:
-        jc = JsonController(CONFIG_JSON_PATH)
-        self.jc = jc
-    
-    def read(self) -> object:
-        # jsonファイルを読み込む
-        try:
-            json_obj = self.jc.read()
-            assert print("メッセージ: config.jsonの読込が正常に完了しました") == None
-        except FileNotFoundError:
-            ErrorDialog().showFileNotFound("config.json")
-            ErrorHandling().quitApp()
-        return json_obj
-
-    def setupConfig(self, json_dict) -> None:
-        # config.pyをjsonで読みとった値で書き換え
-        config_json = ConfigJsonToPython(json_dict)
-        config_json.setupConfig()
-        assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
-
-    def getDictJson(self, json_obj) -> dict:
-        """jsonのvalueをkeycodeへ変換した2次元Dictを取得"""
-        return self.jc.getDictionary(json_obj)
-
-
 class ApplicationService(IThread):
     def __init__(self) -> None:
         g_service = GlobalHotkeyService()
@@ -205,15 +176,11 @@ class ApplicationService(IThread):
         self.t_service.stopThread()
 
     def run(self) -> None:
-        # config.jsonから値を読み取り
-        json_service = JsonService()
-        json_object = json_service.read()
-
-        # 生成されたObjectから、jsonのValueが格納されたDictを取得
-        json_dict = json_service.getDictJson(json_object)
+        # config.jsonから値を読み取り、jsonのValueが格納されたDictを取得
+        json_repository = ConfigJsonRepository()
 
         # config.pyの各データクラスの値を上書きする
-        json_service.setupConfig(json_dict)
+        json_repository.setupConfigPython()
 
         # スレッド開始
         self.startThread()
