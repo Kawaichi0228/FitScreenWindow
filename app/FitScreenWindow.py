@@ -13,5 +13,5 @@ from src.lib.config import ConfigJsonRepository
 
 #app.main()
 
-json = ConfigJsonRepository(r"\app\src\config.json")
-print(json.HotkeyWindowRight.mod_alt)
+json = ConfigJsonRepository()
+print(json.HotkeyWindowRight.mod_ctrl)

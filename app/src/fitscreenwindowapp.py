@@ -185,6 +185,7 @@ class JsonService:
         """jsonのvalueをkeycodeへ変換した2次元Dictを取得"""
         return self.jc.getDictionary(json_obj)
 
+
 class ApplicationService(IThread):
     def __init__(self) -> None:
         g_service = GlobalHotkeyService()
