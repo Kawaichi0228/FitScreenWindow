@@ -9,9 +9,12 @@
       </template>
     </ToggleVisbleAtScrollEvent>-->
 
+    
+
     <MainVisual></MainVisual>
     <Demonstration id="Demonstration"></Demonstration>
     <ReleaseNote id="ReleaseNote"></ReleaseNote>
+    <ScrollTopButton></ScrollTopButton>
     <FooterPj></FooterPj> <!--MEMO: 「Footer.vue」は組み込みと名前衝突しておかしくなってしまうためPjをSuffixした -->
   </div>
 </template>
@@ -28,6 +31,7 @@ import FooterPj from './pages/FooterPj.vue';
 // -------------------------------------------------------------
 // Components
 // -------------------------------------------------------------
+import ScrollTopButton from './components/ScrollTopButton_Vuetify.vue';
 //import ScrollTopButton from './components/ScrollTopButton.vue';
 //import ToggleVisbleAtScrollEvent from "./components/ToggleVisbleAtScrollEvent.vue";
 
@@ -47,6 +51,7 @@ export default {
     // -------------------------------------------------------------
     //ScrollTopButton,
     //ToggleVisbleAtScrollEvent,
+    ScrollTopButton,
   },
 };
 </script>
