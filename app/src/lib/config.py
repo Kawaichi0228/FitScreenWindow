@@ -182,6 +182,40 @@ class GuiService:
         # gui開始(表示させる)
         self.root.start(lambda: self.gui)
 
+    # -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
+    def __setupWidget(self):
+        """ウィジェット全体のsetup(全タブ共通)"""
+        # Window
+        self.gui.setupWindow_CloseButtonOnly()
+
+        # PushButton
+        pushbutton_list = []
+        # - OKButton
+        pushbutton_item = (self.gui.ui.pustButton_ok, self.__saveJsonToQuit)
+        pushbutton_list.append(pushbutton_item)
+        # - CancelButton
+        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__quit)
+        pushbutton_list.append(pushbutton_item)
+        # - setup
+        self.gui.setupPushButton(pushbutton_list)
+
+    def __saveJsonToQuit(self) -> None:
+        json = ConfigJsonRepository()
+
+        # Config.pyのクラスへ値をセット
+        self.__setupConfigPython()
+
+        # GUIの各値を取得し、Config.pyのクラス値をインスタンスのJsonDictionaryへいったん書き換える
+        json.setupConfigJsonDictionary()
+
+        # インスタンスのJsonDictionaryの値からJsonへ書き込み保存
+        json.save()
+        assert print("メッセージ: GUIの値からconfig.jsonを保存しました") == None
+
+        # アプリ終了
+        self.__quit()
+
     def __setupConfigPython(self) -> None:
         Config.Size.resize_max_cnt = self.gui.ui.spinBox_resize_max_cnt.value()
         Config.Size.resize_ratio = self.gui.ui.doubleSpinBox_resize_ratio.value()
@@ -200,30 +234,11 @@ class GuiService:
         Config.HotkeyWindowRight.mod_alt = self.gui.ui.checkBox_windowright_mod_alt.isChecked()
         Config.HotkeyWindowRight.mod_win = self.gui.ui.checkBox_windowright_mod_win.isChecked()
         Config.HotkeyWindowRight.hotkey = self.gui.ui.comboBox_Hotkey_WindowRight.currentText()
-    
-    def saveJsonToQuit(self) -> None:
-        json = ConfigJsonRepository()
-        self.__setupConfigPython()
-        json.setupConfigJsonDictionary()
-        json.save()
 
+    def __quit(self) -> None:
         self.gui.quit()
-
-    def __setupWidget(self):
-        """ウィジェット全体のsetup(全タブ共通)"""
-        # Window
-        self.gui.setupWindow_CloseButtonOnly()
-
-        # PushButton
-        pushbutton_list = []
-        # - OKButton
-        pushbutton_item = (self.gui.ui.pustButton_ok, self.saveJsonToQuit)
-        pushbutton_list.append(pushbutton_item)
-        # - CancelButton
-        pushbutton_item = (self.gui.ui.pustButton_cancel, self.gui.quit)
-        pushbutton_list.append(pushbutton_item)
-        # - setup
-        self.gui.setupPushButton(pushbutton_list)
+    # -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
 
     def __setupTab_Size(self):
         """サイズタブのsetup"""
