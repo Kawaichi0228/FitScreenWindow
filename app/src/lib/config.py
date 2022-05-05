@@ -118,24 +118,27 @@ class ConfigJsonRepository:
 
         assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
-    def setupConfigJson(self) -> None:
-        self.json_dict["size"]["resize_max_cnt"] = Config.Size.resize_max_cnt
-        self.json_dict["size"]["resize_ratio"] = Config.Size.resize_ratio
-        self.json_dict["size"]["base_width_toleft_px"] = Config.Size.base_width_toleft_px
-        self.json_dict["size"]["base_width_toright_px"] = Config.Size.base_width_toright_px
-        self.json_dict["size"]["adjust_width_px"] = Config.Size.adjust_width_px
-        self.json_dict["size"]["is_subtract_taskbar"] = Config.Size.is_subtract_taskbar
-        self.json_dict["position"]["adjust_x_px"] = Config.Position.adjust_x_px
-        self.json_dict["hotkey_windowleft"]["mod_ctrl"] = Config.HotkeyWindowLeft.mod_ctrl
-        self.json_dict["hotkey_windowleft"]["mod_shift"] = Config.HotkeyWindowLeft.mod_shift
-        self.json_dict["hotkey_windowleft"]["mod_alt"] = Config.HotkeyWindowLeft.mod_alt
-        self.json_dict["hotkey_windowleft"]["mod_win"] = Config.HotkeyWindowLeft.mod_win
-        self.json_dict["hotkey_windowleft"]["hotkey"] = Config.HotkeyWindowLeft.hotkey
-        self.json_dict["hotkey_windowright"]["mod_ctrl"] = Config.HotkeyWindowRight.mod_ctrl
-        self.json_dict["hotkey_windowright"]["mod_shift"] = Config.HotkeyWindowRight.mod_shift
-        self.json_dict["hotkey_windowright"]["mod_alt"] = Config.HotkeyWindowRight.mod_alt
-        self.json_dict["hotkey_windowright"]["mod_win"] = Config.HotkeyWindowRight.mod_win
-        self.json_dict["hotkey_windowright"]["hotkey"] = Config.HotkeyWindowRight.hotkey
+    def setupConfigJsonDictionary(self) -> None:
+        try:
+            self.json_dict["size"]["resize_max_cnt"] = Config.Size.resize_max_cnt
+            self.json_dict["size"]["resize_ratio"] = Config.Size.resize_ratio
+            self.json_dict["size"]["base_width_toleft_px"] = Config.Size.base_width_toleft_px
+            self.json_dict["size"]["base_width_toright_px"] = Config.Size.base_width_toright_px
+            self.json_dict["size"]["adjust_width_px"] = Config.Size.adjust_width_px
+            self.json_dict["size"]["is_subtract_taskbar"] = Config.Size.is_subtract_taskbar
+            self.json_dict["position"]["adjust_x_px"] = Config.Position.adjust_x_px
+            self.json_dict["hotkey_windowleft"]["mod_ctrl"] = Config.HotkeyWindowLeft.mod_ctrl
+            self.json_dict["hotkey_windowleft"]["mod_shift"] = Config.HotkeyWindowLeft.mod_shift
+            self.json_dict["hotkey_windowleft"]["mod_alt"] = Config.HotkeyWindowLeft.mod_alt
+            self.json_dict["hotkey_windowleft"]["mod_win"] = Config.HotkeyWindowLeft.mod_win
+            self.json_dict["hotkey_windowleft"]["hotkey"] = Config.HotkeyWindowLeft.hotkey
+            self.json_dict["hotkey_windowright"]["mod_ctrl"] = Config.HotkeyWindowRight.mod_ctrl
+            self.json_dict["hotkey_windowright"]["mod_shift"] = Config.HotkeyWindowRight.mod_shift
+            self.json_dict["hotkey_windowright"]["mod_alt"] = Config.HotkeyWindowRight.mod_alt
+            self.json_dict["hotkey_windowright"]["mod_win"] = Config.HotkeyWindowRight.mod_win
+            self.json_dict["hotkey_windowright"]["hotkey"] = Config.HotkeyWindowRight.hotkey
+        except AttributeError:
+            raise AttributeError("代入エラー: 代入対象のConfigの値に、Blank値が混入しています")
 
     def __read(self) -> object:
         # jsonファイルを読み込む
@@ -146,6 +149,9 @@ class ConfigJsonRepository:
             ErrorDialog().showFileNotFound("config.json")
             ErrorHandling().quitApp()
         return json_obj
+
+    def write(self) -> None:
+        self.__jc.saveOverWrite(self.json_dict)
 
 
 class GuiService:
