@@ -182,6 +182,9 @@ class GuiService:
         # gui開始(表示させる)
         self.root.start(lambda: self.gui)
 
+    def stop(self) -> None:
+        self.gui.quit()
+
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
     def __setupWidget(self):
@@ -195,7 +198,7 @@ class GuiService:
         pushbutton_item = (self.gui.ui.pustButton_ok, self.__saveJsonToQuit)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
-        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__quit)
+        pushbutton_item = (self.gui.ui.pustButton_cancel, self.stop)
         pushbutton_list.append(pushbutton_item)
         # - setup
         self.gui.setupPushButton(pushbutton_list)
@@ -213,8 +216,8 @@ class GuiService:
         json.save()
         assert print("メッセージ: GUIの値からconfig.jsonを保存しました") == None
 
-        # アプリ終了
-        self.__quit()
+        # GUIスレッド終了
+        self.stop()
 
     def __setupConfigPython(self) -> None:
         Config.Size.resize_max_cnt = self.gui.ui.spinBox_resize_max_cnt.value()
@@ -235,8 +238,6 @@ class GuiService:
         Config.HotkeyWindowRight.mod_win = self.gui.ui.checkBox_windowright_mod_win.isChecked()
         Config.HotkeyWindowRight.hotkey = self.gui.ui.comboBox_Hotkey_WindowRight.currentText()
 
-    def __quit(self) -> None:
-        self.gui.quit()
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
 
