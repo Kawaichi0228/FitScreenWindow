@@ -19,15 +19,19 @@ class GlobalHotkey(wx.Frame):
     def stopThread(self) -> None: # TODO: スレッド終了できるがエラー出ている(threading.Event()と.setDaemon(True)を使えば解決できる？)
         self.__root.ExitMainLoop()
 
-    def registerHotkey(self, modifier_keys: any, hotkey: any) -> None:
-        """ホットキーを登録"""
-        self.id_hotkey = wx.NewIdRef(count=1)
-        self.RegisterHotKey(self.id_hotkey, modifier_keys, hotkey)
+    def registerHotkey(self, modifier_keys: any, hotkey: any) -> int:
+        """ホットキーを登録
+        return:
+            int: ホットキーID
+        """
+        id_hotkey = wx.NewIdRef(count=1)
+        self.RegisterHotKey(id_hotkey, modifier_keys, hotkey)
+        return id_hotkey
 
-    def bindHotkey(self, bindevent) -> None:
+    def bindHotkey(self, bindevent, id_hotkey) -> None:
         # HotkeyのEventHandlerをbind
         self.Bind(
-            wx.EVT_HOTKEY, bindevent, id=self.id_hotkey
+            wx.EVT_HOTKEY, bindevent, id=id_hotkey
         )
 
     # -------------------------------------------------------------------------

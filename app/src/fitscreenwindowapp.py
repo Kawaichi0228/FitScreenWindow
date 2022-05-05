@@ -94,13 +94,13 @@ class GlobalHotkeyService(IThread):
         }
         register.update(register_windowleft)
         # グローバルホットキーを登録
-        self.g.registerHotkey(
+        id_hotkey1 = self.g.registerHotkey(
             register[dictkey_windowleft]["modifierkeys"],
             register[dictkey_windowleft]["hotkey"]
         )
         self.g.registerEvent1(register[dictkey_windowleft]["func"])
         eve = self.g.bindEvent1
-        self.g.bindHotkey(eve)
+        self.g.bindHotkey(eve, id_hotkey1)
 
         # ------ windowright ------ 
         # ホットキーとイベント処理内容の定義
@@ -114,13 +114,13 @@ class GlobalHotkeyService(IThread):
         }
         register.update(register_windowright)
         # グローバルホットキーを登録
-        self.g.registerHotkey(
+        id_hotkey2 = self.g.registerHotkey(
             register[dictkey_windowright]["modifierkeys"],
             register[dictkey_windowright]["hotkey"]
         )
         self.g.registerEvent2(register[dictkey_windowright]["func"])
         eve = self.g.bindEvent2
-        self.g.bindHotkey(eve)
+        self.g.bindHotkey(eve, id_hotkey2)
 
         # スレッド開始
         self.g.startThread()
