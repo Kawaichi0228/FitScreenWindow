@@ -22,7 +22,12 @@ class RootGUI():
     def start(self, GUIClass) -> None:
         gui_ = GUIClass()
         gui_.visible()
-        sys.exit(self.root.exec_()) # MEMO: これを記述しておかないとモーダル状態にならない(すぐ消えてしまう)
+
+        # /*
+        # MEMO: 恐らくこのGUI以外のスレッド(ex.グローバルホットキー, タスクトレイ等)が
+        # 既に走っている場合は、GUIウィンドウが消えずに残ってくれたためコメントアウトした。※未検証
+        #sys.exit(self.root.exec_()) # MEMO: これを記述しておかないとモーダル状態にならない(すぐ消えてしまう)
+        # */
         
     def stop(self) -> None:
         sys.exit(self.root.exec_())

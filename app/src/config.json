@@ -2,13 +2,13 @@
     "size": {
         "resize_max_cnt": 4,
         "resize_ratio": 3.0,
-        "base_width_toleft_px": 800,
+        "base_width_toleft_px": 500,
         "base_width_toright_px": 400,
         "adjust_width_px": 28,
         "is_subtract_taskbar": true
     },
     "position": {
-        "adjust_x_px": 10
+        "adjust_x_px": 15
     },
     "hotkey_windowleft": {
         "mod_ctrl": false,

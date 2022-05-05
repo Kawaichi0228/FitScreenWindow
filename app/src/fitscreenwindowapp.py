@@ -14,7 +14,7 @@ from src.lib.tasktray import Tasktray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.errordialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
-from src.lib.config import Config, ConfigJsonRepository
+from src.lib.config import Config, ConfigJsonRepository, GuiService
 from src.lib.const import (
     MoveResizeDirection,
     PROGRAM_NAME,
@@ -164,11 +164,18 @@ class ApplicationService(IThread):
         t_service = TasktrayService()
         self.t_service = t_service
 
+        gui_service = GuiService()
+        self.gui_service = gui_service
+
     def startThread(self) -> None:
+        # グローバルホットキーのスレッドを開始
         self.g_service.startThread()
 
         # タスクトレイに表示させるitemを定義
-        self.t_service.addItem("Exit", self.stopThread)
+        self.t_service.addItem("設定", self.gui_service.start)
+        self.t_service.addItem("終了", self.stopThread)
+
+        # タスクトレイのスレッドを開始
         self.t_service.startThread()
 
     def stopThread(self) -> None:
