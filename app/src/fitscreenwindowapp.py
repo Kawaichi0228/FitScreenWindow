@@ -128,6 +128,7 @@ class GlobalHotkeyService(IThread):
 
     def stopThread(self) -> None:
         self.g.stopThread()
+        assert print("メッセージ: グローバルホットキーのスレッドを停止しました") == None
 
 
 class TasktrayService(IThread):
@@ -164,7 +165,7 @@ class ApplicationService(IThread):
         t_service = TasktrayService()
         self.t_service = t_service
 
-        gui_service = GuiService(self)
+        gui_service = GuiService(self.g_service)
         self.gui_service = gui_service
 
     def startThread(self) -> None:

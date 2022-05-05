@@ -172,10 +172,18 @@ class GuiService:
         # config.pyの各データクラスの値を上書きする
         json_repository.setupConfigPython()
 
-        test = GlobalHotkeyService
-        self.test = test
+        # 既に開始されているGlobalHotkeyスレッドをこのクラスから操作するために、
+        # GlobalHotkeyServiceのインスタンスを引数経由で受け取る
+        # (ApplicationServiceで既に生成されているインスタンスを渡すため、
+        # カッコをつけていない(インスタンス化していない)
+        g_service = GlobalHotkeyService 
+        self.g_service = g_service
 
     def start(self):
+        # GUIの表示開始時に、グローバルホットキーのスレッドを停止(GUI操作中にホットキー操作できないようにするため)
+        self.g_service.stopThread()
+        assert print("メッセージ: GUIの値からconfig.jsonを保存しました") == None
+
         # --- 各タブのItemの値をJsonから書き換え ---
         self.__setupWidget()
         self.__setupTab_Size()
@@ -186,6 +194,10 @@ class GuiService:
         self.root.start(lambda: self.gui)
 
     def stop(self) -> None:
+        # グローバルホットキーのスレッドを再開(GUIで設定した値で再度バインドされる)
+        self.g_service.startThread()
+
+        # GUIスレッド終了
         self.gui.quit()
 
     # -------------------------------------------------------------------------
@@ -198,15 +210,15 @@ class GuiService:
         # PushButton
         pushbutton_list = []
         # - OKButton
-        pushbutton_item = (self.gui.ui.pustButton_ok, self.__saveJsonToQuit)
+        pushbutton_item = (self.gui.ui.pustButton_ok, self.__onClickEvent_pustButton_ok)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
-        pushbutton_item = (self.gui.ui.pustButton_cancel, self.stop)
+        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__onClickEvent_pustButton_cancel)
         pushbutton_list.append(pushbutton_item)
         # - setup
         self.gui.setupPushButton(pushbutton_list)
 
-    def __saveJsonToQuit(self) -> None:
+    def __onClickEvent_pustButton_ok(self) -> None:
         json = ConfigJsonRepository()
 
         # Config.pyのクラスへ値をセット
@@ -218,9 +230,6 @@ class GuiService:
         # インスタンスのJsonDictionaryの値からJsonへ書き込み保存
         json.save()
         assert print("メッセージ: GUIの値からconfig.jsonを保存しました") == None
-
-        self.test.g_service.stopThread()
-        self.test.g_service.startThread()
 
         # GUIスレッド終了
         self.stop()
@@ -244,6 +253,9 @@ class GuiService:
         Config.HotkeyWindowRight.mod_win = self.gui.ui.checkBox_windowright_mod_win.isChecked()
         Config.HotkeyWindowRight.hotkey = self.gui.ui.comboBox_Hotkey_WindowRight.currentText()
 
+    def __onClickEvent_pustButton_cancel(self) -> None:
+        # GUIスレッド終了
+        self.stop()
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
 
@@ -267,9 +279,15 @@ class GuiService:
         key_list = hk.getKeyList()
         combobox_list = []
         # - WindowLeft
+        # TODO: addItem(key_list)のみコンストラクタへ移行し、インスタンス化時の1度のみaddするように変更する
+        # もしくは リスト表示させる数を強制Setできるメソッドを探す or リストをaddの前に初期化するよう変更
+        # (設定ボタン押下でGUIを表示するたびにItemが重複して増えていってしまうため)
         combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, key_list, Config.HotkeyWindowLeft.hotkey)
         combobox_list.append(combobox_item)
         # - WindowRight
+        # TODO: addItem(key_list)のみコンストラクタへ移行し、インスタンス化時の1度のみaddするように変更する
+        # もしくは リスト表示させる数を強制Setできるメソッドを探す or リストをaddの前に初期化するよう変更
+        # (設定ボタン押下でGUIを表示するたびにItemが重複して増えていってしまうため)
         combobox_item = (self.gui.ui.comboBox_Hotkey_WindowRight, key_list, Config.HotkeyWindowRight.hotkey)
         combobox_list.append(combobox_item)
         # - setup
