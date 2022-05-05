@@ -160,7 +160,7 @@ class GuiService:
         外部定義したいコードをコピペすればOK
         (ただし、追加で ".ui" を付けること <ex. self.ui.comboBox...>)
     """
-    def __init__(self):
+    def __init__(self, GlobalHotkeyService):
         root = RootGUI()
         self.root = root
 
@@ -171,6 +171,9 @@ class GuiService:
         json_repository = ConfigJsonRepository()
         # config.pyの各データクラスの値を上書きする
         json_repository.setupConfigPython()
+
+        test = GlobalHotkeyService
+        self.test = test
 
     def start(self):
         # --- 各タブのItemの値をJsonから書き換え ---
@@ -215,6 +218,9 @@ class GuiService:
         # インスタンスのJsonDictionaryの値からJsonへ書き込み保存
         json.save()
         assert print("メッセージ: GUIの値からconfig.jsonを保存しました") == None
+
+        self.test.g_service.stopThread()
+        self.test.g_service.startThread()
 
         # GUIスレッド終了
         self.stop()

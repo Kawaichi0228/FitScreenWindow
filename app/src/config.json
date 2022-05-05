@@ -11,8 +11,8 @@
         "adjust_x_px": 15
     },
     "hotkey_windowleft": {
-        "mod_ctrl": false,
-        "mod_shift": true,
+        "mod_ctrl": true,
+        "mod_shift": false,
         "mod_alt": true,
         "mod_win": false,
         "hotkey": "left"

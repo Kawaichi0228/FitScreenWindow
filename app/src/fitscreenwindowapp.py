@@ -164,7 +164,7 @@ class ApplicationService(IThread):
         t_service = TasktrayService()
         self.t_service = t_service
 
-        gui_service = GuiService()
+        gui_service = GuiService(self)
         self.gui_service = gui_service
 
     def startThread(self) -> None:

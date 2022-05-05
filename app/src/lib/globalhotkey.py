@@ -11,12 +11,15 @@ class GlobalHotkey(wx.Frame):
     def __init__(self) -> None:
         self.__root = wx.App(False)  # MEMO:移動禁止(wx.Appを作成してからsuperでインスタンス化する必要があるため)
         super(GlobalHotkey, self).__init__(None)
+        self.id_hotkey_list = []
 
     def startThread(self) -> None:
         thread = threading.Thread(target=self.__root.MainLoop)
         thread.start()
 
     def stopThread(self) -> None: # TODO: スレッド終了できるがエラー出ている(threading.Event()と.setDaemon(True)を使えば解決できる？)
+        for id in self.id_hotkey_list:
+            self.UnregisterHotKey(id)
         self.__root.ExitMainLoop()
 
     def registerHotkey(self, modifier_keys: any, hotkey: any) -> int:
@@ -25,6 +28,7 @@ class GlobalHotkey(wx.Frame):
             int: ホットキーID
         """
         id_hotkey = wx.NewIdRef(count=1)
+        self.id_hotkey_list.append(id_hotkey)
         self.RegisterHotKey(id_hotkey, modifier_keys, hotkey)
         return id_hotkey
 
