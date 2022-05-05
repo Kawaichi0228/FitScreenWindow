@@ -113,21 +113,26 @@ class ConfigJsonToPython:
         Config.HotkeyWindowRight.hotkey = json_hotkey_windowright["hotkey"]
 
 
-class JsonRepository:
+class ConfigJsonRepository:
     def __init__(self, json_path) -> None:
+        # jsonを読み込み、dictionaryとしてインスタンス変数化(永続化)
         jc = JsonController(json_path)
         self.jc = jc
         json_object = self.jc.read()
         json_dict = self.jc.getDictionary(json_object)
         self.json_dict = json_dict
 
-        self.Size = Size(self.json_dict)
+        # 永続化したdictionaryの各Valueをメンバ変数として参照できるように集約
+        self.Size = _Size(self.json_dict)
+        self.Position = _Position(self.json_dict)
+        self.HotkeyWindowLeft = _HotkeyWindowLeft(self.json_dict)
+        self.HotkeyWindowRight = _HotkeyWindowRight(self.json_dict)
 
-class Size:
+class _Size:
     def __init__(self, json_dict) -> None:
         self.json_dict = json_dict
-
         json_size = self.json_dict["size"]
+
         self.resize_max_cnt = json_size["resize_max_cnt"]
         self.resize_ratio = json_size["resize_ratio"]
         self.base_width_toleft_px = json_size["base_width_toleft_px"]
@@ -135,26 +140,32 @@ class Size:
         self.adjust_width_px = json_size["adjust_width_px"]
         self.is_subtract_taskbar = json_size["is_subtract_taskbar"]
     
-    #class Position:
-    #    def __init__(self) -> None:
-    #        json_position = self.json_dict["position"]
-    #        self.adjust_x_px = json_position["adjust_x_px"]
+class _Position:
+    def __init__(self, json_dict) -> None:
+        self.json_dict = json_dict
+        json_position = self.json_dict["position"]
 
-    #class HotkeyWindowLeft:
-    #    def __init__(self) -> None:
-    #        json_hotkey_windowleft = self.json_dict["hotkey_windowleft"]
-    #        self.mod_ctrl = json_hotkey_windowleft["mod_ctrl"]
-    #        self.mod_shift = json_hotkey_windowleft["mod_shift"]
-    #        self.mod_alt = json_hotkey_windowleft["mod_alt"]
-    #        self.mod_win = json_hotkey_windowleft["mod_win"]
-    #        self.hotkey = json_hotkey_windowleft["hotkey"]
+        self.adjust_x_px = json_position["adjust_x_px"]
 
-    #class HotkeyWindowRight:
-    #    def __init__(self) -> None:
-    #        self.hotkey_windowright = json_hotkey_windowright = self.json_dict["hotkey_windowright"]
-    #        self.mod_ctrl = json_hotkey_windowright["mod_ctrl"]
-    #        self.mod_shift = json_hotkey_windowright["mod_shift"]
-    #        self.mod_alt = json_hotkey_windowright["mod_alt"]
-    #        self.mod_win = json_hotkey_windowright["mod_win"]
-    #        self.hotkey = json_hotkey_windowright["hotkey"]
+class _HotkeyWindowLeft:
+    def __init__(self, json_dict) -> None:
+        self.json_dict = json_dict
+        json_hotkey_windowleft = self.json_dict["hotkey_windowleft"]
+
+        self.mod_ctrl = json_hotkey_windowleft["mod_ctrl"]
+        self.mod_shift = json_hotkey_windowleft["mod_shift"]
+        self.mod_alt = json_hotkey_windowleft["mod_alt"]
+        self.mod_win = json_hotkey_windowleft["mod_win"]
+        self.hotkey = json_hotkey_windowleft["hotkey"]
+
+class _HotkeyWindowRight:
+    def __init__(self, json_dict) -> None:
+        self.json_dict = json_dict
+        self.hotkey_windowright = json_hotkey_windowright = self.json_dict["hotkey_windowright"]
+
+        self.mod_ctrl = json_hotkey_windowright["mod_ctrl"]
+        self.mod_shift = json_hotkey_windowright["mod_shift"]
+        self.mod_alt = json_hotkey_windowright["mod_alt"]
+        self.mod_win = json_hotkey_windowright["mod_win"]
+        self.hotkey = json_hotkey_windowright["hotkey"]
 
