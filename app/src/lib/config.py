@@ -115,7 +115,6 @@ class ConfigJsonRepository:
         Config.HotkeyWindowRight.mod_alt = self.json_dict["hotkey_windowright"]["mod_alt"]
         Config.HotkeyWindowRight.mod_win = self.json_dict["hotkey_windowright"]["mod_win"]
         Config.HotkeyWindowRight.hotkey = self.json_dict["hotkey_windowright"]["hotkey"]
-
         assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
     def setupConfigJsonDictionary(self) -> None:
@@ -183,6 +182,33 @@ class GuiService:
         # gui開始(表示させる)
         self.root.start(lambda: self.gui)
 
+    def __setupConfigPython(self) -> None:
+        Config.Size.resize_max_cnt = self.gui.ui.spinBox_resize_max_cnt.value()
+        Config.Size.resize_ratio = self.gui.ui.doubleSpinBox_resize_ratio.value()
+        Config.Size.base_width_toleft_px = self.gui.ui.spinBox_base_width_toleft_px.value()
+        Config.Size.base_width_toright_px = self.gui.ui.spinBox_base_width_toright_px.value()
+        Config.Size.adjust_width_px = self.gui.ui.spinBox_adjust_width_px.value()
+        Config.Size.is_subtract_taskbar = self.gui.ui.checkBox_is_subtract_taskbar.isChecked()
+        Config.Position.adjust_x_px = self.gui.ui.spinBox_adjust_x_px.value()
+        Config.HotkeyWindowLeft.mod_ctrl = self.gui.ui.checkBox_windowleft_mod_ctrl.isChecked()
+        Config.HotkeyWindowLeft.mod_shift = self.gui.ui.checkBox_windowleft_mod_shift.isChecked()
+        Config.HotkeyWindowLeft.mod_alt = self.gui.ui.checkBox_windowleft_mod_alt.isChecked()
+        Config.HotkeyWindowLeft.mod_win = self.gui.ui.checkBox_windowleft_mod_win.isChecked()
+        Config.HotkeyWindowLeft.hotkey = self.gui.ui.comboBox_Hotkey_WindowLeft.currentText()
+        Config.HotkeyWindowRight.mod_ctrl = self.gui.ui.checkBox_windowright_mod_ctrl.isChecked()
+        Config.HotkeyWindowRight.mod_shift = self.gui.ui.checkBox_windowright_mod_shift.isChecked()
+        Config.HotkeyWindowRight.mod_alt = self.gui.ui.checkBox_windowright_mod_alt.isChecked()
+        Config.HotkeyWindowRight.mod_win = self.gui.ui.checkBox_windowright_mod_win.isChecked()
+        Config.HotkeyWindowRight.hotkey = self.gui.ui.comboBox_Hotkey_WindowRight.currentText()
+    
+    def saveJsonToQuit(self) -> None:
+        json = ConfigJsonRepository()
+        self.__setupConfigPython()
+        json.setupConfigJsonDictionary()
+        json.save()
+
+        self.gui.quit()
+
     def __setupWidget(self):
         """ウィジェット全体のsetup(全タブ共通)"""
         # Window
@@ -191,7 +217,7 @@ class GuiService:
         # PushButton
         pushbutton_list = []
         # - OKButton
-        pushbutton_item = (self.gui.ui.pustButton_ok, self.gui.quit) # TODO: quitの前に、jsonのread -> 書き換え処理を入れた関数へ変更する
+        pushbutton_item = (self.gui.ui.pustButton_ok, self.saveJsonToQuit)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
         pushbutton_item = (self.gui.ui.pustButton_cancel, self.gui.quit)

@@ -1,27 +1,27 @@
 {
     "size": {
         "resize_max_cnt": 4,
-        "resize_ratio": 3,
+        "resize_ratio": 3.0,
         "base_width_toleft_px": 1000,
         "base_width_toright_px": 400,
         "adjust_width_px": 28,
-        "is_subtract_taskbar": 1
+        "is_subtract_taskbar": true
     },
     "position": {
         "adjust_x_px": 10
     },
     "hotkey_windowleft": {
-        "mod_ctrl": 0,
-        "mod_shift": 1,
-        "mod_alt": 1,
-        "mod_win": 0,
+        "mod_ctrl": false,
+        "mod_shift": true,
+        "mod_alt": true,
+        "mod_win": false,
         "hotkey": "left"
     },
     "hotkey_windowright": {
-        "mod_ctrl": 0,
-        "mod_shift": 1,
-        "mod_alt": 1,
-        "mod_win": 0,
+        "mod_ctrl": false,
+        "mod_shift": true,
+        "mod_alt": true,
+        "mod_win": false,
         "hotkey": "right"
     }
 }

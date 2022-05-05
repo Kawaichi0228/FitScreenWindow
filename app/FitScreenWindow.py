@@ -11,18 +11,17 @@ import src.fitscreenwindowapp as app
 app.main()
 """
 
-"""
+#"""
 from src.lib.config import GuiService
 gui_service = GuiService()
 gui_service.start()
-"""
-
 #"""
+
+"""
 from src.lib.config import Config, ConfigJsonRepository
 json = ConfigJsonRepository()
 json.setupConfigPython()
 
-Config.Size.base_width_toleft_px = 1000
 json.setupConfigJsonDictionary()
 json.save()
-#"""
+"""
