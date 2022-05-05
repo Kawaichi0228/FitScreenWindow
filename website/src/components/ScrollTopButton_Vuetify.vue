@@ -1,9 +1,5 @@
 <template>
-  <div>
-    sssssssssssssssssssssascascascascas
   <transition name="fade">
-    
-    
     <v-btn 
       v-scroll="onScroll"
       v-show="fab"
@@ -17,7 +13,6 @@
       <v-icon>fas fa-angle-up</v-icon>
     </v-btn>
   </transition>
-  </div>
 </template>
 
 <script>
