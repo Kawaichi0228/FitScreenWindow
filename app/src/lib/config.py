@@ -187,9 +187,10 @@ class GuiService:
         gui = SettingGUI(root)
         self.gui = gui
         
-        # config.jsonから値を読み取り
-        json = ConfigJsonRepository()
-        self.json = json
+        # config.jsonから値を読み取り、jsonのValueが格納されたDictを取得
+        json_repository = ConfigJsonRepository()
+        # config.pyの各データクラスの値を上書きする
+        json_repository.setupConfigPython()
 
     def start(self):
         # --- 各タブのItemの値をJsonから書き換え ---
@@ -219,16 +220,16 @@ class GuiService:
 
     def __setupTab_Size(self):
         """サイズタブのsetup"""
-        self.gui.ui.spinBox_resize_max_cnt.setValue(self.json.Size.resize_max_cnt)
-        self.gui.ui.doubleSpinBox_resize_ratio.setValue(self.json.Size.resize_ratio)
-        self.gui.ui.spinBox_base_width_toleft_px.setValue(self.json.Size.base_width_toleft_px)
-        self.gui.ui.spinBox_base_width_toright_px.setValue(self.json.Size.base_width_toright_px)
-        self.gui.ui.spinBox_adjust_width_px.setValue(self.json.Size.adjust_width_px)
-        self.gui.ui.checkBox_is_subtract_taskbar.setChecked(self.json.Size.is_subtract_taskbar)
+        self.gui.ui.spinBox_resize_max_cnt.setValue(Config.Size.resize_max_cnt)
+        self.gui.ui.doubleSpinBox_resize_ratio.setValue(Config.Size.resize_ratio)
+        self.gui.ui.spinBox_base_width_toleft_px.setValue(Config.Size.base_width_toleft_px)
+        self.gui.ui.spinBox_base_width_toright_px.setValue(Config.Size.base_width_toright_px)
+        self.gui.ui.spinBox_adjust_width_px.setValue(Config.Size.adjust_width_px)
+        self.gui.ui.checkBox_is_subtract_taskbar.setChecked(Config.Size.is_subtract_taskbar)
 
     def __setupTab_Position(self):
         """位置タブのsetup"""
-        self.gui.ui.spinBox_adjust_x_px.setValue(self.json.Position.adjust_x_px)
+        self.gui.ui.spinBox_adjust_x_px.setValue(Config.Position.adjust_x_px)
 
     def __setupTab_ShortcutKey(self):
         """ショートカットキータブのsetup"""
@@ -237,10 +238,10 @@ class GuiService:
         key_list = hk.getKeyList()
         combobox_list = []
         # - WindowLeft
-        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, key_list, self.json.HotkeyWindowLeft.hotkey)
+        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, key_list, Config.HotkeyWindowLeft.hotkey)
         combobox_list.append(combobox_item)
         # - WindowRight
-        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowRight, key_list, self.json.HotkeyWindowRight.hotkey)
+        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowRight, key_list, Config.HotkeyWindowRight.hotkey)
         combobox_list.append(combobox_item)
         # - setup
         self.gui.setupComboBox(combobox_list)
@@ -248,22 +249,22 @@ class GuiService:
         # CheckBox
         checkbox_list = []
         # - WindowLeft
-        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_ctrl,self.json.HotkeyWindowLeft.mod_ctrl)
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_ctrl,Config.HotkeyWindowLeft.mod_ctrl)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_shift, self.json.HotkeyWindowLeft.mod_shift)
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_shift, Config.HotkeyWindowLeft.mod_shift)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_alt, self.json.HotkeyWindowLeft.mod_alt)
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_alt, Config.HotkeyWindowLeft.mod_alt)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_win, self.json.HotkeyWindowLeft.mod_win)
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_win, Config.HotkeyWindowLeft.mod_win)
         checkbox_list.append(checkbox_item)
         # - WindowRight
-        checkbox_item = (self.gui.ui.checkBox_windowright_mod_ctrl, self.json.HotkeyWindowRight.mod_ctrl)
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_ctrl, Config.HotkeyWindowRight.mod_ctrl)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowright_mod_shift, self.json.HotkeyWindowRight.mod_shift)
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_shift, Config.HotkeyWindowRight.mod_shift)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowright_mod_alt, self.json.HotkeyWindowRight.mod_alt)
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_alt, Config.HotkeyWindowRight.mod_alt)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowright_mod_win, self.json.HotkeyWindowRight.mod_win)
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_win, Config.HotkeyWindowRight.mod_win)
         checkbox_list.append(checkbox_item)
         # - setup
         self.gui.setupCheckBox(checkbox_list)
