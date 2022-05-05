@@ -38,16 +38,16 @@ class Config:
 
     @dataclass(frozen=False)
     class HotkeyWindowLeft:
-        mod_ctrl: int # bool 1 or 0
-        mod_shift: int # bool 1 or 0
-        mod_alt: int # bool 1 or 0
+        mod_ctrl: bool
+        mod_shift: bool
+        mod_alt: bool
         hotkey: str
 
     @dataclass(frozen=False)
     class HotkeyWindowRight:
-        mod_ctrl: int # bool 1 or 0
-        mod_shift: int # bool 1 or 0
-        mod_alt: int # bool 1 or 0
+        mod_ctrl: bool
+        mod_shift: bool
+        mod_alt: bool
         hotkey: str
 
     @staticmethod
@@ -70,12 +70,12 @@ class Config:
         other:
             Configクラスを用いたダックタイピングを使用
         """
-        # 修飾キー(configのValueが 1 だった場合に変換して格納する)
+        # 修飾キー(configのValueが True だった場合に変換して格納する)
         modk = ModifireKey()
-        if HotkeyWindowLeftRight.mod_ctrl == 1: modk.add(modk.CTRLKEY)
-        if HotkeyWindowLeftRight.mod_shift == 1: modk.add(modk.SHIFTKEY)
-        if HotkeyWindowLeftRight.mod_alt == 1: modk.add(modk.ALTKEY)
-        if HotkeyWindowLeftRight.mod_win == 1: modk.add(modk.WINKEY)
+        if HotkeyWindowLeftRight.mod_ctrl: modk.add(modk.CTRLKEY)
+        if HotkeyWindowLeftRight.mod_shift: modk.add(modk.SHIFTKEY)
+        if HotkeyWindowLeftRight.mod_alt: modk.add(modk.ALTKEY)
+        if HotkeyWindowLeftRight.mod_win: modk.add(modk.WINKEY)
         mod_combination = modk.getCombinationKeycode()
         
         # ホットキー
