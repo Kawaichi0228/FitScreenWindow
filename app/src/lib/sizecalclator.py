@@ -48,17 +48,15 @@ class SizeCalclatorAtCounter:
             width = screen_width - memory_width + Config.Size.adjust_width_px
             return width
 
-        # リサイズWidthを計算
-        base_magni = 1 # 倍率100%から開始
-        magni = (self.cnt.get() / 10) * Config.Size.resize_ratio # 整数intのカウンタを取得し、floatの0.n単位にしている
-        width_magnification = base_magni + magni # 1.n倍の形式へフォーマット
+        # リサイズ時に加算するWidthを計算
+        add_width = Config.Size.resize_ratio * self.cnt.get() # px/回の設定したwidth値を、cntの回数分だけ倍にする
 
         if direction == MoveResizeDirection.LEFT:
             width_base = Config.Size.base_width_toleft_px
         elif direction == MoveResizeDirection.RIGHT:
             width_base = Config.Size.base_width_toright_px
 
-        width = int(round(width_base * width_magnification + Config.Size.adjust_width_px))
+        width = int(round(width_base + add_width + Config.Size.adjust_width_px))
         return width
 
     def calclateHeight(self) -> int:

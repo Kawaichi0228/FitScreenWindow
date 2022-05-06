@@ -1,7 +1,7 @@
 {
     "size": {
         "resize_max_cnt": 4,
-        "resize_ratio": 3.0,
+        "resize_ratio": 100,
         "base_width_toleft_px": 500,
         "base_width_toright_px": 400,
         "adjust_width_px": 28,
