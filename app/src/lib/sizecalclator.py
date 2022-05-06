@@ -49,7 +49,7 @@ class SizeCalclatorAtCounter:
             return width
 
         # リサイズ時に加算するWidthを計算
-        add_width = Config.Size.resize_ratio * self.cnt.get() # px/回の設定したwidth値を、cntの回数分だけ倍にする
+        add_width = Config.Size.resize_add_width_px * self.cnt.get() # px/回の設定したwidth値を、cntの回数分だけ倍にする
 
         if direction == MoveResizeDirection.LEFT:
             width_base = Config.Size.base_width_toleft_px

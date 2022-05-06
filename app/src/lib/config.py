@@ -26,7 +26,7 @@ class Config:
     class Size:
         """SizeCalclatorAtCounter専用のパラメータオブジェクト"""
         resize_max_cnt: int # 段階リサイズを実行できる最大回数
-        resize_ratio: float # リサイズごと(カウンタと連動)の拡大倍率(基準サイズから×n倍するか)
+        resize_add_width_px: float # リサイズごと(カウンタと連動)の拡大倍率(基準サイズから×n倍するか)
         base_width_toleft_px: int # 初期リサイズ時のウィンドウサイズ
         base_width_toright_px: int # 初期リサイズ時のウィンドウサイズ
         adjust_width_px: int # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの枠のサイズ？)
@@ -99,7 +99,7 @@ class ConfigJsonRepository:
     def setupConfigPython(self) -> None:
         """config.pyをjsonで読みとった値で書き換え"""
         Config.Size.resize_max_cnt = self.json_dict["size"]["resize_max_cnt"]
-        Config.Size.resize_ratio = self.json_dict["size"]["resize_ratio"]
+        Config.Size.resize_add_width_px = self.json_dict["size"]["resize_add_width_px"]
         Config.Size.base_width_toleft_px = self.json_dict["size"]["base_width_toleft_px"]
         Config.Size.base_width_toright_px = self.json_dict["size"]["base_width_toright_px"]
         Config.Size.adjust_width_px = self.json_dict["size"]["adjust_width_px"]
@@ -120,7 +120,7 @@ class ConfigJsonRepository:
     def setupConfigJsonDictionary(self) -> None:
         try:
             self.json_dict["size"]["resize_max_cnt"] = Config.Size.resize_max_cnt
-            self.json_dict["size"]["resize_ratio"] = Config.Size.resize_ratio
+            self.json_dict["size"]["resize_add_width_px"] = Config.Size.resize_add_width_px
             self.json_dict["size"]["base_width_toleft_px"] = Config.Size.base_width_toleft_px
             self.json_dict["size"]["base_width_toright_px"] = Config.Size.base_width_toright_px
             self.json_dict["size"]["adjust_width_px"] = Config.Size.adjust_width_px
@@ -236,7 +236,7 @@ class GuiService:
 
     def __setupConfigPython(self) -> None:
         Config.Size.resize_max_cnt = self.gui.ui.spinBox_resize_max_cnt.value()
-        Config.Size.resize_ratio = self.gui.ui.doubleSpinBox_resize_ratio.value()
+        Config.Size.resize_add_width_px = self.gui.ui.spinBox_resize_add_width_px.value()
         Config.Size.base_width_toleft_px = self.gui.ui.spinBox_base_width_toleft_px.value()
         Config.Size.base_width_toright_px = self.gui.ui.spinBox_base_width_toright_px.value()
         Config.Size.adjust_width_px = self.gui.ui.spinBox_adjust_width_px.value()
@@ -262,7 +262,7 @@ class GuiService:
     def __setupTab_Size(self):
         """サイズタブのsetup"""
         self.gui.ui.spinBox_resize_max_cnt.setValue(Config.Size.resize_max_cnt)
-        self.gui.ui.doubleSpinBox_resize_ratio.setValue(Config.Size.resize_ratio)
+        self.gui.ui.spinBox_resize_add_width_px.setValue(Config.Size.resize_add_width_px)
         self.gui.ui.spinBox_base_width_toleft_px.setValue(Config.Size.base_width_toleft_px)
         self.gui.ui.spinBox_base_width_toright_px.setValue(Config.Size.base_width_toright_px)
         self.gui.ui.spinBox_adjust_width_px.setValue(Config.Size.adjust_width_px)
