@@ -81,27 +81,42 @@ class SettingGUI(AbstractGui, QDialog):
     # -------------------------------------------------------------------------
     # ComboBox
     # -------------------------------------------------------------------------
+    # MEMO:
+    # list_[i][0]: self.gui.ui.comboBox_Hotkey_WindowLeft || Right
+    # list_[i][1]: key_list
+    # list_[i][2]: Config.HotkeyWindowLeft || Right.hotkey
+    # example.
+    # <combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, key_list, Config.HotkeyWindowLeft.hotkey)>
     def setupComboBox(self, list_) -> None:
+        self.__clearItem_ComboBox_FromList(list_)
         self.__addItems_ComboBox_FromList(list_)
         self.__setItem_ComboBox_FromList(list_)
+
+    def __clearItem_ComboBox_FromList(self, list_) -> None:
+        for i in range(0, len(list_)):
+            self.__clearItem_ComboBox(list_[i][0])
+
+    def __addItems_ComboBox_FromList(self, list_) -> None:
+        for i in range(0, len(list_)):
+            self.__addItems_ComboBox(list_[i][0], list_[i][1])
 
     def __setItem_ComboBox_FromList(self, list_) -> None:
         for i in range(0, len(list_)):
             self.__setItem_ComboBox(list_[i][0], list_[i][2])
+
+    def __clearItem_ComboBox(self, combo_box) -> None:
+        """コンボボックスのリストアイテムを全て消去する"""
+        combo_box.clear()
+    
+    def __addItems_ComboBox(self, combo_box, list_) -> None:
+        """コンボボックスにリストアイテムを追加する"""
+        combo_box.addItems(list_)
 
     def __setItem_ComboBox(self, combo_box, select_itemtext) -> None:
         """指定したTextのItemをコンボボックスの初期選択とする"""
         combo_box.setCurrentIndex(
             combo_box.findText(select_itemtext)
         )
-
-    def __addItems_ComboBox_FromList(self, list_) -> None:
-        for i in range(0, len(list_)):
-            self.__addItems_ComboBox(list_[i][0], list_[i][1])
-    
-    def __addItems_ComboBox(self, combo_box, list_) -> None:
-        """コンボボックスにリストアイテムを追加する"""
-        combo_box.addItems(list_)
     # -------------------------------------------------------------------------
     # CheckBox
     # -------------------------------------------------------------------------
