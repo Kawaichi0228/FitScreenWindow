@@ -9,8 +9,6 @@
       </template>
     </ToggleVisbleAtScrollEvent>-->
 
-    
-
     <MainVisual></MainVisual>
     <Demonstration id="Demonstration"></Demonstration>
     <ReleaseNote id="ReleaseNote"></ReleaseNote>
