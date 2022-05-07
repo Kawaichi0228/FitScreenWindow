@@ -68,12 +68,25 @@ class ConfigGui(UtilGui, QDialog):
     # -------------------------------------------------------------------------
     # PushButton
     # -------------------------------------------------------------------------
+    # MEMO:
+    # list_[i][0]: pushButton(Object)
+    # list_[i][1]: bindEventFunction(Object)
+    # list_[i][2]: isSetFocus(bool)
     def setupPushButton(self, list_) -> None:
+        self.__setFocus_PushButton_FromList(list_)
         self.__bindOnClick_PushButton_FromList(list_)
+    
+    def __setFocus_PushButton_FromList(self, list_) -> None:
+        for i in range(0, len(list_)):
+            if list_[i][2]:
+                self.__setFocus_PushButton(list_[i][0])
 
     def __bindOnClick_PushButton_FromList(self, list_) -> None:
         for i in range(0, len(list_)):
             self.__bindOnClick_PushButton(list_[i][0], list_[i][1])
+            
+    def __setFocus_PushButton(self, push_button) -> None:
+        push_button.setFocus()
     
     def __bindOnClick_PushButton(self, push_button, on_event_function) -> None:
         """イベント登録(シグナル/スロット)"""

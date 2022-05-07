@@ -210,10 +210,12 @@ class ConfigGuiService:
         # PushButton
         pushbutton_list = []
         # - OKButton
-        pushbutton_item = (self.gui.ui.pustButton_ok, self.__onClickEvent_pustButton_ok)
+        setFocus = True # 最初の選択状態にしておく
+        pushbutton_item = (self.gui.ui.pustButton_ok, self.__onClickEvent_pustButton_ok, setFocus)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
-        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__onClickEvent_pustButton_cancel)
+        setFocus = False
+        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__onClickEvent_pustButton_cancel, setFocus)
         pushbutton_list.append(pushbutton_item)
         # - setup
         self.gui.setupPushButton(pushbutton_list)

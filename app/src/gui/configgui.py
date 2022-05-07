@@ -279,6 +279,25 @@ class Ui_Config(object):
 
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 2)
 
+        QWidget.setTabOrder(self.tabWidget, self.spinBox_resize_max_cnt)
+        QWidget.setTabOrder(self.spinBox_resize_max_cnt, self.spinBox_resize_add_width_px)
+        QWidget.setTabOrder(self.spinBox_resize_add_width_px, self.spinBox_base_width_toleft_px)
+        QWidget.setTabOrder(self.spinBox_base_width_toleft_px, self.spinBox_base_width_toright_px)
+        QWidget.setTabOrder(self.spinBox_base_width_toright_px, self.spinBox_adjust_width_px)
+        QWidget.setTabOrder(self.spinBox_adjust_width_px, self.checkBox_is_subtract_taskbar)
+        QWidget.setTabOrder(self.checkBox_is_subtract_taskbar, self.spinBox_adjust_x_px)
+        QWidget.setTabOrder(self.spinBox_adjust_x_px, self.checkBox_windowleft_mod_ctrl)
+        QWidget.setTabOrder(self.checkBox_windowleft_mod_ctrl, self.checkBox_windowleft_mod_shift)
+        QWidget.setTabOrder(self.checkBox_windowleft_mod_shift, self.checkBox_windowleft_mod_alt)
+        QWidget.setTabOrder(self.checkBox_windowleft_mod_alt, self.checkBox_windowleft_mod_win)
+        QWidget.setTabOrder(self.checkBox_windowleft_mod_win, self.comboBox_Hotkey_WindowLeft)
+        QWidget.setTabOrder(self.comboBox_Hotkey_WindowLeft, self.checkBox_windowright_mod_ctrl)
+        QWidget.setTabOrder(self.checkBox_windowright_mod_ctrl, self.checkBox_windowright_mod_shift)
+        QWidget.setTabOrder(self.checkBox_windowright_mod_shift, self.checkBox_windowright_mod_alt)
+        QWidget.setTabOrder(self.checkBox_windowright_mod_alt, self.checkBox_windowright_mod_win)
+        QWidget.setTabOrder(self.checkBox_windowright_mod_win, self.comboBox_Hotkey_WindowRight)
+        QWidget.setTabOrder(self.comboBox_Hotkey_WindowRight, self.pustButton_ok)
+        QWidget.setTabOrder(self.pustButton_ok, self.pustButton_cancel)
 
         self.retranslateUi(Config)
 
