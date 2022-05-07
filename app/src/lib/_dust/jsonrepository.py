@@ -15,7 +15,7 @@ class JsonRepository:
         config_dict = {
             "size": {
                 "resize_max_cnt": ValidateInt(1,10),
-                "resize_ratio": ValidateInt(1,10),
+                "resize_add_width_px": ValidateInt(1,10),
                 "base_width_toleft_px": ValidateInt(1,2000),
                 "base_width_toright_px": ValidateInt(1,2000),
                 "adjust_width_px": ValidateInt(1,100)

@@ -11,15 +11,12 @@ from src.lib.globalhotkey import GlobalHotkey
 from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.tasktray import Tasktray
-from src.lib.jsoncontroller import JsonController
-from src.lib.configconverter import ConfigConverter
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.errordialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
-from src.lib.config import Size, Position, HotkeyWindowLeft, HotkeyWindowRight
+from src.lib.config import Config, ConfigJsonRepository, ConfigGuiService
 from src.lib.const import (
     MoveResizeDirection,
-    CONFIG_JSON_PATH,
     PROGRAM_NAME,
     FAVICON_IMAGE_PATH,
 )
@@ -79,9 +76,8 @@ class GlobalHotkeyService(IThread):
         mr = MoveResizeWindowService()
         
         # Config.pyに格納された各ホットキーの値をKeycodeへ変換し、dictとして取得
-        key_converter = ConfigConverter()
-        keycombination_windowleft = key_converter.convertHotkeyConfigToKeycode(HotkeyWindowLeft)
-        keycombination_windowright = key_converter.convertHotkeyConfigToKeycode(HotkeyWindowRight)
+        keycombination_windowleft = Config.getKeycodeforHotkeyWindowLeft()
+        keycombination_windowright = Config.getKeycodeforHotkeyWindowRight()
 
         # 登録するホットキーとそれにバインドするイベント処理を定義
         register = {}
@@ -98,13 +94,13 @@ class GlobalHotkeyService(IThread):
         }
         register.update(register_windowleft)
         # グローバルホットキーを登録
-        self.g.registerHotkey(
+        id_hotkey1 = self.g.registerHotkey(
             register[dictkey_windowleft]["modifierkeys"],
             register[dictkey_windowleft]["hotkey"]
         )
         self.g.registerEvent1(register[dictkey_windowleft]["func"])
         eve = self.g.bindEvent1
-        self.g.bindHotkey(eve)
+        self.g.bindHotkey(eve, id_hotkey1)
 
         # ------ windowright ------ 
         # ホットキーとイベント処理内容の定義
@@ -118,13 +114,13 @@ class GlobalHotkeyService(IThread):
         }
         register.update(register_windowright)
         # グローバルホットキーを登録
-        self.g.registerHotkey(
+        id_hotkey2 = self.g.registerHotkey(
             register[dictkey_windowright]["modifierkeys"],
             register[dictkey_windowright]["hotkey"]
         )
         self.g.registerEvent2(register[dictkey_windowright]["func"])
         eve = self.g.bindEvent2
-        self.g.bindHotkey(eve)
+        self.g.bindHotkey(eve, id_hotkey2)
 
         # スレッド開始
         self.g.startThread()
@@ -132,6 +128,7 @@ class GlobalHotkeyService(IThread):
 
     def stopThread(self) -> None:
         self.g.stopThread()
+        assert print("メッセージ: グローバルホットキーのスレッドを停止しました") == None
 
 
 class TasktrayService(IThread):
@@ -160,54 +157,6 @@ class TasktrayService(IThread):
         self.t.addItem(value, on_click_function)
 
 
-class JsonService:
-    def __init__(self) -> None:
-        jc = JsonController(CONFIG_JSON_PATH)
-        self.jc = jc
-    
-    def read(self) -> object:
-        # jsonファイルを読み込む
-        try:
-            json_obj = self.jc.read()
-            assert print("メッセージ: config.jsonの読込が正常に完了しました") == None
-        except FileNotFoundError:
-            ErrorDialog().showFileNotFound("config.json")
-            ErrorHandling().quitApp()
-        return json_obj
-    
-    def overWriteConfig(self, json_obj) -> None:
-        # jsonのvalueからkeycodeへ変換したdictを取得
-        json_dict = self.jc.getDictionary(json_obj) # JSONファイルの内容を2次元dictとして取得
-        
-        # config.pyをjsonで読みとった値で書き換え
-        json_size = json_dict["size"]
-        Size.resize_max_cnt = json_size["resize_max_cnt"]
-        Size.resize_ratio = json_size["resize_ratio"]
-        Size.base_width_toleft_px = json_size["base_width_toleft_px"]
-        Size.base_width_toright_px = json_size["base_width_toright_px"]
-        Size.adjust_width_px = json_size["adjust_width_px"]
-        Size.is_subtract_taskbar = json_size["is_subtract_taskbar"]
-        
-        json_position = json_dict["position"]
-        Position.adjust_x_px = json_position["adjust_x_px"]
-
-        json_hotkey_windowleft = json_dict["hotkey_windowleft"]
-        HotkeyWindowLeft.mod_ctrl = json_hotkey_windowleft["mod_ctrl"]
-        HotkeyWindowLeft.mod_shift = json_hotkey_windowleft["mod_shift"]
-        HotkeyWindowLeft.mod_alt = json_hotkey_windowleft["mod_alt"]
-        HotkeyWindowLeft.mod_win = json_hotkey_windowleft["mod_win"]
-        HotkeyWindowLeft.hotkey = json_hotkey_windowleft["hotkey"]
-
-        json_hotkey_windowright = json_dict["hotkey_windowright"]
-        HotkeyWindowRight.mod_ctrl = json_hotkey_windowright["mod_ctrl"]
-        HotkeyWindowRight.mod_shift = json_hotkey_windowright["mod_shift"]
-        HotkeyWindowRight.mod_alt = json_hotkey_windowright["mod_alt"]
-        HotkeyWindowRight.mod_win = json_hotkey_windowright["mod_win"]
-        HotkeyWindowRight.hotkey = json_hotkey_windowright["hotkey"]
-
-        assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
-
-
 class ApplicationService(IThread):
     def __init__(self) -> None:
         g_service = GlobalHotkeyService()
@@ -216,11 +165,18 @@ class ApplicationService(IThread):
         t_service = TasktrayService()
         self.t_service = t_service
 
+        gui_service = ConfigGuiService(self.g_service)
+        self.gui_service = gui_service
+
     def startThread(self) -> None:
+        # グローバルホットキーのスレッドを開始
         self.g_service.startThread()
 
         # タスクトレイに表示させるitemを定義
-        self.t_service.addItem("Exit", self.stopThread)
+        self.t_service.addItem("設定", self.gui_service.start)
+        self.t_service.addItem("終了", self.stopThread)
+
+        # タスクトレイのスレッドを開始
         self.t_service.startThread()
 
     def stopThread(self) -> None:
@@ -228,10 +184,11 @@ class ApplicationService(IThread):
         self.t_service.stopThread()
 
     def run(self) -> None:
-        # config.jsonを読み取り、config.pyの各データクラスを上書きする
-        json_service = JsonService()
-        json_obj = json_service.read()
-        json_service.overWriteConfig(json_obj)
+        # config.jsonから値を読み取り、jsonのValueが格納されたDictを取得
+        json_repository = ConfigJsonRepository()
+
+        # config.pyの各データクラスの値を上書きする
+        json_repository.setupConfigPython()
 
         # スレッド開始
         self.startThread()

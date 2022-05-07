@@ -11,23 +11,38 @@ class GlobalHotkey(wx.Frame):
     def __init__(self) -> None:
         self.__root = wx.App(False)  # MEMO:移動禁止(wx.Appを作成してからsuperでインスタンス化する必要があるため)
         super(GlobalHotkey, self).__init__(None)
+        self.id_hotkey_list = []
+
+        self.thread = None
 
     def startThread(self) -> None:
-        thread = threading.Thread(target=self.__root.MainLoop)
+        # threading.Thread Parameter:
+        #   daemon=True: スレッドをデーモン化(常駐化)させる ※デーモン=Unix系の常駐プログラムの呼称(Windows系はサービス)
+        # (thread.setDaemon(True)でも同じ)
+        thread = threading.Thread(name="FitScreenWindow", target=self.__root.MainLoop, daemon=True)
         thread.start()
+        self.thread = thread
 
-    def stopThread(self) -> None: # TODO: スレッド終了できるがエラー出ている(threading.Event()と.setDaemon(True)を使えば解決できる？)
-        self.__root.ExitMainLoop()
+    def stopThread(self) -> None:
+        for id in self.id_hotkey_list:
+            self.UnregisterHotKey(id)
+        self.thread = None
+        #self.__root.ExitMainLoop() # スレッド終了できるがエラー出てしまう(threading.Event()と.setDaemon(True)を使えば解決できる？)
 
-    def registerHotkey(self, modifier_keys: any, hotkey: any) -> None:
-        """ホットキーを登録"""
-        self.id_hotkey = wx.NewIdRef(count=1)
-        self.RegisterHotKey(self.id_hotkey, modifier_keys, hotkey)
+    def registerHotkey(self, modifier_keys: any, hotkey: any) -> int:
+        """ホットキーを登録
+        return:
+            int: ホットキーID
+        """
+        id_hotkey = wx.NewIdRef(count=1)
+        self.id_hotkey_list.append(id_hotkey)
+        self.RegisterHotKey(id_hotkey, modifier_keys, hotkey)
+        return id_hotkey
 
-    def bindHotkey(self, bindevent) -> None:
+    def bindHotkey(self, bindevent, id_hotkey) -> None:
         # HotkeyのEventHandlerをbind
         self.Bind(
-            wx.EVT_HOTKEY, bindevent, id=self.id_hotkey
+            wx.EVT_HOTKEY, bindevent, id=id_hotkey
         )
 
     # -------------------------------------------------------------------------

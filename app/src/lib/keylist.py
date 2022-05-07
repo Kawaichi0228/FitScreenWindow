@@ -2,6 +2,7 @@
 # Python modules
 # -------------------------------------------------------------------------
 import wx
+import itertools
 
 # -------------------------------------------------------------------------
 # Class
@@ -32,20 +33,36 @@ class Hotkey:
     ERR_MSG_TYPEERROR_STR = "String型を引数に指定して下さい"
     
     def __init__(self) -> None:
-        self.number = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+        # --- 文字列キー ---
+        # MEMO: "\\": バックスラッシュ単体はraw文字列不可のため、エスケープ文字(\)でエスケープしている
         self.alphabet = (
             "a", "b", "c", "d", "e","f", "g", "h", "i", "j", "k", "l", "m", "n", "o",
             "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
         )
-        self.allow = ("left", "right", "up", "down")
+        self.number = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+        self.symbol = ("_", "-", "^", "\\", "@", "[", ";", ":", "]", ",", ".", "/")
+        # --- 制御キー ---
+        self.control = ("Left", "Right", "Up", "Down", "Space", "Tab")
+
+    def getKeyList(self) -> list:
+        # MEMO: append位置 = 返されるリストのソート順が決まる
+        key_list = []
+        key_list.append(self.alphabet)
+        key_list.append(self.symbol)
+        key_list.append(self.number)
+        key_list.append(self.control)
+        key_list = list(itertools.chain.from_iterable(key_list)) # 多次元リストを一次元化
+        return key_list
 
     def getKeycode(self, value: str) -> int:
         if any([
             self.__isNumberString(value),
-            self.__isAlphabet(value)
+            self.__isAlphabet(value),
         ]): return self.__convertToAskkey(value)
 
-        if self.__isAllow(value): return self.__convertToWxPythonKey(value)
+        if self.__isSymbol(value): return self.__convertToAskkey_individual(value)
+
+        if self.__isControl(value): return self.__convertToWxPythonKey(value)
 
         raise ValueError("引数として与えられたキーが、定義したホットキーリストに含まれていません")
 
@@ -55,18 +72,40 @@ class Hotkey:
 
     def __isAlphabet(self, value: str) -> bool:
         if not type(value) == str: raise TypeError(self.ERR_MSG_TYPEERROR_STR)
-        value_lower = str.lower(value) # 大文字小文字を区別させない
-        return True if value_lower in self.alphabet else False
+        return True if value in self.alphabet else False
 
-    def __isAllow(self, value: str) -> bool:
+    def __isSymbol(self, value: str) -> bool:
         if not type(value) == str: raise TypeError(self.ERR_MSG_TYPEERROR_STR)
-        value_lower = str.lower(value) # 大文字小文字を区別させない
-        return True if value_lower in self.allow else False
+        return True if value in self.symbol else False
+
+    def __isControl(self, value: str) -> bool:
+        if not type(value) == str: raise TypeError(self.ERR_MSG_TYPEERROR_STR)
+        return True if value in self.control else False
     
     def __convertToAskkey(self, value: str) -> int:
         """文字列リテラルをasciiコードに変換"""
         value_upper = str.upper(value)
         return ord(value_upper)
+
+    def __convertToAskkey_individual(self, value: str) -> int:
+        """__convertToAskkeyメソッドにキーの文字列を渡して
+        キーコードへ変換できなかったキーはこちらで個別に定義する"""
+        value_lower = str.lower(value) # 大文字小文字を区別させない
+        key_dict = {
+            "_": 226,
+            "-": 189,
+            ",": 188,
+            ";": 187,
+            ":": 186,
+            ".": 190,
+            "[": 219,
+            "]": 221,
+            "@": 192,
+            "/": 191,
+            "\\": 220,
+            "^": 222,
+        }
+        return key_dict[value_lower]
         
     def __convertToWxPythonKey(self, value: str) -> int:
         value_lower = str.lower(value) # 大文字小文字を区別させない
@@ -75,5 +114,7 @@ class Hotkey:
             "right": wx.WXK_RIGHT,
             "down": wx.WXK_DOWN,
             "up": wx.WXK_UP,
+            "space": wx.WXK_SPACE,
+            "tab": wx.WXK_TAB,
         }
         return key_dict[value_lower]
