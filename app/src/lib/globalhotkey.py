@@ -13,14 +13,21 @@ class GlobalHotkey(wx.Frame):
         super(GlobalHotkey, self).__init__(None)
         self.id_hotkey_list = []
 
+        self.thread = None
+
     def startThread(self) -> None:
-        thread = threading.Thread(target=self.__root.MainLoop)
+        # threading.Thread Parameter:
+        #   daemon=True: スレッドをデーモン化(常駐化)させる ※デーモン=Unix系の常駐プログラムの呼称(Windows系はサービス)
+        # (thread.setDaemon(True)でも同じ)
+        thread = threading.Thread(name="FitScreenWindow", target=self.__root.MainLoop, daemon=True)
         thread.start()
+        self.thread = thread
 
     def stopThread(self) -> None:
         for id in self.id_hotkey_list:
             self.UnregisterHotKey(id)
-        self.__root.ExitMainLoop() # FIXME: スレッド終了できるがエラー出ている(threading.Event()と.setDaemon(True)を使えば解決できる？)
+        self.thread = None
+        #self.__root.ExitMainLoop() # スレッド終了できるがエラー出てしまう(threading.Event()と.setDaemon(True)を使えば解決できる？)
 
     def registerHotkey(self, modifier_keys: any, hotkey: any) -> int:
         """ホットキーを登録
