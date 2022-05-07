@@ -17,10 +17,10 @@ class GlobalHotkey(wx.Frame):
         thread = threading.Thread(target=self.__root.MainLoop)
         thread.start()
 
-    def stopThread(self) -> None: # TODO: スレッド終了できるがエラー出ている(threading.Event()と.setDaemon(True)を使えば解決できる？)
+    def stopThread(self) -> None:
         for id in self.id_hotkey_list:
             self.UnregisterHotKey(id)
-        self.__root.ExitMainLoop()
+        self.__root.ExitMainLoop() # FIXME: スレッド終了できるがエラー出ている(threading.Event()と.setDaemon(True)を使えば解決できる？)
 
     def registerHotkey(self, modifier_keys: any, hotkey: any) -> int:
         """ホットキーを登録

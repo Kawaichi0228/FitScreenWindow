@@ -281,15 +281,9 @@ class ConfigGuiService:
         key_list = hk.getKeyList()
         combobox_list = []
         # - WindowLeft
-        # TODO: addItem(key_list)のみコンストラクタへ移行し、インスタンス化時の1度のみaddするように変更する
-        # もしくは リスト表示させる数を強制Setできるメソッドを探す or リストをaddの前に初期化するよう変更
-        # (設定ボタン押下でGUIを表示するたびにItemが重複して増えていってしまうため)
         combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, key_list, Config.HotkeyWindowLeft.hotkey)
         combobox_list.append(combobox_item)
         # - WindowRight
-        # TODO: addItem(key_list)のみコンストラクタへ移行し、インスタンス化時の1度のみaddするように変更する
-        # もしくは リスト表示させる数を強制Setできるメソッドを探す or リストをaddの前に初期化するよう変更
-        # (設定ボタン押下でGUIを表示するたびにItemが重複して増えていってしまうため)
         combobox_item = (self.gui.ui.comboBox_Hotkey_WindowRight, key_list, Config.HotkeyWindowRight.hotkey)
         combobox_list.append(combobox_item)
         # - setup
