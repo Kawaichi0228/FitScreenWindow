@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'settinggui.ui'
+## Form generated from reading UI file 'configgui.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -14,23 +14,23 @@ from PySide2.QtWidgets import *
 
 from src.gui import resource_rc
 
-class Ui_Setting(object):
-    def setupUi(self, Setting):
-        if not Setting.objectName():
-            Setting.setObjectName(u"Setting")
-        Setting.resize(322, 232)
+class Ui_Config(object):
+    def setupUi(self, Config):
+        if not Config.objectName():
+            Config.setObjectName(u"Config")
+        Config.resize(322, 232)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Setting.sizePolicy().hasHeightForWidth())
-        Setting.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(Config.sizePolicy().hasHeightForWidth())
+        Config.setSizePolicy(sizePolicy)
         icon = QIcon()
         icon.addFile(u":/images/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
-        Setting.setWindowIcon(icon)
-        self.gridLayout = QGridLayout(Setting)
+        Config.setWindowIcon(icon)
+        self.gridLayout = QGridLayout(Config)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setSizeConstraint(QLayout.SetFixedSize)
-        self.pustButton_cancel = QPushButton(Setting)
+        self.pustButton_cancel = QPushButton(Config)
         self.pustButton_cancel.setObjectName(u"pustButton_cancel")
         sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
         sizePolicy1.setHorizontalStretch(0)
@@ -41,7 +41,7 @@ class Ui_Setting(object):
 
         self.gridLayout.addWidget(self.pustButton_cancel, 1, 1, 1, 1)
 
-        self.pustButton_ok = QPushButton(Setting)
+        self.pustButton_ok = QPushButton(Config)
         self.pustButton_ok.setObjectName(u"pustButton_ok")
         sizePolicy1.setHeightForWidth(self.pustButton_ok.sizePolicy().hasHeightForWidth())
         self.pustButton_ok.setSizePolicy(sizePolicy1)
@@ -49,7 +49,7 @@ class Ui_Setting(object):
 
         self.gridLayout.addWidget(self.pustButton_ok, 1, 0, 1, 1)
 
-        self.tabWidget = QTabWidget(Setting)
+        self.tabWidget = QTabWidget(Config)
         self.tabWidget.setObjectName(u"tabWidget")
         sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
@@ -280,45 +280,45 @@ class Ui_Setting(object):
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 2)
 
 
-        self.retranslateUi(Setting)
+        self.retranslateUi(Config)
 
         self.tabWidget.setCurrentIndex(0)
 
 
-        QMetaObject.connectSlotsByName(Setting)
+        QMetaObject.connectSlotsByName(Config)
     # setupUi
 
-    def retranslateUi(self, Setting):
-        Setting.setWindowTitle(QCoreApplication.translate("Setting", u"Fit Screen Window - \u8a2d\u5b9a", None))
-        self.pustButton_cancel.setText(QCoreApplication.translate("Setting", u"\u30ad\u30e3\u30f3\u30bb\u30eb", None))
-        self.pustButton_ok.setText(QCoreApplication.translate("Setting", u"OK", None))
-        self.label_F.setText(QCoreApplication.translate("Setting", u"\u30ea\u30b5\u30a4\u30ba\u6700\u5927\u56de\u6570(1\uff5e10)", None))
-        self.label_F_8.setText(QCoreApplication.translate("Setting", u"\u56de", None))
-        self.label_G.setText(QCoreApplication.translate("Setting", u"\u30ea\u30b5\u30a4\u30ba\u6bce\u52a0\u7b97\u30b5\u30a4\u30ba(1\uff5e999)", None))
-        self.label_F_9.setText(QCoreApplication.translate("Setting", u"px", None))
-        self.label_B.setText(QCoreApplication.translate("Setting", u"\u57fa\u6e96\u30b5\u30a4\u30ba - \u5de6\u914d\u7f6e(1\uff5e9999)", None))
-        self.label_F_10.setText(QCoreApplication.translate("Setting", u"px", None))
-        self.label_A.setText(QCoreApplication.translate("Setting", u"\u57fa\u6e96\u30b5\u30a4\u30ba - \u53f3\u914d\u7f6e(1\uff5e9999)", None))
-        self.label_F_11.setText(QCoreApplication.translate("Setting", u"px", None))
-        self.label_A_2.setText(QCoreApplication.translate("Setting", u"\u8abf\u6574\u7528\u52a0\u7b97\u30b5\u30a4\u30ba(1\uff5e999)", None))
-        self.label_F_12.setText(QCoreApplication.translate("Setting", u"px", None))
-        self.checkBox_is_subtract_taskbar.setText(QCoreApplication.translate("Setting", u"\u30bf\u30b9\u30af\u30d0\u30fc\u306e\u9ad8\u3055\u3092\u6e1b\u7b97\u3057\u3066\u30ea\u30b5\u30a4\u30ba(\u4e0b\u4f4d\u7f6e\u306e\u307f)", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_size), QCoreApplication.translate("Setting", u"\u30b5\u30a4\u30ba", None))
-        self.label_B_2.setText(QCoreApplication.translate("Setting", u"\u8abf\u6574\u7528\u79fb\u52d5\u4f4d\u7f6e - x(1\uff5e999)", None))
-        self.label_F_7.setText(QCoreApplication.translate("Setting", u"px", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_position), QCoreApplication.translate("Setting", u"\u4f4d\u7f6e", None))
-        self.groupBox.setTitle(QCoreApplication.translate("Setting", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u5de6\u914d\u7f6e", None))
-        self.checkBox_windowleft_mod_ctrl.setText(QCoreApplication.translate("Setting", u"Ctrl", None))
-        self.checkBox_windowleft_mod_shift.setText(QCoreApplication.translate("Setting", u"Shift", None))
-        self.checkBox_windowleft_mod_alt.setText(QCoreApplication.translate("Setting", u"Alt", None))
-        self.checkBox_windowleft_mod_win.setText(QCoreApplication.translate("Setting", u"Win", None))
-        self.label_A_3.setText(QCoreApplication.translate("Setting", u"\u901a\u5e38\u30ad\u30fc", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("Setting", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u53f3\u914d\u7f6e", None))
-        self.checkBox_windowright_mod_ctrl.setText(QCoreApplication.translate("Setting", u"Ctrl", None))
-        self.checkBox_windowright_mod_shift.setText(QCoreApplication.translate("Setting", u"Shift", None))
-        self.checkBox_windowright_mod_alt.setText(QCoreApplication.translate("Setting", u"Alt", None))
-        self.checkBox_windowright_mod_win.setText(QCoreApplication.translate("Setting", u"Win", None))
-        self.label_A_5.setText(QCoreApplication.translate("Setting", u"\u901a\u5e38\u30ad\u30fc", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_shortcutkey), QCoreApplication.translate("Setting", u"\u30b7\u30e7\u30fc\u30c8\u30ab\u30c3\u30c8\u30ad\u30fc", None))
+    def retranslateUi(self, Config):
+        Config.setWindowTitle(QCoreApplication.translate("Config", u"Fit Screen Window - \u8a2d\u5b9a", None))
+        self.pustButton_cancel.setText(QCoreApplication.translate("Config", u"\u30ad\u30e3\u30f3\u30bb\u30eb", None))
+        self.pustButton_ok.setText(QCoreApplication.translate("Config", u"OK", None))
+        self.label_F.setText(QCoreApplication.translate("Config", u"\u30ea\u30b5\u30a4\u30ba\u6700\u5927\u56de\u6570(1\uff5e10)", None))
+        self.label_F_8.setText(QCoreApplication.translate("Config", u"\u56de", None))
+        self.label_G.setText(QCoreApplication.translate("Config", u"\u30ea\u30b5\u30a4\u30ba\u6bce\u52a0\u7b97\u30b5\u30a4\u30ba(1\uff5e999)", None))
+        self.label_F_9.setText(QCoreApplication.translate("Config", u"px", None))
+        self.label_B.setText(QCoreApplication.translate("Config", u"\u57fa\u6e96\u30b5\u30a4\u30ba - \u5de6\u914d\u7f6e(1\uff5e9999)", None))
+        self.label_F_10.setText(QCoreApplication.translate("Config", u"px", None))
+        self.label_A.setText(QCoreApplication.translate("Config", u"\u57fa\u6e96\u30b5\u30a4\u30ba - \u53f3\u914d\u7f6e(1\uff5e9999)", None))
+        self.label_F_11.setText(QCoreApplication.translate("Config", u"px", None))
+        self.label_A_2.setText(QCoreApplication.translate("Config", u"\u8abf\u6574\u7528\u52a0\u7b97\u30b5\u30a4\u30ba(1\uff5e999)", None))
+        self.label_F_12.setText(QCoreApplication.translate("Config", u"px", None))
+        self.checkBox_is_subtract_taskbar.setText(QCoreApplication.translate("Config", u"\u30bf\u30b9\u30af\u30d0\u30fc\u306e\u9ad8\u3055\u3092\u6e1b\u7b97\u3057\u3066\u30ea\u30b5\u30a4\u30ba(\u4e0b\u4f4d\u7f6e\u306e\u307f)", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_size), QCoreApplication.translate("Config", u"\u30b5\u30a4\u30ba", None))
+        self.label_B_2.setText(QCoreApplication.translate("Config", u"\u8abf\u6574\u7528\u79fb\u52d5\u4f4d\u7f6e - x(1\uff5e999)", None))
+        self.label_F_7.setText(QCoreApplication.translate("Config", u"px", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_position), QCoreApplication.translate("Config", u"\u4f4d\u7f6e", None))
+        self.groupBox.setTitle(QCoreApplication.translate("Config", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u5de6\u914d\u7f6e", None))
+        self.checkBox_windowleft_mod_ctrl.setText(QCoreApplication.translate("Config", u"Ctrl", None))
+        self.checkBox_windowleft_mod_shift.setText(QCoreApplication.translate("Config", u"Shift", None))
+        self.checkBox_windowleft_mod_alt.setText(QCoreApplication.translate("Config", u"Alt", None))
+        self.checkBox_windowleft_mod_win.setText(QCoreApplication.translate("Config", u"Win", None))
+        self.label_A_3.setText(QCoreApplication.translate("Config", u"\u901a\u5e38\u30ad\u30fc", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("Config", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u53f3\u914d\u7f6e", None))
+        self.checkBox_windowright_mod_ctrl.setText(QCoreApplication.translate("Config", u"Ctrl", None))
+        self.checkBox_windowright_mod_shift.setText(QCoreApplication.translate("Config", u"Shift", None))
+        self.checkBox_windowright_mod_alt.setText(QCoreApplication.translate("Config", u"Alt", None))
+        self.checkBox_windowright_mod_win.setText(QCoreApplication.translate("Config", u"Win", None))
+        self.label_A_5.setText(QCoreApplication.translate("Config", u"\u901a\u5e38\u30ad\u30fc", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_shortcutkey), QCoreApplication.translate("Config", u"\u30b7\u30e7\u30fc\u30c8\u30ab\u30c3\u30c8\u30ad\u30fc", None))
     # retranslateUi
 

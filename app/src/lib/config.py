@@ -8,7 +8,7 @@ from dataclasses import dataclass
 # -------------------------------------------------------------------------
 from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
-from src.gui.guimain import RootGUI, SettingGUI
+from src.gui.guimain import RootGui, ConfigGui
 from src.lib.errordialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
 from src.lib.const import CONFIG_JSON_PATH
@@ -153,7 +153,7 @@ class ConfigJsonRepository:
         self.__jc.save(self.json_dict)
 
 
-class GuiService:
+class ConfigGuiService:
     """
     QtDesigner作成後に追加で設定する、個別のuiのsetup
         MEMO: .uiから.pyへ変換したpythonファイルから、このクラスの各setupメソッドへ
@@ -161,10 +161,10 @@ class GuiService:
         (ただし、追加で ".ui" を付けること <ex. self.ui.comboBox...>)
     """
     def __init__(self, GlobalHotkeyService):
-        root = RootGUI()
+        root = RootGui()
         self.root = root
 
-        gui = SettingGUI(root)
+        gui = ConfigGui(root)
         self.gui = gui
 
         # config.jsonから値を読み取り、jsonのValueが格納されたDictを取得

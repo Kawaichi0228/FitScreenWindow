@@ -14,7 +14,7 @@ from src.lib.tasktray import Tasktray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.errordialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
-from src.lib.config import Config, ConfigJsonRepository, GuiService
+from src.lib.config import Config, ConfigJsonRepository, ConfigGuiService
 from src.lib.const import (
     MoveResizeDirection,
     PROGRAM_NAME,
@@ -165,7 +165,7 @@ class ApplicationService(IThread):
         t_service = TasktrayService()
         self.t_service = t_service
 
-        gui_service = GuiService(self.g_service)
+        gui_service = ConfigGuiService(self.g_service)
         self.gui_service = gui_service
 
     def startThread(self) -> None:

@@ -9,12 +9,12 @@ from PySide2.QtWidgets import *
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
-from src.gui.settinggui import Ui_Setting
+from src.gui.configgui import Ui_Config
 
 # -------------------------------------------------------------------------
 # Class
 # -------------------------------------------------------------------------
-class RootGUI():
+class RootGui():
     def __init__(self) -> None:
         root = QApplication(sys.argv)
         self.root = root
@@ -33,7 +33,7 @@ class RootGUI():
         sys.exit(self.root.exec_())
 
 
-class AbstractGui:
+class UtilGui:
     """個別uiイベント登録用のメソッド"""
     def visible(self) -> None:
         self.show()
@@ -45,11 +45,11 @@ class AbstractGui:
         self.close()
 
 
-class SettingGUI(AbstractGui, QDialog):
+class ConfigGui(UtilGui, QDialog):
     def __init__(self, root, parent=None) -> None:
-        super(SettingGUI, self).__init__(parent)
+        super(ConfigGui, self).__init__(parent)
         self.root = root
-        self.ui = Ui_Setting() # ここに表示させるguiを定義
+        self.ui = Ui_Config() # ここに表示させるguiを定義
         
         # QtDesignerで作成した全体のui(.uiから.pyへの変換ファイル)のsetup
         self.ui.setupUi(self)
