@@ -7,7 +7,10 @@ from abc import ABC, abstractmethod
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
-from src.lib.logger import logger
+from logging import getLogger
+from src.lib.logger import *
+logger = getLogger("Log")
+
 from src.lib.globalhotkey import GlobalHotkey
 from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter

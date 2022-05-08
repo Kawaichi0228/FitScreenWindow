@@ -1,7 +1,10 @@
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
-from src.lib.logger import logger
+from logging import getLogger
+from src.lib.logger import *
+logger = getLogger("Log")
+
 from src.lib.windowstate import *
 from src.lib.counter import *
 from src.lib.const import MoveResizeDirection

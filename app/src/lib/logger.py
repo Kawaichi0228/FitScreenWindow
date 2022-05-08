@@ -6,8 +6,10 @@ from logging import getLogger, basicConfig, StreamHandler, FileHandler, Formatte
 from logging import INFO, DEBUG, NOTSET
 
 # ロガーオブジェクト(モジュール関数 getLogger を介してインスタンス化)
-# MEMO: ここで1度インスタンス化しておけば、どのモジュールからでもloggerを呼び出すことができる
-logger = getLogger(__name__)
+# MEMO: getLogger("Log") のようにLogger名(今回は"Log")を指定した上で、
+#   複数モジュール間で同じくgetLoggerを宣言すれば、同じPythonインタプリタ
+#   プロセス上で動いている限り、複数モジュール間で跨いで使うことができる
+logger = getLogger("Log")
 logger.setLevel(DEBUG)
 
 # ストリームハンドラの設定(標準出力ストリーム)

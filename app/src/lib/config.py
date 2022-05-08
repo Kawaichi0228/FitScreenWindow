@@ -7,7 +7,10 @@ from dataclasses import dataclass
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
-from src.lib.logger import logger
+from logging import getLogger
+from src.lib.logger import *
+logger = getLogger("Log")
+
 from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
 from src.gui.guimain import RootGui, ConfigGui
@@ -314,16 +317,11 @@ class ConfigGuiService(IConfigSet):
         self.gui.setupPushButton(pushbutton_list)
 
     def __onClickEvent_pustButton_ok(self) -> None:
-        json = ConfigJsonRepository()
-
         # Config.pyのクラスへ値をセット
         self._setupConfigPython()
 
-        # GUIの各値を取得し、Config.pyのクラス値をインスタンスのJsonDictionaryへいったん書き換える
-        json.setupConfigJsonDictionary()
-
-        # インスタンスのJsonDictionaryの値からJsonへ書き込み保存
-        json.save()
+        # JsonへConfig.pyに格納された値を保存
+        self.__readAndSaveJson()
         logger.info("GUIの値からconfig.jsonを保存しました")
 
         # GUIスレッド終了
@@ -337,9 +335,24 @@ class ConfigGuiService(IConfigSet):
         value = "設定を全て初期化します。よろしいですか？"
         user_input = Dialog().showOKCancelnfomation(title="確認", value=value, is_cancel_default=True)
         if user_input:
-            print("未実装 - OKボタン押下時の処理")
-        else:
-            print("未実装 - Cancelボタン押下時の処理")
+            # Configクラスの全プロパティを指定した初期値にセット
+            config_default = ConfigDefault()
+            config_default.setupConfigPython()
+
+            # JsonへConfig.pyに格納された値を保存
+            self.__readAndSaveJson()
+            logger.info("初期値設定用クラスの値からconfig.jsonを保存しました")
+        
+        # GUIスレッド終了
+        self.stop()
+
+    def __readAndSaveJson(self) -> None:
+        # GUIの各値を取得し、Config.pyのクラス値をインスタンスのJsonDictionaryへいったん書き換える
+        json = ConfigJsonRepository()
+        json.setupConfigJsonDictionary()
+
+        # インスタンスのJsonDictionaryの値からJsonへ書き込み保存
+        json.save()
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
     def __setupTab_Size(self):
