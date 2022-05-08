@@ -11,7 +11,7 @@ from src.lib.logger import logger
 from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
 from src.gui.guimain import RootGui, ConfigGui
-from src.lib.errordialog import ErrorDialog
+from src.lib.dialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
 from src.lib.const import CONFIG_JSON_PATH
 

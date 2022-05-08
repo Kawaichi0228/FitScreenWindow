@@ -13,7 +13,7 @@ from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.tasktray import Tasktray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
-from src.lib.errordialog import ErrorDialog
+from src.lib.dialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
 from src.lib.config import Config, ConfigJsonRepository, ConfigGuiService
 from src.lib.const import (
@@ -32,7 +32,7 @@ class MoveResizeWindowService:
         size = SizeCalclatorAtCounter()
         self.size = size
         self.mr = MoveResizeWindowAtCounter(size)
-    
+
     def toLeft(self) -> None:
         direction = MoveResizeDirection.LEFT
         self.__moveResize(direction)
@@ -40,7 +40,7 @@ class MoveResizeWindowService:
     def toRight(self) -> None:
         direction = MoveResizeDirection.RIGHT
         self.__moveResize(direction)
-    
+
     def __moveResize(self, direction_) -> None:
         # アクティブなウィンドウがエクスプローラーなら終了
         hwnd_activewin = getActiveWinHwnd()
