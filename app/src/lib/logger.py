@@ -18,6 +18,10 @@ stream_handler.setLevel(DEBUG)
 formatter = Formatter("%(levelname)s %(message)s")
 stream_handler.setFormatter(formatter)
 
+basicConfig(level=NOTSET, handlers=[stream_handler])
+
+# TODO: .exe化したときにはLogをファイルへ出力しないように変更する
+"""
 # 保存先の有無チェック
 if not os.path.isdir('./Log'):
     os.makedirs('./Log', exist_ok=True)
@@ -31,7 +35,9 @@ formatter = Formatter("%(asctime)s@ %(name)s [%(levelname)s] %(funcName)s: %(mes
 file_handler.setFormatter(formatter)
 
 # ルートロガーの設定
-basicConfig(level=NOTSET, handlers=[stream_handler, file_handler])
+#basicConfig(level=NOTSET, handlers=[stream_handler, file_handler])
+"""
+
 
 # log example.
 #    logger.info("info")
