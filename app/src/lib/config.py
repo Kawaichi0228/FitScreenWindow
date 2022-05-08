@@ -6,6 +6,7 @@ from dataclasses import dataclass
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
+from src.lib.logger import logger
 from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
 from src.gui.guimain import RootGui, ConfigGui
@@ -115,7 +116,7 @@ class ConfigJsonRepository:
         Config.HotkeyWindowRight.mod_alt = self.json_dict["hotkey_windowright"]["mod_alt"]
         Config.HotkeyWindowRight.mod_win = self.json_dict["hotkey_windowright"]["mod_win"]
         Config.HotkeyWindowRight.hotkey = self.json_dict["hotkey_windowright"]["hotkey"]
-        assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
+        logger.info("config.jsonからconfig.pyへ変数値の書き換えが完了しました")
 
     def setupConfigJsonDictionary(self) -> None:
         try:
@@ -143,7 +144,7 @@ class ConfigJsonRepository:
         # jsonファイルを読み込む
         try:
             json_obj = self.__jc.read()
-            assert print("メッセージ: config.jsonの読込が正常に完了しました") == None
+            logger.info("config.jsonの読込が正常に完了しました")
         except FileNotFoundError:
             ErrorDialog().showFileNotFound("config.json")
             ErrorHandling().quitApp()
@@ -182,7 +183,7 @@ class ConfigGuiService:
     def start(self):
         # GUIの表示開始時に、グローバルホットキーのスレッドを停止(GUI操作中にホットキー操作できないようにするため)
         self.g_service.stopThread()
-        assert print("メッセージ: GUIの値からconfig.jsonを保存しました") == None
+        logger.info("GUIの値からconfig.jsonを保存しました")
 
         # --- 各タブのItemの値をJsonから書き換え ---
         self.__setupWidget()
@@ -231,7 +232,7 @@ class ConfigGuiService:
 
         # インスタンスのJsonDictionaryの値からJsonへ書き込み保存
         json.save()
-        assert print("メッセージ: GUIの値からconfig.jsonを保存しました") == None
+        logger.info("GUIの値からconfig.jsonを保存しました")
 
         # GUIスレッド終了
         self.stop()

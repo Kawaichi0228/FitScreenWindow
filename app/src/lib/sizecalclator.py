@@ -1,6 +1,7 @@
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
+from src.lib.logger import logger
 from src.lib.windowstate import *
 from src.lib.counter import *
 from src.lib.const import MoveResizeDirection
@@ -31,7 +32,7 @@ class SizeCalclatorAtCounter:
         """リサイズカウンタの初期化をするか定義した条件式から判定し、Trueであればリセットする"""
         if self.__needsResetCounter(direction):
             self.cnt.reset()
-            assert print(f"定義したリセット条件に一致したため、カウンタをリセットしました cnt:{self.cnt.get()}") == None
+            logger.info(f"定義したリセット条件に一致したため、カウンタをリセットしました cnt:{self.cnt.get()}")
 
     def calclateWidth(self, direction) -> int:
         # メモリした移動・リサイズ方向と今回実行した方向が違う場合は、
