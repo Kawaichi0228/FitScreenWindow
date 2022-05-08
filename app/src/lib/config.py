@@ -117,12 +117,11 @@ class Config:
 
 
 # -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 # Configクラス(このファイル=Config.py)の各プロパティに値をセットするためのClass
 # -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
 class IConfigSet(ABC):
-    @abstractmethod
-    def __init__(self) -> None: pass
-
     @abstractmethod
     def _setupConfigPython(self) -> None: pass
     
@@ -134,9 +133,6 @@ class IConfigSet(ABC):
 
 class ConfigDefault(IConfigSet):
     """初期値設定用"""
-    def __init__(self) -> None:
-        pass
-
     def _setupConfigPython(self) -> None:
         Config.Size.resize_max_cnt = 4
         Config.Size.resize_add_width_px = 100
@@ -238,6 +234,9 @@ class ConfigGuiService(IConfigSet):
         gui = ConfigGui(root)
         self.gui = gui
 
+        # ウィジェットの全体設定(インスタンス化時に1度のみ行う)
+        self.__setupWidget()
+
         # config.jsonから値を読み取り、jsonのValueが格納されたDictを取得
         json_repository = ConfigJsonRepository()
         # config.pyの各データクラスの値を上書きする
@@ -277,7 +276,6 @@ class ConfigGuiService(IConfigSet):
         logger.info("GUIの値からconfig.jsonを保存しました")
 
         # --- 各タブのItemの値をJsonから書き換え ---
-        self.__setupWidget()
         self.__setupTab_Size()
         self.__setupTab_Position()
         self.__setupTab_ShortcutKey()
@@ -332,9 +330,11 @@ class ConfigGuiService(IConfigSet):
         self.stop()
     
     def __onClickEvent_pustButton_initialize_setting(self) -> None:
+        dialog = Dialog()
         value = "設定を全て初期化します。よろしいですか？"
-        user_input = Dialog().showOKCancelnfomation(title="確認", value=value, is_cancel_default=True)
-        if user_input:
+        user_input = dialog.showOKCancelnfomation(title="Fit Screen Window - 確認", value=value, is_cancel_default=True)
+
+        if user_input: # OKボタン押下時
             # Configクラスの全プロパティを指定した初期値にセット
             config_default = ConfigDefault()
             config_default.setupConfigPython()
@@ -342,9 +342,9 @@ class ConfigGuiService(IConfigSet):
             # JsonへConfig.pyに格納された値を保存
             self.__readAndSaveJson()
             logger.info("初期値設定用クラスの値からconfig.jsonを保存しました")
-        
-        # GUIスレッド終了
-        self.stop()
+            
+            # GUIスレッド終了
+            self.stop()
 
     def __readAndSaveJson(self) -> None:
         # GUIの各値を取得し、Config.pyのクラス値をインスタンスのJsonDictionaryへいったん書き換える

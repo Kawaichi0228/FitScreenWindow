@@ -7,14 +7,15 @@ import wx
 # Class
 # -------------------------------------------------------------------------
 class Dialog():
-    def __init__(self) -> None:
-        self.__root = wx.App()
+    # MEMO: ★★★超重要メモ★★★
+    #   root生成(ex. tkinterのtk.Tk()やwxPythonのwx.App() )は、
+    #   全モジュールで1つしか生成できない(？)。エラー出る。
+    #   ※wxPythonは、そもそもインスタンス化しなくてもMessageBoxを表示できる
     
     def showOKOnlyExclamation(self, title, value) -> None:
         wx.MessageBox(value, title, wx.OK|wx.ICON_EXCLAMATION)
 
     def showOKCancelnfomation(self, value, title, is_cancel_default=False) -> bool:
-        user_input: int = 0
         if is_cancel_default:
             user_input = wx.MessageBox(value, title, wx.CANCEL|wx.ICON_INFORMATION|wx.CANCEL_DEFAULT)
         else:
