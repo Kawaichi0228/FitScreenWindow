@@ -11,7 +11,7 @@ from src.lib.logger import logger
 from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
 from src.gui.guimain import RootGui, ConfigGui
-from src.lib.dialog import ErrorDialog
+from src.lib.dialog import Dialog, ErrorDialog
 from src.lib.errorhandling import ErrorHandling
 from src.lib.const import CONFIG_JSON_PATH
 
@@ -306,6 +306,10 @@ class ConfigGuiService(IConfigSet):
         set_focus = False
         pushbutton_item = (self.gui.ui.pustButton_cancel, self.__onClickEvent_pustButton_cancel, set_focus)
         pushbutton_list.append(pushbutton_item)
+        # - InitializeSettingButton
+        set_focus = False
+        pushbutton_item = (self.gui.ui.pustButton_initialize_setting, self.__onClickEvent_pustButton_initialize_setting, set_focus)
+        pushbutton_list.append(pushbutton_item)
         # - setup
         self.gui.setupPushButton(pushbutton_list)
 
@@ -328,6 +332,10 @@ class ConfigGuiService(IConfigSet):
     def __onClickEvent_pustButton_cancel(self) -> None:
         # GUIスレッド終了
         self.stop()
+    
+    def __onClickEvent_pustButton_initialize_setting(self) -> None:
+        value = "設定を全て初期化します。よろしいですか？"
+        Dialog().showOKCancelnfomation(title="確認", value=value, is_cancel_default=True)
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
     def __setupTab_Size(self):
