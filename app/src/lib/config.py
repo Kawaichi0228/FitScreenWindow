@@ -1,15 +1,20 @@
 # -------------------------------------------------------------------------
 # Python modules
 # -------------------------------------------------------------------------
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
+from logging import getLogger
+from src.lib.logger import *
+logger = getLogger("Log")
+
 from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
 from src.gui.guimain import RootGui, ConfigGui
-from src.lib.errordialog import ErrorDialog
+from src.lib.dialog import Dialog, ErrorDialog
 from src.lib.errorhandling import ErrorHandling
 from src.lib.const import CONFIG_JSON_PATH
 
@@ -49,6 +54,32 @@ class Config:
         mod_shift: bool
         mod_alt: bool
         hotkey: str
+        
+    @staticmethod
+    def validate() -> dict:
+        try:
+            # 全プロパティをここに記述する
+            Config.Size.resize_max_cnt
+            Config.Size.resize_add_width_px
+            Config.Size.base_width_toleft_px
+            Config.Size.base_width_toright_px
+            Config.Size.adjust_width_px
+            Config.Position.adjust_x_px
+            Config.HotkeyWindowLeft.mod_ctrl
+            Config.HotkeyWindowLeft.mod_shift
+            Config.HotkeyWindowLeft.mod_alt
+            Config.HotkeyWindowLeft.hotkey
+            Config.HotkeyWindowRight.mod_ctrl
+            Config.HotkeyWindowRight.mod_shift
+            Config.HotkeyWindowRight.mod_alt
+            Config.HotkeyWindowRight.hotkey
+
+        except AttributeError as e:
+            raise AttributeError( \
+                "定義されていないプロパティが存在します。全てのプロパティを定義してください。\n" \
+                f"{e.args[0]}"
+            )
+        return
 
     @staticmethod
     def getKeycodeforHotkeyWindowLeft() -> dict:
@@ -72,10 +103,10 @@ class Config:
         """
         # 修飾キー(configのValueが True だった場合に変換して格納する)
         modk = ModifireKey()
-        if HotkeyWindowLeftRight.mod_ctrl: modk.add(modk.CTRLKEY)
-        if HotkeyWindowLeftRight.mod_shift: modk.add(modk.SHIFTKEY)
-        if HotkeyWindowLeftRight.mod_alt: modk.add(modk.ALTKEY)
-        if HotkeyWindowLeftRight.mod_win: modk.add(modk.WINKEY)
+        if HotkeyWindowLeftRight.mod_ctrl: modk.addCombination(modk.CTRLKEY)
+        if HotkeyWindowLeftRight.mod_shift: modk.addCombination(modk.SHIFTKEY)
+        if HotkeyWindowLeftRight.mod_alt: modk.addCombination(modk.ALTKEY)
+        if HotkeyWindowLeftRight.mod_win: modk.addCombination(modk.WINKEY)
         mod_combination = modk.getCombinationKeycode()
         
         # ホットキー
@@ -85,7 +116,44 @@ class Config:
         return {"mod_combination": mod_combination, "hotkey": hotkey}
 
 
-class ConfigJsonRepository:
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+# Configクラス(このファイル=Config.py)の各プロパティに値をセットするためのClass
+# -------------------------------------------------------------------------
+# -------------------------------------------------------------------------
+class IConfigSet(ABC):
+    @abstractmethod
+    def _setupConfigPython(self) -> None: pass
+    
+    def setupConfigPython(self) -> None:
+        self._setupConfigPython()
+        Config.validate() # 全てのプロパティが定義されているか確認
+        logger.info("config.pyへ変数値の書き換えが完了しました")
+
+
+class ConfigDefault(IConfigSet):
+    """初期値設定用"""
+    def _setupConfigPython(self) -> None:
+        Config.Size.resize_max_cnt = 4
+        Config.Size.resize_add_width_px = 100
+        Config.Size.base_width_toleft_px = 700
+        Config.Size.base_width_toright_px = 700
+        Config.Size.adjust_width_px = 20
+        Config.Size.is_subtract_taskbar = True
+        Config.Position.adjust_x_px = 10
+        Config.HotkeyWindowLeft.mod_ctrl = False
+        Config.HotkeyWindowLeft.mod_shift = True
+        Config.HotkeyWindowLeft.mod_alt = True
+        Config.HotkeyWindowLeft.mod_win = False
+        Config.HotkeyWindowLeft.hotkey = "Left"
+        Config.HotkeyWindowRight.mod_ctrl = False
+        Config.HotkeyWindowRight.mod_shift = True
+        Config.HotkeyWindowRight.mod_alt = True
+        Config.HotkeyWindowRight.mod_win = False
+        Config.HotkeyWindowRight.hotkey = "Right"
+
+
+class ConfigJsonRepository(IConfigSet):
     """※Jsonの値を参照したいときは、このクラスのsetupメソッドでConfigクラスを書き換えて、
     それを参照すること(直接このクラスの永続化されたJson値を参照しない)"""
     def __init__(self) -> None:
@@ -96,7 +164,7 @@ class ConfigJsonRepository:
         json_dict = self.__jc.getDictionary(json_object)
         self.json_dict = json_dict
 
-    def setupConfigPython(self) -> None:
+    def _setupConfigPython(self) -> None:
         """config.pyをjsonで読みとった値で書き換え"""
         Config.Size.resize_max_cnt = self.json_dict["size"]["resize_max_cnt"]
         Config.Size.resize_add_width_px = self.json_dict["size"]["resize_add_width_px"]
@@ -115,7 +183,6 @@ class ConfigJsonRepository:
         Config.HotkeyWindowRight.mod_alt = self.json_dict["hotkey_windowright"]["mod_alt"]
         Config.HotkeyWindowRight.mod_win = self.json_dict["hotkey_windowright"]["mod_win"]
         Config.HotkeyWindowRight.hotkey = self.json_dict["hotkey_windowright"]["hotkey"]
-        assert print("メッセージ: config.jsonからconfig.pyへ変数値の書き換えが完了しました") == None
 
     def setupConfigJsonDictionary(self) -> None:
         try:
@@ -143,7 +210,7 @@ class ConfigJsonRepository:
         # jsonファイルを読み込む
         try:
             json_obj = self.__jc.read()
-            assert print("メッセージ: config.jsonの読込が正常に完了しました") == None
+            logger.info("config.jsonの読込が正常に完了しました")
         except FileNotFoundError:
             ErrorDialog().showFileNotFound("config.json")
             ErrorHandling().quitApp()
@@ -153,7 +220,7 @@ class ConfigJsonRepository:
         self.__jc.save(self.json_dict)
 
 
-class ConfigGuiService:
+class ConfigGuiService(IConfigSet):
     """
     QtDesigner作成後に追加で設定する、個別のuiのsetup
         MEMO: .uiから.pyへ変換したpythonファイルから、このクラスの各setupメソッドへ
@@ -167,6 +234,9 @@ class ConfigGuiService:
         gui = ConfigGui(root)
         self.gui = gui
 
+        # ウィジェットの全体設定(インスタンス化時に1度のみ行う)
+        self.__setupWidget()
+
         # config.jsonから値を読み取り、jsonのValueが格納されたDictを取得
         json_repository = ConfigJsonRepository()
         # config.pyの各データクラスの値を上書きする
@@ -179,13 +249,33 @@ class ConfigGuiService:
         g_service = GlobalHotkeyService 
         self.g_service = g_service
 
+    def _setupConfigPython(self) -> None:
+        Config.Size.resize_max_cnt = self.gui.ui.spinBox_resize_max_cnt.value()
+        Config.Size.resize_add_width_px = self.gui.ui.spinBox_resize_add_width_px.value()
+        Config.Size.base_width_toleft_px = self.gui.ui.spinBox_base_width_toleft_px.value()
+        Config.Size.base_width_toright_px = self.gui.ui.spinBox_base_width_toright_px.value()
+        Config.Size.adjust_width_px = self.gui.ui.spinBox_adjust_width_px.value()
+        Config.Size.is_subtract_taskbar = self.gui.ui.checkBox_is_subtract_taskbar.isChecked()
+        Config.Position.adjust_x_px = self.gui.ui.spinBox_adjust_x_px.value()
+        Config.HotkeyWindowLeft.mod_ctrl = self.gui.ui.checkBox_windowleft_mod_ctrl.isChecked()
+        Config.HotkeyWindowLeft.mod_shift = self.gui.ui.checkBox_windowleft_mod_shift.isChecked()
+        Config.HotkeyWindowLeft.mod_alt = self.gui.ui.checkBox_windowleft_mod_alt.isChecked()
+        Config.HotkeyWindowLeft.mod_win = self.gui.ui.checkBox_windowleft_mod_win.isChecked()
+        Config.HotkeyWindowLeft.hotkey = self.gui.ui.comboBox_Hotkey_WindowLeft.currentText()
+        Config.HotkeyWindowRight.mod_ctrl = self.gui.ui.checkBox_windowright_mod_ctrl.isChecked()
+        Config.HotkeyWindowRight.mod_shift = self.gui.ui.checkBox_windowright_mod_shift.isChecked()
+        Config.HotkeyWindowRight.mod_alt = self.gui.ui.checkBox_windowright_mod_alt.isChecked()
+        Config.HotkeyWindowRight.mod_win = self.gui.ui.checkBox_windowright_mod_win.isChecked()
+        Config.HotkeyWindowRight.hotkey = self.gui.ui.comboBox_Hotkey_WindowRight.currentText()
+
+    # -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def start(self):
         # GUIの表示開始時に、グローバルホットキーのスレッドを停止(GUI操作中にホットキー操作できないようにするため)
         self.g_service.stopThread()
-        assert print("メッセージ: GUIの値からconfig.jsonを保存しました") == None
+        logger.info("GUIの値からconfig.jsonを保存しました")
 
         # --- 各タブのItemの値をJsonから書き換え ---
-        self.__setupWidget()
         self.__setupTab_Size()
         self.__setupTab_Position()
         self.__setupTab_ShortcutKey()
@@ -210,57 +300,61 @@ class ConfigGuiService:
         # PushButton
         pushbutton_list = []
         # - OKButton
-        setFocus = True # 最初の選択状態にしておく
-        pushbutton_item = (self.gui.ui.pustButton_ok, self.__onClickEvent_pustButton_ok, setFocus)
+        set_focus = True # 最初の選択状態にしておく
+        pushbutton_item = (self.gui.ui.pustButton_ok, self.__onClickEvent_pustButton_ok, set_focus)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
-        setFocus = False
-        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__onClickEvent_pustButton_cancel, setFocus)
+        set_focus = False
+        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__onClickEvent_pustButton_cancel, set_focus)
+        pushbutton_list.append(pushbutton_item)
+        # - InitializeSettingButton
+        set_focus = False
+        pushbutton_item = (self.gui.ui.pustButton_initialize_setting, self.__onClickEvent_pustButton_initialize_setting, set_focus)
         pushbutton_list.append(pushbutton_item)
         # - setup
         self.gui.setupPushButton(pushbutton_list)
 
     def __onClickEvent_pustButton_ok(self) -> None:
-        json = ConfigJsonRepository()
-
         # Config.pyのクラスへ値をセット
-        self.__setupConfigPython()
+        self._setupConfigPython()
 
-        # GUIの各値を取得し、Config.pyのクラス値をインスタンスのJsonDictionaryへいったん書き換える
-        json.setupConfigJsonDictionary()
-
-        # インスタンスのJsonDictionaryの値からJsonへ書き込み保存
-        json.save()
-        assert print("メッセージ: GUIの値からconfig.jsonを保存しました") == None
+        # JsonへConfig.pyに格納された値を保存
+        self.__readAndSaveJson()
+        logger.info("GUIの値からconfig.jsonを保存しました")
 
         # GUIスレッド終了
         self.stop()
-
-    def __setupConfigPython(self) -> None:
-        Config.Size.resize_max_cnt = self.gui.ui.spinBox_resize_max_cnt.value()
-        Config.Size.resize_add_width_px = self.gui.ui.spinBox_resize_add_width_px.value()
-        Config.Size.base_width_toleft_px = self.gui.ui.spinBox_base_width_toleft_px.value()
-        Config.Size.base_width_toright_px = self.gui.ui.spinBox_base_width_toright_px.value()
-        Config.Size.adjust_width_px = self.gui.ui.spinBox_adjust_width_px.value()
-        Config.Size.is_subtract_taskbar = self.gui.ui.checkBox_is_subtract_taskbar.isChecked()
-        Config.Position.adjust_x_px = self.gui.ui.spinBox_adjust_x_px.value()
-        Config.HotkeyWindowLeft.mod_ctrl = self.gui.ui.checkBox_windowleft_mod_ctrl.isChecked()
-        Config.HotkeyWindowLeft.mod_shift = self.gui.ui.checkBox_windowleft_mod_shift.isChecked()
-        Config.HotkeyWindowLeft.mod_alt = self.gui.ui.checkBox_windowleft_mod_alt.isChecked()
-        Config.HotkeyWindowLeft.mod_win = self.gui.ui.checkBox_windowleft_mod_win.isChecked()
-        Config.HotkeyWindowLeft.hotkey = self.gui.ui.comboBox_Hotkey_WindowLeft.currentText()
-        Config.HotkeyWindowRight.mod_ctrl = self.gui.ui.checkBox_windowright_mod_ctrl.isChecked()
-        Config.HotkeyWindowRight.mod_shift = self.gui.ui.checkBox_windowright_mod_shift.isChecked()
-        Config.HotkeyWindowRight.mod_alt = self.gui.ui.checkBox_windowright_mod_alt.isChecked()
-        Config.HotkeyWindowRight.mod_win = self.gui.ui.checkBox_windowright_mod_win.isChecked()
-        Config.HotkeyWindowRight.hotkey = self.gui.ui.comboBox_Hotkey_WindowRight.currentText()
 
     def __onClickEvent_pustButton_cancel(self) -> None:
         # GUIスレッド終了
         self.stop()
-    # -------------------------------------------------------------------------
-    # -------------------------------------------------------------------------
+    
+    def __onClickEvent_pustButton_initialize_setting(self) -> None:
+        dialog = Dialog()
+        value = "設定を全て初期化します。よろしいですか？"
+        user_input = dialog.showOKCancelnfomation(title="Fit Screen Window - 確認", value=value, is_cancel_default=True)
 
+        if user_input: # OKボタン押下時
+            # Configクラスの全プロパティを指定した初期値にセット
+            config_default = ConfigDefault()
+            config_default.setupConfigPython()
+
+            # JsonへConfig.pyに格納された値を保存
+            self.__readAndSaveJson()
+            logger.info("初期値設定用クラスの値からconfig.jsonを保存しました")
+            
+            # GUIスレッド終了
+            self.stop()
+
+    def __readAndSaveJson(self) -> None:
+        # GUIの各値を取得し、Config.pyのクラス値をインスタンスのJsonDictionaryへいったん書き換える
+        json = ConfigJsonRepository()
+        json.setupConfigJsonDictionary()
+
+        # インスタンスのJsonDictionaryの値からJsonへ書き込み保存
+        json.save()
+    # -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     def __setupTab_Size(self):
         """サイズタブのsetup"""
         self.gui.ui.spinBox_resize_max_cnt.setValue(Config.Size.resize_max_cnt)

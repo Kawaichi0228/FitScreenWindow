@@ -18,7 +18,7 @@ class Ui_Config(object):
     def setupUi(self, Config):
         if not Config.objectName():
             Config.setObjectName(u"Config")
-        Config.resize(322, 232)
+        Config.resize(342, 232)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -29,33 +29,13 @@ class Ui_Config(object):
         Config.setWindowIcon(icon)
         self.gridLayout = QGridLayout(Config)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setSizeConstraint(QLayout.SetFixedSize)
-        self.pustButton_cancel = QPushButton(Config)
-        self.pustButton_cancel.setObjectName(u"pustButton_cancel")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.pustButton_cancel.sizePolicy().hasHeightForWidth())
-        self.pustButton_cancel.setSizePolicy(sizePolicy1)
-        self.pustButton_cancel.setContextMenuPolicy(Qt.PreventContextMenu)
-
-        self.gridLayout.addWidget(self.pustButton_cancel, 1, 1, 1, 1)
-
-        self.pustButton_ok = QPushButton(Config)
-        self.pustButton_ok.setObjectName(u"pustButton_ok")
-        sizePolicy1.setHeightForWidth(self.pustButton_ok.sizePolicy().hasHeightForWidth())
-        self.pustButton_ok.setSizePolicy(sizePolicy1)
-        self.pustButton_ok.setContextMenuPolicy(Qt.PreventContextMenu)
-
-        self.gridLayout.addWidget(self.pustButton_ok, 1, 0, 1, 1)
-
         self.tabWidget = QTabWidget(Config)
         self.tabWidget.setObjectName(u"tabWidget")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
-        self.tabWidget.setSizePolicy(sizePolicy2)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
+        self.tabWidget.setSizePolicy(sizePolicy1)
         self.tabWidget.setTabBarAutoHide(False)
         self.tab_size = QWidget()
         self.tab_size.setObjectName(u"tab_size")
@@ -277,7 +257,34 @@ class Ui_Config(object):
 
         self.tabWidget.addTab(self.tab_shortcutkey, "")
 
-        self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 2)
+        self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 3)
+
+        self.pustButton_ok = QPushButton(Config)
+        self.pustButton_ok.setObjectName(u"pustButton_ok")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.pustButton_ok.sizePolicy().hasHeightForWidth())
+        self.pustButton_ok.setSizePolicy(sizePolicy2)
+        self.pustButton_ok.setContextMenuPolicy(Qt.PreventContextMenu)
+
+        self.gridLayout.addWidget(self.pustButton_ok, 1, 0, 1, 1)
+
+        self.pustButton_cancel = QPushButton(Config)
+        self.pustButton_cancel.setObjectName(u"pustButton_cancel")
+        sizePolicy2.setHeightForWidth(self.pustButton_cancel.sizePolicy().hasHeightForWidth())
+        self.pustButton_cancel.setSizePolicy(sizePolicy2)
+        self.pustButton_cancel.setContextMenuPolicy(Qt.PreventContextMenu)
+
+        self.gridLayout.addWidget(self.pustButton_cancel, 1, 1, 1, 1)
+
+        self.pustButton_initialize_setting = QPushButton(Config)
+        self.pustButton_initialize_setting.setObjectName(u"pustButton_initialize_setting")
+        sizePolicy2.setHeightForWidth(self.pustButton_initialize_setting.sizePolicy().hasHeightForWidth())
+        self.pustButton_initialize_setting.setSizePolicy(sizePolicy2)
+        self.pustButton_initialize_setting.setContextMenuPolicy(Qt.PreventContextMenu)
+
+        self.gridLayout.addWidget(self.pustButton_initialize_setting, 1, 2, 1, 1)
 
         QWidget.setTabOrder(self.tabWidget, self.spinBox_resize_max_cnt)
         QWidget.setTabOrder(self.spinBox_resize_max_cnt, self.spinBox_resize_add_width_px)
@@ -309,8 +316,6 @@ class Ui_Config(object):
 
     def retranslateUi(self, Config):
         Config.setWindowTitle(QCoreApplication.translate("Config", u"Fit Screen Window - \u8a2d\u5b9a", None))
-        self.pustButton_cancel.setText(QCoreApplication.translate("Config", u"\u30ad\u30e3\u30f3\u30bb\u30eb", None))
-        self.pustButton_ok.setText(QCoreApplication.translate("Config", u"OK", None))
         self.label_F.setText(QCoreApplication.translate("Config", u"\u30ea\u30b5\u30a4\u30ba\u6700\u5927\u56de\u6570(1\uff5e10)", None))
         self.label_F_8.setText(QCoreApplication.translate("Config", u"\u56de", None))
         self.label_G.setText(QCoreApplication.translate("Config", u"\u30ea\u30b5\u30a4\u30ba\u6bce\u52a0\u7b97\u30b5\u30a4\u30ba(1\uff5e999)", None))
@@ -339,5 +344,8 @@ class Ui_Config(object):
         self.checkBox_windowright_mod_win.setText(QCoreApplication.translate("Config", u"Win", None))
         self.label_A_5.setText(QCoreApplication.translate("Config", u"\u901a\u5e38\u30ad\u30fc", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_shortcutkey), QCoreApplication.translate("Config", u"\u30b7\u30e7\u30fc\u30c8\u30ab\u30c3\u30c8\u30ad\u30fc", None))
+        self.pustButton_ok.setText(QCoreApplication.translate("Config", u"OK", None))
+        self.pustButton_cancel.setText(QCoreApplication.translate("Config", u"\u30ad\u30e3\u30f3\u30bb\u30eb", None))
+        self.pustButton_initialize_setting.setText(QCoreApplication.translate("Config", u"\u521d\u671f\u8a2d\u5b9a", None))
     # retranslateUi
 

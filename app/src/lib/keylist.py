@@ -16,7 +16,7 @@ class ModifireKey:
         self.ALTKEY = wx.MOD_ALT
         self.WINKEY = wx.MOD_WIN
 
-    def add(self, modkey) -> None:
+    def addCombination(self, modkey) -> None:
         self.mod_list.append(modkey)
 
     def getCombinationKeycode(self) -> int:

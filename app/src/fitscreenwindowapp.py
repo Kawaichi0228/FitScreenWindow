@@ -7,12 +7,16 @@ from abc import ABC, abstractmethod
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
+from logging import getLogger
+from src.lib.logger import *
+logger = getLogger("Log")
+
 from src.lib.globalhotkey import GlobalHotkey
 from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.tasktray import Tasktray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
-from src.lib.errordialog import ErrorDialog
+from src.lib.dialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
 from src.lib.config import Config, ConfigJsonRepository, ConfigGuiService
 from src.lib.const import (
@@ -31,7 +35,7 @@ class MoveResizeWindowService:
         size = SizeCalclatorAtCounter()
         self.size = size
         self.mr = MoveResizeWindowAtCounter(size)
-    
+
     def toLeft(self) -> None:
         direction = MoveResizeDirection.LEFT
         self.__moveResize(direction)
@@ -39,7 +43,7 @@ class MoveResizeWindowService:
     def toRight(self) -> None:
         direction = MoveResizeDirection.RIGHT
         self.__moveResize(direction)
-    
+
     def __moveResize(self, direction_) -> None:
         # アクティブなウィンドウがエクスプローラーなら終了
         hwnd_activewin = getActiveWinHwnd()
@@ -51,7 +55,7 @@ class MoveResizeWindowService:
         height = self.size.calclateHeight()
 
         # リサイズの実行
-        assert print(f"移動・リサイズ処理実行直前のcnt:{self.size.cnt.get()}") == None
+        logger.info(f"移動・リサイズ処理実行直前のcnt:{self.size.cnt.get()}")
         self.mr.execute(direction, hwnd, y, height)
 
 
@@ -124,11 +128,11 @@ class GlobalHotkeyService(IThread):
 
         # スレッド開始
         self.g.startThread()
-        assert print("メッセージ: グローバルホットキーのスレッドを開始しました") == None
+        logger.info("グローバルホットキーのスレッドを開始しました")
 
     def stopThread(self) -> None:
         self.g.stopThread()
-        assert print("メッセージ: グローバルホットキーのスレッドを停止しました") == None
+        logger.info("グローバルホットキーのスレッドを停止しました")
 
 
 class TasktrayService(IThread):
@@ -142,12 +146,12 @@ class TasktrayService(IThread):
         """タスクメニュー実行用のスレッド"""
         try:
             favicon_obj = self.t.readFavicon()
-            assert print("メッセージ: favicon.icoの読込が正常に完了しました") == None
+            logger.info("favicon.icoの読込が正常に完了しました")
         except FileNotFoundError:
             ErrorDialog().showFileNotFound("favicon.ico")
             ErrorHandling().quitApp()
 
-        assert print("メッセージ: タスクトレイのスレッドを開始します") == None
+        logger.info("タスクトレイのスレッドを開始します")
         self.t.startThread(favicon_obj)
 
     def stopThread(self) -> None:
