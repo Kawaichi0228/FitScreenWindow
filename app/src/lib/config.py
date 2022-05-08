@@ -335,7 +335,11 @@ class ConfigGuiService(IConfigSet):
     
     def __onClickEvent_pustButton_initialize_setting(self) -> None:
         value = "設定を全て初期化します。よろしいですか？"
-        Dialog().showOKCancelnfomation(title="確認", value=value, is_cancel_default=True)
+        user_input = Dialog().showOKCancelnfomation(title="確認", value=value, is_cancel_default=True)
+        if user_input:
+            print("未実装 - OKボタン押下時の処理")
+        else:
+            print("未実装 - Cancelボタン押下時の処理")
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
     def __setupTab_Size(self):
