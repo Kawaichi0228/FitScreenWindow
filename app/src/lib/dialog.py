@@ -13,6 +13,12 @@ class Dialog():
     def showOKOnlyExclamation(self, title, value) -> None:
         wx.MessageBox(value, title, wx.OK|wx.ICON_EXCLAMATION)
 
+    def showOKCancelnfomation(self, value, title, is_cancel_default=False) -> None:
+        if is_cancel_default:
+            wx.MessageBox(value, title, wx.CANCEL|wx.ICON_INFORMATION|wx.CANCEL_DEFAULT)
+        else:
+            wx.MessageBox(value, title, wx.CANCEL|wx.ICON_INFORMATION)
+
 
 class ErrorDialog():
     ERROR_COMMON_TITLE = "Fit Screen Window - エラー"

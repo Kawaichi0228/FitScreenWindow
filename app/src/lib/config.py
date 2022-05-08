@@ -55,6 +55,7 @@ class Config:
     @staticmethod
     def validate() -> dict:
         try:
+            # 全プロパティをここに記述する
             Config.Size.resize_max_cnt
             Config.Size.resize_add_width_px
             Config.Size.base_width_toleft_px
