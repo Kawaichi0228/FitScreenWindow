@@ -72,10 +72,10 @@ class Config:
         """
         # 修飾キー(configのValueが True だった場合に変換して格納する)
         modk = ModifireKey()
-        if HotkeyWindowLeftRight.mod_ctrl: modk.add(modk.CTRLKEY)
-        if HotkeyWindowLeftRight.mod_shift: modk.add(modk.SHIFTKEY)
-        if HotkeyWindowLeftRight.mod_alt: modk.add(modk.ALTKEY)
-        if HotkeyWindowLeftRight.mod_win: modk.add(modk.WINKEY)
+        if HotkeyWindowLeftRight.mod_ctrl: modk.addCombination(modk.CTRLKEY)
+        if HotkeyWindowLeftRight.mod_shift: modk.addCombination(modk.SHIFTKEY)
+        if HotkeyWindowLeftRight.mod_alt: modk.addCombination(modk.ALTKEY)
+        if HotkeyWindowLeftRight.mod_win: modk.addCombination(modk.WINKEY)
         mod_combination = modk.getCombinationKeycode()
         
         # ホットキー
@@ -210,12 +210,12 @@ class ConfigGuiService:
         # PushButton
         pushbutton_list = []
         # - OKButton
-        setFocus = True # 最初の選択状態にしておく
-        pushbutton_item = (self.gui.ui.pustButton_ok, self.__onClickEvent_pustButton_ok, setFocus)
+        set_focus = True # 最初の選択状態にしておく
+        pushbutton_item = (self.gui.ui.pustButton_ok, self.__onClickEvent_pustButton_ok, set_focus)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
-        setFocus = False
-        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__onClickEvent_pustButton_cancel, setFocus)
+        set_focus = False
+        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__onClickEvent_pustButton_cancel, set_focus)
         pushbutton_list.append(pushbutton_item)
         # - setup
         self.gui.setupPushButton(pushbutton_list)
