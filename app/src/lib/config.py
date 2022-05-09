@@ -332,7 +332,7 @@ class ConfigGuiService(IConfigSet):
     def __onClickEvent_pustButton_initialize_setting(self) -> None:
         dialog = Dialog()
         value = "設定を全て初期化します。よろしいですか？"
-        user_input = dialog.showOKCancelnfomation(title="Fit Screen Window - 確認", value=value, is_cancel_default=True)
+        user_input = dialog.showOKCancelExclamation(title="Fit Screen Window - 確認", value=value, is_cancel_default=True)
 
         if user_input: # OKボタン押下時
             # Configクラスの全プロパティを指定した初期値にセット

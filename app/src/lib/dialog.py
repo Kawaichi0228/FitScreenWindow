@@ -15,11 +15,11 @@ class Dialog():
     def showOKOnlyExclamation(self, title, value) -> None:
         wx.MessageBox(value, title, wx.OK|wx.ICON_EXCLAMATION)
 
-    def showOKCancelnfomation(self, value, title, is_cancel_default=False) -> bool:
+    def showOKCancelExclamation(self, value, title, is_cancel_default=False) -> bool:
         if is_cancel_default:
-            user_input = wx.MessageBox(value, title, wx.CANCEL|wx.ICON_INFORMATION|wx.CANCEL_DEFAULT)
+            user_input = wx.MessageBox(value, title, wx.CANCEL|wx.ICON_EXCLAMATION|wx.CANCEL_DEFAULT)
         else:
-            user_input = wx.MessageBox(value, title, wx.CANCEL|wx.ICON_INFORMATION|wx.OK_DEFAULT)
+            user_input = wx.MessageBox(value, title, wx.CANCEL|wx.ICON_EXCLAMATION|wx.OK_DEFAULT)
 
         if user_input == wx.OK: return True
         if user_input == wx.CANCEL: return False
