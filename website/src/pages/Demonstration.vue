@@ -8,7 +8,7 @@
         <div class="card-text">
           <p>選択中のアクティブなウィンドウに対して、ショートカットキーを押すごとに、画面の端に合わせて自動的に配置 & サイズを段階的に変化させます。</p>
           <div class="line"></div>
-          <p><b>- ショートカットキー -</b></p>
+          <p><b>- 初期ショートカットキー(変更可能) -</b></p>
           <p class="demo-hotkey">左方向へ配置：<b>Shift + Alt + ←</b></p>
           <p class="demo-hotkey">右方向へ配置：<b>Shift + Alt + →</b></p>
         </div>
