@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="styles/base/_variables.scss">
 
     <ToggleVisbleAtScrollEvent
-      startPostionToVisible="200" startPostionToHidden="300">
+      startPostionToVisible="90" startPostionToHidden="100">
       <template #fadein-slot>
           <ScrollTopButton></ScrollTopButton>
       </template>
