@@ -53,6 +53,9 @@ class ConfigGui(UtilGui, QDialog):
         
         # QtDesignerで作成した全体のui(.uiから.pyへの変換ファイル)のsetup
         self.ui.setupUi(self)
+
+        # 閉じるボタン押下時のイベント関数バインド用
+        self.closebutton_event = None
     
     # =========================================================================
     # QtDesigner作成後に追加で設定するセットアップを定義
@@ -65,6 +68,18 @@ class ConfigGui(UtilGui, QDialog):
         self.setWindowFlags(
             Qt.Window|Qt.WindowCloseButtonHint
         )
+        
+    # -------------------------------------------------------------------------
+    # CloseButton(閉じるボタン)
+    # -------------------------------------------------------------------------
+    def setupCloseButton(self, func) -> None:
+        """閉じるボタン(×)が押されたときのイベント登録"""
+        self.closebutton_event = func
+    
+    def closeEvent(self, event):
+        """QWidget::closeEvent() Override Method"""
+        self.closebutton_event()
+
     # -------------------------------------------------------------------------
     # PushButton
     # -------------------------------------------------------------------------
@@ -91,6 +106,7 @@ class ConfigGui(UtilGui, QDialog):
     def __bindOnClick_PushButton(self, push_button, on_event_function) -> None:
         """イベント登録(シグナル/スロット)"""
         push_button.clicked.connect(lambda: on_event_function())
+
     # -------------------------------------------------------------------------
     # ComboBox
     # -------------------------------------------------------------------------
@@ -130,6 +146,7 @@ class ConfigGui(UtilGui, QDialog):
         combo_box.setCurrentIndex(
             combo_box.findText(select_itemtext)
         )
+
     # -------------------------------------------------------------------------
     # CheckBox
     # -------------------------------------------------------------------------

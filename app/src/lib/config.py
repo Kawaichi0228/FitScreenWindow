@@ -301,18 +301,28 @@ class ConfigGuiService(IConfigSet):
         pushbutton_list = []
         # - OKButton
         set_focus = True # 最初の選択状態にしておく
-        pushbutton_item = (self.gui.ui.pustButton_ok, self.__onClickEvent_pustButton_ok, set_focus)
+        pushbutton_item = (self.gui.ui.pustButton_ok,
+                            self.__onClickEvent_pustButton_ok,
+                            set_focus)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
         set_focus = False
-        pushbutton_item = (self.gui.ui.pustButton_cancel, self.__onClickEvent_pustButton_cancel, set_focus)
+        pushbutton_item = (self.gui.ui.pustButton_cancel,
+                            self.__onClickEvent_pustButton_cancel,
+                            set_focus)
         pushbutton_list.append(pushbutton_item)
         # - InitializeSettingButton
         set_focus = False
-        pushbutton_item = (self.gui.ui.pustButton_initialize_setting, self.__onClickEvent_pustButton_initialize_setting, set_focus)
+        pushbutton_item = (self.gui.ui.pustButton_initialize_setting,
+                            self.__onClickEvent_pustButton_initialize_setting,
+                            set_focus)
         pushbutton_list.append(pushbutton_item)
         # - setup
         self.gui.setupPushButton(pushbutton_list)
+
+        # 閉じる(×)ボタン
+        closebutton_event = self.stop
+        self.gui.setupCloseButton(closebutton_event)
 
     def __onClickEvent_pustButton_ok(self) -> None:
         # Config.pyのクラスへ値をセット
