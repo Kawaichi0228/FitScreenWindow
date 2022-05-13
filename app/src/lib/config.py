@@ -121,7 +121,7 @@ class Config:
 # Configクラス(このファイル=Config.py)の各プロパティに値をセットするためのClass
 # -------------------------------------------------------------------------
 # -------------------------------------------------------------------------
-class IConfigSet(ABC):
+class ABSConfigSet(ABC):
     @abstractmethod
     def _setupConfigPython(self) -> None: pass
     
@@ -131,7 +131,7 @@ class IConfigSet(ABC):
         logger.info("config.pyへ変数値の書き換えが完了しました")
 
 
-class ConfigDefault(IConfigSet):
+class ConfigDefault(ABSConfigSet):
     """初期値設定用"""
     def _setupConfigPython(self) -> None:
         Config.Size.resize_max_cnt = 4
@@ -153,7 +153,7 @@ class ConfigDefault(IConfigSet):
         Config.HotkeyWindowRight.hotkey = "Right"
 
 
-class ConfigJsonRepository(IConfigSet):
+class ConfigJsonRepository(ABSConfigSet):
     """※Jsonの値を参照したいときは、このクラスのsetupメソッドでConfigクラスを書き換えて、
     それを参照すること(直接このクラスの永続化されたJson値を参照しない)"""
     def __init__(self) -> None:
@@ -220,7 +220,7 @@ class ConfigJsonRepository(IConfigSet):
         self.__jc.save(self.json_dict)
 
 
-class ConfigGuiService(IConfigSet):
+class ConfigGuiService(ABSConfigSet):
     """
     QtDesigner作成後に追加で設定する、個別のuiのsetup
         MEMO: .uiから.pyへ変換したpythonファイルから、このクラスの各setupメソッドへ
