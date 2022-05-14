@@ -16,7 +16,7 @@ from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.tasktray import Tasktray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
-from src.lib.dialog import ErrorDialog
+from src.lib.dialog import ErrorDialog  
 from src.lib.errorhandling import ErrorHandling
 from src.lib.config import Config, ConfigJsonRepository, ConfigGuiService
 from src.lib.const import (
@@ -148,6 +148,7 @@ class TasktrayService(IThread):
             favicon_obj = self.t.readFavicon()
             logger.info("favicon.icoの読込が正常に完了しました")
         except FileNotFoundError:
+            logger.error("favicon.icoが見つかりません")
             ErrorDialog().showFileNotFound("favicon.ico")
             ErrorHandling().quitApp()
 

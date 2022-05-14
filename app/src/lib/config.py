@@ -212,6 +212,7 @@ class ConfigJsonRepository(ABSConfigSet):
             json_obj = self.__jc.read()
             logger.info("config.jsonの読込が正常に完了しました")
         except FileNotFoundError:
+            logger.error("config.jsonが見つかりません")
             ErrorDialog().showFileNotFound("config.json")
             ErrorHandling().quitApp()
         return json_obj
