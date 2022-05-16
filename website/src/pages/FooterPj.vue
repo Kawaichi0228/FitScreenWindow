@@ -168,7 +168,8 @@
   @include tab {margin: 0 0;}
 
   img.footer-logo {
-    height: 55px;
+    max-height: 55px;
+    width: 100%;
     object-fit: contain; /* 画像縦横比を維持したまま、heightに対してリサイズする(ブロックに対してではない) */
   }
 }
