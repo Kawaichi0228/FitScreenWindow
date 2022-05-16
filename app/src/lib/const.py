@@ -31,3 +31,4 @@ FAVICON_IMAGE_PATH = IMAGES_DIR + r"\favicon.ico"
 
 # config.json(設定ファイル)のパス
 CONFIG_JSON_PATH = SOURCE_DIR + r"\config.json"
+print(CONFIG_JSON_PATH)

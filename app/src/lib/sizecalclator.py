@@ -21,7 +21,7 @@ class SizeCalclatorAtCounter:
         self.cnt = cnt
 
         height_screen = getScreenHeight()
-        self.height = int(height_screen)
+        self.height_screen = int(height_screen)
 
         self.memoryWindowState = {
             "hwnd": "",
@@ -37,6 +37,7 @@ class SizeCalclatorAtCounter:
             self.cnt.reset()
             logger.info(f"定義したリセット条件に一致したため、カウンタをリセットしました cnt:{self.cnt.get()}")
 
+    # -------------------------------------------------------------------------
     def calclateWidth(self, direction) -> int:
         # メモリした移動・リサイズ方向と今回実行した方向が違う場合は、
         # 画面widthから、メモリしたウィンドウwidthを差し引いたwidthを返す(画面の余白残りにサイズをフィットさせる)
@@ -46,37 +47,90 @@ class SizeCalclatorAtCounter:
             not actvwin["hwnd"] == memorywin["hwnd"],
             not self.__isEqualMemoryDirection(direction),
         ]):
-            screen_width = getScreenWidth()
-            memorywin = self.__getMemoryWindowState()
-            memory_width = memorywin["width"]
-            width = screen_width - memory_width + Config.Size.adjust_width_px
+            width = self.__calclateWidthForNotMemory()
             return width
 
-        # リサイズ時に加算するWidthを計算
-        add_width = Config.Size.resize_add_width_px * self.cnt.get() # px/回の設定したwidth値を、cntの回数分だけ倍にする
+        else:
+            width = self.__calclateWidthForCounter(direction)
+            return width
 
+    def __calclateWidthForNotMemory(self) -> int:
+        """画面widthからメモリしたウィンドウwidthを差し引いたwidthを返す(画面の余白残りにサイズをフィットさせる)"""
+        screen_width = getScreenWidth()
+        memorywin = self.__getMemoryWindowState()
+        memory_width = memorywin["width"]
+        adjust_width = Config.Size.adjust_width_px
+        width = screen_width - memory_width + adjust_width
+        return width
+
+    def __calclateWidthForCounter(self, direction) -> int:
+        # 基準Width
         if direction == MoveResizeDirection.LEFT:
             width_base = Config.Size.base_width_toleft_px
         elif direction == MoveResizeDirection.RIGHT:
             width_base = Config.Size.base_width_toright_px
 
-        width = int(round(width_base + add_width + Config.Size.adjust_width_px))
-        return width
+        # 調整用Width
+        adjust_width = Config.Size.adjust_width_px
 
+        # カウンタが1回目(初回リサイズ実行時)のときはWidthを加算させない
+        cnt = self.cnt.get()
+        if cnt == 1:
+            width = int(round(width_base + adjust_width))
+            return width
+        
+        # カウンタが2回目以降
+        else:
+            # リサイズ時に加算するWidthを計算
+            _add_width = Config.Size.resize_add_width_px * cnt # px/回の設定したwidth値を、cntの回数分だけ倍にする
+
+            # 逆方向に拡大オプションがtrueなら加算するWidthの符号を逆にする
+            if any([
+                all([
+                    direction == MoveResizeDirection.LEFT,
+                    Config.Size.is_reverse_direction_windowleft,
+                ]),
+                all([
+                    direction == MoveResizeDirection.RIGHT,
+                    Config.Size.is_reverse_direction_windowright,
+                ]),
+            ]):
+                subtraction_width = _add_width * (-1)
+                add_width = subtraction_width
+                
+            else:
+                add_width = _add_width
+
+            width = int(round(width_base + add_width + adjust_width))
+            return width
+    
+    # -------------------------------------------------------------------------
     def calclateHeight(self) -> int:
-        # configのintをboolへ変換
-        isSubtractTaskBar = True if Config.Size.is_subtract_taskbar == 1 else False
-
-        # タスクバーのheight分をマイナスするかどうか
-        if isSubtractTaskBar:
-            hwnd = getTaskBarHwnd()
-            height_taskbar = getWinHeight(hwnd)
-            height = int(self.height - height_taskbar)
+        # タスクバーのHeight分をマイナスするかどうか
+        taskbar_position = getTaskBarPosition()
+        if any([
+            not Config.Size.is_subtract_taskbar, # 「タスクバーのサイズを差し引く」オプションを無効にしている時
+            taskbar_position == TaskBarPosition.LEFT, # タスクバー位置が左の時
+            taskbar_position == TaskBarPosition.RIGHT, # タスクバー位置が右の時
+        ]):
+            height = self.__calclateHeightForScreenMax()
             return height
 
         else:
-            height = int(self.height)
+            height = self.__calclateHeightForTaskbar()
             return height
+    
+    def __calclateHeightForScreenMax(self) -> int:
+        """画面最大のHeightを返す"""
+        height = int(self.height_screen) # 画面最大のHeightを返す
+        return height
+
+    def __calclateHeightForTaskbar(self) -> int:
+        """タスクバーのHeightを差し引いた画面最大のHeightを返す"""
+        height_taskbar = getTaskBarHeight()
+        height = int(self.height_screen - height_taskbar)
+        return height
+    
     # -------------------------------------------------------------------------
     def __needsResetCounter(self, direction) -> bool:
         """段階リサイズ用カウンタの初期化条件を定義し、満たすならTrueを返す"""
