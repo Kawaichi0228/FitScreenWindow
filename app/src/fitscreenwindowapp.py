@@ -9,11 +9,13 @@ from abc import ABC, abstractmethod
 # -------------------------------------------------------------------------
 from logging import getLogger
 from src.lib.logger import *
+
 logger = getLogger("Log")
 
 from src.lib.globalhotkey import GlobalHotkey
 from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
+from src.lib.positioncalclator import PositionCalclator
 from src.lib.tasktray import Tasktray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.dialog import ErrorDialog
@@ -31,10 +33,16 @@ from src.lib.const import (
 # -------------------------------------------------------------------------
 class MoveResizeWindowService:
     """ウィンドウ移動・リサイズの実行クラス"""
+
     def __init__(self) -> None:
         size = SizeCalclatorAtCounter()
         self.size = size
-        self.mr = MoveResizeWindowAtCounter(size)
+
+        pos = PositionCalclator()
+        self.pos = pos
+
+        mr = MoveResizeWindowAtCounter(size)
+        self.mr = mr
 
     def toLeft(self) -> None:
         direction = MoveResizeDirection.LEFT
@@ -47,11 +55,12 @@ class MoveResizeWindowService:
     def __moveResize(self, direction_) -> None:
         # アクティブなウィンドウがエクスプローラーなら終了
         hwnd_activewin = getActiveWinHwnd()
-        if isExplorerWindow(hwnd_activewin): return
+        if isExplorerWindow(hwnd_activewin):
+            return
 
         hwnd = hwnd_activewin
         direction = direction_
-        y = 0
+        y = self.pos.calclatePositionY()
         height = self.size.calclateHeight()
 
         # リサイズの実行
@@ -78,7 +87,7 @@ class GlobalHotkeyService(IThread):
     def startThread(self) -> None:
         """グローバルホットキー実行用のスレッド"""
         mr = MoveResizeWindowService()
-        
+
         # Config.pyに格納された各ホットキーの値をKeycodeへ変換し、dictとして取得
         keycombination_windowleft = Config.getKeycodeforHotkeyWindowLeft()
         keycombination_windowright = Config.getKeycodeforHotkeyWindowRight()
@@ -93,34 +102,34 @@ class GlobalHotkeyService(IThread):
             dictkey_windowleft: {
                 "modifierkeys": keycombination_windowleft["mod_combination"],
                 "hotkey": keycombination_windowleft["hotkey"],
-                "func": mr.toLeft
+                "func": mr.toLeft,
             }
         }
         register.update(register_windowleft)
         # グローバルホットキーを登録
         id_hotkey1 = self.g.registerHotkey(
             register[dictkey_windowleft]["modifierkeys"],
-            register[dictkey_windowleft]["hotkey"]
+            register[dictkey_windowleft]["hotkey"],
         )
         self.g.registerEvent1(register[dictkey_windowleft]["func"])
         eve = self.g.bindEvent1
         self.g.bindHotkey(eve, id_hotkey1)
 
-        # ------ windowright ------ 
+        # ------ windowright ------
         # ホットキーとイベント処理内容の定義
         dictkey_windowright = "windowright"
         register_windowright = {
             dictkey_windowright: {
-                "modifierkeys": keycombination_windowright["mod_combination"] ,
+                "modifierkeys": keycombination_windowright["mod_combination"],
                 "hotkey": keycombination_windowright["hotkey"],
-                "func": mr.toRight
+                "func": mr.toRight,
             }
         }
         register.update(register_windowright)
         # グローバルホットキーを登録
         id_hotkey2 = self.g.registerHotkey(
             register[dictkey_windowright]["modifierkeys"],
-            register[dictkey_windowright]["hotkey"]
+            register[dictkey_windowright]["hotkey"],
         )
         self.g.registerEvent2(register[dictkey_windowright]["func"])
         eve = self.g.bindEvent2
@@ -156,7 +165,7 @@ class TasktrayService(IThread):
 
     def stopThread(self) -> None:
         self.t.stopThread()
-    
+
     def addItem(self, value, on_click_function) -> None:
         self.t.addItem(value, on_click_function)
 
@@ -204,14 +213,14 @@ class ApplicationService(IThread):
 def main() -> None:
     # 多重起動防止(既に起動しているか判定し、起動していたら起動せずに終了)
     import sys, win32api, win32security, win32event
+
     sa = win32security.SECURITY_ATTRIBUTES()
     sa.SECURITY_DESCRIPTOR.SetSecurityDescriptorDacl(True, None, False)
-    mutex = win32event.CreateMutex(sa, False, 'unique-string...')
+    mutex = win32event.CreateMutex(sa, False, "unique-string...")
     error = win32api.GetLastError()
-    if not error == 0: # 既に起動している場合
+    if not error == 0:  # 既に起動している場合
         sys.exit(-1)
 
     # アプリ起動
     app = ApplicationService()
     app.run()
-

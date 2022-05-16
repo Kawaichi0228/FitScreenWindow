@@ -18,7 +18,7 @@ class Ui_Config(object):
     def setupUi(self, Config):
         if not Config.objectName():
             Config.setObjectName(u"Config")
-        Config.resize(342, 232)
+        Config.resize(344, 282)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -27,8 +27,8 @@ class Ui_Config(object):
         icon = QIcon()
         icon.addFile(u":/images/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
         Config.setWindowIcon(icon)
-        self.gridLayout = QGridLayout(Config)
-        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout_7 = QGridLayout(Config)
+        self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.tabWidget = QTabWidget(Config)
         self.tabWidget.setObjectName(u"tabWidget")
         sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -39,132 +39,158 @@ class Ui_Config(object):
         self.tabWidget.setTabBarAutoHide(False)
         self.tab_size = QWidget()
         self.tab_size.setObjectName(u"tab_size")
-        self.gridLayout_2 = QGridLayout(self.tab_size)
+        self.gridLayout_4 = QGridLayout(self.tab_size)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.groupBox_3 = QGroupBox(self.tab_size)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.gridLayout = QGridLayout(self.groupBox_3)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.label_B = QLabel(self.groupBox_3)
+        self.label_B.setObjectName(u"label_B")
+        self.label_B.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_B, 0, 0, 1, 2)
+
+        self.spinBox_base_width_toleft_px = QSpinBox(self.groupBox_3)
+        self.spinBox_base_width_toleft_px.setObjectName(u"spinBox_base_width_toleft_px")
+        self.spinBox_base_width_toleft_px.setMinimum(1)
+        self.spinBox_base_width_toleft_px.setMaximum(9999)
+
+        self.gridLayout.addWidget(self.spinBox_base_width_toleft_px, 1, 0, 1, 1)
+
+        self.label_F_10 = QLabel(self.groupBox_3)
+        self.label_F_10.setObjectName(u"label_F_10")
+        self.label_F_10.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_F_10, 1, 1, 1, 1)
+
+        self.checkBox_is_reverse_direction_windowleft = QCheckBox(self.groupBox_3)
+        self.checkBox_is_reverse_direction_windowleft.setObjectName(u"checkBox_is_reverse_direction_windowleft")
+        self.checkBox_is_reverse_direction_windowleft.setChecked(True)
+
+        self.gridLayout.addWidget(self.checkBox_is_reverse_direction_windowleft, 2, 0, 1, 2)
+
+
+        self.gridLayout_4.addWidget(self.groupBox_3, 0, 0, 1, 1)
+
+        self.groupBox_4 = QGroupBox(self.tab_size)
+        self.groupBox_4.setObjectName(u"groupBox_4")
+        self.gridLayout_2 = QGridLayout(self.groupBox_4)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.label_A = QLabel(self.groupBox_4)
+        self.label_A.setObjectName(u"label_A")
+        self.label_A.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.gridLayout_2.addWidget(self.label_A, 0, 0, 1, 2)
+
+        self.spinBox_base_width_toright_px = QSpinBox(self.groupBox_4)
+        self.spinBox_base_width_toright_px.setObjectName(u"spinBox_base_width_toright_px")
+        self.spinBox_base_width_toright_px.setMinimum(1)
+        self.spinBox_base_width_toright_px.setMaximum(9999)
+
+        self.gridLayout_2.addWidget(self.spinBox_base_width_toright_px, 1, 0, 1, 1)
+
+        self.label_F_11 = QLabel(self.groupBox_4)
+        self.label_F_11.setObjectName(u"label_F_11")
+        self.label_F_11.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.gridLayout_2.addWidget(self.label_F_11, 1, 1, 1, 1)
+
+        self.checkBox_is_reverse_direction_windowright = QCheckBox(self.groupBox_4)
+        self.checkBox_is_reverse_direction_windowright.setObjectName(u"checkBox_is_reverse_direction_windowright")
+        self.checkBox_is_reverse_direction_windowright.setChecked(True)
+
+        self.gridLayout_2.addWidget(self.checkBox_is_reverse_direction_windowright, 2, 0, 1, 2)
+
+
+        self.gridLayout_4.addWidget(self.groupBox_4, 0, 1, 1, 2)
+
         self.label_F = QLabel(self.tab_size)
         self.label_F.setObjectName(u"label_F")
         self.label_F.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_2.addWidget(self.label_F, 0, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.label_F, 1, 0, 1, 1)
 
         self.spinBox_resize_max_cnt = QSpinBox(self.tab_size)
         self.spinBox_resize_max_cnt.setObjectName(u"spinBox_resize_max_cnt")
         self.spinBox_resize_max_cnt.setMinimum(1)
         self.spinBox_resize_max_cnt.setMaximum(10)
 
-        self.gridLayout_2.addWidget(self.spinBox_resize_max_cnt, 0, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.spinBox_resize_max_cnt, 1, 1, 1, 1)
 
         self.label_F_8 = QLabel(self.tab_size)
         self.label_F_8.setObjectName(u"label_F_8")
         self.label_F_8.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.gridLayout_2.addWidget(self.label_F_8, 0, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.label_F_8, 1, 2, 1, 1)
 
         self.label_G = QLabel(self.tab_size)
         self.label_G.setObjectName(u"label_G")
         self.label_G.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_2.addWidget(self.label_G, 1, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.label_G, 2, 0, 1, 1)
 
         self.spinBox_resize_add_width_px = QSpinBox(self.tab_size)
         self.spinBox_resize_add_width_px.setObjectName(u"spinBox_resize_add_width_px")
         self.spinBox_resize_add_width_px.setMinimum(1)
         self.spinBox_resize_add_width_px.setMaximum(999)
 
-        self.gridLayout_2.addWidget(self.spinBox_resize_add_width_px, 1, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.spinBox_resize_add_width_px, 2, 1, 1, 1)
 
         self.label_F_9 = QLabel(self.tab_size)
         self.label_F_9.setObjectName(u"label_F_9")
         self.label_F_9.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.gridLayout_2.addWidget(self.label_F_9, 1, 2, 1, 1)
-
-        self.label_B = QLabel(self.tab_size)
-        self.label_B.setObjectName(u"label_B")
-        self.label_B.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_B, 2, 0, 1, 1)
-
-        self.spinBox_base_width_toleft_px = QSpinBox(self.tab_size)
-        self.spinBox_base_width_toleft_px.setObjectName(u"spinBox_base_width_toleft_px")
-        self.spinBox_base_width_toleft_px.setMinimum(1)
-        self.spinBox_base_width_toleft_px.setMaximum(9999)
-
-        self.gridLayout_2.addWidget(self.spinBox_base_width_toleft_px, 2, 1, 1, 1)
-
-        self.label_F_10 = QLabel(self.tab_size)
-        self.label_F_10.setObjectName(u"label_F_10")
-        self.label_F_10.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_F_10, 2, 2, 1, 1)
-
-        self.label_A = QLabel(self.tab_size)
-        self.label_A.setObjectName(u"label_A")
-        self.label_A.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_A, 3, 0, 1, 1)
-
-        self.spinBox_base_width_toright_px = QSpinBox(self.tab_size)
-        self.spinBox_base_width_toright_px.setObjectName(u"spinBox_base_width_toright_px")
-        self.spinBox_base_width_toright_px.setMinimum(1)
-        self.spinBox_base_width_toright_px.setMaximum(9999)
-
-        self.gridLayout_2.addWidget(self.spinBox_base_width_toright_px, 3, 1, 1, 1)
-
-        self.label_F_11 = QLabel(self.tab_size)
-        self.label_F_11.setObjectName(u"label_F_11")
-        self.label_F_11.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-
-        self.gridLayout_2.addWidget(self.label_F_11, 3, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.label_F_9, 2, 2, 1, 1)
 
         self.label_A_2 = QLabel(self.tab_size)
         self.label_A_2.setObjectName(u"label_A_2")
         self.label_A_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_2.addWidget(self.label_A_2, 4, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.label_A_2, 3, 0, 1, 1)
 
         self.spinBox_adjust_width_px = QSpinBox(self.tab_size)
         self.spinBox_adjust_width_px.setObjectName(u"spinBox_adjust_width_px")
         self.spinBox_adjust_width_px.setMinimum(1)
         self.spinBox_adjust_width_px.setMaximum(999)
 
-        self.gridLayout_2.addWidget(self.spinBox_adjust_width_px, 4, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.spinBox_adjust_width_px, 3, 1, 1, 1)
 
         self.label_F_12 = QLabel(self.tab_size)
         self.label_F_12.setObjectName(u"label_F_12")
         self.label_F_12.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.gridLayout_2.addWidget(self.label_F_12, 4, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.label_F_12, 3, 2, 1, 1)
 
         self.checkBox_is_subtract_taskbar = QCheckBox(self.tab_size)
         self.checkBox_is_subtract_taskbar.setObjectName(u"checkBox_is_subtract_taskbar")
         self.checkBox_is_subtract_taskbar.setChecked(True)
 
-        self.gridLayout_2.addWidget(self.checkBox_is_subtract_taskbar, 5, 0, 1, 3)
+        self.gridLayout_4.addWidget(self.checkBox_is_subtract_taskbar, 4, 0, 1, 2)
 
         self.tabWidget.addTab(self.tab_size, "")
         self.tab_position = QWidget()
         self.tab_position.setObjectName(u"tab_position")
-        self.gridLayout_4 = QGridLayout(self.tab_position)
-        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.gridLayout_8 = QGridLayout(self.tab_position)
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.label_B_2 = QLabel(self.tab_position)
         self.label_B_2.setObjectName(u"label_B_2")
         self.label_B_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_4.addWidget(self.label_B_2, 0, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.label_B_2, 0, 0, 1, 1)
 
         self.spinBox_adjust_x_px = QSpinBox(self.tab_position)
         self.spinBox_adjust_x_px.setObjectName(u"spinBox_adjust_x_px")
         self.spinBox_adjust_x_px.setMinimum(1)
         self.spinBox_adjust_x_px.setMaximum(999)
 
-        self.gridLayout_4.addWidget(self.spinBox_adjust_x_px, 0, 1, 1, 1)
+        self.gridLayout_8.addWidget(self.spinBox_adjust_x_px, 0, 1, 1, 1)
 
         self.label_F_7 = QLabel(self.tab_position)
         self.label_F_7.setObjectName(u"label_F_7")
         self.label_F_7.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
-        self.gridLayout_4.addWidget(self.label_F_7, 0, 2, 1, 1)
+        self.gridLayout_8.addWidget(self.label_F_7, 0, 2, 1, 1)
 
         self.tabWidget.addTab(self.tab_position, "")
         self.tab_shortcutkey = QWidget()
@@ -257,7 +283,7 @@ class Ui_Config(object):
 
         self.tabWidget.addTab(self.tab_shortcutkey, "")
 
-        self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 3)
+        self.gridLayout_7.addWidget(self.tabWidget, 0, 0, 1, 3)
 
         self.pustButton_ok = QPushButton(Config)
         self.pustButton_ok.setObjectName(u"pustButton_ok")
@@ -268,7 +294,7 @@ class Ui_Config(object):
         self.pustButton_ok.setSizePolicy(sizePolicy2)
         self.pustButton_ok.setContextMenuPolicy(Qt.PreventContextMenu)
 
-        self.gridLayout.addWidget(self.pustButton_ok, 1, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.pustButton_ok, 1, 0, 1, 1)
 
         self.pustButton_cancel = QPushButton(Config)
         self.pustButton_cancel.setObjectName(u"pustButton_cancel")
@@ -276,7 +302,7 @@ class Ui_Config(object):
         self.pustButton_cancel.setSizePolicy(sizePolicy2)
         self.pustButton_cancel.setContextMenuPolicy(Qt.PreventContextMenu)
 
-        self.gridLayout.addWidget(self.pustButton_cancel, 1, 1, 1, 1)
+        self.gridLayout_7.addWidget(self.pustButton_cancel, 1, 1, 1, 1)
 
         self.pustButton_initialize_setting = QPushButton(Config)
         self.pustButton_initialize_setting.setObjectName(u"pustButton_initialize_setting")
@@ -284,12 +310,11 @@ class Ui_Config(object):
         self.pustButton_initialize_setting.setSizePolicy(sizePolicy2)
         self.pustButton_initialize_setting.setContextMenuPolicy(Qt.PreventContextMenu)
 
-        self.gridLayout.addWidget(self.pustButton_initialize_setting, 1, 2, 1, 1)
+        self.gridLayout_7.addWidget(self.pustButton_initialize_setting, 1, 2, 1, 1)
 
         QWidget.setTabOrder(self.tabWidget, self.spinBox_resize_max_cnt)
         QWidget.setTabOrder(self.spinBox_resize_max_cnt, self.spinBox_resize_add_width_px)
-        QWidget.setTabOrder(self.spinBox_resize_add_width_px, self.spinBox_base_width_toleft_px)
-        QWidget.setTabOrder(self.spinBox_base_width_toleft_px, self.spinBox_base_width_toright_px)
+        QWidget.setTabOrder(self.spinBox_resize_add_width_px, self.spinBox_base_width_toright_px)
         QWidget.setTabOrder(self.spinBox_base_width_toright_px, self.spinBox_adjust_width_px)
         QWidget.setTabOrder(self.spinBox_adjust_width_px, self.checkBox_is_subtract_taskbar)
         QWidget.setTabOrder(self.checkBox_is_subtract_taskbar, self.spinBox_adjust_x_px)
@@ -316,17 +341,21 @@ class Ui_Config(object):
 
     def retranslateUi(self, Config):
         Config.setWindowTitle(QCoreApplication.translate("Config", u"Fit Screen Window - \u8a2d\u5b9a", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("Config", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u5de6\u914d\u7f6e", None))
+        self.label_B.setText(QCoreApplication.translate("Config", u"\u57fa\u6e96\u30b5\u30a4\u30ba(1\uff5e9999)", None))
+        self.label_F_10.setText(QCoreApplication.translate("Config", u"px", None))
+        self.checkBox_is_reverse_direction_windowleft.setText(QCoreApplication.translate("Config", u"\u9006\u65b9\u5411\u306b\u30ea\u30b5\u30a4\u30ba", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("Config", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u53f3\u914d\u7f6e", None))
+        self.label_A.setText(QCoreApplication.translate("Config", u"\u57fa\u6e96\u30b5\u30a4\u30ba(1\uff5e9999)", None))
+        self.label_F_11.setText(QCoreApplication.translate("Config", u"px", None))
+        self.checkBox_is_reverse_direction_windowright.setText(QCoreApplication.translate("Config", u"\u9006\u65b9\u5411\u306b\u30ea\u30b5\u30a4\u30ba", None))
         self.label_F.setText(QCoreApplication.translate("Config", u"\u30ea\u30b5\u30a4\u30ba\u6700\u5927\u56de\u6570(1\uff5e10)", None))
         self.label_F_8.setText(QCoreApplication.translate("Config", u"\u56de", None))
         self.label_G.setText(QCoreApplication.translate("Config", u"\u30ea\u30b5\u30a4\u30ba\u6bce\u52a0\u7b97\u30b5\u30a4\u30ba(1\uff5e999)", None))
         self.label_F_9.setText(QCoreApplication.translate("Config", u"px", None))
-        self.label_B.setText(QCoreApplication.translate("Config", u"\u57fa\u6e96\u30b5\u30a4\u30ba - \u5de6\u914d\u7f6e(1\uff5e9999)", None))
-        self.label_F_10.setText(QCoreApplication.translate("Config", u"px", None))
-        self.label_A.setText(QCoreApplication.translate("Config", u"\u57fa\u6e96\u30b5\u30a4\u30ba - \u53f3\u914d\u7f6e(1\uff5e9999)", None))
-        self.label_F_11.setText(QCoreApplication.translate("Config", u"px", None))
         self.label_A_2.setText(QCoreApplication.translate("Config", u"\u8abf\u6574\u7528\u52a0\u7b97\u30b5\u30a4\u30ba(1\uff5e999)", None))
         self.label_F_12.setText(QCoreApplication.translate("Config", u"px", None))
-        self.checkBox_is_subtract_taskbar.setText(QCoreApplication.translate("Config", u"\u30bf\u30b9\u30af\u30d0\u30fc\u306e\u9ad8\u3055\u3092\u6e1b\u7b97\u3057\u3066\u30ea\u30b5\u30a4\u30ba(\u4e0b\u4f4d\u7f6e\u306e\u307f)", None))
+        self.checkBox_is_subtract_taskbar.setText(QCoreApplication.translate("Config", u"\u30bf\u30b9\u30af\u30d0\u30fc\u306e\u30b5\u30a4\u30ba\u3092\u6e1b\u7b97\u3057\u3066\u30ea\u30b5\u30a4\u30ba", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_size), QCoreApplication.translate("Config", u"\u30b5\u30a4\u30ba", None))
         self.label_B_2.setText(QCoreApplication.translate("Config", u"\u8abf\u6574\u7528\u79fb\u52d5\u4f4d\u7f6e - x(1\uff5e999)", None))
         self.label_F_7.setText(QCoreApplication.translate("Config", u"px", None))

@@ -35,6 +35,9 @@ class Config:
         base_width_toleft_px: int # 初期リサイズ時のウィンドウサイズ
         base_width_toright_px: int # 初期リサイズ時のウィンドウサイズ
         adjust_width_px: int # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの枠のサイズ？)
+        is_subtract_taskbar: bool # タスクバーのサイズを差し引くか
+        is_reverse_direction_windowleft: bool # 逆方向へ拡大させるか
+        is_reverse_direction_windowright: bool # 逆方向へ拡大させるか
 
     @dataclass(frozen=False)
     class Position:
@@ -46,6 +49,7 @@ class Config:
         mod_ctrl: bool
         mod_shift: bool
         mod_alt: bool
+        mod_win: bool
         hotkey: str
 
     @dataclass(frozen=False)
@@ -53,6 +57,7 @@ class Config:
         mod_ctrl: bool
         mod_shift: bool
         mod_alt: bool
+        mod_win: bool
         hotkey: str
         
     @staticmethod
@@ -64,14 +69,19 @@ class Config:
             Config.Size.base_width_toleft_px
             Config.Size.base_width_toright_px
             Config.Size.adjust_width_px
+            Config.Size.is_subtract_taskbar
+            Config.Size.is_reverse_direction_windowleft
+            Config.Size.is_reverse_direction_windowright
             Config.Position.adjust_x_px
             Config.HotkeyWindowLeft.mod_ctrl
             Config.HotkeyWindowLeft.mod_shift
             Config.HotkeyWindowLeft.mod_alt
+            Config.HotkeyWindowLeft.mod_win
             Config.HotkeyWindowLeft.hotkey
             Config.HotkeyWindowRight.mod_ctrl
             Config.HotkeyWindowRight.mod_shift
             Config.HotkeyWindowRight.mod_alt
+            Config.HotkeyWindowRight.mod_win
             Config.HotkeyWindowRight.hotkey
 
         except AttributeError as e:
@@ -140,6 +150,8 @@ class ConfigDefault(IConfigSet):
         Config.Size.base_width_toright_px = 700
         Config.Size.adjust_width_px = 20
         Config.Size.is_subtract_taskbar = True
+        Config.Size.is_reverse_direction_windowleft = False
+        Config.Size.is_reverse_direction_windowright = False
         Config.Position.adjust_x_px = 10
         Config.HotkeyWindowLeft.mod_ctrl = False
         Config.HotkeyWindowLeft.mod_shift = True
@@ -172,6 +184,8 @@ class ConfigJsonRepository(IConfigSet):
         Config.Size.base_width_toright_px = self.json_dict["size"]["base_width_toright_px"]
         Config.Size.adjust_width_px = self.json_dict["size"]["adjust_width_px"]
         Config.Size.is_subtract_taskbar = self.json_dict["size"]["is_subtract_taskbar"]
+        Config.Size.is_reverse_direction_windowleft = self.json_dict["size"]["is_reverse_direction_windowleft"]
+        Config.Size.is_reverse_direction_windowright = self.json_dict["size"]["is_reverse_direction_windowright"]
         Config.Position.adjust_x_px = self.json_dict["position"]["adjust_x_px"]
         Config.HotkeyWindowLeft.mod_ctrl = self.json_dict["hotkey_windowleft"]["mod_ctrl"]
         Config.HotkeyWindowLeft.mod_shift = self.json_dict["hotkey_windowleft"]["mod_shift"]
@@ -192,6 +206,8 @@ class ConfigJsonRepository(IConfigSet):
             self.json_dict["size"]["base_width_toright_px"] = Config.Size.base_width_toright_px
             self.json_dict["size"]["adjust_width_px"] = Config.Size.adjust_width_px
             self.json_dict["size"]["is_subtract_taskbar"] = Config.Size.is_subtract_taskbar
+            self.json_dict["size"]["is_reverse_direction_windowleft"] = Config.Size.is_reverse_direction_windowleft
+            self.json_dict["size"]["is_reverse_direction_windowright"] = Config.Size.is_reverse_direction_windowright
             self.json_dict["position"]["adjust_x_px"] = Config.Position.adjust_x_px
             self.json_dict["hotkey_windowleft"]["mod_ctrl"] = Config.HotkeyWindowLeft.mod_ctrl
             self.json_dict["hotkey_windowleft"]["mod_shift"] = Config.HotkeyWindowLeft.mod_shift
@@ -256,6 +272,8 @@ class ConfigGuiService(IConfigSet):
         Config.Size.base_width_toright_px = self.gui.ui.spinBox_base_width_toright_px.value()
         Config.Size.adjust_width_px = self.gui.ui.spinBox_adjust_width_px.value()
         Config.Size.is_subtract_taskbar = self.gui.ui.checkBox_is_subtract_taskbar.isChecked()
+        Config.Size.is_reverse_direction_windowleft = self.gui.ui.checkBox_is_reverse_direction_windowleft.isChecked()
+        Config.Size.is_reverse_direction_windowright = self.gui.ui.checkBox_is_reverse_direction_windowright.isChecked()
         Config.Position.adjust_x_px = self.gui.ui.spinBox_adjust_x_px.value()
         Config.HotkeyWindowLeft.mod_ctrl = self.gui.ui.checkBox_windowleft_mod_ctrl.isChecked()
         Config.HotkeyWindowLeft.mod_shift = self.gui.ui.checkBox_windowleft_mod_shift.isChecked()
@@ -363,6 +381,8 @@ class ConfigGuiService(IConfigSet):
         self.gui.ui.spinBox_base_width_toright_px.setValue(Config.Size.base_width_toright_px)
         self.gui.ui.spinBox_adjust_width_px.setValue(Config.Size.adjust_width_px)
         self.gui.ui.checkBox_is_subtract_taskbar.setChecked(Config.Size.is_subtract_taskbar)
+        self.gui.ui.checkBox_is_reverse_direction_windowleft.setChecked(Config.Size.is_reverse_direction_windowleft)
+        self.gui.ui.checkBox_is_reverse_direction_windowright.setChecked(Config.Size.is_reverse_direction_windowright)
 
     def __setupTab_Position(self):
         """位置タブのsetup"""
