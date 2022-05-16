@@ -82,7 +82,11 @@ class SizeCalclatorAtCounter:
         # カウンタが2回目以降
         else:
             # リサイズ時に加算するWidthを計算
-            _add_width = Config.Size.resize_add_width_px * cnt # px/回の設定したwidth値を、cntの回数分だけ倍にする
+            # - px/回の設定したwidth値を、cntの回数分だけ倍にするための倍率を定義
+            ratio = cnt - 1 # 2回目実行時に加算サイズ×1倍とするため、実行回数cntから-1する
+
+            # - 加算するサイズを計算
+            original_add_width = Config.Size.resize_add_width_px * ratio 
 
             # 逆方向に拡大オプションがtrueなら加算するWidthの符号を逆にする
             if any([
@@ -95,11 +99,11 @@ class SizeCalclatorAtCounter:
                     Config.Size.is_reverse_direction_windowright,
                 ]),
             ]):
-                subtraction_width = _add_width * (-1)
+                subtraction_width = original_add_width * (-1)
                 add_width = subtraction_width
                 
             else:
-                add_width = _add_width
+                add_width = original_add_width
 
             width = int(round(width_base + add_width + adjust_width))
             return width
