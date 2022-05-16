@@ -9,7 +9,6 @@ from dataclasses import dataclass
 # -------------------------------------------------------------------------
 from logging import getLogger
 from src.lib.logger import *
-
 logger = getLogger("Log")
 
 from src.lib.keylist import ModifireKey, Hotkey
@@ -28,25 +27,22 @@ class Config:
     - データクラス化はクラス変数のため、全インスタンス共通のグローバル変数のように扱うことができる
     - 内部クラス化することでネストされたクラスをPrivate化することができる(外部参照不可)
     """
-
-    @dataclass(frozen=False)  # frozen=False: セッタ可能にする
+    @dataclass(frozen=False) # frozen=False: セッタ可能にする
     class Size:
         """SizeCalclatorAtCounter専用のパラメータオブジェクト"""
-
-        resize_max_cnt: int  # 段階リサイズを実行できる最大回数
-        resize_add_width_px: float  # リサイズごと(カウンタと連動)の拡大倍率(基準サイズから×n倍するか)
-        base_width_toleft_px: int  # 初期リサイズ時のウィンドウサイズ
-        base_width_toright_px: int  # 初期リサイズ時のウィンドウサイズ
-        adjust_width_px: int  # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの枠のサイズ？)
-        is_subtract_taskbar: bool  # タスクバーのサイズを差し引くか
-        is_reverse_direction_windowleft: bool  # 逆方向へ拡大させるか
-        is_reverse_direction_windowright: bool  # 逆方向へ拡大させるか
+        resize_max_cnt: int # 段階リサイズを実行できる最大回数
+        resize_add_width_px: float # リサイズごと(カウンタと連動)の拡大倍率(基準サイズから×n倍するか)
+        base_width_toleft_px: int # 初期リサイズ時のウィンドウサイズ
+        base_width_toright_px: int # 初期リサイズ時のウィンドウサイズ
+        adjust_width_px: int # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの枠のサイズ？)
+        is_subtract_taskbar: bool # タスクバーのサイズを差し引くか
+        is_reverse_direction_windowleft: bool # 逆方向へ拡大させるか
+        is_reverse_direction_windowright: bool # 逆方向へ拡大させるか
 
     @dataclass(frozen=False)
     class Position:
         """PositionCalclator専用のパラメータオブジェクト"""
-
-        adjust_x_px: int  # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの角丸枠のサイズ？)
+        adjust_x_px: int # なぜか完全に画面にぴったりフィットしないため、その調整用(恐らくウィンドウの角丸枠のサイズ？)
 
     @dataclass(frozen=False)
     class HotkeyWindowLeft:
@@ -63,7 +59,7 @@ class Config:
         mod_alt: bool
         mod_win: bool
         hotkey: str
-
+        
     @staticmethod
     def validate() -> dict:
         try:
@@ -89,8 +85,9 @@ class Config:
             Config.HotkeyWindowRight.hotkey
 
         except AttributeError as e:
-            raise AttributeError(
-                "定義されていないプロパティが存在します。全てのプロパティを定義してください。\n" f"{e.args[0]}"
+            raise AttributeError( \
+                "定義されていないプロパティが存在します。全てのプロパティを定義してください。\n" \
+                f"{e.args[0]}"
             )
         return
 
@@ -116,16 +113,12 @@ class Config:
         """
         # 修飾キー(configのValueが True だった場合に変換して格納する)
         modk = ModifireKey()
-        if HotkeyWindowLeftRight.mod_ctrl:
-            modk.addCombination(modk.CTRLKEY)
-        if HotkeyWindowLeftRight.mod_shift:
-            modk.addCombination(modk.SHIFTKEY)
-        if HotkeyWindowLeftRight.mod_alt:
-            modk.addCombination(modk.ALTKEY)
-        if HotkeyWindowLeftRight.mod_win:
-            modk.addCombination(modk.WINKEY)
+        if HotkeyWindowLeftRight.mod_ctrl: modk.addCombination(modk.CTRLKEY)
+        if HotkeyWindowLeftRight.mod_shift: modk.addCombination(modk.SHIFTKEY)
+        if HotkeyWindowLeftRight.mod_alt: modk.addCombination(modk.ALTKEY)
+        if HotkeyWindowLeftRight.mod_win: modk.addCombination(modk.WINKEY)
         mod_combination = modk.getCombinationKeycode()
-
+        
         # ホットキー
         hk = Hotkey()
         hotkey = hk.getKeycode(HotkeyWindowLeftRight.hotkey)
@@ -140,18 +133,16 @@ class Config:
 # -------------------------------------------------------------------------
 class IConfigSet(ABC):
     @abstractmethod
-    def _setupConfigPython(self) -> None:
-        pass
-
+    def _setupConfigPython(self) -> None: pass
+    
     def setupConfigPython(self) -> None:
         self._setupConfigPython()
-        Config.validate()  # 全てのプロパティが定義されているか確認
+        Config.validate() # 全てのプロパティが定義されているか確認
         logger.info("config.pyへ変数値の書き換えが完了しました")
 
 
 class ConfigDefault(IConfigSet):
     """初期値設定用"""
-
     def _setupConfigPython(self) -> None:
         Config.Size.resize_max_cnt = 4
         Config.Size.resize_add_width_px = 100
@@ -177,7 +168,6 @@ class ConfigDefault(IConfigSet):
 class ConfigJsonRepository(IConfigSet):
     """※Jsonの値を参照したいときは、このクラスのsetupメソッドでConfigクラスを書き換えて、
     それを参照すること(直接このクラスの永続化されたJson値を参照しない)"""
-
     def __init__(self) -> None:
         # jsonを読み込み、dictionaryとしてインスタンス変数化(永続化)
         jc = JsonController(CONFIG_JSON_PATH)
@@ -190,97 +180,45 @@ class ConfigJsonRepository(IConfigSet):
         """config.pyをjsonで読みとった値で書き換え"""
         Config.Size.resize_max_cnt = self.json_dict["size"]["resize_max_cnt"]
         Config.Size.resize_add_width_px = self.json_dict["size"]["resize_add_width_px"]
-        Config.Size.base_width_toleft_px = self.json_dict["size"][
-            "base_width_toleft_px"
-        ]
-        Config.Size.base_width_toright_px = self.json_dict["size"][
-            "base_width_toright_px"
-        ]
+        Config.Size.base_width_toleft_px = self.json_dict["size"]["base_width_toleft_px"]
+        Config.Size.base_width_toright_px = self.json_dict["size"]["base_width_toright_px"]
         Config.Size.adjust_width_px = self.json_dict["size"]["adjust_width_px"]
         Config.Size.is_subtract_taskbar = self.json_dict["size"]["is_subtract_taskbar"]
-        Config.Size.is_reverse_direction_windowleft = self.json_dict["size"][
-            "is_reverse_direction_windowleft"
-        ]
-        Config.Size.is_reverse_direction_windowright = self.json_dict["size"][
-            "is_reverse_direction_windowright"
-        ]
+        Config.Size.is_reverse_direction_windowleft = self.json_dict["size"]["is_reverse_direction_windowleft"]
+        Config.Size.is_reverse_direction_windowright = self.json_dict["size"]["is_reverse_direction_windowright"]
         Config.Position.adjust_x_px = self.json_dict["position"]["adjust_x_px"]
-        Config.HotkeyWindowLeft.mod_ctrl = self.json_dict["hotkey_windowleft"][
-            "mod_ctrl"
-        ]
-        Config.HotkeyWindowLeft.mod_shift = self.json_dict["hotkey_windowleft"][
-            "mod_shift"
-        ]
+        Config.HotkeyWindowLeft.mod_ctrl = self.json_dict["hotkey_windowleft"]["mod_ctrl"]
+        Config.HotkeyWindowLeft.mod_shift = self.json_dict["hotkey_windowleft"]["mod_shift"]
         Config.HotkeyWindowLeft.mod_alt = self.json_dict["hotkey_windowleft"]["mod_alt"]
         Config.HotkeyWindowLeft.mod_win = self.json_dict["hotkey_windowleft"]["mod_win"]
         Config.HotkeyWindowLeft.hotkey = self.json_dict["hotkey_windowleft"]["hotkey"]
-        Config.HotkeyWindowRight.mod_ctrl = self.json_dict["hotkey_windowright"][
-            "mod_ctrl"
-        ]
-        Config.HotkeyWindowRight.mod_shift = self.json_dict["hotkey_windowright"][
-            "mod_shift"
-        ]
-        Config.HotkeyWindowRight.mod_alt = self.json_dict["hotkey_windowright"][
-            "mod_alt"
-        ]
-        Config.HotkeyWindowRight.mod_win = self.json_dict["hotkey_windowright"][
-            "mod_win"
-        ]
+        Config.HotkeyWindowRight.mod_ctrl = self.json_dict["hotkey_windowright"]["mod_ctrl"]
+        Config.HotkeyWindowRight.mod_shift = self.json_dict["hotkey_windowright"]["mod_shift"]
+        Config.HotkeyWindowRight.mod_alt = self.json_dict["hotkey_windowright"]["mod_alt"]
+        Config.HotkeyWindowRight.mod_win = self.json_dict["hotkey_windowright"]["mod_win"]
         Config.HotkeyWindowRight.hotkey = self.json_dict["hotkey_windowright"]["hotkey"]
 
     def setupConfigJsonDictionary(self) -> None:
         try:
             self.json_dict["size"]["resize_max_cnt"] = Config.Size.resize_max_cnt
-            self.json_dict["size"][
-                "resize_add_width_px"
-            ] = Config.Size.resize_add_width_px
-            self.json_dict["size"][
-                "base_width_toleft_px"
-            ] = Config.Size.base_width_toleft_px
-            self.json_dict["size"][
-                "base_width_toright_px"
-            ] = Config.Size.base_width_toright_px
+            self.json_dict["size"]["resize_add_width_px"] = Config.Size.resize_add_width_px
+            self.json_dict["size"]["base_width_toleft_px"] = Config.Size.base_width_toleft_px
+            self.json_dict["size"]["base_width_toright_px"] = Config.Size.base_width_toright_px
             self.json_dict["size"]["adjust_width_px"] = Config.Size.adjust_width_px
-            self.json_dict["size"][
-                "is_subtract_taskbar"
-            ] = Config.Size.is_subtract_taskbar
-            self.json_dict["size"][
-                "is_reverse_direction_windowleft"
-            ] = Config.Size.is_reverse_direction_windowleft
-            self.json_dict["size"][
-                "is_reverse_direction_windowright"
-            ] = Config.Size.is_reverse_direction_windowright
+            self.json_dict["size"]["is_subtract_taskbar"] = Config.Size.is_subtract_taskbar
+            self.json_dict["size"]["is_reverse_direction_windowleft"] = Config.Size.is_reverse_direction_windowleft
+            self.json_dict["size"]["is_reverse_direction_windowright"] = Config.Size.is_reverse_direction_windowright
             self.json_dict["position"]["adjust_x_px"] = Config.Position.adjust_x_px
-            self.json_dict["hotkey_windowleft"][
-                "mod_ctrl"
-            ] = Config.HotkeyWindowLeft.mod_ctrl
-            self.json_dict["hotkey_windowleft"][
-                "mod_shift"
-            ] = Config.HotkeyWindowLeft.mod_shift
-            self.json_dict["hotkey_windowleft"][
-                "mod_alt"
-            ] = Config.HotkeyWindowLeft.mod_alt
-            self.json_dict["hotkey_windowleft"][
-                "mod_win"
-            ] = Config.HotkeyWindowLeft.mod_win
-            self.json_dict["hotkey_windowleft"][
-                "hotkey"
-            ] = Config.HotkeyWindowLeft.hotkey
-            self.json_dict["hotkey_windowright"][
-                "mod_ctrl"
-            ] = Config.HotkeyWindowRight.mod_ctrl
-            self.json_dict["hotkey_windowright"][
-                "mod_shift"
-            ] = Config.HotkeyWindowRight.mod_shift
-            self.json_dict["hotkey_windowright"][
-                "mod_alt"
-            ] = Config.HotkeyWindowRight.mod_alt
-            self.json_dict["hotkey_windowright"][
-                "mod_win"
-            ] = Config.HotkeyWindowRight.mod_win
-            self.json_dict["hotkey_windowright"][
-                "hotkey"
-            ] = Config.HotkeyWindowRight.hotkey
+            self.json_dict["hotkey_windowleft"]["mod_ctrl"] = Config.HotkeyWindowLeft.mod_ctrl
+            self.json_dict["hotkey_windowleft"]["mod_shift"] = Config.HotkeyWindowLeft.mod_shift
+            self.json_dict["hotkey_windowleft"]["mod_alt"] = Config.HotkeyWindowLeft.mod_alt
+            self.json_dict["hotkey_windowleft"]["mod_win"] = Config.HotkeyWindowLeft.mod_win
+            self.json_dict["hotkey_windowleft"]["hotkey"] = Config.HotkeyWindowLeft.hotkey
+            self.json_dict["hotkey_windowright"]["mod_ctrl"] = Config.HotkeyWindowRight.mod_ctrl
+            self.json_dict["hotkey_windowright"]["mod_shift"] = Config.HotkeyWindowRight.mod_shift
+            self.json_dict["hotkey_windowright"]["mod_alt"] = Config.HotkeyWindowRight.mod_alt
+            self.json_dict["hotkey_windowright"]["mod_win"] = Config.HotkeyWindowRight.mod_win
+            self.json_dict["hotkey_windowright"]["hotkey"] = Config.HotkeyWindowRight.hotkey
         except AttributeError:
             raise AttributeError("代入エラー: 代入対象のConfigの値に、Blank値が混入しています")
 
@@ -305,7 +243,6 @@ class ConfigGuiService(IConfigSet):
         外部定義したいコードをコピペすればOK
         (ただし、追加で ".ui" を付けること <ex. self.ui.comboBox...>)
     """
-
     def __init__(self, GlobalHotkeyService):
         root = RootGui()
         self.root = root
@@ -325,60 +262,29 @@ class ConfigGuiService(IConfigSet):
         # GlobalHotkeyServiceのインスタンスを引数経由で受け取る
         # (ApplicationServiceで既に生成されているインスタンスを渡すため、
         # カッコをつけていない(インスタンス化していない)
-        g_service = GlobalHotkeyService
+        g_service = GlobalHotkeyService 
         self.g_service = g_service
 
     def _setupConfigPython(self) -> None:
         Config.Size.resize_max_cnt = self.gui.ui.spinBox_resize_max_cnt.value()
-        Config.Size.resize_add_width_px = (
-            self.gui.ui.spinBox_resize_add_width_px.value()
-        )
-        Config.Size.base_width_toleft_px = (
-            self.gui.ui.spinBox_base_width_toleft_px.value()
-        )
-        Config.Size.base_width_toright_px = (
-            self.gui.ui.spinBox_base_width_toright_px.value()
-        )
+        Config.Size.resize_add_width_px = self.gui.ui.spinBox_resize_add_width_px.value()
+        Config.Size.base_width_toleft_px = self.gui.ui.spinBox_base_width_toleft_px.value()
+        Config.Size.base_width_toright_px = self.gui.ui.spinBox_base_width_toright_px.value()
         Config.Size.adjust_width_px = self.gui.ui.spinBox_adjust_width_px.value()
-        Config.Size.is_subtract_taskbar = (
-            self.gui.ui.checkBox_is_subtract_taskbar.isChecked()
-        )
-
-        # TODO: 未実装
-        # Config.Size.is_reverse_direction_windowleft = self.gui.ui.checkBox_is_reverse_direction_windowleft.isChecked()
-        # Config.Size.is_reverse_direction_windowright = self.gui.ui.checkBox_is_reverse_direction_windowright.isChecked()
-
+        Config.Size.is_subtract_taskbar = self.gui.ui.checkBox_is_subtract_taskbar.isChecked()
+        Config.Size.is_reverse_direction_windowleft = self.gui.ui.checkBox_is_reverse_direction_windowleft.isChecked()
+        Config.Size.is_reverse_direction_windowright = self.gui.ui.checkBox_is_reverse_direction_windowright.isChecked()
         Config.Position.adjust_x_px = self.gui.ui.spinBox_adjust_x_px.value()
-        Config.HotkeyWindowLeft.mod_ctrl = (
-            self.gui.ui.checkBox_windowleft_mod_ctrl.isChecked()
-        )
-        Config.HotkeyWindowLeft.mod_shift = (
-            self.gui.ui.checkBox_windowleft_mod_shift.isChecked()
-        )
-        Config.HotkeyWindowLeft.mod_alt = (
-            self.gui.ui.checkBox_windowleft_mod_alt.isChecked()
-        )
-        Config.HotkeyWindowLeft.mod_win = (
-            self.gui.ui.checkBox_windowleft_mod_win.isChecked()
-        )
-        Config.HotkeyWindowLeft.hotkey = (
-            self.gui.ui.comboBox_Hotkey_WindowLeft.currentText()
-        )
-        Config.HotkeyWindowRight.mod_ctrl = (
-            self.gui.ui.checkBox_windowright_mod_ctrl.isChecked()
-        )
-        Config.HotkeyWindowRight.mod_shift = (
-            self.gui.ui.checkBox_windowright_mod_shift.isChecked()
-        )
-        Config.HotkeyWindowRight.mod_alt = (
-            self.gui.ui.checkBox_windowright_mod_alt.isChecked()
-        )
-        Config.HotkeyWindowRight.mod_win = (
-            self.gui.ui.checkBox_windowright_mod_win.isChecked()
-        )
-        Config.HotkeyWindowRight.hotkey = (
-            self.gui.ui.comboBox_Hotkey_WindowRight.currentText()
-        )
+        Config.HotkeyWindowLeft.mod_ctrl = self.gui.ui.checkBox_windowleft_mod_ctrl.isChecked()
+        Config.HotkeyWindowLeft.mod_shift = self.gui.ui.checkBox_windowleft_mod_shift.isChecked()
+        Config.HotkeyWindowLeft.mod_alt = self.gui.ui.checkBox_windowleft_mod_alt.isChecked()
+        Config.HotkeyWindowLeft.mod_win = self.gui.ui.checkBox_windowleft_mod_win.isChecked()
+        Config.HotkeyWindowLeft.hotkey = self.gui.ui.comboBox_Hotkey_WindowLeft.currentText()
+        Config.HotkeyWindowRight.mod_ctrl = self.gui.ui.checkBox_windowright_mod_ctrl.isChecked()
+        Config.HotkeyWindowRight.mod_shift = self.gui.ui.checkBox_windowright_mod_shift.isChecked()
+        Config.HotkeyWindowRight.mod_alt = self.gui.ui.checkBox_windowright_mod_alt.isChecked()
+        Config.HotkeyWindowRight.mod_win = self.gui.ui.checkBox_windowright_mod_win.isChecked()
+        Config.HotkeyWindowRight.hotkey = self.gui.ui.comboBox_Hotkey_WindowRight.currentText()
 
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -412,28 +318,22 @@ class ConfigGuiService(IConfigSet):
         # PushButton
         pushbutton_list = []
         # - OKButton
-        set_focus = True  # 最初の選択状態にしておく
-        pushbutton_item = (
-            self.gui.ui.pustButton_ok,
-            self.__onClickEvent_pustButton_ok,
-            set_focus,
-        )
+        set_focus = True # 最初の選択状態にしておく
+        pushbutton_item = (self.gui.ui.pustButton_ok,
+                            self.__onClickEvent_pustButton_ok,
+                            set_focus)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
         set_focus = False
-        pushbutton_item = (
-            self.gui.ui.pustButton_cancel,
-            self.__onClickEvent_pustButton_cancel,
-            set_focus,
-        )
+        pushbutton_item = (self.gui.ui.pustButton_cancel,
+                            self.__onClickEvent_pustButton_cancel,
+                            set_focus)
         pushbutton_list.append(pushbutton_item)
         # - InitializeSettingButton
         set_focus = False
-        pushbutton_item = (
-            self.gui.ui.pustButton_initialize_setting,
-            self.__onClickEvent_pustButton_initialize_setting,
-            set_focus,
-        )
+        pushbutton_item = (self.gui.ui.pustButton_initialize_setting,
+                            self.__onClickEvent_pustButton_initialize_setting,
+                            set_focus)
         pushbutton_list.append(pushbutton_item)
         # - setup
         self.gui.setupPushButton(pushbutton_list)
@@ -456,15 +356,13 @@ class ConfigGuiService(IConfigSet):
     def __onClickEvent_pustButton_cancel(self) -> None:
         # GUIスレッド終了
         self.stop()
-
+    
     def __onClickEvent_pustButton_initialize_setting(self) -> None:
         dialog = Dialog()
         value = "設定を全て初期化します。よろしいですか？"
-        user_input = dialog.showOKCancelExclamation(
-            title="Fit Screen Window - 確認", value=value, is_cancel_default=True
-        )
+        user_input = dialog.showOKCancelExclamation(title="Fit Screen Window - 確認", value=value, is_cancel_default=True)
 
-        if user_input:  # OKボタン押下時
+        if user_input: # OKボタン押下時
             # Configクラスの全プロパティを指定した初期値にセット
             config_default = ConfigDefault()
             config_default.setupConfigPython()
@@ -472,7 +370,7 @@ class ConfigGuiService(IConfigSet):
             # JsonへConfig.pyに格納された値を保存
             self.__readAndSaveJson()
             logger.info("初期値設定用クラスの値からconfig.jsonを保存しました")
-
+            
             # GUIスレッド終了
             self.stop()
 
@@ -483,29 +381,18 @@ class ConfigGuiService(IConfigSet):
 
         # インスタンスのJsonDictionaryの値からJsonへ書き込み保存
         json.save()
-
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
     def __setupTab_Size(self):
         """サイズタブのsetup"""
         self.gui.ui.spinBox_resize_max_cnt.setValue(Config.Size.resize_max_cnt)
-        self.gui.ui.spinBox_resize_add_width_px.setValue(
-            Config.Size.resize_add_width_px
-        )
-        self.gui.ui.spinBox_base_width_toleft_px.setValue(
-            Config.Size.base_width_toleft_px
-        )
-        self.gui.ui.spinBox_base_width_toright_px.setValue(
-            Config.Size.base_width_toright_px
-        )
+        self.gui.ui.spinBox_resize_add_width_px.setValue(Config.Size.resize_add_width_px)
+        self.gui.ui.spinBox_base_width_toleft_px.setValue(Config.Size.base_width_toleft_px)
+        self.gui.ui.spinBox_base_width_toright_px.setValue(Config.Size.base_width_toright_px)
         self.gui.ui.spinBox_adjust_width_px.setValue(Config.Size.adjust_width_px)
-        self.gui.ui.checkBox_is_subtract_taskbar.setChecked(
-            Config.Size.is_subtract_taskbar
-        )
-
-        # TODO: 未実装
-        # self.gui.ui.checkBox_is_reverse_direction_windowleft.setChecked(Config.Size.is_reverse_direction_windowleft)
-        # self.gui.ui.checkBox_is_reverse_direction_windowright.setChecked(Config.Size.is_reverse_direction_windowright)
+        self.gui.ui.checkBox_is_subtract_taskbar.setChecked(Config.Size.is_subtract_taskbar)
+        self.gui.ui.checkBox_is_reverse_direction_windowleft.setChecked(Config.Size.is_reverse_direction_windowleft)
+        self.gui.ui.checkBox_is_reverse_direction_windowright.setChecked(Config.Size.is_reverse_direction_windowright)
 
     def __setupTab_Position(self):
         """位置タブのsetup"""
@@ -518,18 +405,10 @@ class ConfigGuiService(IConfigSet):
         key_list = hk.getKeyList()
         combobox_list = []
         # - WindowLeft
-        combobox_item = (
-            self.gui.ui.comboBox_Hotkey_WindowLeft,
-            key_list,
-            Config.HotkeyWindowLeft.hotkey,
-        )
+        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowLeft, key_list, Config.HotkeyWindowLeft.hotkey)
         combobox_list.append(combobox_item)
         # - WindowRight
-        combobox_item = (
-            self.gui.ui.comboBox_Hotkey_WindowRight,
-            key_list,
-            Config.HotkeyWindowRight.hotkey,
-        )
+        combobox_item = (self.gui.ui.comboBox_Hotkey_WindowRight, key_list, Config.HotkeyWindowRight.hotkey)
         combobox_list.append(combobox_item)
         # - setup
         self.gui.setupComboBox(combobox_list)
@@ -537,46 +416,22 @@ class ConfigGuiService(IConfigSet):
         # CheckBox
         checkbox_list = []
         # - WindowLeft
-        checkbox_item = (
-            self.gui.ui.checkBox_windowleft_mod_ctrl,
-            Config.HotkeyWindowLeft.mod_ctrl,
-        )
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_ctrl,Config.HotkeyWindowLeft.mod_ctrl)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (
-            self.gui.ui.checkBox_windowleft_mod_shift,
-            Config.HotkeyWindowLeft.mod_shift,
-        )
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_shift, Config.HotkeyWindowLeft.mod_shift)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (
-            self.gui.ui.checkBox_windowleft_mod_alt,
-            Config.HotkeyWindowLeft.mod_alt,
-        )
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_alt, Config.HotkeyWindowLeft.mod_alt)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (
-            self.gui.ui.checkBox_windowleft_mod_win,
-            Config.HotkeyWindowLeft.mod_win,
-        )
+        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_win, Config.HotkeyWindowLeft.mod_win)
         checkbox_list.append(checkbox_item)
         # - WindowRight
-        checkbox_item = (
-            self.gui.ui.checkBox_windowright_mod_ctrl,
-            Config.HotkeyWindowRight.mod_ctrl,
-        )
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_ctrl, Config.HotkeyWindowRight.mod_ctrl)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (
-            self.gui.ui.checkBox_windowright_mod_shift,
-            Config.HotkeyWindowRight.mod_shift,
-        )
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_shift, Config.HotkeyWindowRight.mod_shift)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (
-            self.gui.ui.checkBox_windowright_mod_alt,
-            Config.HotkeyWindowRight.mod_alt,
-        )
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_alt, Config.HotkeyWindowRight.mod_alt)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (
-            self.gui.ui.checkBox_windowright_mod_win,
-            Config.HotkeyWindowRight.mod_win,
-        )
+        checkbox_item = (self.gui.ui.checkBox_windowright_mod_win, Config.HotkeyWindowRight.mod_win)
         checkbox_list.append(checkbox_item)
         # - setup
         self.gui.setupCheckBox(checkbox_list)
