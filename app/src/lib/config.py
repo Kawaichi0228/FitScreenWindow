@@ -266,15 +266,15 @@ class ConfigGuiService(IConfigSet):
         self.g_service = g_service
 
     def _setupConfigPython(self) -> None:
-        Config.Size.resize_max_cnt = self.gui.ui.lineEdit_resize_max_cnt.displayText()
-        Config.Size.resize_add_width_px = self.gui.ui.lineEdit_resize_add_width_px.displayText()
-        Config.Size.base_width_toleft_px = self.gui.ui.lineEdit_base_width_toleft_px.displayText()
-        Config.Size.base_width_toright_px = self.gui.ui.lineEdit_base_width_toright_px.displayText()
-        Config.Size.adjust_width_px = self.gui.ui.lineEdit_adjust_width_px.displayText()
+        Config.Size.resize_max_cnt = int(self.gui.ui.lineEdit_resize_max_cnt.displayText())
+        Config.Size.resize_add_width_px = int(self.gui.ui.lineEdit_resize_add_width_px.displayText())
+        Config.Size.base_width_toleft_px = int(self.gui.ui.lineEdit_base_width_toleft_px.displayText())
+        Config.Size.base_width_toright_px = int(self.gui.ui.lineEdit_base_width_toright_px.displayText())
+        Config.Size.adjust_width_px = int(self.gui.ui.lineEdit_adjust_width_px.displayText())
         Config.Size.is_subtract_taskbar = self.gui.ui.checkBox_is_subtract_taskbar.isChecked()
         Config.Size.is_reverse_direction_windowleft = self.gui.ui.checkBox_is_reverse_direction_windowleft.isChecked()
         Config.Size.is_reverse_direction_windowright = self.gui.ui.checkBox_is_reverse_direction_windowright.isChecked()
-        Config.Position.adjust_x_px = self.gui.ui.lineEdit_adjust_x_px.displayText()
+        Config.Position.adjust_x_px = int(self.gui.ui.lineEdit_adjust_x_px.displayText())
         Config.HotkeyWindowLeft.mod_ctrl = self.gui.ui.checkBox_windowleft_mod_ctrl.isChecked()
         Config.HotkeyWindowLeft.mod_shift = self.gui.ui.checkBox_windowleft_mod_shift.isChecked()
         Config.HotkeyWindowLeft.mod_alt = self.gui.ui.checkBox_windowleft_mod_alt.isChecked()
