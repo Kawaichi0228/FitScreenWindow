@@ -316,9 +316,11 @@ class ConfigGuiService(IConfigSet):
         # Window
         self.gui.setupWindow()
 
+        # 最初のインデックスのページを選択させておく
+        self.gui.ui.stackedWidget.setCurrentIndex(0)
+
         # PushButton
         pushbutton_list = []
-
         # =========================================================================
         # Left Bar
         # =========================================================================
@@ -355,7 +357,9 @@ class ConfigGuiService(IConfigSet):
         pushbutton_item = (self.gui.ui.pushButton_close, self.__onClickEvent_pushButton_cancel, set_focus)
         pushbutton_list.append(pushbutton_item)
 
-        # - setup
+        # =========================================================================
+        # - Setup -
+        # =========================================================================
         self.gui.setupPushButton(pushbutton_list)
 
     def __onClickEvent_pushButton_size(self) -> None:
