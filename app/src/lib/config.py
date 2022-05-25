@@ -266,6 +266,7 @@ class ConfigGuiService(IConfigSet):
         self.g_service = g_service
 
     def _setupConfigPython(self) -> None:
+        # MEMO: lineEditウィジェットはstr型のみのため、型変換している
         Config.Size.resize_max_cnt = int(self.gui.ui.lineEdit_resize_max_cnt.displayText())
         Config.Size.resize_add_width_px = int(self.gui.ui.lineEdit_resize_add_width_px.displayText())
         Config.Size.base_width_toleft_px = int(self.gui.ui.lineEdit_base_width_toleft_px.displayText())
@@ -375,6 +376,7 @@ class ConfigGuiService(IConfigSet):
     # -------------------------------------------------------------------------
     def __setupTab_Size(self):
         """サイズタブのsetup"""
+        # MEMO: lineEditウィジェットはstr型のみのため、型変換している
         self.gui.ui.lineEdit_resize_max_cnt.setText(str(Config.Size.resize_max_cnt))
         self.gui.ui.lineEdit_resize_add_width_px.setText(str(Config.Size.resize_add_width_px))
         self.gui.ui.lineEdit_base_width_toleft_px.setText(str(Config.Size.base_width_toleft_px))
