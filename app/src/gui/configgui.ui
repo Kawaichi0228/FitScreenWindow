@@ -7,18 +7,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>940</width>
-    <height>592</height>
+    <width>930</width>
+    <height>560</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>940</width>
+    <width>930</width>
     <height>560</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
   </property>
   <widget class="QWidget" name="entireStyleSheet">
    <property name="font">
@@ -123,47 +126,6 @@ Button */
 	border: 2px solid rgb(43, 50, 61);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-QTableWidget */
-QTableWidget {	
-	background-color: transparent;
-	padding: 10px;
-	border-radius: 5px;
-	gridline-color: rgb(44, 49, 58);
-	border-bottom: 1px solid rgb(44, 49, 60);
-}
-QTableWidget::item{
-	border-color: rgb(44, 49, 60);
-	padding-left: 5px;
-	padding-right: 5px;
-	gridline-color: rgb(44, 49, 60);
-}
-QTableWidget::item:selected{
-	background-color: #FF5F5F;
-}
-QHeaderView::section{
-	background-color: rgb(33, 37, 43);
-	max-width: 30px;
-	border: 1px solid rgb(44, 49, 58);
-	border-style: none;
-    border-bottom: 1px solid rgb(44, 49, 60);
-    border-right: 1px solid rgb(44, 49, 60);
-}
-QTableWidget::horizontalHeader {	
-	background-color: rgb(33, 37, 43);
-}
-QHeaderView::section:horizontal
-{
-    border: 1px solid rgb(33, 37, 43);
-	background-color: rgb(33, 37, 43);
-	padding: 3px;
-	border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-}
-QHeaderView::section:vertical
-{
-    border: 1px solid rgb(44, 49, 60);
-}
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////
 LineEdit */
@@ -294,8 +256,8 @@ QCommandLinkButton:pressed {
    <widget class="QFrame" name="entireBg">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
+      <x>0</x>
+      <y>0</y>
       <width>920</width>
       <height>549</height>
      </rect>
@@ -813,7 +775,7 @@ QCommandLinkButton:pressed {
                  <cursorShape>PointingHandCursor</cursorShape>
                 </property>
                 <property name="toolTip">
-                 <string>Close</string>
+                 <string/>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-image: url(:/images/icon-cancel.png);

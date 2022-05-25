@@ -63,7 +63,7 @@ class ConfigGui(UtilGui, QDialog):
     def setupWindow_CloseButtonOnly(self) -> None:
         """閉じるボタンのみ表示(ウィンドウに表示するTypeとHints)"""
         self.setWindowFlags(
-            Qt.Window|Qt.WindowCloseButtonHint
+            Qt.Window|Qt.FramelessWindowHint
         )
     # -------------------------------------------------------------------------
     # PushButton
