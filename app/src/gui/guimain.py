@@ -164,10 +164,18 @@ class MainWindow(QMainWindow):
 
     def __moveWindow(self, e):
         if e.buttons() == Qt.LeftButton:
-            self.move(self.dragPos)
+            self.move(self.pos() + self.dragPos - self.clickPosition)
+            self.clickPosition = e.globalPos()
+            e.accept()
+
             print('Mouse click: LEFT CLICK')
+            
         if e.buttons() == Qt.RightButton:
             print('Mouse click: RIGHT CLICK')
+
+    def mousePressEvent(self, event):
+        self.clickPosition = event.globalPos()
+        print(self.clickPosition)
 
     def mouseMoveEvent(self, event) -> None:
         self.dragPos = event.globalPos()
