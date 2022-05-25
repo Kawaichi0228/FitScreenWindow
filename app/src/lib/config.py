@@ -330,6 +330,10 @@ class ConfigGuiService(IConfigSet):
         set_focus = False
         pushbutton_item = (self.gui.ui.pushButton_initialize_setting, self.__onClickEvent_pushButton_initialize_setting, set_focus)
         pushbutton_list.append(pushbutton_item)
+        # - CloseAppButton
+        set_focus = False
+        pushbutton_item = (self.gui.ui.pushButton_close, self.__onClickEvent_pushButton_cancel, set_focus)
+        pushbutton_list.append(pushbutton_item)
         # - setup
         self.gui.setupPushButton(pushbutton_list)
 

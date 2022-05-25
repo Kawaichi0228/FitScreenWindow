@@ -473,20 +473,20 @@ class Ui_ConfigGUI(object):
         self.horizontalLayout_2.setSpacing(5)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.btn_closeApp = QPushButton(self.rightButtonsFrame)
-        self.btn_closeApp.setObjectName(u"btn_closeApp")
-        self.btn_closeApp.setMinimumSize(QSize(28, 28))
-        self.btn_closeApp.setMaximumSize(QSize(28, 28))
-        self.btn_closeApp.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_closeApp.setStyleSheet(u"background-image: url(:/images/icon-cancel.png);\n"
+        self.pushButton_close = QPushButton(self.rightButtonsFrame)
+        self.pushButton_close.setObjectName(u"pushButton_close")
+        self.pushButton_close.setMinimumSize(QSize(28, 28))
+        self.pushButton_close.setMaximumSize(QSize(28, 28))
+        self.pushButton_close.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_close.setStyleSheet(u"background-image: url(:/images/icon-cancel.png);\n"
 "background-position: center;\n"
 "background-repeat: no-repeat;")
         icon = QIcon()
         icon.addFile(u":/icons/images/icons/icon_close.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_closeApp.setIcon(icon)
-        self.btn_closeApp.setIconSize(QSize(20, 20))
+        self.pushButton_close.setIcon(icon)
+        self.pushButton_close.setIconSize(QSize(20, 20))
 
-        self.horizontalLayout_2.addWidget(self.btn_closeApp)
+        self.horizontalLayout_2.addWidget(self.pushButton_close)
 
 
         self.horizontalLayout.addWidget(self.rightButtonsFrame, 0, Qt.AlignRight)
@@ -870,6 +870,8 @@ class Ui_ConfigGUI(object):
 
         self.appLayout.addWidget(self.rightBoxBg)
 
+        #ConfigGUI.setCentralWidget(self.entireStyleSheet)
+
         self.retranslateUi(ConfigGUI)
         self.pushButton_size.pressed.connect(self.stackedWidget.update)
 
@@ -889,9 +891,9 @@ class Ui_ConfigGUI(object):
         self.pushButton_cancel.setText(QCoreApplication.translate("ConfigGUI", u"\u30ad\u30e3\u30f3\u30bb\u30eb", None))
         self.pushButton_initialize_setting.setText(QCoreApplication.translate("ConfigGUI", u"\u521d\u671f\u8a2d\u5b9a", None))
 #if QT_CONFIG(tooltip)
-        self.btn_closeApp.setToolTip(QCoreApplication.translate("ConfigGUI", u"Close", None))
+        self.pushButton_close.setToolTip(QCoreApplication.translate("ConfigGUI", u"Close", None))
 #endif // QT_CONFIG(tooltip)
-        self.btn_closeApp.setText("")
+        self.pushButton_close.setText("")
 #if QT_CONFIG(whatsthis)
         self.rightBoxPagesContainer.setWhatsThis(QCoreApplication.translate("ConfigGUI", u"<html><head/><body><p><br/></p></body></html>", None))
 #endif // QT_CONFIG(whatsthis)

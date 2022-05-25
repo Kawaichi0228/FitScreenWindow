@@ -796,7 +796,7 @@ QCommandLinkButton:pressed {
                <number>0</number>
               </property>
               <item>
-               <widget class="QPushButton" name="btn_closeApp">
+               <widget class="QPushButton" name="pushButton_close">
                 <property name="minimumSize">
                  <size>
                   <width>28</width>
