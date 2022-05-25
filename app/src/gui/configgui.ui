@@ -192,8 +192,8 @@ QComboBox QAbstractItemView {
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>920</width>
-      <height>549</height>
+      <width>930</width>
+      <height>560</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -805,7 +805,7 @@ background-repeat: no-repeat;</string>
                    <x>9</x>
                    <y>9</y>
                    <width>700</width>
-                   <height>1198</height>
+                   <height>460</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
