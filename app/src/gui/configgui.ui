@@ -1283,7 +1283,7 @@ background-repeat: no-repeat;</string>
                       <number>1</number>
                      </property>
                      <property name="text">
-                      <string>(範囲 1～10)</string>
+                      <string>(範囲 1～99)</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

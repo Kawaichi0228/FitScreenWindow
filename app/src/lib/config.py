@@ -3,6 +3,7 @@
 # -------------------------------------------------------------------------
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from PySide6.QtGui import QIntValidator
 
 # -------------------------------------------------------------------------
 # App modules
@@ -416,10 +417,20 @@ class ConfigGuiService(IConfigSet):
         """サイズタブのsetup"""
         # MEMO: lineEditウィジェットはstr型のみのため、型変換している
         self.gui.ui.lineEdit_resize_max_cnt.setText(str(Config.Size.resize_max_cnt))
+        self.gui.ui.lineEdit_resize_max_cnt.setValidator(QIntValidator(bottom=1, top=10))
+        
         self.gui.ui.lineEdit_resize_add_width_px.setText(str(Config.Size.resize_add_width_px))
+        self.gui.ui.lineEdit_resize_add_width_px.setValidator(QIntValidator(bottom=1, top=999))
+
         self.gui.ui.lineEdit_base_width_toleft_px.setText(str(Config.Size.base_width_toleft_px))
+        self.gui.ui.lineEdit_base_width_toleft_px.setValidator(QIntValidator(bottom=1, top=9999))
+
         self.gui.ui.lineEdit_base_width_toright_px.setText(str(Config.Size.base_width_toright_px))
+        self.gui.ui.lineEdit_base_width_toright_px.setValidator(QIntValidator(bottom=1, top=9999))
+        
         self.gui.ui.lineEdit_adjust_width_px.setText(str(Config.Size.adjust_width_px))
+        self.gui.ui.lineEdit_adjust_width_px.setValidator(QIntValidator(bottom=1, top=999))
+
         self.gui.ui.checkBox_is_subtract_taskbar.setChecked(Config.Size.is_subtract_taskbar)
         self.gui.ui.checkBox_is_reverse_direction_windowleft.setChecked(Config.Size.is_reverse_direction_windowleft)
         self.gui.ui.checkBox_is_reverse_direction_windowright.setChecked(Config.Size.is_reverse_direction_windowright)
@@ -427,6 +438,7 @@ class ConfigGuiService(IConfigSet):
     def __setupTab_Position(self):
         """位置タブのsetup"""
         self.gui.ui.lineEdit_adjust_x_px.setText(str(Config.Position.adjust_x_px))
+        self.gui.ui.lineEdit_adjust_x_px.setValidator(QIntValidator(bottom=1, top=999))
 
     def __setupTab_ShortcutKey(self):
         """ショートカットキータブのsetup"""
