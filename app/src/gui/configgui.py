@@ -19,7 +19,8 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QGridLayout, QGroupBox, QHBoxLayout, QLabel,
     QLineEdit, QMainWindow, QPushButton, QSizePolicy,
     QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
-from src.gui import resource_rc
+#from src.gui import resource_rc
+import resource_rc
 
 class Ui_ConfigGUI(object):
     def setupUi(self, ConfigGUI):

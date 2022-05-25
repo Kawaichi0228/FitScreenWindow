@@ -9,7 +9,8 @@ from PySide6.QtWidgets import *
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
-from src.gui.configgui import Ui_ConfigGUI
+#from src.gui.configgui import Ui_ConfigGUI
+from configgui import Ui_ConfigGUI
 
 # -------------------------------------------------------------------------
 # Class
@@ -143,3 +144,35 @@ class ConfigGui(UtilGui, QDialog):
 
     def __checked_CheckBox(self, check_box, b: bool) -> None:
         check_box.setChecked(b)
+
+
+
+
+
+
+
+
+
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.ui = Ui_ConfigGUI()
+        self.ui.setupUi(self)
+
+        self.ui.rightTopBg.mousePressEvent = self.moveWindow
+
+        self.show()
+
+    def moveWindow(self):
+        self.move(self.dragPos)
+
+    def mouseMoveEvent(self, event) -> None:
+        self.dragPos = event.globalPos()
+        print(self.dragPos)
+        self.move(self.dragPos)
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    sys.exit(app.exec())
