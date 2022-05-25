@@ -318,9 +318,25 @@ class ConfigGuiService(IConfigSet):
 
         # PushButton
         pushbutton_list = []
-        # - OKButton
+
+        # =========================================================================
+        # Left Bar
+        # =========================================================================
+        # - SizeButton
         set_focus = True # 最初の選択状態にしておく
-        pushbutton_item = (self.gui.ui.pushButton_saveandexit, self.__onClickEvent_pushButton_ok, set_focus)
+        pushbutton_item = (self.gui.ui.pushButton_size, self.__onClickEvent_pushButton_size, set_focus)
+        pushbutton_list.append(pushbutton_item)
+        # - PositionButton
+        set_focus = False
+        pushbutton_item = (self.gui.ui.pushButton_position, self.__onClickEvent_pushButton_position, set_focus)
+        pushbutton_list.append(pushbutton_item)
+        # - HotkeyButton
+        set_focus = False
+        pushbutton_item = (self.gui.ui.pushButton_hotkey, self.__onClickEvent_pushButton_hotkey, set_focus)
+        pushbutton_list.append(pushbutton_item)
+        # - SaveandExitButton
+        set_focus = False
+        pushbutton_item = (self.gui.ui.pushButton_saveandexit, self.__onClickEvent_pushButton_saveandexit, set_focus)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
         set_focus = False
@@ -330,14 +346,28 @@ class ConfigGuiService(IConfigSet):
         set_focus = False
         pushbutton_item = (self.gui.ui.pushButton_initialize_setting, self.__onClickEvent_pushButton_initialize_setting, set_focus)
         pushbutton_list.append(pushbutton_item)
+
+        # =========================================================================
+        # Top Bar
+        # =========================================================================
         # - CloseAppButton
         set_focus = False
         pushbutton_item = (self.gui.ui.pushButton_close, self.__onClickEvent_pushButton_cancel, set_focus)
         pushbutton_list.append(pushbutton_item)
+
         # - setup
         self.gui.setupPushButton(pushbutton_list)
 
-    def __onClickEvent_pushButton_ok(self) -> None:
+    def __onClickEvent_pushButton_size(self) -> None:
+        self.gui.ui.stackedWidget.setCurrentIndex(0)
+
+    def __onClickEvent_pushButton_position(self) -> None:
+        self.gui.ui.stackedWidget.setCurrentIndex(1)
+
+    def __onClickEvent_pushButton_hotkey(self) -> None:
+        self.gui.ui.stackedWidget.setCurrentIndex(2)
+
+    def __onClickEvent_pushButton_saveandexit(self) -> None:
         # Config.pyのクラスへ値をセット
         self._setupConfigPython()
 
