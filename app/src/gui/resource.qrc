@@ -1,5 +1,12 @@
 <RCC>
   <qresource prefix="/">
-    <file>../../images/favicon.ico</file>
+    <file>../../images/icon-arrowbottom.png</file>
+    <file>../../images/icon-check.png</file>
+    <file>../../images/icon-cancel.png</file>
+    <file>../../images/icon-hotkey.png</file>
+    <file>../../images/icon-initializesetting.png</file>
+    <file>../../images/icon-position.png</file>
+    <file>../../images/icon-save.png</file>
+    <file>../../images/icon-size.png</file>
   </qresource>
 </RCC>

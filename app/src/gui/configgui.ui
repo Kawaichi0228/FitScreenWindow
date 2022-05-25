@@ -1,491 +1,2253 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Config</class>
- <widget class="QWidget" name="Config">
+ <author>Wanderson M. Pimenta</author>
+ <class>ConfigGUI</class>
+ <widget class="QMainWindow" name="ConfigGUI">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>344</width>
-    <height>282</height>
+    <width>940</width>
+    <height>592</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
+  <property name="minimumSize">
+   <size>
+    <width>940</width>
+    <height>560</height>
+   </size>
   </property>
   <property name="windowTitle">
-   <string>Fit Screen Window - 設定</string>
+   <string>MainWindow</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="resource.qrc">
-    <normaloff>:/images/favicon.ico</normaloff>:/images/favicon.ico</iconset>
-  </property>
-  <layout class="QGridLayout" name="gridLayout_7">
-   <item row="0" column="0" colspan="3">
-    <widget class="QTabWidget" name="tabWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="currentIndex">
+  <widget class="QWidget" name="entireStyleSheet">
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget{
+	color: rgb(221, 221, 221);
+	font: 10pt &quot;Segoe UI&quot;;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+Tooltip */
+QToolTip {
+	color: #ffffff;
+	background-color: rgba(33, 37, 43, 180);
+	border: 1px solid rgb(44, 49, 58);
+	background-image: none;
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	border-left: 2px solid #FF5F5F;
+	text-align: left;
+	padding-left: 8px;
+	margin: 0px;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+Bg App */
+#entireBg {	
+	background-color: rgb(40, 44, 52);
+	border: 1px solid rgb(44, 49, 58);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+Left Menu */
+#leftMenuBg {	
+	background-color: rgb(33, 37, 43);
+}
+#leftTopLogo {
+	background-color: rgb(33, 37, 43);
+}
+#leftTitleApp { font: 63 12pt &quot;Segoe UI Semibold&quot;; }
+#titleLeftDescription { font: 8pt &quot;Segoe UI&quot;; color: #FF5F5F; }
+
+/* MENUS */
+#leftMenuFrame .QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	border-left: 22px solid transparent;
+	background-color: transparent;
+	text-align: left;
+	padding-left: 44px;
+}
+#leftMenuFrame .QPushButton:hover {
+	background-color: rgb(40, 44, 52);
+}
+#leftMenuFrame .QPushButton:pressed {	
+	background-color: #FF5F5F;
+	color: rgb(255, 255, 255);
+}
+#leftMenuFrame{
+	border-top: 3px solid rgb(44, 49, 58);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+Content App */
+#rightTopBg{	
+	background-color: rgb(33, 37, 43);
+}
+
+/* Top Buttons */
+#rightButtonsFrame .QPushButton { background-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }
+#rightButtonsFrame .QPushButton:hover { background-color: rgb(44, 49, 57); border-style: solid; border-radius: 4px; }
+#rightButtonsFrame .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }
+
+/* Bottom Bar */
+#rightBoxBottomBar { background-color: rgb(44, 49, 58); }
+#rightBoxBottomBar QLabel { font-size: 11px; color: rgb(113, 126, 149); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+Button */
+#rightBoxPagesContainer QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+}
+#rightBoxPagesContainer QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+#rightBoxPagesContainer QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+QTableWidget */
+QTableWidget {	
+	background-color: transparent;
+	padding: 10px;
+	border-radius: 5px;
+	gridline-color: rgb(44, 49, 58);
+	border-bottom: 1px solid rgb(44, 49, 60);
+}
+QTableWidget::item{
+	border-color: rgb(44, 49, 60);
+	padding-left: 5px;
+	padding-right: 5px;
+	gridline-color: rgb(44, 49, 60);
+}
+QTableWidget::item:selected{
+	background-color: #FF5F5F;
+}
+QHeaderView::section{
+	background-color: rgb(33, 37, 43);
+	max-width: 30px;
+	border: 1px solid rgb(44, 49, 58);
+	border-style: none;
+    border-bottom: 1px solid rgb(44, 49, 60);
+    border-right: 1px solid rgb(44, 49, 60);
+}
+QTableWidget::horizontalHeader {	
+	background-color: rgb(33, 37, 43);
+}
+QHeaderView::section:horizontal
+{
+    border: 1px solid rgb(33, 37, 43);
+	background-color: rgb(33, 37, 43);
+	padding: 3px;
+	border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+QHeaderView::section:vertical
+{
+    border: 1px solid rgb(44, 49, 60);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+LineEdit */
+QLineEdit {
+	background-color: rgb(33, 37, 43);
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding-left: 10px;
+	selection-color: rgb(255, 255, 255);
+	selection-background-color: #FF5F5F;
+}
+QLineEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+PlainTextEdit */
+QPlainTextEdit {
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	padding: 10px;
+	selection-color: rgb(255, 255, 255);
+	selection-background-color: #FF5F5F;
+}
+QPlainTextEdit  QScrollBar:vertical {
+    width: 8px;
+ }
+QPlainTextEdit  QScrollBar:horizontal {
+    height: 8px;
+ }
+QPlainTextEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QPlainTextEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+CheckBox */
+QCheckBox::indicator {
+    border: 3px solid rgb(52, 59, 72);
+	width: 15px;
+	height: 15px;
+	border-radius: 10px;
+    background: rgb(44, 49, 60);
+}
+QCheckBox::indicator:hover {
+    border: 3px solid rgb(58, 66, 81);
+}
+QCheckBox::indicator:checked {
+    background: 3px solid rgb(52, 59, 72);
+	border: 3px solid rgb(52, 59, 72);	
+    background-image: url(:/images/icon-check.png);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+RadioButton */
+QRadioButton::indicator {
+    border: 3px solid rgb(52, 59, 72);
+	width: 15px;
+	height: 15px;
+	border-radius: 10px;
+    background: rgb(44, 49, 60);
+}
+QRadioButton::indicator:hover {
+    border: 3px solid rgb(58, 66, 81);
+}
+QRadioButton::indicator:checked {
+    background: 3px solid rgb(94, 106, 130);
+	border: 3px solid rgb(52, 59, 72);	
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+ComboBox */
+QComboBox{
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 25px; 
+	border-left-width: 3px;
+	border-left-color: rgba(39, 44, 54, 150);
+	border-left-style: solid;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;	
+    background-image: url(:/images/icon-arrowbottom.png);
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+QComboBox QAbstractItemView {
+	color: #FF5F5F;	
+	background-color: rgb(33, 37, 43);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLinkButton */
+QCommandLinkButton {	
+	color: #FF5F5F;
+	border-radius: 5px;
+	padding: 5px;
+	color: rgb(255, 170, 255);
+}
+QCommandLinkButton:hover {	
+	color: rgb(255, 170, 255);
+	background-color: rgb(44, 49, 60);
+}
+QCommandLinkButton:pressed {	
+	color: #FF5F5F;
+	background-color: rgb(52, 58, 71);
+}
+
+</string>
+   </property>
+   <widget class="QFrame" name="entireBg">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>920</width>
+      <height>549</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <layout class="QHBoxLayout" name="appLayout">
+     <property name="spacing">
       <number>0</number>
      </property>
-     <property name="tabBarAutoHide">
-      <bool>false</bool>
+     <property name="leftMargin">
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="tab_size">
-      <attribute name="title">
-       <string>サイズ</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox_3">
-         <property name="title">
-          <string>ウィンドウ左配置</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="label_B">
-            <property name="text">
-             <string>基準サイズ(1～9999)</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QSpinBox" name="spinBox_base_width_toleft_px">
-            <property name="minimum">
-             <number>1</number>
-            </property>
-            <property name="maximum">
-             <number>9999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_F_10">
-            <property name="text">
-             <string>px</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox_is_reverse_direction_windowleft">
-            <property name="text">
-             <string>逆方向にリサイズ</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QGroupBox" name="groupBox_4">
-         <property name="title">
-          <string>ウィンドウ右配置</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="label_A">
-            <property name="text">
-             <string>基準サイズ(1～9999)</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QSpinBox" name="spinBox_base_width_toright_px">
-            <property name="minimum">
-             <number>1</number>
-            </property>
-            <property name="maximum">
-             <number>9999</number>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLabel" name="label_F_11">
-            <property name="text">
-             <string>px</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox_is_reverse_direction_windowright">
-            <property name="text">
-             <string>逆方向にリサイズ</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_F">
-         <property name="text">
-          <string>リサイズ最大回数(1～10)</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QSpinBox" name="spinBox_resize_max_cnt">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>10</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLabel" name="label_F_8">
-         <property name="text">
-          <string>回</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_G">
-         <property name="text">
-          <string>リサイズ毎加算サイズ(1～999)</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QSpinBox" name="spinBox_resize_add_width_px">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="label_F_9">
-         <property name="text">
-          <string>px</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_A_2">
-         <property name="text">
-          <string>調整用加算サイズ(1～999)</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QSpinBox" name="spinBox_adjust_width_px">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <widget class="QLabel" name="label_F_12">
-         <property name="text">
-          <string>px</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0" colspan="2">
-        <widget class="QCheckBox" name="checkBox_is_subtract_taskbar">
-         <property name="text">
-          <string>タスクバーのサイズを減算してリサイズ</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_position">
-      <attribute name="title">
-       <string>位置</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_8">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_B_2">
-         <property name="text">
-          <string>調整用移動位置 - x(1～999)</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QSpinBox" name="spinBox_adjust_x_px">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>999</number>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="label_F_7">
-         <property name="text">
-          <string>px</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_shortcutkey">
-      <attribute name="title">
-       <string>ショートカットキー</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>ウィンドウ左配置</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox_windowleft_mod_ctrl">
-            <property name="text">
-             <string>Ctrl</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox_windowleft_mod_shift">
-            <property name="text">
-             <string>Shift</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox_windowleft_mod_alt">
-            <property name="text">
-             <string>Alt</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox_windowleft_mod_win">
-            <property name="text">
-             <string>Win</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_A_3">
-            <property name="text">
-             <string>通常キー</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QComboBox" name="comboBox_Hotkey_WindowLeft"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>ウィンドウ右配置</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox_windowright_mod_ctrl">
-            <property name="text">
-             <string>Ctrl</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBox_windowright_mod_shift">
-            <property name="text">
-             <string>Shift</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QCheckBox" name="checkBox_windowright_mod_alt">
-            <property name="text">
-             <string>Alt</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QCheckBox" name="checkBox_windowright_mod_win">
-            <property name="text">
-             <string>Win</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_A_5">
-            <property name="text">
-             <string>通常キー</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QComboBox" name="comboBox_Hotkey_WindowRight"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QPushButton" name="pustButton_ok">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+     <property name="topMargin">
+      <number>0</number>
      </property>
-     <property name="contextMenuPolicy">
-      <enum>Qt::PreventContextMenu</enum>
+     <property name="rightMargin">
+      <number>0</number>
      </property>
-     <property name="text">
-      <string>OK</string>
+     <property name="bottomMargin">
+      <number>0</number>
      </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="pustButton_cancel">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="contextMenuPolicy">
-      <enum>Qt::PreventContextMenu</enum>
-     </property>
-     <property name="text">
-      <string>キャンセル</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QPushButton" name="pustButton_initialize_setting">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="contextMenuPolicy">
-      <enum>Qt::PreventContextMenu</enum>
-     </property>
-     <property name="text">
-      <string>初期設定</string>
-     </property>
-    </widget>
-   </item>
-  </layout>
+     <item>
+      <widget class="QFrame" name="leftMenuBg">
+       <property name="minimumSize">
+        <size>
+         <width>190</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>190</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="leftTopLogo">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="leftTitleApp">
+           <property name="geometry">
+            <rect>
+             <x>19</x>
+             <y>10</y>
+             <width>151</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Segoe UI Semibold</family>
+             <pointsize>-1</pointsize>
+             <weight>7</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-size: 17px;</string>
+           </property>
+           <property name="text">
+            <string>Fit Screen Window</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="leftMenuFrame">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalMenuLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item alignment="Qt::AlignTop">
+            <widget class="QFrame" name="leftMenuMainContent">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="pushButton_size">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>10</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/icon-size.png);</string>
+                </property>
+                <property name="text">
+                 <string>サイズ</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_position">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>10</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/icon-position.png);</string>
+                </property>
+                <property name="text">
+                 <string>位置</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_hotkey">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>10</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/icon-hotkey.png);</string>
+                </property>
+                <property name="text">
+                 <string>ショートカットキー</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_saveandexit">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>10</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/icon-save.png);</string>
+                </property>
+                <property name="text">
+                 <string>保存して終了</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_cancel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>10</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/icon-cancel.png);</string>
+                </property>
+                <property name="text">
+                 <string>キャンセル</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>300</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_initialize_setting">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>45</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>10</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/icon-initializesetting.png);</string>
+                </property>
+                <property name="text">
+                 <string>初期設定</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+       <zorder>leftMenuFrame</zorder>
+       <zorder>leftTopLogo</zorder>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="rightBoxBg">
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="rightTopBg">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item alignment="Qt::AlignRight">
+            <widget class="QFrame" name="rightButtonsFrame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>28</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="btn_closeApp">
+                <property name="minimumSize">
+                 <size>
+                  <width>28</width>
+                  <height>28</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>28</width>
+                  <height>28</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="toolTip">
+                 <string>Close</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/icon-cancel.png);
+background-position: center;
+background-repeat: no-repeat;</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>:/icons/images/icons/icon_close.png</normaloff>:/icons/images/icons/icon_close.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="rightBoxFrame">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QFrame" name="rightBoxMainContent">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QFrame" name="rightBoxPagesContainer">
+                <property name="whatsThis">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <widget class="QStackedWidget" name="stackedWidget">
+                 <property name="geometry">
+                  <rect>
+                   <x>9</x>
+                   <y>9</y>
+                   <width>700</width>
+                   <height>1198</height>
+                  </rect>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background: transparent;</string>
+                 </property>
+                 <property name="currentIndex">
+                  <number>2</number>
+                 </property>
+                 <widget class="QWidget" name="page_size">
+                  <property name="styleSheet">
+                   <string notr="true">b</string>
+                  </property>
+                  <widget class="QFrame" name="frame">
+                   <property name="geometry">
+                    <rect>
+                     <x>10</x>
+                     <y>10</y>
+                     <width>250</width>
+                     <height>200</height>
+                    </rect>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_5">
+                    <property name="rightMargin">
+                     <number>9</number>
+                    </property>
+                    <property name="horizontalSpacing">
+                     <number>12</number>
+                    </property>
+                    <item row="0" column="0">
+                     <widget class="QGroupBox" name="groupBox">
+                      <property name="title">
+                       <string>ウィンドウ左配置</string>
+                      </property>
+                      <widget class="QLabel" name="labelBoxBlenderInstalation">
+                       <property name="geometry">
+                        <rect>
+                         <x>10</x>
+                         <y>27</y>
+                         <width>57</width>
+                         <height>18</height>
+                        </rect>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Segoe UI</family>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true"/>
+                       </property>
+                       <property name="text">
+                        <string>基準サイズ</string>
+                       </property>
+                      </widget>
+                      <widget class="QLineEdit" name="lineEdit_base_width_toleft_px">
+                       <property name="geometry">
+                        <rect>
+                         <x>10</x>
+                         <y>60</y>
+                         <width>120</width>
+                         <height>30</height>
+                        </rect>
+                       </property>
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">background-color: rgb(33, 37, 43);</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="placeholderText">
+                        <string>数値を入力</string>
+                       </property>
+                      </widget>
+                      <widget class="QLabel" name="labelBoxBlenderInstalation_2">
+                       <property name="geometry">
+                        <rect>
+                         <x>140</x>
+                         <y>70</y>
+                         <width>16</width>
+                         <height>18</height>
+                        </rect>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <family>Segoe UI</family>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true"/>
+                       </property>
+                       <property name="text">
+                        <string>px</string>
+                       </property>
+                      </widget>
+                      <widget class="QCheckBox" name="checkBox_is_reverse_direction_windowleft">
+                       <property name="geometry">
+                        <rect>
+                         <x>10</x>
+                         <y>110</y>
+                         <width>211</width>
+                         <height>21</height>
+                        </rect>
+                       </property>
+                       <property name="autoFillBackground">
+                        <bool>false</bool>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true"/>
+                       </property>
+                       <property name="text">
+                        <string>逆方向にリサイズ</string>
+                       </property>
+                      </widget>
+                      <widget class="QLabel" name="labelVersion_4">
+                       <property name="geometry">
+                        <rect>
+                         <x>82</x>
+                         <y>27</y>
+                         <width>141</width>
+                         <height>18</height>
+                        </rect>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">color: rgb(113, 126, 149);</string>
+                       </property>
+                       <property name="lineWidth">
+                        <number>1</number>
+                       </property>
+                       <property name="text">
+                        <string>(範囲 1～9999)</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                       </property>
+                      </widget>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QFrame" name="frame_2">
+                   <property name="geometry">
+                    <rect>
+                     <x>270</x>
+                     <y>10</y>
+                     <width>250</width>
+                     <height>200</height>
+                    </rect>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QGroupBox" name="groupBox_3">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>230</width>
+                      <height>180</height>
+                     </rect>
+                    </property>
+                    <property name="title">
+                     <string>ウィンドウ右配置</string>
+                    </property>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_5">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>27</y>
+                       <width>57</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>基準サイズ</string>
+                     </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEdit_base_width_toright_px">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>60</y>
+                       <width>120</width>
+                       <height>30</height>
+                      </rect>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(33, 37, 43);</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>数値を入力</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_6">
+                     <property name="geometry">
+                      <rect>
+                       <x>140</x>
+                       <y>70</y>
+                       <width>16</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>px</string>
+                     </property>
+                    </widget>
+                    <widget class="QCheckBox" name="checkBox_is_reverse_direction_windowright">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>110</y>
+                       <width>211</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>逆方向にリサイズ</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelVersion_6">
+                     <property name="geometry">
+                      <rect>
+                       <x>82</x>
+                       <y>27</y>
+                       <width>141</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(113, 126, 149);</string>
+                     </property>
+                     <property name="lineWidth">
+                      <number>1</number>
+                     </property>
+                     <property name="text">
+                      <string>(範囲 1～9999)</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </widget>
+                  </widget>
+                  <widget class="QFrame" name="frame_3">
+                   <property name="geometry">
+                    <rect>
+                     <x>10</x>
+                     <y>210</y>
+                     <width>511</width>
+                     <height>241</height>
+                    </rect>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QGroupBox" name="groupBox_4">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>491</width>
+                      <height>221</height>
+                     </rect>
+                    </property>
+                    <property name="title">
+                     <string>共通設定</string>
+                    </property>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_7">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>27</y>
+                       <width>131</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>リサイズ最大回数</string>
+                     </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEdit_resize_max_cnt">
+                     <property name="geometry">
+                      <rect>
+                       <x>230</x>
+                       <y>20</y>
+                       <width>120</width>
+                       <height>30</height>
+                      </rect>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(33, 37, 43);</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>数値を入力</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_8">
+                     <property name="geometry">
+                      <rect>
+                       <x>360</x>
+                       <y>30</y>
+                       <width>16</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>回</string>
+                     </property>
+                    </widget>
+                    <widget class="QCheckBox" name="checkBox_is_subtract_taskbar">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>150</y>
+                       <width>321</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>タスクバーのサイズを減算してリサイズ</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelVersion_7">
+                     <property name="geometry">
+                      <rect>
+                       <x>150</x>
+                       <y>30</y>
+                       <width>81</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(113, 126, 149);</string>
+                     </property>
+                     <property name="lineWidth">
+                      <number>1</number>
+                     </property>
+                     <property name="text">
+                      <string>(範囲 1～10)</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_9">
+                     <property name="geometry">
+                      <rect>
+                       <x>360</x>
+                       <y>70</y>
+                       <width>16</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>px</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_10">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>67</y>
+                       <width>131</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>リサイズ毎加算サイズ</string>
+                     </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEdit_resize_add_width_px">
+                     <property name="geometry">
+                      <rect>
+                       <x>230</x>
+                       <y>60</y>
+                       <width>120</width>
+                       <height>30</height>
+                      </rect>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(33, 37, 43);</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>数値を入力</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelVersion_8">
+                     <property name="geometry">
+                      <rect>
+                       <x>150</x>
+                       <y>70</y>
+                       <width>81</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(113, 126, 149);</string>
+                     </property>
+                     <property name="lineWidth">
+                      <number>1</number>
+                     </property>
+                     <property name="text">
+                      <string>(範囲 1～999)</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_11">
+                     <property name="geometry">
+                      <rect>
+                       <x>360</x>
+                       <y>110</y>
+                       <width>16</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>px</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_12">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>107</y>
+                       <width>131</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>調整用加算サイズ</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelVersion_9">
+                     <property name="geometry">
+                      <rect>
+                       <x>150</x>
+                       <y>110</y>
+                       <width>81</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(113, 126, 149);</string>
+                     </property>
+                     <property name="lineWidth">
+                      <number>1</number>
+                     </property>
+                     <property name="text">
+                      <string>(範囲 1～999)</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEdit_adjust_width_px">
+                     <property name="geometry">
+                      <rect>
+                       <x>230</x>
+                       <y>100</y>
+                       <width>120</width>
+                       <height>30</height>
+                      </rect>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(33, 37, 43);</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="placeholderText">
+                      <string>数値を入力</string>
+                     </property>
+                    </widget>
+                   </widget>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="page_position">
+                  <widget class="QFrame" name="frame_4">
+                   <property name="geometry">
+                    <rect>
+                     <x>10</x>
+                     <y>10</y>
+                     <width>451</width>
+                     <height>111</height>
+                    </rect>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QGroupBox" name="groupBox_2">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>441</width>
+                      <height>81</height>
+                     </rect>
+                    </property>
+                    <property name="title">
+                     <string>共通設定</string>
+                    </property>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_3">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>27</y>
+                       <width>111</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>調整用X座標移動</string>
+                     </property>
+                    </widget>
+                    <widget class="QLineEdit" name="lineEdit_adjust_x_px">
+                     <property name="geometry">
+                      <rect>
+                       <x>210</x>
+                       <y>20</y>
+                       <width>120</width>
+                       <height>30</height>
+                      </rect>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(33, 37, 43);</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="maxLength">
+                      <number>5</number>
+                     </property>
+                     <property name="placeholderText">
+                      <string>数値を入力</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_4">
+                     <property name="geometry">
+                      <rect>
+                       <x>340</x>
+                       <y>30</y>
+                       <width>16</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>px</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelVersion_5">
+                     <property name="geometry">
+                      <rect>
+                       <x>120</x>
+                       <y>30</y>
+                       <width>86</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">color: rgb(113, 126, 149);</string>
+                     </property>
+                     <property name="lineWidth">
+                      <number>1</number>
+                     </property>
+                     <property name="text">
+                      <string>(範囲 1～999)</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </widget>
+                  </widget>
+                 </widget>
+                 <widget class="QWidget" name="page_hotkey">
+                  <widget class="QFrame" name="frame_5">
+                   <property name="geometry">
+                    <rect>
+                     <x>10</x>
+                     <y>10</y>
+                     <width>250</width>
+                     <height>241</height>
+                    </rect>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QGroupBox" name="groupBox_5">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>230</width>
+                      <height>221</height>
+                     </rect>
+                    </property>
+                    <property name="title">
+                     <string>ウィンドウ左配置</string>
+                    </property>
+                    <widget class="QCheckBox" name="checkBox_windowleft_mod_ctrl">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>40</y>
+                       <width>115</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>Ctrl</string>
+                     </property>
+                    </widget>
+                    <widget class="QCheckBox" name="checkBox_windowleft_mod_shift">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>70</y>
+                       <width>115</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>Shift</string>
+                     </property>
+                    </widget>
+                    <widget class="QCheckBox" name="checkBox_windowleft_mod_alt">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>100</y>
+                       <width>115</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>Alt</string>
+                     </property>
+                    </widget>
+                    <widget class="QCheckBox" name="checkBox_windowleft_mod_win">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>130</y>
+                       <width>115</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>Win</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_13">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>170</y>
+                       <width>101</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>通常キー</string>
+                     </property>
+                    </widget>
+                    <widget class="QComboBox" name="comboBox_Hotkey_WindowLeft">
+                     <property name="geometry">
+                      <rect>
+                       <x>80</x>
+                       <y>170</y>
+                       <width>131</width>
+                       <height>34</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(33, 37, 43);</string>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>16</width>
+                       <height>16</height>
+                      </size>
+                     </property>
+                     <property name="frame">
+                      <bool>true</bool>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Left</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test 2</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test 3</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </widget>
+                  </widget>
+                  <widget class="QFrame" name="frame_6">
+                   <property name="geometry">
+                    <rect>
+                     <x>290</x>
+                     <y>10</y>
+                     <width>250</width>
+                     <height>241</height>
+                    </rect>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>250</width>
+                     <height>200</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <widget class="QGroupBox" name="groupBox_6">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>230</width>
+                      <height>221</height>
+                     </rect>
+                    </property>
+                    <property name="title">
+                     <string>ウィンドウ右配置</string>
+                    </property>
+                    <widget class="QCheckBox" name="checkBox_windowright_mod_ctrl">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>40</y>
+                       <width>115</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>Ctrl</string>
+                     </property>
+                    </widget>
+                    <widget class="QCheckBox" name="checkBox_windowright_mod_shift">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>70</y>
+                       <width>115</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>Shift</string>
+                     </property>
+                    </widget>
+                    <widget class="QCheckBox" name="checkBox_windowright_mod_alt">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>100</y>
+                       <width>115</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>Alt</string>
+                     </property>
+                    </widget>
+                    <widget class="QCheckBox" name="checkBox_windowright_mod_win">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>130</y>
+                       <width>115</width>
+                       <height>21</height>
+                      </rect>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>Win</string>
+                     </property>
+                    </widget>
+                    <widget class="QLabel" name="labelBoxBlenderInstalation_14">
+                     <property name="geometry">
+                      <rect>
+                       <x>10</x>
+                       <y>170</y>
+                       <width>101</width>
+                       <height>18</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>通常キー</string>
+                     </property>
+                    </widget>
+                    <widget class="QComboBox" name="comboBox_Hotkey_WindowRight">
+                     <property name="geometry">
+                      <rect>
+                       <x>80</x>
+                       <y>170</y>
+                       <width>131</width>
+                       <height>34</height>
+                      </rect>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>10</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(33, 37, 43);</string>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>16</width>
+                       <height>16</height>
+                      </size>
+                     </property>
+                     <property name="frame">
+                      <bool>true</bool>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Right</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test 2</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test 3</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </widget>
+                  </widget>
+                 </widget>
+                </widget>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="rightBoxBottomBar">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>22</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>22</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="label_settingmenu">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Segoe UI</family>
+                  <pointsize>-1</pointsize>
+                  <weight>50</weight>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Setting Menu</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_version">
+                <property name="text">
+                 <string>v4.0</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="frame_size_grip">
+                <property name="minimumSize">
+                 <size>
+                  <width>20</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>20</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
  </widget>
- <tabstops>
-  <tabstop>tabWidget</tabstop>
-  <tabstop>spinBox_resize_max_cnt</tabstop>
-  <tabstop>spinBox_resize_add_width_px</tabstop>
-  <tabstop>spinBox_base_width_toright_px</tabstop>
-  <tabstop>spinBox_adjust_width_px</tabstop>
-  <tabstop>checkBox_is_subtract_taskbar</tabstop>
-  <tabstop>spinBox_adjust_x_px</tabstop>
-  <tabstop>checkBox_windowleft_mod_ctrl</tabstop>
-  <tabstop>checkBox_windowleft_mod_shift</tabstop>
-  <tabstop>checkBox_windowleft_mod_alt</tabstop>
-  <tabstop>checkBox_windowleft_mod_win</tabstop>
-  <tabstop>comboBox_Hotkey_WindowLeft</tabstop>
-  <tabstop>checkBox_windowright_mod_ctrl</tabstop>
-  <tabstop>checkBox_windowright_mod_shift</tabstop>
-  <tabstop>checkBox_windowright_mod_alt</tabstop>
-  <tabstop>checkBox_windowright_mod_win</tabstop>
-  <tabstop>comboBox_Hotkey_WindowRight</tabstop>
-  <tabstop>pustButton_ok</tabstop>
-  <tabstop>pustButton_cancel</tabstop>
- </tabstops>
  <resources>
   <include location="resource.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_size</sender>
+   <signal>pressed()</signal>
+   <receiver>stackedWidget</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>100</x>
+     <y>86</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>549</x>
+     <y>671</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

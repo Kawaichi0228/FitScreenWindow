@@ -2,14 +2,14 @@
 # Python modules
 # -------------------------------------------------------------------------
 import sys
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
 
 # -------------------------------------------------------------------------
 # App modules
 # -------------------------------------------------------------------------
-from src.gui.configgui import Ui_Config
+from src.gui.configgui import Ui_ConfigGUI
 
 # -------------------------------------------------------------------------
 # Class
@@ -49,7 +49,7 @@ class ConfigGui(UtilGui, QDialog):
     def __init__(self, root, parent=None) -> None:
         super(ConfigGui, self).__init__(parent)
         self.root = root
-        self.ui = Ui_Config() # ここに表示させるguiを定義
+        self.ui = Ui_ConfigGUI() # ここに表示させるguiを定義
         
         # QtDesignerで作成した全体のui(.uiから.pyへの変換ファイル)のsetup
         self.ui.setupUi(self)
