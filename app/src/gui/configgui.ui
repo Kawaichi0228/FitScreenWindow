@@ -34,101 +34,27 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget{
+    <string notr="true">/* ========================================================================= */
+/* ========================================================================= */
+/* 全体共有設定 */
+/* ========================================================================= */
+/* ========================================================================= */
+
+/* ------------------------------------------------------------------------- */
+/* ウィジェット全体 */
+/* ------------------------------------------------------------------------- */
+QWidget{
 	color: rgb(221, 221, 221);
 	font: 10pt &quot;Segoe UI&quot;;
 }
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-Tooltip */
-QToolTip {
-	color: #ffffff;
-	background-color: rgba(33, 37, 43, 180);
-	border: 1px solid rgb(44, 49, 58);
-	background-image: none;
-	background-position: left center;
-    background-repeat: no-repeat;
-	border: none;
-	border-left: 2px solid #FF5F5F;
-	text-align: left;
-	padding-left: 8px;
-	margin: 0px;
-}
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-Bg App */
 #entireBg {	
 	background-color: rgb(40, 44, 52);
 	border: 1px solid rgb(44, 49, 58);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-Left Menu */
-#leftMenuBg {	
-	background-color: rgb(33, 37, 43);
-}
-#leftTopLogo {
-	background-color: rgb(33, 37, 43);
-}
-#leftTitleApp { font: 63 12pt &quot;Segoe UI Semibold&quot;; }
-#titleLeftDescription { font: 8pt &quot;Segoe UI&quot;; color: #FF5F5F; }
-
-/* MENUS */
-#leftMenuFrame .QPushButton {	
-	background-position: left center;
-    background-repeat: no-repeat;
-	border: none;
-	border-left: 22px solid transparent;
-	background-color: transparent;
-	text-align: left;
-	padding-left: 44px;
-}
-#leftMenuFrame .QPushButton:hover {
-	background-color: rgb(40, 44, 52);
-}
-#leftMenuFrame .QPushButton:pressed {	
-	background-color: #FF5F5F;
-	color: rgb(255, 255, 255);
-}
-#leftMenuFrame{
-	border-top: 3px solid rgb(44, 49, 58);
-}
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-Content App */
-#rightTopBg{	
-	background-color: rgb(33, 37, 43);
-}
-
-/* Top Buttons */
-#rightButtonsFrame .QPushButton { background-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }
-#rightButtonsFrame .QPushButton:hover { background-color: rgb(44, 49, 57); border-style: solid; border-radius: 4px; }
-#rightButtonsFrame .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }
-
-/* Bottom Bar */
-#rightBoxBottomBar { background-color: rgb(44, 49, 58); }
-#rightBoxBottomBar QLabel { font-size: 11px; color: rgb(113, 126, 149); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }
-
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-Button */
-#rightBoxPagesContainer QPushButton {
-	border: 2px solid rgb(52, 59, 72);
-	border-radius: 5px;	
-	background-color: rgb(52, 59, 72);
-}
-#rightBoxPagesContainer QPushButton:hover {
-	background-color: rgb(57, 65, 80);
-	border: 2px solid rgb(61, 70, 86);
-}
-#rightBoxPagesContainer QPushButton:pressed {	
-	background-color: rgb(35, 40, 49);
-	border: 2px solid rgb(43, 50, 61);
-}
-
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-LineEdit */
+/* ------------------------------------------------------------------------- */
+/* LineEdit */
+/* ------------------------------------------------------------------------- */
 QLineEdit {
 	background-color: rgb(33, 37, 43);
 	border-radius: 5px;
@@ -144,31 +70,9 @@ QLineEdit:focus {
 	border: 2px solid rgb(91, 101, 124);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-PlainTextEdit */
-QPlainTextEdit {
-	background-color: rgb(27, 29, 35);
-	border-radius: 5px;
-	padding: 10px;
-	selection-color: rgb(255, 255, 255);
-	selection-background-color: #FF5F5F;
-}
-QPlainTextEdit  QScrollBar:vertical {
-    width: 8px;
- }
-QPlainTextEdit  QScrollBar:horizontal {
-    height: 8px;
- }
-QPlainTextEdit:hover {
-	border: 2px solid rgb(64, 71, 88);
-}
-QPlainTextEdit:focus {
-	border: 2px solid rgb(91, 101, 124);
-}
-
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-CheckBox */
+/* ------------------------------------------------------------------------- */
+/* CheckBox */
+/* ------------------------------------------------------------------------- */
 QCheckBox::indicator {
     border: 3px solid rgb(52, 59, 72);
 	width: 15px;
@@ -185,25 +89,9 @@ QCheckBox::indicator:checked {
     background-image: url(:/images/icon-check.png);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-RadioButton */
-QRadioButton::indicator {
-    border: 3px solid rgb(52, 59, 72);
-	width: 15px;
-	height: 15px;
-	border-radius: 10px;
-    background: rgb(44, 49, 60);
-}
-QRadioButton::indicator:hover {
-    border: 3px solid rgb(58, 66, 81);
-}
-QRadioButton::indicator:checked {
-    background: 3px solid rgb(94, 106, 130);
-	border: 3px solid rgb(52, 59, 72);	
-}
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-ComboBox */
+/* ------------------------------------------------------------------------- */
+/* ComboBox */
+/* ------------------------------------------------------------------------- */
 QComboBox{
 	background-color: rgb(27, 29, 35);
 	border-radius: 5px;
@@ -234,24 +122,71 @@ QComboBox QAbstractItemView {
 	selection-background-color: rgb(39, 44, 54);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////////////////////////
-CommandLinkButton */
-QCommandLinkButton {	
-	color: #FF5F5F;
-	border-radius: 5px;
-	padding: 5px;
-	color: rgb(255, 170, 255);
+/* ========================================================================= */
+/* ========================================================================= */
+/* ウィジェット領域毎個別設定 */
+/* ========================================================================= */
+/* ========================================================================= */
+
+/* ------------------------------------------------------------------------- */
+/* LeftMenu */
+/* ------------------------------------------------------------------------- */
+#leftMenuBg {	
+	background-color: rgb(33, 37, 43);
 }
-QCommandLinkButton:hover {	
-	color: rgb(255, 170, 255);
-	background-color: rgb(44, 49, 60);
+#leftTopLogo {
+	background-color: rgb(33, 37, 43);
 }
-QCommandLinkButton:pressed {	
-	color: #FF5F5F;
-	background-color: rgb(52, 58, 71);
+#leftTitleApp { font: 63 12pt &quot;Segoe UI Semibold&quot;; }
+
+#leftMenuFrame .QPushButton {	
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	border-left: 22px solid transparent;
+	background-color: transparent;
+	text-align: left;
+	padding-left: 44px;
+}
+#leftMenuFrame .QPushButton:hover {
+	background-color: rgb(40, 44, 52);
+}
+#leftMenuFrame .QPushButton:pressed {	
+	background-color: #FF5F5F;
+	color: rgb(255, 255, 255);
+}
+#leftMenuFrame{
+	border-top: 3px solid rgb(44, 49, 58);
 }
 
-</string>
+/* ------------------------------------------------------------------------- */
+/* RightBox */
+/* ------------------------------------------------------------------------- */
+#rightTopBg{	
+	background-color: rgb(33, 37, 43);
+}
+
+#rightButtonsFrame .QPushButton { background-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }
+#rightButtonsFrame .QPushButton:hover { background-color: rgb(44, 49, 57); border-style: solid; border-radius: 4px; }
+#rightButtonsFrame .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }
+
+#rightBoxPagesContainer QPushButton {
+	border: 2px solid rgb(52, 59, 72);
+	border-radius: 5px;	
+	background-color: rgb(52, 59, 72);
+}
+#rightBoxPagesContainer QPushButton:hover {
+	background-color: rgb(57, 65, 80);
+	border: 2px solid rgb(61, 70, 86);
+}
+#rightBoxPagesContainer QPushButton:pressed {	
+	background-color: rgb(35, 40, 49);
+	border: 2px solid rgb(43, 50, 61);
+}
+
+/* Bottom Bar */
+#rightBoxBottomBar { background-color: rgb(44, 49, 58); }
+#rightBoxBottomBar QLabel { font-size: 11px; color: rgb(113, 126, 149); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }</string>
    </property>
    <widget class="QFrame" name="entireBg">
     <property name="geometry">
