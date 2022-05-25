@@ -63,8 +63,12 @@ class Ui_ConfigGUI(object):
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(33, 37, 43);\n"
 "	padding-left: 10px;\n"
-"	selection-color: rgb(255, 255, 255);\n"
-"	selection-background-color: #FF5F5F;\n"
+"\n"
+"    /* \u306a\u306b\u3082\u5024\u304c\u5165\u529b\u3055\u308c\u3066\u3044\u306a\u3044\u3068\u304d\u306b\u8868\u793a\u3059\u308b\u30c6\u30ad\u30b9\u30c8\u306e\u8272 */\n"
+"	selection-color: rgb(64, 71, 88);\n"
+"\n"
+"    /* \u5165\u529b\u3057\u305f\u30c6\u30ad\u30b9\u30c8\u3092\u9078\u629e\u3057\u3066\u3044\u308b\u3068\u304d\u306e\u30c6\u30ad\u30b9\u30c8\u30dc\u30c3\u30af\u30b9\u5185\u80cc\u666f */\n"
+"	selection-background-color: #83FFE6;\n"
 "}\n"
 "QLineEdit:hover {\n"
 "	border: 2px solid rgb(64, 71, 88);\n"
@@ -80,7 +84,8 @@ class Ui_ConfigGUI(object):
 "    border: 3px solid rgb(52, 59, 72);\n"
 "	width: 15px;\n"
 "	height: 15px;\n"
-"	border-radius: 10px;\n"
+"	border-radius: 10p"
+                        "x;\n"
 "    background: rgb(44, 49, 60);\n"
 "}\n"
 "QCheckBox::indicator:hover {\n"
@@ -92,8 +97,7 @@ class Ui_ConfigGUI(object):
 "    background-image: url(:/images/icon-check.png);\n"
 "}\n"
 "\n"
-"/* ------------------------------------------"
-                        "------------------------------- */\n"
+"/* ------------------------------------------------------------------------- */\n"
 "/* ComboBox */\n"
 "/* ------------------------------------------------------------------------- */\n"
 "QComboBox{\n"
@@ -114,21 +118,23 @@ class Ui_ConfigGUI(object):
 "	border-left-color: rgba(39, 44, 54, 150);\n"
 "	border-left-style: solid;\n"
 "	border-top-right-radius: 3px;\n"
-"	border-bottom-right-radius: 3px;	\n"
+"	border-bottom-right-"
+                        "radius: 3px;	\n"
 "    background-image: url(:/images/icon-arrowbottom.png);\n"
 "	background-position: center;\n"
 "	background-repeat: no-reperat;\n"
 "}\n"
 "QComboBox QAbstractItemView {\n"
-"	color: #FF5F5F;	\n"
 "	background-color: rgb(33, 37, 43);\n"
 "	padding: 10px;\n"
 "	selection-background-color: rgb(39, 44, 54);\n"
+"\n"
+"    /* \u30ea\u30b9\u30c8\u30a2\u30a4\u30c6\u30e0\u306e\u6587\u5b57\u8272*/\n"
+"	color: #83FFE6;\n"
 "}\n"
 "\n"
 "\n"
-"/* =========================="
-                        "=============================================== */\n"
+"/* ========================================================================= */\n"
 "/* ========================================================================= */\n"
 "/* \u30a6\u30a3\u30b8\u30a7\u30c3\u30c8\u9818\u57df\u6bce\u500b\u5225\u8a2d\u5b9a */\n"
 "/* ========================================================================= */\n"
@@ -136,7 +142,8 @@ class Ui_ConfigGUI(object):
 "\n"
 "/* ------------------------------------------------------------------------- */\n"
 "/* LeftMenu */\n"
-"/* ------------------------------------------------------------------------- */\n"
+"/* -------------------------------------------------------------------"
+                        "------ */\n"
 "#leftMenuBg {	\n"
 "	background-color: rgb(33, 37, 43);\n"
 "}\n"
@@ -152,8 +159,7 @@ class Ui_ConfigGUI(object):
 "	border-left: 22px solid transparent;\n"
 "	background-color: transparent;\n"
 "	text-align: left;\n"
-"	padding-le"
-                        "ft: 44px;\n"
+"	padding-left: 44px;\n"
 "}\n"
 "#leftMenuFrame .QPushButton:hover {\n"
 "	background-color: rgb(40, 44, 52);\n"
@@ -170,7 +176,8 @@ class Ui_ConfigGUI(object):
 "	background-color: rgb(33, 37, 43);\n"
 "}\n"
 "\n"
-"#rightButtonsFrame .QPushButton { background-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }\n"
+"#rightButtonsFrame .QPushButton { background-color: rgba(255, 255, 255, 0); border: none;  bord"
+                        "er-radius: 5px; }\n"
 "#rightButtonsFrame .QPushButton:hover { background-color: rgb(44, 49, 57); border-style: solid; border-radius: 4px; }\n"
 "#rightButtonsFrame .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }\n"
 "\n"
@@ -180,8 +187,7 @@ class Ui_ConfigGUI(object):
 "	border-radius: 5px;	\n"
 "	background-color: rgb(52, 59, 72);\n"
 "}\n"
-""
-                        "#rightBoxPagesContainer QPushButton:hover {\n"
+"#rightBoxPagesContainer QPushButton:hover {\n"
 "	background-color: rgb(57, 65, 80);\n"
 "	border: 2px solid rgb(61, 70, 86);\n"
 "}\n"
@@ -192,10 +198,11 @@ class Ui_ConfigGUI(object):
 "\n"
 "/* Bottom Bar */\n"
 "#rightBoxBottomBar { background-color: rgb(44, 49, 58); }\n"
-"#rightBoxBottomBar QLabel { font-size: 11px; color: rgb(113, 126, 149); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }")
+"#rightBoxBottomBar QLabel { font-size: 11px; color: rgb(113, 126, 149); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }\n"
+"")
         self.entireBg = QFrame(self.entireStyleSheet)
         self.entireBg.setObjectName(u"entireBg")
-        self.entireBg.setGeometry(QRect(0, 0, 920, 549))
+        self.entireBg.setGeometry(QRect(0, 0, 930, 560))
         self.entireBg.setStyleSheet(u"")
         self.entireBg.setFrameShape(QFrame.NoFrame)
         self.entireBg.setFrameShadow(QFrame.Raised)
@@ -409,54 +416,74 @@ class Ui_ConfigGUI(object):
         self.rightBoxPagesContainer.setFrameShadow(QFrame.Raised)
         self.stackedWidget = QStackedWidget(self.rightBoxPagesContainer)
         self.stackedWidget.setObjectName(u"stackedWidget")
-        self.stackedWidget.setGeometry(QRect(9, 9, 700, 1198))
+        self.stackedWidget.setGeometry(QRect(9, 9, 700, 460))
         self.stackedWidget.setStyleSheet(u"background: transparent;")
         self.page_size = QWidget()
         self.page_size.setObjectName(u"page_size")
         self.page_size.setStyleSheet(u"b")
-        self.frame = QFrame(self.page_size)
-        self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(10, 10, 250, 200))
+        self.frame_1 = QFrame(self.page_size)
+        self.frame_1.setObjectName(u"frame_1")
+        self.frame_1.setGeometry(QRect(10, 10, 250, 200))
         sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
-        self.frame.setSizePolicy(sizePolicy1)
-        self.frame.setMinimumSize(QSize(250, 200))
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.gridLayout_5 = QGridLayout(self.frame)
+        sizePolicy1.setHeightForWidth(self.frame_1.sizePolicy().hasHeightForWidth())
+        self.frame_1.setSizePolicy(sizePolicy1)
+        self.frame_1.setMinimumSize(QSize(250, 200))
+        self.frame_1.setFrameShape(QFrame.StyledPanel)
+        self.frame_1.setFrameShadow(QFrame.Raised)
+        self.gridLayout_5 = QGridLayout(self.frame_1)
         self.gridLayout_5.setObjectName(u"gridLayout_5")
         self.gridLayout_5.setHorizontalSpacing(12)
         self.gridLayout_5.setContentsMargins(-1, -1, 9, -1)
-        self.groupBox = QGroupBox(self.frame)
+        self.groupBox = QGroupBox(self.frame_1)
         self.groupBox.setObjectName(u"groupBox")
-        self.labelBoxBlenderInstalation = QLabel(self.groupBox)
-        self.labelBoxBlenderInstalation.setObjectName(u"labelBoxBlenderInstalation")
-        self.labelBoxBlenderInstalation.setGeometry(QRect(10, 27, 57, 18))
-        self.labelBoxBlenderInstalation.setFont(font)
-        self.labelBoxBlenderInstalation.setStyleSheet(u"")
-        self.lineEdit_base_width_toleft_px = QLineEdit(self.groupBox)
-        self.lineEdit_base_width_toleft_px.setObjectName(u"lineEdit_base_width_toleft_px")
-        self.lineEdit_base_width_toleft_px.setGeometry(QRect(10, 60, 120, 30))
-        self.lineEdit_base_width_toleft_px.setMinimumSize(QSize(0, 30))
-        self.lineEdit_base_width_toleft_px.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.labelBoxBlenderInstalation_2 = QLabel(self.groupBox)
-        self.labelBoxBlenderInstalation_2.setObjectName(u"labelBoxBlenderInstalation_2")
-        self.labelBoxBlenderInstalation_2.setGeometry(QRect(140, 70, 16, 18))
-        self.labelBoxBlenderInstalation_2.setFont(font)
-        self.labelBoxBlenderInstalation_2.setStyleSheet(u"")
         self.checkBox_is_reverse_direction_windowleft = QCheckBox(self.groupBox)
         self.checkBox_is_reverse_direction_windowleft.setObjectName(u"checkBox_is_reverse_direction_windowleft")
-        self.checkBox_is_reverse_direction_windowleft.setGeometry(QRect(10, 110, 211, 21))
+        self.checkBox_is_reverse_direction_windowleft.setGeometry(QRect(20, 110, 211, 21))
         self.checkBox_is_reverse_direction_windowleft.setAutoFillBackground(False)
         self.checkBox_is_reverse_direction_windowleft.setStyleSheet(u"")
-        self.labelVersion_4 = QLabel(self.groupBox)
+        self.horizontalLayoutWidget = QWidget(self.groupBox)
+        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
+        self.horizontalLayoutWidget.setGeometry(QRect(20, 60, 131, 32))
+        self.horizontalLayout_3 = QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.lineEdit_base_width_toleft_px = QLineEdit(self.horizontalLayoutWidget)
+        self.lineEdit_base_width_toleft_px.setObjectName(u"lineEdit_base_width_toleft_px")
+        self.lineEdit_base_width_toleft_px.setMinimumSize(QSize(0, 30))
+        self.lineEdit_base_width_toleft_px.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_3.addWidget(self.lineEdit_base_width_toleft_px)
+
+        self.labelBoxBlenderInstalation_2 = QLabel(self.horizontalLayoutWidget)
+        self.labelBoxBlenderInstalation_2.setObjectName(u"labelBoxBlenderInstalation_2")
+        self.labelBoxBlenderInstalation_2.setFont(font)
+        self.labelBoxBlenderInstalation_2.setStyleSheet(u"")
+
+        self.horizontalLayout_3.addWidget(self.labelBoxBlenderInstalation_2)
+
+        self.horizontalLayoutWidget_6 = QWidget(self.groupBox)
+        self.horizontalLayoutWidget_6.setObjectName(u"horizontalLayoutWidget_6")
+        self.horizontalLayoutWidget_6.setGeometry(QRect(20, 20, 160, 31))
+        self.horizontalLayout_10 = QHBoxLayout(self.horizontalLayoutWidget_6)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.labelBoxBlenderInstalation = QLabel(self.horizontalLayoutWidget_6)
+        self.labelBoxBlenderInstalation.setObjectName(u"labelBoxBlenderInstalation")
+        self.labelBoxBlenderInstalation.setFont(font)
+        self.labelBoxBlenderInstalation.setStyleSheet(u"")
+
+        self.horizontalLayout_10.addWidget(self.labelBoxBlenderInstalation)
+
+        self.labelVersion_4 = QLabel(self.horizontalLayoutWidget_6)
         self.labelVersion_4.setObjectName(u"labelVersion_4")
-        self.labelVersion_4.setGeometry(QRect(82, 27, 141, 18))
         self.labelVersion_4.setStyleSheet(u"color: rgb(113, 126, 149);")
         self.labelVersion_4.setLineWidth(1)
         self.labelVersion_4.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.horizontalLayout_10.addWidget(self.labelVersion_4)
+
 
         self.gridLayout_5.addWidget(self.groupBox, 0, 0, 1, 1)
 
@@ -471,32 +498,52 @@ class Ui_ConfigGUI(object):
         self.groupBox_3 = QGroupBox(self.frame_2)
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.groupBox_3.setGeometry(QRect(10, 10, 230, 180))
-        self.labelBoxBlenderInstalation_5 = QLabel(self.groupBox_3)
-        self.labelBoxBlenderInstalation_5.setObjectName(u"labelBoxBlenderInstalation_5")
-        self.labelBoxBlenderInstalation_5.setGeometry(QRect(10, 27, 57, 18))
-        self.labelBoxBlenderInstalation_5.setFont(font)
-        self.labelBoxBlenderInstalation_5.setStyleSheet(u"")
-        self.lineEdit_base_width_toright_px = QLineEdit(self.groupBox_3)
-        self.lineEdit_base_width_toright_px.setObjectName(u"lineEdit_base_width_toright_px")
-        self.lineEdit_base_width_toright_px.setGeometry(QRect(10, 60, 120, 30))
-        self.lineEdit_base_width_toright_px.setMinimumSize(QSize(0, 30))
-        self.lineEdit_base_width_toright_px.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.labelBoxBlenderInstalation_6 = QLabel(self.groupBox_3)
-        self.labelBoxBlenderInstalation_6.setObjectName(u"labelBoxBlenderInstalation_6")
-        self.labelBoxBlenderInstalation_6.setGeometry(QRect(140, 70, 16, 18))
-        self.labelBoxBlenderInstalation_6.setFont(font)
-        self.labelBoxBlenderInstalation_6.setStyleSheet(u"")
         self.checkBox_is_reverse_direction_windowright = QCheckBox(self.groupBox_3)
         self.checkBox_is_reverse_direction_windowright.setObjectName(u"checkBox_is_reverse_direction_windowright")
-        self.checkBox_is_reverse_direction_windowright.setGeometry(QRect(10, 110, 211, 21))
+        self.checkBox_is_reverse_direction_windowright.setGeometry(QRect(20, 110, 211, 21))
         self.checkBox_is_reverse_direction_windowright.setAutoFillBackground(False)
         self.checkBox_is_reverse_direction_windowright.setStyleSheet(u"")
-        self.labelVersion_6 = QLabel(self.groupBox_3)
+        self.horizontalLayoutWidget_2 = QWidget(self.groupBox_3)
+        self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
+        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 60, 131, 32))
+        self.horizontalLayout_6 = QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.lineEdit_base_width_toright_px = QLineEdit(self.horizontalLayoutWidget_2)
+        self.lineEdit_base_width_toright_px.setObjectName(u"lineEdit_base_width_toright_px")
+        self.lineEdit_base_width_toright_px.setMinimumSize(QSize(0, 30))
+        self.lineEdit_base_width_toright_px.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.horizontalLayout_6.addWidget(self.lineEdit_base_width_toright_px)
+
+        self.labelBoxBlenderInstalation_6 = QLabel(self.horizontalLayoutWidget_2)
+        self.labelBoxBlenderInstalation_6.setObjectName(u"labelBoxBlenderInstalation_6")
+        self.labelBoxBlenderInstalation_6.setFont(font)
+        self.labelBoxBlenderInstalation_6.setStyleSheet(u"")
+
+        self.horizontalLayout_6.addWidget(self.labelBoxBlenderInstalation_6)
+
+        self.horizontalLayoutWidget_7 = QWidget(self.groupBox_3)
+        self.horizontalLayoutWidget_7.setObjectName(u"horizontalLayoutWidget_7")
+        self.horizontalLayoutWidget_7.setGeometry(QRect(20, 20, 160, 31))
+        self.horizontalLayout_11 = QHBoxLayout(self.horizontalLayoutWidget_7)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.labelBoxBlenderInstalation_5 = QLabel(self.horizontalLayoutWidget_7)
+        self.labelBoxBlenderInstalation_5.setObjectName(u"labelBoxBlenderInstalation_5")
+        self.labelBoxBlenderInstalation_5.setFont(font)
+        self.labelBoxBlenderInstalation_5.setStyleSheet(u"")
+
+        self.horizontalLayout_11.addWidget(self.labelBoxBlenderInstalation_5)
+
+        self.labelVersion_6 = QLabel(self.horizontalLayoutWidget_7)
         self.labelVersion_6.setObjectName(u"labelVersion_6")
-        self.labelVersion_6.setGeometry(QRect(82, 27, 141, 18))
         self.labelVersion_6.setStyleSheet(u"color: rgb(113, 126, 149);")
         self.labelVersion_6.setLineWidth(1)
         self.labelVersion_6.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.horizontalLayout_11.addWidget(self.labelVersion_6)
+
         self.frame_3 = QFrame(self.page_size)
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setGeometry(QRect(10, 210, 511, 241))
@@ -508,74 +555,106 @@ class Ui_ConfigGUI(object):
         self.groupBox_4 = QGroupBox(self.frame_3)
         self.groupBox_4.setObjectName(u"groupBox_4")
         self.groupBox_4.setGeometry(QRect(10, 10, 491, 221))
-        self.labelBoxBlenderInstalation_7 = QLabel(self.groupBox_4)
-        self.labelBoxBlenderInstalation_7.setObjectName(u"labelBoxBlenderInstalation_7")
-        self.labelBoxBlenderInstalation_7.setGeometry(QRect(10, 27, 131, 18))
-        self.labelBoxBlenderInstalation_7.setFont(font)
-        self.labelBoxBlenderInstalation_7.setStyleSheet(u"")
-        self.lineEdit_resize_max_cnt = QLineEdit(self.groupBox_4)
-        self.lineEdit_resize_max_cnt.setObjectName(u"lineEdit_resize_max_cnt")
-        self.lineEdit_resize_max_cnt.setGeometry(QRect(230, 20, 120, 30))
-        self.lineEdit_resize_max_cnt.setMinimumSize(QSize(0, 30))
-        self.lineEdit_resize_max_cnt.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.labelBoxBlenderInstalation_8 = QLabel(self.groupBox_4)
-        self.labelBoxBlenderInstalation_8.setObjectName(u"labelBoxBlenderInstalation_8")
-        self.labelBoxBlenderInstalation_8.setGeometry(QRect(360, 30, 16, 18))
-        self.labelBoxBlenderInstalation_8.setFont(font)
-        self.labelBoxBlenderInstalation_8.setStyleSheet(u"")
         self.checkBox_is_subtract_taskbar = QCheckBox(self.groupBox_4)
         self.checkBox_is_subtract_taskbar.setObjectName(u"checkBox_is_subtract_taskbar")
-        self.checkBox_is_subtract_taskbar.setGeometry(QRect(10, 150, 321, 21))
+        self.checkBox_is_subtract_taskbar.setGeometry(QRect(20, 150, 321, 21))
         self.checkBox_is_subtract_taskbar.setAutoFillBackground(False)
         self.checkBox_is_subtract_taskbar.setStyleSheet(u"")
-        self.labelVersion_7 = QLabel(self.groupBox_4)
-        self.labelVersion_7.setObjectName(u"labelVersion_7")
-        self.labelVersion_7.setGeometry(QRect(150, 30, 81, 18))
-        self.labelVersion_7.setStyleSheet(u"color: rgb(113, 126, 149);")
-        self.labelVersion_7.setLineWidth(1)
-        self.labelVersion_7.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-        self.labelBoxBlenderInstalation_9 = QLabel(self.groupBox_4)
+        self.gridLayoutWidget = QWidget(self.groupBox_4)
+        self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
+        self.gridLayoutWidget.setGeometry(QRect(20, 20, 351, 123))
+        self.gridLayout = QGridLayout(self.gridLayoutWidget)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setHorizontalSpacing(10)
+        self.gridLayout.setVerticalSpacing(6)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.labelBoxBlenderInstalation_7 = QLabel(self.gridLayoutWidget)
+        self.labelBoxBlenderInstalation_7.setObjectName(u"labelBoxBlenderInstalation_7")
+        self.labelBoxBlenderInstalation_7.setFont(font)
+        self.labelBoxBlenderInstalation_7.setStyleSheet(u"")
+
+        self.gridLayout.addWidget(self.labelBoxBlenderInstalation_7, 0, 0, 1, 1)
+
+        self.labelBoxBlenderInstalation_9 = QLabel(self.gridLayoutWidget)
         self.labelBoxBlenderInstalation_9.setObjectName(u"labelBoxBlenderInstalation_9")
-        self.labelBoxBlenderInstalation_9.setGeometry(QRect(360, 70, 16, 18))
         self.labelBoxBlenderInstalation_9.setFont(font)
         self.labelBoxBlenderInstalation_9.setStyleSheet(u"")
-        self.labelBoxBlenderInstalation_10 = QLabel(self.groupBox_4)
-        self.labelBoxBlenderInstalation_10.setObjectName(u"labelBoxBlenderInstalation_10")
-        self.labelBoxBlenderInstalation_10.setGeometry(QRect(10, 67, 131, 18))
-        self.labelBoxBlenderInstalation_10.setFont(font)
-        self.labelBoxBlenderInstalation_10.setStyleSheet(u"")
-        self.lineEdit_resize_add_width_px = QLineEdit(self.groupBox_4)
-        self.lineEdit_resize_add_width_px.setObjectName(u"lineEdit_resize_add_width_px")
-        self.lineEdit_resize_add_width_px.setGeometry(QRect(230, 60, 120, 30))
-        self.lineEdit_resize_add_width_px.setMinimumSize(QSize(0, 30))
-        self.lineEdit_resize_add_width_px.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.labelVersion_8 = QLabel(self.groupBox_4)
+
+        self.gridLayout.addWidget(self.labelBoxBlenderInstalation_9, 3, 5, 1, 1)
+
+        self.labelVersion_8 = QLabel(self.gridLayoutWidget)
         self.labelVersion_8.setObjectName(u"labelVersion_8")
-        self.labelVersion_8.setGeometry(QRect(150, 70, 81, 18))
         self.labelVersion_8.setStyleSheet(u"color: rgb(113, 126, 149);")
         self.labelVersion_8.setLineWidth(1)
         self.labelVersion_8.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-        self.labelBoxBlenderInstalation_11 = QLabel(self.groupBox_4)
-        self.labelBoxBlenderInstalation_11.setObjectName(u"labelBoxBlenderInstalation_11")
-        self.labelBoxBlenderInstalation_11.setGeometry(QRect(360, 110, 16, 18))
-        self.labelBoxBlenderInstalation_11.setFont(font)
-        self.labelBoxBlenderInstalation_11.setStyleSheet(u"")
-        self.labelBoxBlenderInstalation_12 = QLabel(self.groupBox_4)
-        self.labelBoxBlenderInstalation_12.setObjectName(u"labelBoxBlenderInstalation_12")
-        self.labelBoxBlenderInstalation_12.setGeometry(QRect(10, 107, 131, 18))
-        self.labelBoxBlenderInstalation_12.setFont(font)
-        self.labelBoxBlenderInstalation_12.setStyleSheet(u"")
-        self.labelVersion_9 = QLabel(self.groupBox_4)
+
+        self.gridLayout.addWidget(self.labelVersion_8, 3, 1, 1, 1)
+
+        self.labelVersion_9 = QLabel(self.gridLayoutWidget)
         self.labelVersion_9.setObjectName(u"labelVersion_9")
-        self.labelVersion_9.setGeometry(QRect(150, 110, 81, 18))
         self.labelVersion_9.setStyleSheet(u"color: rgb(113, 126, 149);")
         self.labelVersion_9.setLineWidth(1)
         self.labelVersion_9.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-        self.lineEdit_adjust_width_px = QLineEdit(self.groupBox_4)
+
+        self.gridLayout.addWidget(self.labelVersion_9, 4, 1, 1, 1)
+
+        self.labelBoxBlenderInstalation_12 = QLabel(self.gridLayoutWidget)
+        self.labelBoxBlenderInstalation_12.setObjectName(u"labelBoxBlenderInstalation_12")
+        self.labelBoxBlenderInstalation_12.setFont(font)
+        self.labelBoxBlenderInstalation_12.setStyleSheet(u"")
+
+        self.gridLayout.addWidget(self.labelBoxBlenderInstalation_12, 4, 0, 1, 1)
+
+        self.labelBoxBlenderInstalation_11 = QLabel(self.gridLayoutWidget)
+        self.labelBoxBlenderInstalation_11.setObjectName(u"labelBoxBlenderInstalation_11")
+        self.labelBoxBlenderInstalation_11.setFont(font)
+        self.labelBoxBlenderInstalation_11.setStyleSheet(u"")
+
+        self.gridLayout.addWidget(self.labelBoxBlenderInstalation_11, 4, 5, 1, 1)
+
+        self.labelVersion_7 = QLabel(self.gridLayoutWidget)
+        self.labelVersion_7.setObjectName(u"labelVersion_7")
+        self.labelVersion_7.setStyleSheet(u"color: rgb(113, 126, 149);")
+        self.labelVersion_7.setLineWidth(1)
+        self.labelVersion_7.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.gridLayout.addWidget(self.labelVersion_7, 0, 1, 1, 1)
+
+        self.labelBoxBlenderInstalation_10 = QLabel(self.gridLayoutWidget)
+        self.labelBoxBlenderInstalation_10.setObjectName(u"labelBoxBlenderInstalation_10")
+        self.labelBoxBlenderInstalation_10.setFont(font)
+        self.labelBoxBlenderInstalation_10.setStyleSheet(u"")
+
+        self.gridLayout.addWidget(self.labelBoxBlenderInstalation_10, 3, 0, 1, 1)
+
+        self.lineEdit_adjust_width_px = QLineEdit(self.gridLayoutWidget)
         self.lineEdit_adjust_width_px.setObjectName(u"lineEdit_adjust_width_px")
-        self.lineEdit_adjust_width_px.setGeometry(QRect(230, 100, 120, 30))
         self.lineEdit_adjust_width_px.setMinimumSize(QSize(0, 30))
         self.lineEdit_adjust_width_px.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout.addWidget(self.lineEdit_adjust_width_px, 4, 4, 1, 1)
+
+        self.labelBoxBlenderInstalation_8 = QLabel(self.gridLayoutWidget)
+        self.labelBoxBlenderInstalation_8.setObjectName(u"labelBoxBlenderInstalation_8")
+        self.labelBoxBlenderInstalation_8.setFont(font)
+        self.labelBoxBlenderInstalation_8.setStyleSheet(u"")
+
+        self.gridLayout.addWidget(self.labelBoxBlenderInstalation_8, 0, 5, 1, 1)
+
+        self.lineEdit_resize_add_width_px = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_resize_add_width_px.setObjectName(u"lineEdit_resize_add_width_px")
+        self.lineEdit_resize_add_width_px.setMinimumSize(QSize(0, 30))
+        self.lineEdit_resize_add_width_px.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout.addWidget(self.lineEdit_resize_add_width_px, 3, 4, 1, 1)
+
+        self.lineEdit_resize_max_cnt = QLineEdit(self.gridLayoutWidget)
+        self.lineEdit_resize_max_cnt.setObjectName(u"lineEdit_resize_max_cnt")
+        self.lineEdit_resize_max_cnt.setMinimumSize(QSize(0, 30))
+        self.lineEdit_resize_max_cnt.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+
+        self.gridLayout.addWidget(self.lineEdit_resize_max_cnt, 0, 4, 1, 1)
+
         self.stackedWidget.addWidget(self.page_size)
         self.page_position = QWidget()
         self.page_position.setObjectName(u"page_position")
@@ -590,28 +669,43 @@ class Ui_ConfigGUI(object):
         self.groupBox_2 = QGroupBox(self.frame_4)
         self.groupBox_2.setObjectName(u"groupBox_2")
         self.groupBox_2.setGeometry(QRect(10, 10, 441, 81))
-        self.labelBoxBlenderInstalation_3 = QLabel(self.groupBox_2)
+        self.horizontalLayoutWidget_4 = QWidget(self.groupBox_2)
+        self.horizontalLayoutWidget_4.setObjectName(u"horizontalLayoutWidget_4")
+        self.horizontalLayoutWidget_4.setGeometry(QRect(20, 30, 341, 32))
+        self.horizontalLayout_8 = QHBoxLayout(self.horizontalLayoutWidget_4)
+        self.horizontalLayout_8.setSpacing(10)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.labelBoxBlenderInstalation_3 = QLabel(self.horizontalLayoutWidget_4)
         self.labelBoxBlenderInstalation_3.setObjectName(u"labelBoxBlenderInstalation_3")
-        self.labelBoxBlenderInstalation_3.setGeometry(QRect(10, 27, 111, 18))
         self.labelBoxBlenderInstalation_3.setFont(font)
         self.labelBoxBlenderInstalation_3.setStyleSheet(u"")
-        self.lineEdit_adjust_x_px = QLineEdit(self.groupBox_2)
-        self.lineEdit_adjust_x_px.setObjectName(u"lineEdit_adjust_x_px")
-        self.lineEdit_adjust_x_px.setGeometry(QRect(210, 20, 120, 30))
-        self.lineEdit_adjust_x_px.setMinimumSize(QSize(0, 30))
-        self.lineEdit_adjust_x_px.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-        self.lineEdit_adjust_x_px.setMaxLength(5)
-        self.labelBoxBlenderInstalation_4 = QLabel(self.groupBox_2)
-        self.labelBoxBlenderInstalation_4.setObjectName(u"labelBoxBlenderInstalation_4")
-        self.labelBoxBlenderInstalation_4.setGeometry(QRect(340, 30, 16, 18))
-        self.labelBoxBlenderInstalation_4.setFont(font)
-        self.labelBoxBlenderInstalation_4.setStyleSheet(u"")
-        self.labelVersion_5 = QLabel(self.groupBox_2)
+
+        self.horizontalLayout_8.addWidget(self.labelBoxBlenderInstalation_3)
+
+        self.labelVersion_5 = QLabel(self.horizontalLayoutWidget_4)
         self.labelVersion_5.setObjectName(u"labelVersion_5")
-        self.labelVersion_5.setGeometry(QRect(120, 30, 86, 18))
         self.labelVersion_5.setStyleSheet(u"color: rgb(113, 126, 149);")
         self.labelVersion_5.setLineWidth(1)
         self.labelVersion_5.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.horizontalLayout_8.addWidget(self.labelVersion_5)
+
+        self.lineEdit_adjust_x_px = QLineEdit(self.horizontalLayoutWidget_4)
+        self.lineEdit_adjust_x_px.setObjectName(u"lineEdit_adjust_x_px")
+        self.lineEdit_adjust_x_px.setMinimumSize(QSize(0, 30))
+        self.lineEdit_adjust_x_px.setStyleSheet(u"background-color: rgb(33, 37, 43);")
+        self.lineEdit_adjust_x_px.setMaxLength(5)
+
+        self.horizontalLayout_8.addWidget(self.lineEdit_adjust_x_px)
+
+        self.labelBoxBlenderInstalation_4 = QLabel(self.horizontalLayoutWidget_4)
+        self.labelBoxBlenderInstalation_4.setObjectName(u"labelBoxBlenderInstalation_4")
+        self.labelBoxBlenderInstalation_4.setFont(font)
+        self.labelBoxBlenderInstalation_4.setStyleSheet(u"")
+
+        self.horizontalLayout_8.addWidget(self.labelBoxBlenderInstalation_4)
+
         self.stackedWidget.addWidget(self.page_position)
         self.page_hotkey = QWidget()
         self.page_hotkey.setObjectName(u"page_hotkey")
@@ -626,45 +720,88 @@ class Ui_ConfigGUI(object):
         self.groupBox_5 = QGroupBox(self.frame_5)
         self.groupBox_5.setObjectName(u"groupBox_5")
         self.groupBox_5.setGeometry(QRect(10, 10, 230, 221))
-        self.checkBox_windowleft_mod_ctrl = QCheckBox(self.groupBox_5)
+        self.verticalLayoutWidget = QWidget(self.groupBox_5)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(20, 30, 171, 141))
+        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.checkBox_windowleft_mod_ctrl = QCheckBox(self.verticalLayoutWidget)
         self.checkBox_windowleft_mod_ctrl.setObjectName(u"checkBox_windowleft_mod_ctrl")
-        self.checkBox_windowleft_mod_ctrl.setGeometry(QRect(10, 40, 115, 21))
         self.checkBox_windowleft_mod_ctrl.setAutoFillBackground(False)
         self.checkBox_windowleft_mod_ctrl.setStyleSheet(u"")
-        self.checkBox_windowleft_mod_shift = QCheckBox(self.groupBox_5)
-        self.checkBox_windowleft_mod_shift.setObjectName(u"checkBox_windowleft_mod_shift")
-        self.checkBox_windowleft_mod_shift.setGeometry(QRect(10, 70, 115, 21))
-        self.checkBox_windowleft_mod_shift.setAutoFillBackground(False)
-        self.checkBox_windowleft_mod_shift.setStyleSheet(u"")
-        self.checkBox_windowleft_mod_alt = QCheckBox(self.groupBox_5)
+
+        self.verticalLayout.addWidget(self.checkBox_windowleft_mod_ctrl)
+
+        self.checkBox_windowleft_mod_alt = QCheckBox(self.verticalLayoutWidget)
         self.checkBox_windowleft_mod_alt.setObjectName(u"checkBox_windowleft_mod_alt")
-        self.checkBox_windowleft_mod_alt.setGeometry(QRect(10, 100, 115, 21))
         self.checkBox_windowleft_mod_alt.setAutoFillBackground(False)
         self.checkBox_windowleft_mod_alt.setStyleSheet(u"")
-        self.checkBox_windowleft_mod_win = QCheckBox(self.groupBox_5)
+
+        self.verticalLayout.addWidget(self.checkBox_windowleft_mod_alt)
+
+        self.checkBox_windowleft_mod_shift = QCheckBox(self.verticalLayoutWidget)
+        self.checkBox_windowleft_mod_shift.setObjectName(u"checkBox_windowleft_mod_shift")
+        self.checkBox_windowleft_mod_shift.setAutoFillBackground(False)
+        self.checkBox_windowleft_mod_shift.setStyleSheet(u"")
+
+        self.verticalLayout.addWidget(self.checkBox_windowleft_mod_shift)
+
+        self.checkBox_windowleft_mod_win = QCheckBox(self.verticalLayoutWidget)
         self.checkBox_windowleft_mod_win.setObjectName(u"checkBox_windowleft_mod_win")
-        self.checkBox_windowleft_mod_win.setGeometry(QRect(10, 130, 115, 21))
         self.checkBox_windowleft_mod_win.setAutoFillBackground(False)
         self.checkBox_windowleft_mod_win.setStyleSheet(u"")
-        self.labelBoxBlenderInstalation_13 = QLabel(self.groupBox_5)
+
+        self.verticalLayout.addWidget(self.checkBox_windowleft_mod_win)
+
+        self.horizontalLayoutWidget_3 = QWidget(self.groupBox_5)
+        self.horizontalLayoutWidget_3.setObjectName(u"horizontalLayoutWidget_3")
+        self.horizontalLayoutWidget_3.setGeometry(QRect(20, 170, 171, 31))
+        self.horizontalLayout_7 = QHBoxLayout(self.horizontalLayoutWidget_3)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.labelBoxBlenderInstalation_13 = QLabel(self.horizontalLayoutWidget_3)
         self.labelBoxBlenderInstalation_13.setObjectName(u"labelBoxBlenderInstalation_13")
-        self.labelBoxBlenderInstalation_13.setGeometry(QRect(10, 170, 101, 18))
         self.labelBoxBlenderInstalation_13.setFont(font)
         self.labelBoxBlenderInstalation_13.setStyleSheet(u"")
-        self.comboBox_Hotkey_WindowLeft = QComboBox(self.groupBox_5)
+
+        self.horizontalLayout_7.addWidget(self.labelBoxBlenderInstalation_13)
+
+        self.comboBox_Hotkey_WindowLeft = QComboBox(self.horizontalLayoutWidget_3)
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
+        self.comboBox_Hotkey_WindowLeft.addItem("")
         self.comboBox_Hotkey_WindowLeft.addItem("")
         self.comboBox_Hotkey_WindowLeft.addItem("")
         self.comboBox_Hotkey_WindowLeft.addItem("")
         self.comboBox_Hotkey_WindowLeft.setObjectName(u"comboBox_Hotkey_WindowLeft")
-        self.comboBox_Hotkey_WindowLeft.setGeometry(QRect(80, 170, 131, 34))
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.comboBox_Hotkey_WindowLeft.sizePolicy().hasHeightForWidth())
+        self.comboBox_Hotkey_WindowLeft.setSizePolicy(sizePolicy2)
+        self.comboBox_Hotkey_WindowLeft.setMinimumSize(QSize(100, 0))
         self.comboBox_Hotkey_WindowLeft.setFont(font)
         self.comboBox_Hotkey_WindowLeft.setAutoFillBackground(False)
         self.comboBox_Hotkey_WindowLeft.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.comboBox_Hotkey_WindowLeft.setIconSize(QSize(16, 16))
         self.comboBox_Hotkey_WindowLeft.setFrame(True)
+
+        self.horizontalLayout_7.addWidget(self.comboBox_Hotkey_WindowLeft)
+
         self.frame_6 = QFrame(self.page_hotkey)
         self.frame_6.setObjectName(u"frame_6")
-        self.frame_6.setGeometry(QRect(290, 10, 250, 241))
+        self.frame_6.setGeometry(QRect(260, 10, 250, 241))
         sizePolicy1.setHeightForWidth(self.frame_6.sizePolicy().hasHeightForWidth())
         self.frame_6.setSizePolicy(sizePolicy1)
         self.frame_6.setMinimumSize(QSize(250, 200))
@@ -672,43 +809,83 @@ class Ui_ConfigGUI(object):
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.groupBox_6 = QGroupBox(self.frame_6)
         self.groupBox_6.setObjectName(u"groupBox_6")
-        self.groupBox_6.setGeometry(QRect(10, 10, 230, 221))
-        self.checkBox_windowright_mod_ctrl = QCheckBox(self.groupBox_6)
+        self.groupBox_6.setGeometry(QRect(20, 10, 230, 221))
+        self.verticalLayoutWidget_2 = QWidget(self.groupBox_6)
+        self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
+        self.verticalLayoutWidget_2.setGeometry(QRect(20, 30, 171, 141))
+        self.verticalLayout_4 = QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.checkBox_windowright_mod_ctrl = QCheckBox(self.verticalLayoutWidget_2)
         self.checkBox_windowright_mod_ctrl.setObjectName(u"checkBox_windowright_mod_ctrl")
-        self.checkBox_windowright_mod_ctrl.setGeometry(QRect(10, 40, 115, 21))
         self.checkBox_windowright_mod_ctrl.setAutoFillBackground(False)
         self.checkBox_windowright_mod_ctrl.setStyleSheet(u"")
-        self.checkBox_windowright_mod_shift = QCheckBox(self.groupBox_6)
-        self.checkBox_windowright_mod_shift.setObjectName(u"checkBox_windowright_mod_shift")
-        self.checkBox_windowright_mod_shift.setGeometry(QRect(10, 70, 115, 21))
-        self.checkBox_windowright_mod_shift.setAutoFillBackground(False)
-        self.checkBox_windowright_mod_shift.setStyleSheet(u"")
-        self.checkBox_windowright_mod_alt = QCheckBox(self.groupBox_6)
+
+        self.verticalLayout_4.addWidget(self.checkBox_windowright_mod_ctrl)
+
+        self.checkBox_windowright_mod_alt = QCheckBox(self.verticalLayoutWidget_2)
         self.checkBox_windowright_mod_alt.setObjectName(u"checkBox_windowright_mod_alt")
-        self.checkBox_windowright_mod_alt.setGeometry(QRect(10, 100, 115, 21))
         self.checkBox_windowright_mod_alt.setAutoFillBackground(False)
         self.checkBox_windowright_mod_alt.setStyleSheet(u"")
-        self.checkBox_windowright_mod_win = QCheckBox(self.groupBox_6)
+
+        self.verticalLayout_4.addWidget(self.checkBox_windowright_mod_alt)
+
+        self.checkBox_windowright_mod_shift = QCheckBox(self.verticalLayoutWidget_2)
+        self.checkBox_windowright_mod_shift.setObjectName(u"checkBox_windowright_mod_shift")
+        self.checkBox_windowright_mod_shift.setAutoFillBackground(False)
+        self.checkBox_windowright_mod_shift.setStyleSheet(u"")
+
+        self.verticalLayout_4.addWidget(self.checkBox_windowright_mod_shift)
+
+        self.checkBox_windowright_mod_win = QCheckBox(self.verticalLayoutWidget_2)
         self.checkBox_windowright_mod_win.setObjectName(u"checkBox_windowright_mod_win")
-        self.checkBox_windowright_mod_win.setGeometry(QRect(10, 130, 115, 21))
         self.checkBox_windowright_mod_win.setAutoFillBackground(False)
         self.checkBox_windowright_mod_win.setStyleSheet(u"")
-        self.labelBoxBlenderInstalation_14 = QLabel(self.groupBox_6)
+
+        self.verticalLayout_4.addWidget(self.checkBox_windowright_mod_win)
+
+        self.horizontalLayoutWidget_5 = QWidget(self.groupBox_6)
+        self.horizontalLayoutWidget_5.setObjectName(u"horizontalLayoutWidget_5")
+        self.horizontalLayoutWidget_5.setGeometry(QRect(20, 170, 171, 31))
+        self.horizontalLayout_9 = QHBoxLayout(self.horizontalLayoutWidget_5)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.labelBoxBlenderInstalation_14 = QLabel(self.horizontalLayoutWidget_5)
         self.labelBoxBlenderInstalation_14.setObjectName(u"labelBoxBlenderInstalation_14")
-        self.labelBoxBlenderInstalation_14.setGeometry(QRect(10, 170, 101, 18))
         self.labelBoxBlenderInstalation_14.setFont(font)
         self.labelBoxBlenderInstalation_14.setStyleSheet(u"")
-        self.comboBox_Hotkey_WindowRight = QComboBox(self.groupBox_6)
+
+        self.horizontalLayout_9.addWidget(self.labelBoxBlenderInstalation_14)
+
+        self.comboBox_Hotkey_WindowRight = QComboBox(self.horizontalLayoutWidget_5)
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
+        self.comboBox_Hotkey_WindowRight.addItem("")
         self.comboBox_Hotkey_WindowRight.addItem("")
         self.comboBox_Hotkey_WindowRight.addItem("")
         self.comboBox_Hotkey_WindowRight.addItem("")
         self.comboBox_Hotkey_WindowRight.setObjectName(u"comboBox_Hotkey_WindowRight")
-        self.comboBox_Hotkey_WindowRight.setGeometry(QRect(80, 170, 131, 34))
+        sizePolicy2.setHeightForWidth(self.comboBox_Hotkey_WindowRight.sizePolicy().hasHeightForWidth())
+        self.comboBox_Hotkey_WindowRight.setSizePolicy(sizePolicy2)
+        self.comboBox_Hotkey_WindowRight.setMinimumSize(QSize(100, 0))
         self.comboBox_Hotkey_WindowRight.setFont(font)
         self.comboBox_Hotkey_WindowRight.setAutoFillBackground(False)
         self.comboBox_Hotkey_WindowRight.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.comboBox_Hotkey_WindowRight.setIconSize(QSize(16, 16))
         self.comboBox_Hotkey_WindowRight.setFrame(True)
+
+        self.horizontalLayout_9.addWidget(self.comboBox_Hotkey_WindowRight)
+
         self.stackedWidget.addWidget(self.page_hotkey)
 
         self.horizontalLayout_4.addWidget(self.rightBoxPagesContainer)
@@ -790,61 +967,87 @@ class Ui_ConfigGUI(object):
         self.rightBoxPagesContainer.setWhatsThis(QCoreApplication.translate("ConfigGUI", u"<html><head/><body><p><br/></p></body></html>", None))
 #endif // QT_CONFIG(whatsthis)
         self.groupBox.setTitle(QCoreApplication.translate("ConfigGUI", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u5de6\u914d\u7f6e", None))
-        self.labelBoxBlenderInstalation.setText(QCoreApplication.translate("ConfigGUI", u"\u57fa\u6e96\u30b5\u30a4\u30ba", None))
+        self.checkBox_is_reverse_direction_windowleft.setText(QCoreApplication.translate("ConfigGUI", u"\u9006\u65b9\u5411\u306b\u30ea\u30b5\u30a4\u30ba", None))
         self.lineEdit_base_width_toleft_px.setText("")
         self.lineEdit_base_width_toleft_px.setPlaceholderText(QCoreApplication.translate("ConfigGUI", u"\u6570\u5024\u3092\u5165\u529b", None))
         self.labelBoxBlenderInstalation_2.setText(QCoreApplication.translate("ConfigGUI", u"px", None))
-        self.checkBox_is_reverse_direction_windowleft.setText(QCoreApplication.translate("ConfigGUI", u"\u9006\u65b9\u5411\u306b\u30ea\u30b5\u30a4\u30ba", None))
+        self.labelBoxBlenderInstalation.setText(QCoreApplication.translate("ConfigGUI", u"\u57fa\u6e96\u30b5\u30a4\u30ba", None))
         self.labelVersion_4.setText(QCoreApplication.translate("ConfigGUI", u"(\u7bc4\u56f2 1\uff5e9999)", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("ConfigGUI", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u53f3\u914d\u7f6e", None))
-        self.labelBoxBlenderInstalation_5.setText(QCoreApplication.translate("ConfigGUI", u"\u57fa\u6e96\u30b5\u30a4\u30ba", None))
+        self.checkBox_is_reverse_direction_windowright.setText(QCoreApplication.translate("ConfigGUI", u"\u9006\u65b9\u5411\u306b\u30ea\u30b5\u30a4\u30ba", None))
         self.lineEdit_base_width_toright_px.setText("")
         self.lineEdit_base_width_toright_px.setPlaceholderText(QCoreApplication.translate("ConfigGUI", u"\u6570\u5024\u3092\u5165\u529b", None))
         self.labelBoxBlenderInstalation_6.setText(QCoreApplication.translate("ConfigGUI", u"px", None))
-        self.checkBox_is_reverse_direction_windowright.setText(QCoreApplication.translate("ConfigGUI", u"\u9006\u65b9\u5411\u306b\u30ea\u30b5\u30a4\u30ba", None))
+        self.labelBoxBlenderInstalation_5.setText(QCoreApplication.translate("ConfigGUI", u"\u57fa\u6e96\u30b5\u30a4\u30ba", None))
         self.labelVersion_6.setText(QCoreApplication.translate("ConfigGUI", u"(\u7bc4\u56f2 1\uff5e9999)", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("ConfigGUI", u"\u5171\u901a\u8a2d\u5b9a", None))
-        self.labelBoxBlenderInstalation_7.setText(QCoreApplication.translate("ConfigGUI", u"\u30ea\u30b5\u30a4\u30ba\u6700\u5927\u56de\u6570", None))
-        self.lineEdit_resize_max_cnt.setText("")
-        self.lineEdit_resize_max_cnt.setPlaceholderText(QCoreApplication.translate("ConfigGUI", u"\u6570\u5024\u3092\u5165\u529b", None))
-        self.labelBoxBlenderInstalation_8.setText(QCoreApplication.translate("ConfigGUI", u"\u56de", None))
         self.checkBox_is_subtract_taskbar.setText(QCoreApplication.translate("ConfigGUI", u"\u30bf\u30b9\u30af\u30d0\u30fc\u306e\u30b5\u30a4\u30ba\u3092\u6e1b\u7b97\u3057\u3066\u30ea\u30b5\u30a4\u30ba", None))
-        self.labelVersion_7.setText(QCoreApplication.translate("ConfigGUI", u"(\u7bc4\u56f2 1\uff5e10)", None))
+        self.labelBoxBlenderInstalation_7.setText(QCoreApplication.translate("ConfigGUI", u"\u30ea\u30b5\u30a4\u30ba\u6700\u5927\u56de\u6570", None))
         self.labelBoxBlenderInstalation_9.setText(QCoreApplication.translate("ConfigGUI", u"px", None))
-        self.labelBoxBlenderInstalation_10.setText(QCoreApplication.translate("ConfigGUI", u"\u30ea\u30b5\u30a4\u30ba\u6bce\u52a0\u7b97\u30b5\u30a4\u30ba", None))
-        self.lineEdit_resize_add_width_px.setText("")
-        self.lineEdit_resize_add_width_px.setPlaceholderText(QCoreApplication.translate("ConfigGUI", u"\u6570\u5024\u3092\u5165\u529b", None))
         self.labelVersion_8.setText(QCoreApplication.translate("ConfigGUI", u"(\u7bc4\u56f2 1\uff5e999)", None))
-        self.labelBoxBlenderInstalation_11.setText(QCoreApplication.translate("ConfigGUI", u"px", None))
-        self.labelBoxBlenderInstalation_12.setText(QCoreApplication.translate("ConfigGUI", u"\u8abf\u6574\u7528\u52a0\u7b97\u30b5\u30a4\u30ba", None))
         self.labelVersion_9.setText(QCoreApplication.translate("ConfigGUI", u"(\u7bc4\u56f2 1\uff5e999)", None))
+        self.labelBoxBlenderInstalation_12.setText(QCoreApplication.translate("ConfigGUI", u"\u8abf\u6574\u7528\u52a0\u7b97\u30b5\u30a4\u30ba", None))
+        self.labelBoxBlenderInstalation_11.setText(QCoreApplication.translate("ConfigGUI", u"px", None))
+        self.labelVersion_7.setText(QCoreApplication.translate("ConfigGUI", u"(\u7bc4\u56f2 1\uff5e99)", None))
+        self.labelBoxBlenderInstalation_10.setText(QCoreApplication.translate("ConfigGUI", u"\u30ea\u30b5\u30a4\u30ba\u6bce\u52a0\u7b97\u30b5\u30a4\u30ba ", None))
         self.lineEdit_adjust_width_px.setText("")
         self.lineEdit_adjust_width_px.setPlaceholderText(QCoreApplication.translate("ConfigGUI", u"\u6570\u5024\u3092\u5165\u529b", None))
+        self.labelBoxBlenderInstalation_8.setText(QCoreApplication.translate("ConfigGUI", u"\u56de", None))
+        self.lineEdit_resize_add_width_px.setText("")
+        self.lineEdit_resize_add_width_px.setPlaceholderText(QCoreApplication.translate("ConfigGUI", u"\u6570\u5024\u3092\u5165\u529b", None))
+        self.lineEdit_resize_max_cnt.setText("")
+        self.lineEdit_resize_max_cnt.setPlaceholderText(QCoreApplication.translate("ConfigGUI", u"\u6570\u5024\u3092\u5165\u529b", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("ConfigGUI", u"\u5171\u901a\u8a2d\u5b9a", None))
         self.labelBoxBlenderInstalation_3.setText(QCoreApplication.translate("ConfigGUI", u"\u8abf\u6574\u7528X\u5ea7\u6a19\u79fb\u52d5", None))
+        self.labelVersion_5.setText(QCoreApplication.translate("ConfigGUI", u"(\u7bc4\u56f2 1\uff5e999)", None))
         self.lineEdit_adjust_x_px.setText("")
         self.lineEdit_adjust_x_px.setPlaceholderText(QCoreApplication.translate("ConfigGUI", u"\u6570\u5024\u3092\u5165\u529b", None))
         self.labelBoxBlenderInstalation_4.setText(QCoreApplication.translate("ConfigGUI", u"px", None))
-        self.labelVersion_5.setText(QCoreApplication.translate("ConfigGUI", u"(\u7bc4\u56f2 1\uff5e999)", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("ConfigGUI", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u5de6\u914d\u7f6e", None))
         self.checkBox_windowleft_mod_ctrl.setText(QCoreApplication.translate("ConfigGUI", u"Ctrl", None))
-        self.checkBox_windowleft_mod_shift.setText(QCoreApplication.translate("ConfigGUI", u"Shift", None))
         self.checkBox_windowleft_mod_alt.setText(QCoreApplication.translate("ConfigGUI", u"Alt", None))
+        self.checkBox_windowleft_mod_shift.setText(QCoreApplication.translate("ConfigGUI", u"Shift", None))
         self.checkBox_windowleft_mod_win.setText(QCoreApplication.translate("ConfigGUI", u"Win", None))
         self.labelBoxBlenderInstalation_13.setText(QCoreApplication.translate("ConfigGUI", u"\u901a\u5e38\u30ad\u30fc", None))
         self.comboBox_Hotkey_WindowLeft.setItemText(0, QCoreApplication.translate("ConfigGUI", u"Left", None))
-        self.comboBox_Hotkey_WindowLeft.setItemText(1, QCoreApplication.translate("ConfigGUI", u"Test 2", None))
-        self.comboBox_Hotkey_WindowLeft.setItemText(2, QCoreApplication.translate("ConfigGUI", u"Test 3", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(1, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(2, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(3, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(4, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(5, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(6, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(7, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(8, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(9, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(10, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(11, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(12, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(13, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(14, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowLeft.setItemText(15, QCoreApplication.translate("ConfigGUI", u"Test", None))
 
         self.groupBox_6.setTitle(QCoreApplication.translate("ConfigGUI", u"\u30a6\u30a3\u30f3\u30c9\u30a6\u53f3\u914d\u7f6e", None))
         self.checkBox_windowright_mod_ctrl.setText(QCoreApplication.translate("ConfigGUI", u"Ctrl", None))
-        self.checkBox_windowright_mod_shift.setText(QCoreApplication.translate("ConfigGUI", u"Shift", None))
         self.checkBox_windowright_mod_alt.setText(QCoreApplication.translate("ConfigGUI", u"Alt", None))
+        self.checkBox_windowright_mod_shift.setText(QCoreApplication.translate("ConfigGUI", u"Shift", None))
         self.checkBox_windowright_mod_win.setText(QCoreApplication.translate("ConfigGUI", u"Win", None))
         self.labelBoxBlenderInstalation_14.setText(QCoreApplication.translate("ConfigGUI", u"\u901a\u5e38\u30ad\u30fc", None))
         self.comboBox_Hotkey_WindowRight.setItemText(0, QCoreApplication.translate("ConfigGUI", u"Right", None))
-        self.comboBox_Hotkey_WindowRight.setItemText(1, QCoreApplication.translate("ConfigGUI", u"Test 2", None))
-        self.comboBox_Hotkey_WindowRight.setItemText(2, QCoreApplication.translate("ConfigGUI", u"Test 3", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(1, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(2, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(3, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(4, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(5, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(6, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(7, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(8, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(9, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(10, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(11, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(12, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(13, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(14, QCoreApplication.translate("ConfigGUI", u"Test", None))
+        self.comboBox_Hotkey_WindowRight.setItemText(15, QCoreApplication.translate("ConfigGUI", u"Test", None))
 
         self.label_settingmenu.setText(QCoreApplication.translate("ConfigGUI", u"Setting Menu", None))
         self.label_version.setText(QCoreApplication.translate("ConfigGUI", u"v4.0", None))

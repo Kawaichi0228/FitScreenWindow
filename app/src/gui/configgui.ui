@@ -60,8 +60,12 @@ QLineEdit {
 	border-radius: 5px;
 	border: 2px solid rgb(33, 37, 43);
 	padding-left: 10px;
-	selection-color: rgb(255, 255, 255);
-	selection-background-color: #FF5F5F;
+
+    /* なにも値が入力されていないときに表示するテキストの色 */
+	selection-color: rgb(64, 71, 88);
+
+    /* 入力したテキストを選択しているときのテキストボックス内背景 */
+	selection-background-color: #83FFE6;
 }
 QLineEdit:hover {
 	border: 2px solid rgb(64, 71, 88);
@@ -116,10 +120,12 @@ QComboBox::drop-down {
 	background-repeat: no-reperat;
 }
 QComboBox QAbstractItemView {
-	color: #FF5F5F;	
 	background-color: rgb(33, 37, 43);
 	padding: 10px;
 	selection-background-color: rgb(39, 44, 54);
+
+    /* リストアイテムの文字色*/
+	color: #83FFE6;
 }
 
 
@@ -185,7 +191,8 @@ QComboBox QAbstractItemView {
 
 /* Bottom Bar */
 #rightBoxBottomBar { background-color: rgb(44, 49, 58); }
-#rightBoxBottomBar QLabel { font-size: 11px; color: rgb(113, 126, 149); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }</string>
+#rightBoxBottomBar QLabel { font-size: 11px; color: rgb(113, 126, 149); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }
+</string>
    </property>
    <widget class="QFrame" name="entireBg">
     <property name="geometry">
@@ -812,7 +819,7 @@ background-repeat: no-repeat;</string>
                   <string notr="true">background: transparent;</string>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>2</number>
                  </property>
                  <widget class="QWidget" name="page_size">
                   <property name="styleSheet">
@@ -857,85 +864,10 @@ background-repeat: no-repeat;</string>
                       <property name="title">
                        <string>ウィンドウ左配置</string>
                       </property>
-                      <widget class="QLabel" name="labelBoxBlenderInstalation">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>27</y>
-                         <width>57</width>
-                         <height>18</height>
-                        </rect>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>Segoe UI</family>
-                         <pointsize>10</pointsize>
-                         <weight>50</weight>
-                         <italic>false</italic>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true"/>
-                       </property>
-                       <property name="text">
-                        <string>基準サイズ</string>
-                       </property>
-                      </widget>
-                      <widget class="QLineEdit" name="lineEdit_base_width_toleft_px">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>60</y>
-                         <width>120</width>
-                         <height>30</height>
-                        </rect>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>0</width>
-                         <height>30</height>
-                        </size>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true">background-color: rgb(33, 37, 43);</string>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="placeholderText">
-                        <string>数値を入力</string>
-                       </property>
-                      </widget>
-                      <widget class="QLabel" name="labelBoxBlenderInstalation_2">
-                       <property name="geometry">
-                        <rect>
-                         <x>140</x>
-                         <y>70</y>
-                         <width>16</width>
-                         <height>18</height>
-                        </rect>
-                       </property>
-                       <property name="font">
-                        <font>
-                         <family>Segoe UI</family>
-                         <pointsize>10</pointsize>
-                         <weight>50</weight>
-                         <italic>false</italic>
-                         <bold>false</bold>
-                        </font>
-                       </property>
-                       <property name="styleSheet">
-                        <string notr="true"/>
-                       </property>
-                       <property name="text">
-                        <string>px</string>
-                       </property>
-                      </widget>
                       <widget class="QCheckBox" name="checkBox_is_reverse_direction_windowleft">
                        <property name="geometry">
                         <rect>
-                         <x>10</x>
+                         <x>20</x>
                          <y>110</y>
                          <width>211</width>
                          <height>21</height>
@@ -951,27 +883,102 @@ background-repeat: no-repeat;</string>
                         <string>逆方向にリサイズ</string>
                        </property>
                       </widget>
-                      <widget class="QLabel" name="labelVersion_4">
+                      <widget class="QWidget" name="horizontalLayoutWidget">
                        <property name="geometry">
                         <rect>
-                         <x>82</x>
-                         <y>27</y>
-                         <width>141</width>
-                         <height>18</height>
+                         <x>20</x>
+                         <y>60</y>
+                         <width>131</width>
+                         <height>32</height>
                         </rect>
                        </property>
-                       <property name="styleSheet">
-                        <string notr="true">color: rgb(113, 126, 149);</string>
+                       <layout class="QHBoxLayout" name="horizontalLayout_3">
+                        <item>
+                         <widget class="QLineEdit" name="lineEdit_base_width_toleft_px">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>30</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(33, 37, 43);</string>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="placeholderText">
+                           <string>数値を入力</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="labelBoxBlenderInstalation_2">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>10</pointsize>
+                            <weight>50</weight>
+                            <italic>false</italic>
+                            <bold>false</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true"/>
+                          </property>
+                          <property name="text">
+                           <string>px</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                      <widget class="QWidget" name="horizontalLayoutWidget_6">
+                       <property name="geometry">
+                        <rect>
+                         <x>20</x>
+                         <y>20</y>
+                         <width>160</width>
+                         <height>31</height>
+                        </rect>
                        </property>
-                       <property name="lineWidth">
-                        <number>1</number>
-                       </property>
-                       <property name="text">
-                        <string>(範囲 1～9999)</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                       </property>
+                       <layout class="QHBoxLayout" name="horizontalLayout_10">
+                        <item>
+                         <widget class="QLabel" name="labelBoxBlenderInstalation">
+                          <property name="font">
+                           <font>
+                            <family>Segoe UI</family>
+                            <pointsize>10</pointsize>
+                            <weight>50</weight>
+                            <italic>false</italic>
+                            <bold>false</bold>
+                           </font>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true"/>
+                          </property>
+                          <property name="text">
+                           <string>基準サイズ</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="labelVersion_4">
+                          <property name="styleSheet">
+                           <string notr="true">color: rgb(113, 126, 149);</string>
+                          </property>
+                          <property name="lineWidth">
+                           <number>1</number>
+                          </property>
+                          <property name="text">
+                           <string>(範囲 1～9999)</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
                       </widget>
                      </widget>
                     </item>
@@ -1016,85 +1023,10 @@ background-repeat: no-repeat;</string>
                     <property name="title">
                      <string>ウィンドウ右配置</string>
                     </property>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_5">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>27</y>
-                       <width>57</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>基準サイズ</string>
-                     </property>
-                    </widget>
-                    <widget class="QLineEdit" name="lineEdit_base_width_toright_px">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>60</y>
-                       <width>120</width>
-                       <height>30</height>
-                      </rect>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(33, 37, 43);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="placeholderText">
-                      <string>数値を入力</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_6">
-                     <property name="geometry">
-                      <rect>
-                       <x>140</x>
-                       <y>70</y>
-                       <width>16</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>px</string>
-                     </property>
-                    </widget>
                     <widget class="QCheckBox" name="checkBox_is_reverse_direction_windowright">
                      <property name="geometry">
                       <rect>
-                       <x>10</x>
+                       <x>20</x>
                        <y>110</y>
                        <width>211</width>
                        <height>21</height>
@@ -1110,27 +1042,102 @@ background-repeat: no-repeat;</string>
                       <string>逆方向にリサイズ</string>
                      </property>
                     </widget>
-                    <widget class="QLabel" name="labelVersion_6">
+                    <widget class="QWidget" name="horizontalLayoutWidget_2">
                      <property name="geometry">
                       <rect>
-                       <x>82</x>
-                       <y>27</y>
-                       <width>141</width>
-                       <height>18</height>
+                       <x>20</x>
+                       <y>60</y>
+                       <width>131</width>
+                       <height>32</height>
                       </rect>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(113, 126, 149);</string>
+                     <layout class="QHBoxLayout" name="horizontalLayout_6">
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_base_width_toright_px">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>30</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(33, 37, 43);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="placeholderText">
+                         <string>数値を入力</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_6">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>px</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="horizontalLayoutWidget_7">
+                     <property name="geometry">
+                      <rect>
+                       <x>20</x>
+                       <y>20</y>
+                       <width>160</width>
+                       <height>31</height>
+                      </rect>
                      </property>
-                     <property name="lineWidth">
-                      <number>1</number>
-                     </property>
-                     <property name="text">
-                      <string>(範囲 1～9999)</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                     </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_11">
+                      <item>
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_5">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>基準サイズ</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="labelVersion_6">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(113, 126, 149);</string>
+                        </property>
+                        <property name="lineWidth">
+                         <number>1</number>
+                        </property>
+                        <property name="text">
+                         <string>(範囲 1～9999)</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </widget>
                   </widget>
@@ -1173,85 +1180,10 @@ background-repeat: no-repeat;</string>
                     <property name="title">
                      <string>共通設定</string>
                     </property>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_7">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>27</y>
-                       <width>131</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>リサイズ最大回数</string>
-                     </property>
-                    </widget>
-                    <widget class="QLineEdit" name="lineEdit_resize_max_cnt">
-                     <property name="geometry">
-                      <rect>
-                       <x>230</x>
-                       <y>20</y>
-                       <width>120</width>
-                       <height>30</height>
-                      </rect>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(33, 37, 43);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="placeholderText">
-                      <string>数値を入力</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_8">
-                     <property name="geometry">
-                      <rect>
-                       <x>360</x>
-                       <y>30</y>
-                       <width>16</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>回</string>
-                     </property>
-                    </widget>
                     <widget class="QCheckBox" name="checkBox_is_subtract_taskbar">
                      <property name="geometry">
                       <rect>
-                       <x>10</x>
+                       <x>20</x>
                        <y>150</y>
                        <width>321</width>
                        <height>21</height>
@@ -1267,221 +1199,248 @@ background-repeat: no-repeat;</string>
                       <string>タスクバーのサイズを減算してリサイズ</string>
                      </property>
                     </widget>
-                    <widget class="QLabel" name="labelVersion_7">
+                    <widget class="QWidget" name="gridLayoutWidget">
                      <property name="geometry">
                       <rect>
-                       <x>150</x>
-                       <y>30</y>
-                       <width>81</width>
-                       <height>18</height>
+                       <x>20</x>
+                       <y>20</y>
+                       <width>351</width>
+                       <height>123</height>
                       </rect>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(113, 126, 149);</string>
-                     </property>
-                     <property name="lineWidth">
-                      <number>1</number>
-                     </property>
-                     <property name="text">
-                      <string>(範囲 1～99)</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_9">
-                     <property name="geometry">
-                      <rect>
-                       <x>360</x>
-                       <y>70</y>
-                       <width>16</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>px</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_10">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>67</y>
-                       <width>131</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>リサイズ毎加算サイズ</string>
-                     </property>
-                    </widget>
-                    <widget class="QLineEdit" name="lineEdit_resize_add_width_px">
-                     <property name="geometry">
-                      <rect>
-                       <x>230</x>
-                       <y>60</y>
-                       <width>120</width>
-                       <height>30</height>
-                      </rect>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(33, 37, 43);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="placeholderText">
-                      <string>数値を入力</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelVersion_8">
-                     <property name="geometry">
-                      <rect>
-                       <x>150</x>
-                       <y>70</y>
-                       <width>81</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(113, 126, 149);</string>
-                     </property>
-                     <property name="lineWidth">
-                      <number>1</number>
-                     </property>
-                     <property name="text">
-                      <string>(範囲 1～999)</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_11">
-                     <property name="geometry">
-                      <rect>
-                       <x>360</x>
-                       <y>110</y>
-                       <width>16</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>px</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_12">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>107</y>
-                       <width>131</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>調整用加算サイズ</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelVersion_9">
-                     <property name="geometry">
-                      <rect>
-                       <x>150</x>
-                       <y>110</y>
-                       <width>81</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(113, 126, 149);</string>
-                     </property>
-                     <property name="lineWidth">
-                      <number>1</number>
-                     </property>
-                     <property name="text">
-                      <string>(範囲 1～999)</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                     </property>
-                    </widget>
-                    <widget class="QLineEdit" name="lineEdit_adjust_width_px">
-                     <property name="geometry">
-                      <rect>
-                       <x>230</x>
-                       <y>100</y>
-                       <width>120</width>
-                       <height>30</height>
-                      </rect>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(33, 37, 43);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="placeholderText">
-                      <string>数値を入力</string>
-                     </property>
+                     <layout class="QGridLayout" name="gridLayout">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="horizontalSpacing">
+                       <number>10</number>
+                      </property>
+                      <property name="verticalSpacing">
+                       <number>6</number>
+                      </property>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_7">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>リサイズ最大回数</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="5">
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_9">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>px</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="1">
+                       <widget class="QLabel" name="labelVersion_8">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(113, 126, 149);</string>
+                        </property>
+                        <property name="lineWidth">
+                         <number>1</number>
+                        </property>
+                        <property name="text">
+                         <string>(範囲 1～999)</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QLabel" name="labelVersion_9">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(113, 126, 149);</string>
+                        </property>
+                        <property name="lineWidth">
+                         <number>1</number>
+                        </property>
+                        <property name="text">
+                         <string>(範囲 1～999)</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_12">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>調整用加算サイズ</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="5">
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_11">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>px</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QLabel" name="labelVersion_7">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(113, 126, 149);</string>
+                        </property>
+                        <property name="lineWidth">
+                         <number>1</number>
+                        </property>
+                        <property name="text">
+                         <string>(範囲 1～99)</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_10">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>リサイズ毎加算サイズ </string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="4">
+                       <widget class="QLineEdit" name="lineEdit_adjust_width_px">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>30</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(33, 37, 43);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="placeholderText">
+                         <string>数値を入力</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="5">
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_8">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>回</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="4">
+                       <widget class="QLineEdit" name="lineEdit_resize_add_width_px">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>30</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(33, 37, 43);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="placeholderText">
+                         <string>数値を入力</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="4">
+                       <widget class="QLineEdit" name="lineEdit_resize_max_cnt">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>30</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(33, 37, 43);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="placeholderText">
+                         <string>数値を入力</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </widget>
                   </widget>
@@ -1526,105 +1485,96 @@ background-repeat: no-repeat;</string>
                     <property name="title">
                      <string>共通設定</string>
                     </property>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_3">
+                    <widget class="QWidget" name="horizontalLayoutWidget_4">
                      <property name="geometry">
                       <rect>
-                       <x>10</x>
-                       <y>27</y>
-                       <width>111</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>調整用X座標移動</string>
-                     </property>
-                    </widget>
-                    <widget class="QLineEdit" name="lineEdit_adjust_x_px">
-                     <property name="geometry">
-                      <rect>
-                       <x>210</x>
-                       <y>20</y>
-                       <width>120</width>
-                       <height>30</height>
-                      </rect>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>0</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(33, 37, 43);</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="maxLength">
-                      <number>5</number>
-                     </property>
-                     <property name="placeholderText">
-                      <string>数値を入力</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_4">
-                     <property name="geometry">
-                      <rect>
-                       <x>340</x>
+                       <x>20</x>
                        <y>30</y>
-                       <width>16</width>
-                       <height>18</height>
+                       <width>341</width>
+                       <height>32</height>
                       </rect>
                      </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>px</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelVersion_5">
-                     <property name="geometry">
-                      <rect>
-                       <x>120</x>
-                       <y>30</y>
-                       <width>86</width>
-                       <height>18</height>
-                      </rect>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">color: rgb(113, 126, 149);</string>
-                     </property>
-                     <property name="lineWidth">
-                      <number>1</number>
-                     </property>
-                     <property name="text">
-                      <string>(範囲 1～999)</string>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                     </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_8">
+                      <property name="spacing">
+                       <number>10</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_3">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>調整用X座標移動</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="labelVersion_5">
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(113, 126, 149);</string>
+                        </property>
+                        <property name="lineWidth">
+                         <number>1</number>
+                        </property>
+                        <property name="text">
+                         <string>(範囲 1～999)</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="lineEdit_adjust_x_px">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>30</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(33, 37, 43);</string>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="maxLength">
+                         <number>5</number>
+                        </property>
+                        <property name="placeholderText">
+                         <string>数値を入力</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_4">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>px</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </widget>
                   </widget>
@@ -1669,227 +1619,227 @@ background-repeat: no-repeat;</string>
                     <property name="title">
                      <string>ウィンドウ左配置</string>
                     </property>
-                    <widget class="QCheckBox" name="checkBox_windowleft_mod_ctrl">
+                    <widget class="QWidget" name="verticalLayoutWidget">
                      <property name="geometry">
                       <rect>
-                       <x>10</x>
-                       <y>40</y>
-                       <width>115</width>
-                       <height>21</height>
+                       <x>20</x>
+                       <y>30</y>
+                       <width>171</width>
+                       <height>141</height>
                       </rect>
                      </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>Ctrl</string>
-                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout">
+                      <item>
+                       <widget class="QCheckBox" name="checkBox_windowleft_mod_ctrl">
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Ctrl</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QCheckBox" name="checkBox_windowleft_mod_alt">
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Alt</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QCheckBox" name="checkBox_windowleft_mod_shift">
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Shift</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QCheckBox" name="checkBox_windowleft_mod_win">
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Win</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
-                    <widget class="QCheckBox" name="checkBox_windowleft_mod_shift">
+                    <widget class="QWidget" name="horizontalLayoutWidget_3">
                      <property name="geometry">
                       <rect>
-                       <x>10</x>
-                       <y>70</y>
-                       <width>115</width>
-                       <height>21</height>
-                      </rect>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>Shift</string>
-                     </property>
-                    </widget>
-                    <widget class="QCheckBox" name="checkBox_windowleft_mod_alt">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>100</y>
-                       <width>115</width>
-                       <height>21</height>
-                      </rect>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>Alt</string>
-                     </property>
-                    </widget>
-                    <widget class="QCheckBox" name="checkBox_windowleft_mod_win">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>130</y>
-                       <width>115</width>
-                       <height>21</height>
-                      </rect>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>Win</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_13">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
+                       <x>20</x>
                        <y>170</y>
-                       <width>101</width>
-                       <height>18</height>
+                       <width>171</width>
+                       <height>31</height>
                       </rect>
                      </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>通常キー</string>
-                     </property>
-                    </widget>
-                    <widget class="QComboBox" name="comboBox_Hotkey_WindowLeft">
-                     <property name="geometry">
-                      <rect>
-                       <x>80</x>
-                       <y>170</y>
-                       <width>131</width>
-                       <height>34</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(33, 37, 43);</string>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>16</width>
-                       <height>16</height>
-                      </size>
-                     </property>
-                     <property name="frame">
-                      <bool>true</bool>
-                     </property>
-                     <item>
-                      <property name="text">
-                       <string>Left</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_7">
+                      <item>
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_13">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>通常キー</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_Hotkey_WindowLeft">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>100</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(33, 37, 43);</string>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>16</width>
+                          <height>16</height>
+                         </size>
+                        </property>
+                        <property name="frame">
+                         <bool>true</bool>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>Left</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </widget>
                   </widget>
                   <widget class="QFrame" name="frame_6">
                    <property name="geometry">
                     <rect>
-                     <x>290</x>
+                     <x>260</x>
                      <y>10</y>
                      <width>250</width>
                      <height>241</height>
@@ -1916,7 +1866,7 @@ background-repeat: no-repeat;</string>
                    <widget class="QGroupBox" name="groupBox_6">
                     <property name="geometry">
                      <rect>
-                      <x>10</x>
+                      <x>20</x>
                       <y>10</y>
                       <width>230</width>
                       <height>221</height>
@@ -1925,220 +1875,220 @@ background-repeat: no-repeat;</string>
                     <property name="title">
                      <string>ウィンドウ右配置</string>
                     </property>
-                    <widget class="QCheckBox" name="checkBox_windowright_mod_ctrl">
+                    <widget class="QWidget" name="verticalLayoutWidget_2">
                      <property name="geometry">
                       <rect>
-                       <x>10</x>
-                       <y>40</y>
-                       <width>115</width>
-                       <height>21</height>
+                       <x>20</x>
+                       <y>30</y>
+                       <width>171</width>
+                       <height>141</height>
                       </rect>
                      </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>Ctrl</string>
-                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_4">
+                      <item>
+                       <widget class="QCheckBox" name="checkBox_windowright_mod_ctrl">
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Ctrl</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QCheckBox" name="checkBox_windowright_mod_alt">
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Alt</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QCheckBox" name="checkBox_windowright_mod_shift">
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Shift</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QCheckBox" name="checkBox_windowright_mod_win">
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>Win</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
-                    <widget class="QCheckBox" name="checkBox_windowright_mod_shift">
+                    <widget class="QWidget" name="horizontalLayoutWidget_5">
                      <property name="geometry">
                       <rect>
-                       <x>10</x>
-                       <y>70</y>
-                       <width>115</width>
-                       <height>21</height>
-                      </rect>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>Shift</string>
-                     </property>
-                    </widget>
-                    <widget class="QCheckBox" name="checkBox_windowright_mod_alt">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>100</y>
-                       <width>115</width>
-                       <height>21</height>
-                      </rect>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>Alt</string>
-                     </property>
-                    </widget>
-                    <widget class="QCheckBox" name="checkBox_windowright_mod_win">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
-                       <y>130</y>
-                       <width>115</width>
-                       <height>21</height>
-                      </rect>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>Win</string>
-                     </property>
-                    </widget>
-                    <widget class="QLabel" name="labelBoxBlenderInstalation_14">
-                     <property name="geometry">
-                      <rect>
-                       <x>10</x>
+                       <x>20</x>
                        <y>170</y>
-                       <width>101</width>
-                       <height>18</height>
+                       <width>171</width>
+                       <height>31</height>
                       </rect>
                      </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true"/>
-                     </property>
-                     <property name="text">
-                      <string>通常キー</string>
-                     </property>
-                    </widget>
-                    <widget class="QComboBox" name="comboBox_Hotkey_WindowRight">
-                     <property name="geometry">
-                      <rect>
-                       <x>80</x>
-                       <y>170</y>
-                       <width>131</width>
-                       <height>34</height>
-                      </rect>
-                     </property>
-                     <property name="font">
-                      <font>
-                       <family>Segoe UI</family>
-                       <pointsize>10</pointsize>
-                       <weight>50</weight>
-                       <italic>false</italic>
-                       <bold>false</bold>
-                      </font>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">background-color: rgb(33, 37, 43);</string>
-                     </property>
-                     <property name="iconSize">
-                      <size>
-                       <width>16</width>
-                       <height>16</height>
-                      </size>
-                     </property>
-                     <property name="frame">
-                      <bool>true</bool>
-                     </property>
-                     <item>
-                      <property name="text">
-                       <string>Right</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Test</string>
-                      </property>
-                     </item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_9">
+                      <item>
+                       <widget class="QLabel" name="labelBoxBlenderInstalation_14">
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
+                        <property name="text">
+                         <string>通常キー</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QComboBox" name="comboBox_Hotkey_WindowRight">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>100</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <family>Segoe UI</family>
+                          <pointsize>10</pointsize>
+                          <weight>50</weight>
+                          <italic>false</italic>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="autoFillBackground">
+                         <bool>false</bool>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">background-color: rgb(33, 37, 43);</string>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>16</width>
+                          <height>16</height>
+                         </size>
+                        </property>
+                        <property name="frame">
+                         <bool>true</bool>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>Right</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>Test</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                     </layout>
                     </widget>
                    </widget>
                   </widget>
