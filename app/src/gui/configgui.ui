@@ -114,13 +114,14 @@ QComboBox::drop-down {
     background-image: url(:/images/icon-arrowbottom.png);
 	background-position: center;
 	background-repeat: no-reperat;
- }
+}
 QComboBox QAbstractItemView {
 	color: #FF5F5F;	
 	background-color: rgb(33, 37, 43);
 	padding: 10px;
 	selection-background-color: rgb(39, 44, 54);
 }
+
 
 /* ========================================================================= */
 /* ========================================================================= */
@@ -155,14 +156,11 @@ QComboBox QAbstractItemView {
 	background-color: #FF5F5F;
 	color: rgb(255, 255, 255);
 }
-#leftMenuFrame{
-	border-top: 3px solid rgb(44, 49, 58);
-}
 
 /* ------------------------------------------------------------------------- */
 /* RightBox */
 /* ------------------------------------------------------------------------- */
-#rightTopBg{	
+#rightTopBg{
 	background-color: rgb(33, 37, 43);
 }
 
@@ -170,6 +168,7 @@ QComboBox QAbstractItemView {
 #rightButtonsFrame .QPushButton:hover { background-color: rgb(44, 49, 57); border-style: solid; border-radius: 4px; }
 #rightButtonsFrame .QPushButton:pressed { background-color: rgb(23, 26, 30); border-style: solid; border-radius: 4px; }
 
+/* Pages Container */
 #rightBoxPagesContainer QPushButton {
 	border: 2px solid rgb(52, 59, 72);
 	border-radius: 5px;	
@@ -281,7 +280,7 @@ QComboBox QAbstractItemView {
           <widget class="QLabel" name="leftTitleApp">
            <property name="geometry">
             <rect>
-             <x>19</x>
+             <x>20</x>
              <y>10</y>
              <width>151</width>
              <height>31</height>
@@ -303,7 +302,7 @@ QComboBox QAbstractItemView {
             <string>Fit Screen Window</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </widget>
