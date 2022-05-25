@@ -812,13 +812,13 @@ background-repeat: no-repeat;</string>
                   <string notr="true">background: transparent;</string>
                  </property>
                  <property name="currentIndex">
-                  <number>2</number>
+                  <number>0</number>
                  </property>
                  <widget class="QWidget" name="page_size">
                   <property name="styleSheet">
                    <string notr="true">b</string>
                   </property>
-                  <widget class="QFrame" name="frame">
+                  <widget class="QFrame" name="frame_1">
                    <property name="geometry">
                     <rect>
                      <x>10</x>
@@ -1810,12 +1810,77 @@ background-repeat: no-repeat;</string>
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test 2</string>
+                       <string>Test</string>
                       </property>
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test 3</string>
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
                       </property>
                      </item>
                     </widget>
@@ -2001,12 +2066,77 @@ background-repeat: no-repeat;</string>
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test 2</string>
+                       <string>Test</string>
                       </property>
                      </item>
                      <item>
                       <property name="text">
-                       <string>Test 3</string>
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Test</string>
                       </property>
                      </item>
                     </widget>
