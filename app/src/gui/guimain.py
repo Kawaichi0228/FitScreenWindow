@@ -160,17 +160,27 @@ class MainWindow(QMainWindow):
         self.ui = Ui_ConfigGUI()
         self.ui.setupUi(self)
 
-        self.ui.rightTopBg.mousePressEvent = self.moveWindow
+        #self.ui.rightTopBg.mousePressEvent = self.moveWindow
 
         self.show()
 
-    def moveWindow(self):
-        self.move(self.dragPos)
+    #def moveWindow(self, event):
+    #    if event.buttons() == Qt.LeftButton:
+    #        self.move(self.dragPos)
+    #        print('Mouse click: LEFT CLICK')
+    #    if event.buttons() == Qt.RightButton:
+    #        print('Mouse click: RIGHT CLICK')
 
     def mouseMoveEvent(self, event) -> None:
         self.dragPos = event.globalPos()
         print(self.dragPos)
-        self.move(self.dragPos)
+
+        if event.buttons() == Qt.LeftButton:
+            self.move(self.dragPos)
+            print('Mouse click: LEFT CLICK')
+        if event.buttons() == Qt.RightButton:
+            print('Mouse click: RIGHT CLICK')
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
