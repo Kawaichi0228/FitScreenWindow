@@ -314,7 +314,7 @@ class ConfigGuiService(IConfigSet):
     def __setupWidget(self):
         """ウィジェット全体のsetup(全タブ共通)"""
         # Window
-        self.gui.setupWindow_CloseButtonOnly()
+        self.gui.setupWindow()
 
         # PushButton
         pushbutton_list = []
