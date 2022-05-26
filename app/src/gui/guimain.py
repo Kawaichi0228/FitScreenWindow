@@ -51,41 +51,21 @@ class ConfigGui(UtilGui, QDialog):
         self.root = root
         self.ui = Ui_ConfigGUI() # ここに表示させるguiを定義
 
-        #QMainWindow.__init__(self)
-        #self.show()
-
-        def moveWindow(e):
-            if e.buttons() == Qt.LeftButton:
-                # Move window
-                self.move(self.pos() + e.globalPos() - self.clickPosition)
-                self.clickPosition = e.globalPos()
-                e.accept()
-
-        #self.ui.leftMenuBg.closeEvent = moveWindow
-        #self.ui.rightTopBg.mouseMoveEvent = moveWindow
-
-    #def __moveWindow(self, e):
-    #    if e.buttons() == Qt.LeftButton:
-    #        self.move(self.pos() + self.dragPos - self.clickPosition)
-    #        self.clickPosition = e.globalPos()
-    #        e.accept()
-
-    #        print('Mouse click: LEFT CLICK')
-
-    #    if e.buttons() == Qt.RightButton:
-    #        print('Mouse click: RIGHT CLICK')
-
-    #def mouseMoveEvent(self, event) -> None:
-    #    self.dragPos = event.globalPos()
-    #    print(self.dragPos)
-        #self.__moveWindow(event)
-
         # QtDesignerで作成した全体のui(.uiから.pyへの変換ファイル)のsetup
         self.ui.setupUi(self)
 
+    # [OverRige] Qtイベントメソッドをオーバーライド
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
         print(self.clickPosition)
+
+    # ウィンドウ全体を動かせるメソッド
+    def moveWindow(self, e):
+        print("mouseclick press now")
+        if e.buttons() == Qt.LeftButton:
+            self.move(self.pos() + e.globalPos() - self.clickPosition)
+            self.clickPosition = e.globalPos()
+            e.accept()
 
     # =========================================================================
     # QtDesigner作成後に追加で設定するセットアップを定義

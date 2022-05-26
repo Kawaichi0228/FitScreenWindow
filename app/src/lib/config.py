@@ -295,15 +295,14 @@ class ConfigGuiService(IConfigSet):
         self.g_service.stopThread()
         logger.info("GUIの値からconfig.jsonを保存しました")
 
+        # --- 画面上部バーをマウスクリックで掴んでウィンドウ全体を動かせるように
+        #   FunctionObjectをバインド ---
+        self.gui.ui.rightTopBg.mouseMoveEvent = self.gui.moveWindow
+
         # --- 各タブのItemの値をJsonから書き換え ---
         self.__setupTab_Size()
         self.__setupTab_Position()
         self.__setupTab_ShortcutKey()
-
-
-        def test(self) -> None:
-            print("mouseclick press now")
-        self.gui.ui.rightTopBg.mouseMoveEvent = test
 
         # gui開始(表示させる)
         self.root.start(lambda: self.gui)
