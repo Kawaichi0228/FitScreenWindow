@@ -57,11 +57,10 @@ class ConfigGui(UtilGui, QDialog):
     # [OverRige] Qtイベントメソッドをオーバーライド
     def mousePressEvent(self, event):
         self.clickPosition = event.globalPos()
-        print(self.clickPosition)
 
     # ウィンドウ全体を動かせるメソッド
     def moveWindow(self, e):
-        print("mouseclick press now")
+        # 左クリック時のみにウィンドウを動かす
         if e.buttons() == Qt.LeftButton:
             self.move(self.pos() + e.globalPos() - self.clickPosition)
             self.clickPosition = e.globalPos()
