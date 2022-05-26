@@ -300,6 +300,11 @@ class ConfigGuiService(IConfigSet):
         self.__setupTab_Position()
         self.__setupTab_ShortcutKey()
 
+
+        def test(self) -> None:
+            print("mouseclick press now")
+        self.gui.ui.rightTopBg.mouseMoveEvent = test
+
         # gui開始(表示させる)
         self.root.start(lambda: self.gui)
 
@@ -326,7 +331,7 @@ class ConfigGuiService(IConfigSet):
         # Left Bar
         # =========================================================================
         # - SizeButton
-        set_focus = True # 最初の選択状態にしておく
+        set_focus = False
         pushbutton_item = (self.gui.ui.pushButton_size, self.__onClickEvent_pushButton_size, set_focus)
         pushbutton_list.append(pushbutton_item)
         # - PositionButton
@@ -338,7 +343,7 @@ class ConfigGuiService(IConfigSet):
         pushbutton_item = (self.gui.ui.pushButton_hotkey, self.__onClickEvent_pushButton_hotkey, set_focus)
         pushbutton_list.append(pushbutton_item)
         # - SaveandExitButton
-        set_focus = False
+        set_focus = True # 最初の選択状態にしておく
         pushbutton_item = (self.gui.ui.pushButton_saveandexit, self.__onClickEvent_pushButton_saveandexit, set_focus)
         pushbutton_list.append(pushbutton_item)
         # - CancelButton
