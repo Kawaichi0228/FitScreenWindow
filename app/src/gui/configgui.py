@@ -306,6 +306,10 @@ class Ui_ConfigGUI(object):
 
         self.verticalLayout_8.addWidget(self.pushButton_saveandexit)
 
+        self.verticalSpacer = QSpacerItem(20, 300, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_8.addItem(self.verticalSpacer)
+
         self.pushButton_cancel = QPushButton(self.leftMenuMainContent)
         self.pushButton_cancel.setObjectName(u"pushButton_cancel")
         sizePolicy.setHeightForWidth(self.pushButton_cancel.sizePolicy().hasHeightForWidth())
@@ -317,10 +321,6 @@ class Ui_ConfigGUI(object):
         self.pushButton_cancel.setStyleSheet(u"background-image: url(:/images/icon-cancel.png);")
 
         self.verticalLayout_8.addWidget(self.pushButton_cancel)
-
-        self.verticalSpacer = QSpacerItem(20, 300, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_8.addItem(self.verticalSpacer)
 
         self.pushButton_initialize_setting = QPushButton(self.leftMenuMainContent)
         self.pushButton_initialize_setting.setObjectName(u"pushButton_initialize_setting")
@@ -377,7 +377,7 @@ class Ui_ConfigGUI(object):
         self.pushButton_close.setMinimumSize(QSize(28, 28))
         self.pushButton_close.setMaximumSize(QSize(28, 28))
         self.pushButton_close.setCursor(QCursor(Qt.PointingHandCursor))
-        self.pushButton_close.setStyleSheet(u"background-image: url(:/images/icon-cancel.png);\n"
+        self.pushButton_close.setStyleSheet(u"background-image: url(:/images/icon-x.png);\n"
 "background-position: center;\n"
 "background-repeat: no-repeat;")
         icon = QIcon()
@@ -440,12 +440,12 @@ class Ui_ConfigGUI(object):
         self.groupBox.setObjectName(u"groupBox")
         self.checkBox_is_reverse_direction_windowleft = QCheckBox(self.groupBox)
         self.checkBox_is_reverse_direction_windowleft.setObjectName(u"checkBox_is_reverse_direction_windowleft")
-        self.checkBox_is_reverse_direction_windowleft.setGeometry(QRect(20, 110, 211, 21))
+        self.checkBox_is_reverse_direction_windowleft.setGeometry(QRect(20, 120, 211, 21))
         self.checkBox_is_reverse_direction_windowleft.setAutoFillBackground(False)
         self.checkBox_is_reverse_direction_windowleft.setStyleSheet(u"")
         self.horizontalLayoutWidget = QWidget(self.groupBox)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(20, 60, 131, 32))
+        self.horizontalLayoutWidget.setGeometry(QRect(20, 70, 131, 32))
         self.horizontalLayout_3 = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -465,7 +465,7 @@ class Ui_ConfigGUI(object):
 
         self.horizontalLayoutWidget_6 = QWidget(self.groupBox)
         self.horizontalLayoutWidget_6.setObjectName(u"horizontalLayoutWidget_6")
-        self.horizontalLayoutWidget_6.setGeometry(QRect(20, 20, 160, 31))
+        self.horizontalLayoutWidget_6.setGeometry(QRect(20, 30, 186, 31))
         self.horizontalLayout_10 = QHBoxLayout(self.horizontalLayoutWidget_6)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
@@ -500,12 +500,12 @@ class Ui_ConfigGUI(object):
         self.groupBox_3.setGeometry(QRect(10, 10, 230, 180))
         self.checkBox_is_reverse_direction_windowright = QCheckBox(self.groupBox_3)
         self.checkBox_is_reverse_direction_windowright.setObjectName(u"checkBox_is_reverse_direction_windowright")
-        self.checkBox_is_reverse_direction_windowright.setGeometry(QRect(20, 110, 211, 21))
+        self.checkBox_is_reverse_direction_windowright.setGeometry(QRect(20, 120, 211, 21))
         self.checkBox_is_reverse_direction_windowright.setAutoFillBackground(False)
         self.checkBox_is_reverse_direction_windowright.setStyleSheet(u"")
         self.horizontalLayoutWidget_2 = QWidget(self.groupBox_3)
         self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
-        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 60, 131, 32))
+        self.horizontalLayoutWidget_2.setGeometry(QRect(20, 70, 131, 32))
         self.horizontalLayout_6 = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
@@ -525,7 +525,7 @@ class Ui_ConfigGUI(object):
 
         self.horizontalLayoutWidget_7 = QWidget(self.groupBox_3)
         self.horizontalLayoutWidget_7.setObjectName(u"horizontalLayoutWidget_7")
-        self.horizontalLayoutWidget_7.setGeometry(QRect(20, 20, 160, 31))
+        self.horizontalLayoutWidget_7.setGeometry(QRect(20, 30, 186, 31))
         self.horizontalLayout_11 = QHBoxLayout(self.horizontalLayoutWidget_7)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
@@ -756,7 +756,7 @@ class Ui_ConfigGUI(object):
 
         self.horizontalLayoutWidget_3 = QWidget(self.groupBox_5)
         self.horizontalLayoutWidget_3.setObjectName(u"horizontalLayoutWidget_3")
-        self.horizontalLayoutWidget_3.setGeometry(QRect(20, 170, 171, 31))
+        self.horizontalLayoutWidget_3.setGeometry(QRect(20, 170, 171, 39))
         self.horizontalLayout_7 = QHBoxLayout(self.horizontalLayoutWidget_3)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
@@ -846,7 +846,7 @@ class Ui_ConfigGUI(object):
 
         self.horizontalLayoutWidget_5 = QWidget(self.groupBox_6)
         self.horizontalLayoutWidget_5.setObjectName(u"horizontalLayoutWidget_5")
-        self.horizontalLayoutWidget_5.setGeometry(QRect(20, 170, 171, 31))
+        self.horizontalLayoutWidget_5.setGeometry(QRect(20, 170, 171, 39))
         self.horizontalLayout_9 = QHBoxLayout(self.horizontalLayoutWidget_5)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
@@ -944,7 +944,7 @@ class Ui_ConfigGUI(object):
         self.retranslateUi(ConfigGUI)
         self.pushButton_size.pressed.connect(self.stackedWidget.update)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(ConfigGUI)
