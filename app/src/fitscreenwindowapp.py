@@ -70,13 +70,13 @@ class MoveResizeWindowService:
 
 class IThread(ABC):
     @abstractmethod
-    def __init__(self) -> None: pass
+    def __init__(self) -> None: ...
 
     @abstractmethod
-    def startThread(self) -> None: pass
+    def startThread(self) -> None: ...
 
     @abstractmethod
-    def stopThread(self) -> None: pass
+    def stopThread(self) -> None: ...
 
 
 class GlobalHotkeyService(IThread):

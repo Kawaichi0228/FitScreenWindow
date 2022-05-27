@@ -134,7 +134,7 @@ class Config:
 # -------------------------------------------------------------------------
 class IConfigSet(ABC):
     @abstractmethod
-    def _setupConfigPython(self) -> None: pass
+    def _setupConfigPython(self) -> None: ...
     
     def setupConfigPython(self) -> None:
         self._setupConfigPython()
