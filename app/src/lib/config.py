@@ -341,29 +341,34 @@ class ConfigGuiService(IConfigSet):
         # =========================================================================
         # Left Bar
         # =========================================================================
-        ## - SizeButton
-        #set_focus = False
-        #pushbutton_item = (self.gui.ui.pushButton_size, self.__onClickEvent_pushButton_size, set_focus)
-        #pushbutton_list.append(pushbutton_item)
-
         # - SizeButton
         set_focus = False
-        pushbutton_item = (self.gui.ui.pushButton_size, self.foo, set_focus)
+        pushbutton = self.gui.ui.pushButton_size
+        pushbutton_item = (
+            pushbutton,
+            lambda pushbutton_= pushbutton: self.__onClickEvent_pushButton_size(pushbutton_),
+            set_focus
+        )
         pushbutton_list.append(pushbutton_item)
         # - PositionButton
         set_focus = False
-        pushbutton_item = (self.gui.ui.pushButton_position, self.bar, set_focus)
+        pushbutton = self.gui.ui.pushButton_position
+        pushbutton_item = (
+            pushbutton,
+            lambda pushbutton_= pushbutton: self.__onClickEvent_pushButton_position(pushbutton_),
+            set_focus
+        )
         pushbutton_list.append(pushbutton_item)
-
-
-        ## - PositionButton
-        #set_focus = False
-        #pushbutton_item = (self.gui.ui.pushButton_position, self.__onClickEvent_pushButton_position, set_focus)
-        #pushbutton_list.append(pushbutton_item)
         # - HotkeyButton
         set_focus = False
-        pushbutton_item = (self.gui.ui.pushButton_hotkey, self.__onClickEvent_pushButton_hotkey, set_focus)
+        pushbutton = self.gui.ui.pushButton_hotkey
+        pushbutton_item = (
+            pushbutton,
+            lambda pushbutton_= pushbutton: self.__onClickEvent_pushButton_hotkey(pushbutton_),
+            set_focus
+        )
         pushbutton_list.append(pushbutton_item)
+
         # - SaveandExitButton
         set_focus = True # 最初の選択状態にしておく
         pushbutton_item = (self.gui.ui.pushButton_saveandexit, self.__onClickEvent_pushButton_saveandexit, set_focus)
@@ -390,33 +395,49 @@ class ConfigGuiService(IConfigSet):
         # =========================================================================
         self.gui.setupPushButton(pushbutton_list)
 
-    def getCSSStyle(self, pushbutton) -> str:
+
+    # -------------------------------------------------------------------------
+    # CSS関連のメソッド
+    # -------------------------------------------------------------------------
+    def __applyCSSStyle_selected_menu(self, pushbutton) -> None:
+        """選択中状態用のCSSを適用"""
+        css_current = self.__getCSSStyle(pushbutton)
+        css_selected_menu = self.MENU_SELECTED_STYLESHEET
+        css_after_union_selected_menu = css_current + css_selected_menu
+        pushbutton.setStyleSheet(css_after_union_selected_menu)
+
+    def __undoCSSStyle_selected_menu(self, pushbutton) -> None:
+        """選択中状態用のCSSのみを削除し、元のCSSに戻す"""
+        # 現在のCSSStyleを取得
+        css_current = self.__getCSSStyle(pushbutton)
+
+        # 現在のCSSStyleから、選択中CSSの部分を"空白"に置換することで、CSSを元に戻す
+        from_style = self.MENU_SELECTED_STYLESHEET
+        to_style = ""
+        css_after_delete_selected_menu = self.__replaceCSSStyle(
+            css_current, from_style, to_style
+            )
+
+        # CSSを適用
+        pushbutton.setStyleSheet(css_after_delete_selected_menu)
+
+    def __getCSSStyle(self, pushbutton) -> str:
         return pushbutton.styleSheet()
 
-    def deleteCSSStyle(self, css_style) -> str:
-        return css_style.replace(self.MENU_SELECTED_STYLESHEET, "")
+    def __replaceCSSStyle(self, css_style, from_style, to_style) -> str:
+        return css_style.replace(from_style, to_style)
+    # -------------------------------------------------------------------------
 
-    def foo(self) -> None:
-        btn = self.gui.ui.pushButton_size
-        css_current = self.getCSSStyle(btn)
-
-        union_css = css_current + self.MENU_SELECTED_STYLESHEET
-        btn.setStyleSheet(union_css)
-
-    def bar(self) -> None:
-        btn = self.gui.ui.pushButton_size
-        css_current = self.getCSSStyle(btn)
-        css_after_delete_selected_menu = self.deleteCSSStyle(css_current)
-
-        btn.setStyleSheet(css_after_delete_selected_menu)
-
-    def __onClickEvent_pushButton_size(self) -> None:
+    def __onClickEvent_pushButton_size(self, pushbutton) -> None:
+        self.__applyCSSStyle_selected_menu(pushbutton)
         self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_SIZE)
 
-    def __onClickEvent_pushButton_position(self) -> None:
+    def __onClickEvent_pushButton_position(self, pushbutton) -> None:
+        self.__applyCSSStyle_selected_menu(pushbutton)
         self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_POSITION)
 
-    def __onClickEvent_pushButton_hotkey(self) -> None:
+    def __onClickEvent_pushButton_hotkey(self, pushbutton) -> None:
+        self.__applyCSSStyle_selected_menu(pushbutton)
         self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_HOTKEY)
 
     def __onClickEvent_pushButton_saveandexit(self) -> None:
