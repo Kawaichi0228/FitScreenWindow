@@ -334,7 +334,10 @@ class ConfigGuiService(IConfigSet):
         self.gui.setupWindow()
 
         # 最初のインデックスのページを選択させておく
-        self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_SIZE)
+        pushbutton = self.gui.ui.pushButton_size
+        page_index = self.PAGE_INDEX_SIZE
+        self.__applyCSSStyle_selected_menu(pushbutton)
+        self.gui.ui.stackedWidget.setCurrentIndex(page_index)
 
         # PushButton
         pushbutton_list = []
