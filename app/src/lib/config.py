@@ -395,10 +395,45 @@ class ConfigGuiService(IConfigSet):
         # =========================================================================
         self.gui.setupPushButton(pushbutton_list)
 
+    # =========================================================================
+    # タブ切り替えボタン
+    # =========================================================================
+    def __onClickEvent_pushButton_size(self, pushbutton) -> None:
+        self.__resetCSSStyle_IfNeeded(pushbutton)
+        self.__applyCSSStyle_selected_menu(pushbutton)
+        page_index = self.PAGE_INDEX_SIZE
+        self.gui.ui.stackedWidget.setCurrentIndex(page_index)
+
+    def __onClickEvent_pushButton_position(self, pushbutton) -> None:
+        self.__resetCSSStyle_IfNeeded(pushbutton)
+        self.__applyCSSStyle_selected_menu(pushbutton)
+        page_index = self.PAGE_INDEX_POSITION
+        self.gui.ui.stackedWidget.setCurrentIndex(page_index)
+
+    def __onClickEvent_pushButton_hotkey(self, pushbutton) -> None:
+        self.__resetCSSStyle_IfNeeded(pushbutton)
+        self.__applyCSSStyle_selected_menu(pushbutton)
+        page_index = self.PAGE_INDEX_HOTKEY
+        self.gui.ui.stackedWidget.setCurrentIndex(page_index)
 
     # -------------------------------------------------------------------------
-    # CSS関連のメソッド
+    # タブ切り替えCSS関連のメソッド
     # -------------------------------------------------------------------------
+    def __resetCSSStyle_IfNeeded(self, pushbutton) -> None:
+        button_name_on_click = pushbutton.objectName()
+
+        # タブ選択用のCSSを適用させたいpushButtonウィジェットをここに全て定義
+        button_list = []
+        button_list.append(self.gui.ui.pushButton_size)
+        button_list.append(self.gui.ui.pushButton_position)
+        button_list.append(self.gui.ui.pushButton_hotkey)
+
+        # CSSをタブ選択ではない状態に元に戻す
+        for btn in button_list:
+            btn_nm = btn.objectName()
+            if not btn_nm == button_name_on_click: # クリックされたボタン名とリスト定義したボタン名で違う場合
+                self.__undoCSSStyle_selected_menu(btn)
+
     def __applyCSSStyle_selected_menu(self, pushbutton) -> None:
         """選択中状態用のCSSを適用"""
         css_current = self.__getCSSStyle(pushbutton)
@@ -416,7 +451,7 @@ class ConfigGuiService(IConfigSet):
         to_style = ""
         css_after_delete_selected_menu = self.__replaceCSSStyle(
             css_current, from_style, to_style
-            )
+        )
 
         # CSSを適用
         pushbutton.setStyleSheet(css_after_delete_selected_menu)
@@ -426,19 +461,8 @@ class ConfigGuiService(IConfigSet):
 
     def __replaceCSSStyle(self, css_style, from_style, to_style) -> str:
         return css_style.replace(from_style, to_style)
-    # -------------------------------------------------------------------------
-
-    def __onClickEvent_pushButton_size(self, pushbutton) -> None:
-        self.__applyCSSStyle_selected_menu(pushbutton)
-        self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_SIZE)
-
-    def __onClickEvent_pushButton_position(self, pushbutton) -> None:
-        self.__applyCSSStyle_selected_menu(pushbutton)
-        self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_POSITION)
-
-    def __onClickEvent_pushButton_hotkey(self, pushbutton) -> None:
-        self.__applyCSSStyle_selected_menu(pushbutton)
-        self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_HOTKEY)
+    # =========================================================================
+    # =========================================================================
 
     def __onClickEvent_pushButton_saveandexit(self) -> None:
         # Config.pyのクラスへ値をセット
