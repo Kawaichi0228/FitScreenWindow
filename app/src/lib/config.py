@@ -244,6 +244,10 @@ class ConfigGuiService(IConfigSet):
         外部定義したいコードをコピペすればOK
         (ただし、追加で ".ui" を付けること <ex. self.ui.comboBox...>)
     """
+    PAGE_INDEX_SIZE = 0
+    PAGE_INDEX_POSITION = 1
+    PAGE_INDEX_HOTKEY = 2
+
     def __init__(self, GlobalHotkeyService):
         root = RootGui()
         self.root = root
@@ -322,7 +326,7 @@ class ConfigGuiService(IConfigSet):
         self.gui.setupWindow()
 
         # 最初のインデックスのページを選択させておく
-        self.gui.ui.stackedWidget.setCurrentIndex(0)
+        self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_SIZE)
 
         # PushButton
         pushbutton_list = []
@@ -368,13 +372,13 @@ class ConfigGuiService(IConfigSet):
         self.gui.setupPushButton(pushbutton_list)
 
     def __onClickEvent_pushButton_size(self) -> None:
-        self.gui.ui.stackedWidget.setCurrentIndex(0)
+        self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_SIZE)
 
     def __onClickEvent_pushButton_position(self) -> None:
-        self.gui.ui.stackedWidget.setCurrentIndex(1)
+        self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_POSITION)
 
     def __onClickEvent_pushButton_hotkey(self) -> None:
-        self.gui.ui.stackedWidget.setCurrentIndex(2)
+        self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_HOTKEY)
 
     def __onClickEvent_pushButton_saveandexit(self) -> None:
         # Config.pyのクラスへ値をセット
