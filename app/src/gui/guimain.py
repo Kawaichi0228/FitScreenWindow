@@ -216,6 +216,7 @@ class ConfigGui(UtilGui, QDialog):
 
     # DESELECT
     def deselectMenu(getStyle):
+        # 定義したCSSを"空白"で置換することで、擬似的に選択時のCSSを消去している
         deselect = getStyle.replace(MENU_SELECTED_STYLESHEET, "")
         return deselect
 

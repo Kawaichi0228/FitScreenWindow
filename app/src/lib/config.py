@@ -248,6 +248,14 @@ class ConfigGuiService(IConfigSet):
     PAGE_INDEX_POSITION = 1
     PAGE_INDEX_HOTKEY = 2
 
+    # 定義したメニューボタンの"選択中"状態に適用させるCSS
+    MENU_SELECTED_STYLESHEET = """
+    border-left: 22px solid qlineargradient(spread:pad, x1:0.034, y1:0, x2:0.216, y2:0,
+    stop:0.499 #FF5F5F, stop:0.5 rgba(85, 170, 255, 0));
+    background-color: rgb(40, 44, 52);
+    """
+
+
     def __init__(self, GlobalHotkeyService):
         root = RootGui()
         self.root = root
@@ -339,18 +347,19 @@ class ConfigGuiService(IConfigSet):
         #pushbutton_list.append(pushbutton_item)
 
         # - SizeButton
-
-
         set_focus = False
         pushbutton_item = (self.gui.ui.pushButton_size, self.foo, set_focus)
         pushbutton_list.append(pushbutton_item)
-
-
-
         # - PositionButton
         set_focus = False
-        pushbutton_item = (self.gui.ui.pushButton_position, self.__onClickEvent_pushButton_position, set_focus)
+        pushbutton_item = (self.gui.ui.pushButton_position, self.bar, set_focus)
         pushbutton_list.append(pushbutton_item)
+
+
+        ## - PositionButton
+        #set_focus = False
+        #pushbutton_item = (self.gui.ui.pushButton_position, self.__onClickEvent_pushButton_position, set_focus)
+        #pushbutton_list.append(pushbutton_item)
         # - HotkeyButton
         set_focus = False
         pushbutton_item = (self.gui.ui.pushButton_hotkey, self.__onClickEvent_pushButton_hotkey, set_focus)
@@ -381,18 +390,25 @@ class ConfigGuiService(IConfigSet):
         # =========================================================================
         self.gui.setupPushButton(pushbutton_list)
 
+    def getCSSStyle(self, pushbutton) -> str:
+        return pushbutton.styleSheet()
+
+    def deleteCSSStyle(self, css_style) -> str:
+        return css_style.replace(self.MENU_SELECTED_STYLESHEET, "")
+
     def foo(self) -> None:
         btn = self.gui.ui.pushButton_size
+        css_current = self.getCSSStyle(btn)
 
-        current_css = btn.styleSheet()
-        MENU_SELECTED_STYLESHEET = """
-        border-left: 22px solid qlineargradient(spread:pad, x1:0.034, y1:0, x2:0.216, y2:0,
-        stop:0.499 #FF5F5F, stop:0.5 rgba(85, 170, 255, 0));
-        background-color: rgb(40, 44, 52);
-        """
-
-        union_css = current_css + MENU_SELECTED_STYLESHEET
+        union_css = css_current + self.MENU_SELECTED_STYLESHEET
         btn.setStyleSheet(union_css)
+
+    def bar(self) -> None:
+        btn = self.gui.ui.pushButton_size
+        css_current = self.getCSSStyle(btn)
+        css_after_delete_selected_menu = self.deleteCSSStyle(css_current)
+
+        btn.setStyleSheet(css_after_delete_selected_menu)
 
     def __onClickEvent_pushButton_size(self) -> None:
         self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_SIZE)
