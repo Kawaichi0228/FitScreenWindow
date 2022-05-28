@@ -244,17 +244,19 @@ class ConfigGuiService(IConfigSet):
         外部定義したいコードをコピペすればOK
         (ただし、追加で ".ui" を付けること <ex. self.ui.comboBox...>)
     """
-    PAGE_INDEX_SIZE = 0
-    PAGE_INDEX_POSITION = 1
-    PAGE_INDEX_HOTKEY = 2
-
+    # -------------------------------------------------------------------------
+    # タブ切り替えボタン用
+    # -------------------------------------------------------------------------
     # 定義したメニューボタンの"選択中"状態に適用させるCSS
     MENU_SELECTED_STYLESHEET = """
     border-left: 22px solid qlineargradient(spread:pad, x1:0.034, y1:0, x2:0.216, y2:0,
     stop:0.499 #FF5F5F, stop:0.5 rgba(85, 170, 255, 0));
     background-color: rgb(40, 44, 52);
     """
-
+    PAGE_INDEX_SIZE = 0
+    PAGE_INDEX_POSITION = 1
+    PAGE_INDEX_HOTKEY = 2
+    # -------------------------------------------------------------------------
 
     def __init__(self, GlobalHotkeyService):
         root = RootGui()
@@ -305,11 +307,17 @@ class ConfigGuiService(IConfigSet):
     def start(self):
         # GUIの表示開始時に、グローバルホットキーのスレッドを停止(GUI操作中にホットキー操作できないようにするため)
         self.g_service.stopThread()
-        logger.info("GUIの値からconfig.jsonを保存しました")
 
         # --- 画面上部バーをマウスクリックで掴んでウィンドウ全体を動かせるように
         #   FunctionObjectをバインド ---
         self.gui.ui.rightTopBg.mouseMoveEvent = self.gui.moveWindow
+
+        # タブ選択用CSSを初期化し、最初のインデックスのページを選択させておく
+        pushbutton = self.gui.ui.pushButton_size
+        page_index = self.PAGE_INDEX_SIZE
+        self.__resetCSSStyle_IfNeeded(pushbutton)
+        self.__applyCSSStyle_selected_menu(pushbutton)
+        self.gui.ui.stackedWidget.setCurrentIndex(page_index)
 
         # --- 各タブのItemの値をJsonから書き換え ---
         self.__setupTab_Size()
@@ -332,12 +340,6 @@ class ConfigGuiService(IConfigSet):
         """ウィジェット全体のsetup(全タブ共通)"""
         # Window
         self.gui.setupWindow()
-
-        # 最初のインデックスのページを選択させておく
-        pushbutton = self.gui.ui.pushButton_size
-        page_index = self.PAGE_INDEX_SIZE
-        self.__applyCSSStyle_selected_menu(pushbutton)
-        self.gui.ui.stackedWidget.setCurrentIndex(page_index)
 
         # PushButton
         pushbutton_list = []
