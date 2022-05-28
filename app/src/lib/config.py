@@ -333,10 +333,20 @@ class ConfigGuiService(IConfigSet):
         # =========================================================================
         # Left Bar
         # =========================================================================
+        ## - SizeButton
+        #set_focus = False
+        #pushbutton_item = (self.gui.ui.pushButton_size, self.__onClickEvent_pushButton_size, set_focus)
+        #pushbutton_list.append(pushbutton_item)
+
         # - SizeButton
+
+
         set_focus = False
-        pushbutton_item = (self.gui.ui.pushButton_size, self.__onClickEvent_pushButton_size, set_focus)
+        pushbutton_item = (self.gui.ui.pushButton_size, self.foo, set_focus)
         pushbutton_list.append(pushbutton_item)
+
+
+
         # - PositionButton
         set_focus = False
         pushbutton_item = (self.gui.ui.pushButton_position, self.__onClickEvent_pushButton_position, set_focus)
@@ -370,6 +380,19 @@ class ConfigGuiService(IConfigSet):
         # - Setup -
         # =========================================================================
         self.gui.setupPushButton(pushbutton_list)
+
+    def foo(self) -> None:
+        btn = self.gui.ui.pushButton_size
+
+        current_css = btn.styleSheet()
+        MENU_SELECTED_STYLESHEET = """
+        border-left: 22px solid qlineargradient(spread:pad, x1:0.034, y1:0, x2:0.216, y2:0,
+        stop:0.499 #FF5F5F, stop:0.5 rgba(85, 170, 255, 0));
+        background-color: rgb(40, 44, 52);
+        """
+
+        union_css = current_css + MENU_SELECTED_STYLESHEET
+        btn.setStyleSheet(union_css)
 
     def __onClickEvent_pushButton_size(self) -> None:
         self.gui.ui.stackedWidget.setCurrentIndex(self.PAGE_INDEX_SIZE)

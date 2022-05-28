@@ -45,7 +45,14 @@ class UtilGui:
         self.close()
 
 
+
+
+MENU_SELECTED_STYLESHEET = """
+border-left: 22px solid qlineargradient(spread:pad, x1:0.034, y1:0, x2:0.216, y2:0, stop:0.499 rgba(255, 121, 198, 255), stop:0.5 rgba(85, 170, 255, 0));
+background-color: rgb(40, 44, 52);
+"""
 class ConfigGui(UtilGui, QDialog):
+
     def __init__(self, root, parent=None) -> None:
         super(ConfigGui, self).__init__(parent)
         self.root = root
@@ -53,6 +60,8 @@ class ConfigGui(UtilGui, QDialog):
 
         # QtDesignerで作成した全体のui(.uiから.pyへの変換ファイル)のsetup
         self.ui.setupUi(self)
+
+        self.widgets = self.ui
 
     # [OverRige] Qtイベントメソッドをオーバーライド
     def mousePressEvent(self, event):
@@ -155,3 +164,58 @@ class ConfigGui(UtilGui, QDialog):
 
     def __checked_CheckBox(self, check_box, b: bool) -> None:
         check_box.setChecked(b)
+
+
+
+
+
+
+    # このイベントを各ボタンにconnectする
+    # ex. widgets.btn_home.clicked.connect(self.buttonClick)
+    def buttonClick(self):
+        # GET BUTTON CLICKED
+        btn = self.sender()
+        #btnName = btn.objectName()
+        btnName = "pushButton_size"
+
+        # ページを切り替え
+        self.widgets.stackedWidget.setCurrentWidget(self.widgets.page_size)
+
+        #self.resetStyle(self, btnName)
+        self.resetStyle(btnName)
+        btn.setStyleSheet(self.selectMenu(btn.styleSheet()))
+
+        #if btnName == "pushButton_size":
+        #    self.widgets.stackedWidget.setCurrentWidget(self.widgets.home)
+        #    self.resetStyle(self, btnName)
+        #    btn.setStyleSheet(self.selectMenu(btn.styleSheet()))
+
+        #if btnName == "pushButton_position":
+        #    self.widgets.stackedWidget.setCurrentWidget(self.widgets.widgets)
+        #    self.resetStyle(self, btnName)
+        #    btn.setStyleSheet(self.selectMenu(btn.styleSheet()))
+
+        #if btnName == "pushButton_hotkey":
+        #    self.widgets.stackedWidget.setCurrentWidget(self.widgets.widgets)
+        #    self.resetStyle(self, btnName)
+        #    btn.setStyleSheet(self.selectMenu(btn.styleSheet()))
+
+    def selectMenu(getStyle):
+        # 既存のシートに、定義したCSSを追加したものをreturnする
+        select = getStyle + MENU_SELECTED_STYLESHEET
+        return select
+
+    # RESET SELECTION
+    def resetStyle(self, widget):
+        for w in self.ui.leftMenuFrame.findChildren(QPushButton):
+            print(w.objectName())
+
+            #if w.objectName() != widget:
+            #    print("222", w.styleSheet())
+                #w.setStyleSheet(self.deselectMenu(w.styleSheet()))
+
+    # DESELECT
+    def deselectMenu(getStyle):
+        deselect = getStyle.replace(MENU_SELECTED_STYLESHEET, "")
+        return deselect
+
