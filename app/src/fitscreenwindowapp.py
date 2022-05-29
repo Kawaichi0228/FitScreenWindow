@@ -223,3 +223,4 @@ def main() -> None:
     # アプリ起動
     app = ApplicationService()
     app.run()
+

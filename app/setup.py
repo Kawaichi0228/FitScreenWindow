@@ -3,7 +3,8 @@ import os
 from cx_Freeze import setup, Executable
 
 # ADD FILES
-files = ['images/favicon.ico','src/']
+files = ['images/','src/']
+excludes = ["numpy", "pyside6", "logger"]
 
 # TARGET
 target = Executable(
@@ -16,9 +17,9 @@ target = Executable(
 setup(
     name = "FitScreenWindow",
     version = "4.0",
-    description = "FitScreenWindow",
+    description = "FitScreenWindow for Python Application",
     author = "Kawaichi0228",
-    options = {'build_exe' : {'include_files' : files}},
+    options = {'build_exe' : {"include_files": files, "excludes": excludes}},
     executables = [target]
     
 )

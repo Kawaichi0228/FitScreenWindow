@@ -27,6 +27,9 @@ class Ui_ConfigGUI(object):
             ConfigGUI.setObjectName(u"ConfigGUI")
         ConfigGUI.resize(930, 560)
         ConfigGUI.setMinimumSize(QSize(930, 560))
+        icon = QIcon()
+        icon.addFile(u":/images/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
+        ConfigGUI.setWindowIcon(icon)
         #ConfigGUI.setAnimated(True)
         self.entireStyleSheet = QWidget(ConfigGUI)
         self.entireStyleSheet.setObjectName(u"entireStyleSheet")
@@ -380,9 +383,9 @@ class Ui_ConfigGUI(object):
         self.pushButton_close.setStyleSheet(u"background-image: url(:/images/icon-x.png);\n"
 "background-position: center;\n"
 "background-repeat: no-repeat;")
-        icon = QIcon()
-        icon.addFile(u":/icons/images/icons/icon_close.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_close.setIcon(icon)
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/images/icons/icon_close.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_close.setIcon(icon1)
         self.pushButton_close.setIconSize(QSize(20, 20))
 
         self.horizontalLayout_2.addWidget(self.pushButton_close)
@@ -951,7 +954,7 @@ class Ui_ConfigGUI(object):
     # setupUi
 
     def retranslateUi(self, ConfigGUI):
-        ConfigGUI.setWindowTitle(QCoreApplication.translate("ConfigGUI", u"MainWindow", None))
+        ConfigGUI.setWindowTitle(QCoreApplication.translate("ConfigGUI", u"Fit Screen Window - \u8a2d\u5b9a", None))
         self.leftTitleApp.setText(QCoreApplication.translate("ConfigGUI", u"Fit Screen Window", None))
         self.pushButton_size.setText(QCoreApplication.translate("ConfigGUI", u"\u30b5\u30a4\u30ba", None))
         self.pushButton_position.setText(QCoreApplication.translate("ConfigGUI", u"\u4f4d\u7f6e", None))

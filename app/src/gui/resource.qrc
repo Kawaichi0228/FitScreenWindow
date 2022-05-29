@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/">
+    <file>../../images/favicon.ico</file>
     <file>../../images/icon-arrowbottom.png</file>
     <file>../../images/icon-check.png</file>
     <file>../../images/icon-cancel.png</file>
