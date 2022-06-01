@@ -4,10 +4,6 @@ import wx
 import wx.adv
 
 
-def open_site():
-    print("open site.")
-    pass
-
 class TaskBarIcon(wx.adv.TaskBarIcon):
 
     def __init__(self, frame, tooltip, favicon_path):
@@ -34,18 +30,20 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def __bindFunction(self) -> None: ...
 
     def CreatePopupMenu(self):
+        global menu
         menu = wx.Menu()
-        self.createMenu(menu)
+        self.createMenu()
         return menu
 
-    def createMenu(self, menu) -> None:
-        self.createMenuItem(menu, 'test', self.on_open_site)
-        self.addSeparator(menu)
-        self.createMenuItem(menu, 'exit', self.on_exit)
-    
-    def addSeparator(self, menu) -> None:
+    def addSeparator(self) -> None:
         """タスクトレイの区切り線を挿入"""
+        global menu
         menu.AppendSeparator()
+
+    def createMenu(self) -> None:
+        self.createMenuItem('test', self.on_open_site)
+        self.addSeparator()
+        self.createMenuItem('exit', self.on_exit)
 
     def on_open_site(self, event):
         print("aaa")
@@ -54,8 +52,9 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         wx.CallAfter(self.Destroy)
         self.frame.Close()
 
-    def createMenuItem(self, menu, label, func):
+    def createMenuItem(self, label, func):
         """メニューアイテムを追加するメソッド"""
+        global menu
         item = wx.MenuItem(menu, -1, label)
         menu.Bind(wx.EVT_MENU, func, id=item.GetId())
         menu.Append(item)
