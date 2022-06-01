@@ -145,16 +145,14 @@ class GlobalHotkeyService(IThread):
 
 class TasktrayService(IThread):
     def __init__(self) -> None:
-        #favicon_path_ = FAVICON_IMAGE_PATH
-        #title_ = PROGRAM_NAME
-        TRAY_TOOLTIP = "FitScreenWindow"
-        TRAY_ICON = r"C:\Users\tmgtmg\GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\images\favicon.ico"
+        tooltip = PROGRAM_NAME
+        favicon_path = FAVICON_IMAGE_PATH
 
         task = TaskMenuItem()
         task.add("test", self.pri)
         item_list = task.get()
 
-        t = CreateTaskTray(TRAY_TOOLTIP, TRAY_ICON, item_list)
+        t = CreateTaskTray(tooltip, favicon_path, item_list)
         self.t = t
 
     @staticmethod
