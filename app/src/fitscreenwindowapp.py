@@ -16,6 +16,7 @@ from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.positioncalclator import PositionCalclator
 from src.lib.tasktray import Tasktray
+from src.lib.test_tasktray import CreateTaskTray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.dialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
@@ -145,22 +146,28 @@ class GlobalHotkeyService(IThread):
 
 class TasktrayService(IThread):
     def __init__(self) -> None:
-        favicon_path_ = FAVICON_IMAGE_PATH
-        title_ = PROGRAM_NAME
-        t = Tasktray(favicon_path_, title_)
+        #favicon_path_ = FAVICON_IMAGE_PATH
+        #title_ = PROGRAM_NAME
+        TRAY_TOOLTIP = "FitScreenWindow"
+        TRAY_ICON = r"C:\Users\tmgtmg\GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\images\favicon.ico"
+        t = CreateTaskTray(TRAY_TOOLTIP, TRAY_ICON)
         self.t = t
+        
+        
 
     def startThread(self) -> None:
         """タスクメニュー実行用のスレッド"""
-        try:
-            favicon_obj = self.t.readFavicon()
-            logger.info("favicon.icoの読込が正常に完了しました")
-        except FileNotFoundError:
-            ErrorDialog().showFileNotFound("favicon.ico")
-            ErrorHandling().quitApp()
+        self.t.start()
 
-        logger.info("タスクトレイのスレッドを開始します")
-        self.t.startThread(favicon_obj)
+        #try:
+        #    favicon_obj = self.t.readFavicon()
+        #    logger.info("favicon.icoの読込が正常に完了しました")
+        #except FileNotFoundError:
+        #    ErrorDialog().showFileNotFound("favicon.ico")
+        #    ErrorHandling().quitApp()
+
+        #logger.info("タスクトレイのスレッドを開始します")
+        #self.t.startThread(favicon_obj)
 
     def stopThread(self) -> None:
         self.t.stopThread()
@@ -185,15 +192,15 @@ class ApplicationService(IThread):
         self.g_service.startThread()
 
         # タスクトレイに表示させるitemを定義
-        self.t_service.addItem("設定", self.gui_service.start)
-        self.t_service.addItem("終了", self.stopThread)
+        #self.t_service.addItem("設定", self.gui_service.start)
+        #self.t_service.addItem("終了", self.stopThread)
 
         # タスクトレイのスレッドを開始
         self.t_service.startThread()
 
     def stopThread(self) -> None:
         self.g_service.stopThread()
-        self.t_service.stopThread()
+        #self.t_service.stopThread()
 
     def run(self) -> None:
         # config.jsonから値を読み取り、jsonのValueが格納されたDictを取得

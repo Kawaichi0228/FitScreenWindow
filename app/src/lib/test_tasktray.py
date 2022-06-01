@@ -1,9 +1,13 @@
+# -------------------------------------------------------------------------
+# Python modules
+# -------------------------------------------------------------------------
 import os
-
 import wx
 import wx.adv
 
-
+# -------------------------------------------------------------------------
+# Class
+# -------------------------------------------------------------------------
 class TaskBarIcon(wx.adv.TaskBarIcon):
     def __init__(self, frame, tooltip, favicon_path):
         self.tooltip = tooltip
@@ -43,27 +47,29 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     # -------------------------------------------------------------------------
     def createMenu(self) -> None:
         """ここでタスクトレイの内容(表示文字列とクリック時実行関数)を組み立てる"""
-        self.addMenuItem('test', lambda e=self.__getEventOnClick: self.foo(e))
-        self.addMenuItem('test2', lambda e=self.__getEventOnClick: self.bar(e))
+        self.addMenuItem("afaf", self.fun)
         self.addSeparator()
-        self.addMenuItem('exit', lambda e=self.__getEventOnClick: self.exit(e))
+        self.__getMenuItem('exit', lambda e=self.__getEventOnClick: self.exit(e))
 
-    def foo(self, e) -> None:
-        print("foo")
-    
-    def bar(self, e) -> None:
-        print("bar")
+    def fun(self) -> None:
+        print("aw")
+
+    def foo(self, e, func) -> None:
+        func()
     
     def exit(self, e):
         wx.CallAfter(self.Destroy)
         self.frame.Close()
     # -------------------------------------------------------------------------
 
+    def addMenuItem(self, value, func) -> None:
+        self.__getMenuItem(value, lambda e=self.__getEventOnClick, func_=func : self.foo(e, func_))
+
     def __getEventOnClick(self, event) -> object:
         """クリックイベントを取得する"""
         return event
 
-    def addMenuItem(self, label, func):
+    def __getMenuItem(self, label, func) -> object:
         """メニューアイテムを追加するメソッド"""
         global menu
         item = wx.MenuItem(menu, -1, label)
@@ -85,6 +91,7 @@ class App(wx.App):
     def start(self) -> None:
         self.MainLoop()
 
+
 class CreateTaskTray:
     def __init__(self, tooltip, favicon_path) -> None:
         App.tooltip = tooltip
@@ -94,9 +101,3 @@ class CreateTaskTray:
     
     def start(self) -> None:
         self.app.start()
-
-if __name__ == "__main__":
-    TRAY_TOOLTIP = "FitScreenWindow"
-    TRAY_ICON = r"C:\Users\tmgtmg\GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\images\favicon.ico"
-    t = CreateTaskTray(TRAY_TOOLTIP, TRAY_ICON)
-    t.start()
