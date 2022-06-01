@@ -152,8 +152,8 @@ class TasktrayService(IThread):
         TRAY_ICON = r"C:\Users\tmgtmg\GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\images\favicon.ico"
         t = CreateTaskTray(TRAY_TOOLTIP, TRAY_ICON)
         self.t = t
-        
-        
+
+
 
     def startThread(self) -> None:
         """タスクメニュー実行用のスレッド"""
