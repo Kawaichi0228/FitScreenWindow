@@ -44,27 +44,25 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     # -------------------------------------------------------------------------
     def createMenu(self) -> None:
         """ここでタスクトレイの内容(表示文字列とクリック時実行関数)を組み立てる"""
-        self.addMenuItem('test', lambda ats=self.__getEventOnClick: self.foo(ats))
-        self.addMenuItem('test2', lambda ats=self.__getEventOnClick: self.bar(ats))
+        self.addMenuItem('test', lambda e=self.__getEventOnClick: self.foo(e))
+        self.addMenuItem('test2', lambda e=self.__getEventOnClick: self.bar(e))
         self.addSeparator()
-        self.addMenuItem('exit', self.on_exit)
+        self.addMenuItem('exit', lambda e=self.__getEventOnClick: self.exit(e))
+
+    def foo(self, e) -> None:
+        print("foo")
+    
+    def bar(self, e) -> None:
+        print("bar")
+    
+    def exit(self, e):
+        wx.CallAfter(self.Destroy)
+        self.frame.Close()
+    # -------------------------------------------------------------------------
 
     def __getEventOnClick(self, event) -> object:
         """クリックイベントを取得する"""
         return event
-    
-    @staticmethod
-    def foo(e) -> None:
-        print("foo")
-
-    @staticmethod
-    def bar(e) -> None:
-        print("bar")
-    
-    def on_exit(self, event):
-        wx.CallAfter(self.Destroy)
-        self.frame.Close()
-    # -------------------------------------------------------------------------
 
     def addMenuItem(self, label, func):
         """メニューアイテムを追加するメソッド"""
