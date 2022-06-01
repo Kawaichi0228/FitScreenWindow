@@ -15,7 +15,7 @@ from src.lib.globalhotkey import GlobalHotkey
 from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.positioncalclator import PositionCalclator
-from src.lib.test_tasktray import TaskMenuItem, CreateTaskTray
+from src.lib.tasktray import TaskMenuItem, CreateTaskTray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.dialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
@@ -145,23 +145,14 @@ class GlobalHotkeyService(IThread):
 
 class TasktrayService(IThread):
     def __init__(self) -> None:
-        tooltip = PROGRAM_NAME
-        favicon_path = FAVICON_IMAGE_PATH
+        self.tooltip = PROGRAM_NAME
+        self.favicon_path = FAVICON_IMAGE_PATH
 
-        task = TaskMenuItem()
-        task.add("test", self.pri)
-        item_list = task.get()
-
-        t = CreateTaskTray(tooltip, favicon_path, item_list)
-        self.t = t
-
-    @staticmethod
-    def pri() -> None:
-        print("sgf")
+        item = TaskMenuItem()
+        self.item = item
 
     def startThread(self) -> None:
         """タスクメニュー実行用のスレッド"""
-        self.t.start()
 
         #try:
         #    favicon_obj = self.t.readFavicon()
@@ -172,13 +163,17 @@ class TasktrayService(IThread):
 
         #logger.info("タスクトレイのスレッドを開始します")
         #self.t.startThread(favicon_obj)
+        item_list = self.item.get()
+        t = CreateTaskTray(self.tooltip, self.favicon_path, item_list)
+        self.t = t
+        self.t.startThread()
 
     def stopThread(self) -> None:
         self.t.stopThread()
 
     def addItem(self, value, on_click_function) -> None:
-        self.t.addItem(value, on_click_function)
-
+        self.item.add(value, on_click_function)
+    
 
 class ApplicationService(IThread):
     def __init__(self) -> None:
@@ -196,15 +191,16 @@ class ApplicationService(IThread):
         self.g_service.startThread()
 
         # タスクトレイに表示させるitemを定義
-        #self.t_service.addItem("設定", self.gui_service.start)
-        #self.t_service.addItem("終了", self.stopThread)
+        self.t_service.addItem("設定", self.gui_service.start)
+        self.t_service.addItem("終了", self.stopThread)
 
         # タスクトレイのスレッドを開始
         self.t_service.startThread()
 
     def stopThread(self) -> None:
         self.g_service.stopThread()
-        #self.t_service.stopThread()
+        self.t_service.stopThread()
+        ErrorHandling.quitApp()
 
     def run(self) -> None:
         # config.jsonから値を読み取り、jsonのValueが格納されたDictを取得
