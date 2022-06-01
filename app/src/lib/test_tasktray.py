@@ -5,7 +5,6 @@ import wx.adv
 
 
 class TaskBarIcon(wx.adv.TaskBarIcon):
-
     def __init__(self, frame, tooltip, favicon_path):
         self.tooltip = tooltip
 
@@ -74,16 +73,30 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
 
 
 class App(wx.App):
+    tooltip = ""
+    favicon_path = ""
 
     def OnInit(self):
         frame=wx.Frame(None)
         self.SetTopWindow(frame)
-        TRAY_TOOLTIP = "FitScreenWindow"
-        TRAY_ICON = r"C:\Users\tmgtmg\GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\images\favicon.ico"
-        TaskBarIcon(frame, TRAY_TOOLTIP, TRAY_ICON)
+        TaskBarIcon(frame, self.tooltip, self.favicon_path)
         return True
+    
+    def start(self) -> None:
+        self.MainLoop()
 
+class CreateTaskTray:
+    def __init__(self, tooltip, favicon_path) -> None:
+        App.tooltip = tooltip
+        App.favicon_path = favicon_path
+        app = App(False)
+        self.app = app
+    
+    def start(self) -> None:
+        self.app.start()
 
 if __name__ == "__main__":
-    app = App(False)
-    app.MainLoop()
+    TRAY_TOOLTIP = "FitScreenWindow"
+    TRAY_ICON = r"C:\Users\tmgtmg\GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\images\favicon.ico"
+    t = CreateTaskTray(TRAY_TOOLTIP, TRAY_ICON)
+    t.start()
