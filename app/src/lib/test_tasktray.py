@@ -30,6 +30,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
     def __bindFunction(self) -> None: ...
 
     def CreatePopupMenu(self):
+        """OverRide Method"""
         global menu
         menu = wx.Menu()
         self.createMenu()
@@ -39,20 +40,33 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         """タスクトレイの区切り線を挿入"""
         global menu
         menu.AppendSeparator()
-
+    
+    # -------------------------------------------------------------------------
     def createMenu(self) -> None:
-        self.createMenuItem('test', self.on_open_site)
+        """ここでタスクトレイの内容(表示文字列とクリック時実行関数)を組み立てる"""
+        self.addMenuItem('test', lambda ats=self.__getEventOnClick: self.foo(ats))
+        self.addMenuItem('test2', lambda ats=self.__getEventOnClick: self.bar(ats))
         self.addSeparator()
-        self.createMenuItem('exit', self.on_exit)
+        self.addMenuItem('exit', self.on_exit)
 
-    def on_open_site(self, event):
-        print("aaa")
+    def __getEventOnClick(self, event) -> object:
+        """クリックイベントを取得する"""
+        return event
+    
+    @staticmethod
+    def foo(e) -> None:
+        print("foo")
+
+    @staticmethod
+    def bar(e) -> None:
+        print("bar")
     
     def on_exit(self, event):
         wx.CallAfter(self.Destroy)
         self.frame.Close()
+    # -------------------------------------------------------------------------
 
-    def createMenuItem(self, label, func):
+    def addMenuItem(self, label, func):
         """メニューアイテムを追加するメソッド"""
         global menu
         item = wx.MenuItem(menu, -1, label)
