@@ -25,14 +25,18 @@ class TaskTray(wx.adv.TaskBarIcon):
 
         self.Bind(wx.adv.EVT_TASKBAR_LEFT_DCLICK, self.__bindFunction)
 
-    def __isExistsFavicon(self, favicon_path) -> bool:
-        return os.path.exists(favicon_path)
+    def createMenu(self) -> None:
+        for item in self.item_list:
+            self.__getMenuItem(item[0], lambda e=self.__getEventOnClick, func=item[1]: self.__bindFunction(e, func))
 
-    def __setFavicon(self, path):
-        icon = wx.Icon(wx.Bitmap(path))
-        self.SetIcon(icon, self.tooltip)
+    def stopThread(self):
+        wx.CallAfter(self.Destroy)
+        self.frame.Close()
 
-    def __bindFunction(self) -> None: ...
+    def addSeparator(self) -> None:
+        """タスクトレイの区切り線を挿入"""
+        global menu
+        menu.AppendSeparator()
 
     def CreatePopupMenu(self):
         """OverRide Method"""
@@ -41,21 +45,14 @@ class TaskTray(wx.adv.TaskBarIcon):
         self.createMenu()
         return menu
 
-    def addSeparator(self) -> None:
-        """タスクトレイの区切り線を挿入"""
-        global menu
-        menu.AppendSeparator()
-    
-    # -------------------------------------------------------------------------
-    def createMenu(self) -> None:
-        """ここでタスクトレイの内容(表示文字列とクリック時実行関数)を組み立てる"""
-        for item in self.item_list:
-            self.__getMenuItem(item[0], lambda e=self.__getEventOnClick, func=item[1]: self.__bindFunction(e, func))
+    def __isExistsFavicon(self, favicon_path) -> bool:
+        return os.path.exists(favicon_path)
 
-    def stopThread(self):
-        wx.CallAfter(self.Destroy)
-        self.frame.Close()
-    # -------------------------------------------------------------------------
+    def __setFavicon(self, path):
+        icon = wx.Icon(wx.Bitmap(path))
+        self.SetIcon(icon, self.tooltip)
+
+    def __bindFunction(self) -> None: ...
 
     def __bindFunction(self, e, func) -> None:
         func()
