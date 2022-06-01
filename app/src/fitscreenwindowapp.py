@@ -148,24 +148,25 @@ class TasktrayService(IThread):
         self.tooltip = PROGRAM_NAME
         self.favicon_path = FAVICON_IMAGE_PATH
 
+        self.t = None
+
         item = TaskMenuItem()
         self.item = item
 
     def startThread(self) -> None:
         """タスクメニュー実行用のスレッド"""
-
-        #try:
-        #    favicon_obj = self.t.readFavicon()
-        #    logger.info("favicon.icoの読込が正常に完了しました")
-        #except FileNotFoundError:
-        #    ErrorDialog().showFileNotFound("favicon.ico")
-        #    ErrorHandling().quitApp()
-
-        #logger.info("タスクトレイのスレッドを開始します")
-        #self.t.startThread(favicon_obj)
         item_list = self.item.get()
-        t = CreateTaskTray(self.tooltip, self.favicon_path, item_list)
-        self.t = t
+        
+        try:
+            t = CreateTaskTray(self.tooltip, self.favicon_path, item_list)
+            self.t = t
+            logger.info("favicon.icoの読込が正常に完了しました")
+
+        except FileNotFoundError:
+            ErrorDialog().showFileNotFound("favicon.ico")
+            ErrorHandling().quitApp()
+        
+        logger.info("タスクトレイのスレッドを開始します")
         self.t.startThread()
 
     def stopThread(self) -> None:
