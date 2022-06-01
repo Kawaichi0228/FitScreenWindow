@@ -15,8 +15,7 @@ from src.lib.globalhotkey import GlobalHotkey
 from src.lib.moveresizewindow import MoveResizeWindowAtCounter
 from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.positioncalclator import PositionCalclator
-from src.lib.tasktray import Tasktray
-from src.lib.test_tasktray import CreateTaskTray
+from src.lib.test_tasktray import TaskMenuItem, CreateTaskTray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.dialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
@@ -150,10 +149,17 @@ class TasktrayService(IThread):
         #title_ = PROGRAM_NAME
         TRAY_TOOLTIP = "FitScreenWindow"
         TRAY_ICON = r"C:\Users\tmgtmg\GoogleDrive\Project-FitScreenWindow\FitScreenWindow\app\images\favicon.ico"
-        t = CreateTaskTray(TRAY_TOOLTIP, TRAY_ICON)
+
+        task = TaskMenuItem()
+        task.add("test", self.pri)
+        item_list = task.get()
+
+        t = CreateTaskTray(TRAY_TOOLTIP, TRAY_ICON, item_list)
         self.t = t
 
-
+    @staticmethod
+    def pri() -> None:
+        print("sgf")
 
     def startThread(self) -> None:
         """タスクメニュー実行用のスレッド"""

@@ -59,7 +59,7 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         wx.CallAfter(self.Destroy)
         self.frame.Close()
     # -------------------------------------------------------------------------
-    
+
     def __bindFunction(self, e, func) -> None:
         func()
 
@@ -75,16 +75,6 @@ class TaskBarIcon(wx.adv.TaskBarIcon):
         menu.Append(item)
         return item
 
-class CreateTaskMenu:
-    def __init__(self) -> None:
-        self.item_list = []
-
-    def addMenuItem(self, value, func) -> None:
-        item = (value, func)
-        self.item_list.append(item)
-
-    def getMenuItem(self) -> list:
-        return self.item_list
 
 class App(wx.App):
     tooltip = ""
@@ -96,28 +86,32 @@ class App(wx.App):
         self.SetTopWindow(frame)
         return True
     
-    def foo(self, item_list) -> None:
+    def setTaskBarIcon(self, item_list) -> None:
         TaskBarIcon(self.frame, self.tooltip, self.favicon_path, item_list)
     
     def start(self) -> None:
         self.MainLoop()
 
 
-class CreateTaskTray:
-    def __init__(self, tooltip, favicon_path) -> None:
-        task = CreateTaskMenu()
-        task.addMenuItem("test", self.pri)
-        item_list = task.getMenuItem()
+class TaskMenuItem:
+    def __init__(self) -> None:
+        self.item_list = []
 
+    def add(self, value, func) -> None:
+        item = (value, func)
+        self.item_list.append(item)
+
+    def get(self) -> list:
+        return self.item_list
+
+
+class CreateTaskTray:
+    def __init__(self, tooltip, favicon_path, item_list) -> None:
         App.tooltip = tooltip
         App.favicon_path = favicon_path
         app = App(False)
-        app.foo(item_list)
+        app.setTaskBarIcon(item_list)
         self.app = app
     
     def start(self) -> None:
         self.app.start()
-
-    @staticmethod
-    def pri() -> None:
-        print("sgf")
