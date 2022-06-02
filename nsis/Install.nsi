@@ -94,7 +94,7 @@ Section
   File "${BUILD_DIR}\app\src\config.json"
 
   SetOutPath "$INSTDIR\app\images"
-  File "${BUILD_DIR}\app\images\favicon.ico"
+  File "${PATH_FAVICON}"
 
   ; アンインストーラを出力
   WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}"
