@@ -88,11 +88,9 @@ Section
   
   SetOutPath "$INSTDIR"
   File "nsis_favicon.ico"
-
-  SetOutPath "$AppData\${PRODUCT_NAME}" ; $AppData: "C:\Users\<UserName>\AppData\Roaming"
   File "${BUILD_DIR}\${PRODUCT_NAME}.exe"
 
-  SetOutPath "$AppData\${PRODUCT_NAME}\app\src"
+  SetOutPath "$AppData\${PRODUCT_NAME}\app\src" ; $AppData: "C:\Users\<UserName>\AppData\Roaming"
   File "${BUILD_DIR}\app\src\config.json"
 
   SetOutPath "$AppData\${PRODUCT_NAME}\app\images"
@@ -104,8 +102,8 @@ Section
   CreateDirectory "$SMPROGRAMS\FitScreenWindow"
   SetOutPath "$INSTDIR"
   ; デスクトップにショートカットを作成
-  CreateShortcut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$AppData\${PRODUCT_NAME}.exe" ""
-  CreateShortcut "$DESKTOP\${PRODUCT_NAME}.lnk" "$AppData\${PRODUCT_NAME}\${PRODUCT_NAME}.exe" ""
+  CreateShortcut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
+  CreateShortcut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
   ; レジストリに登録
   !define RegistryKey "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
   WriteRegStr HKLM ${RegistryKey} "UninstallString" "$INSTDIR\${UNINSTALLER_NAME}"
@@ -122,10 +120,11 @@ SectionEnd
 
 ; アンインストーラ
 Section "Uninstall"
-  ; アンインストーラを削除
-  Delete "$INSTDIR\${UNINSTALLER_NAME}"
   ; ファイルを削除
-  Delete "$AppData\${PRODUCT_NAME}\${PRODUCT_NAME}.exe"
+  Delete "$INSTDIR\${PRODUCT_NAME}.exe"
+  Delete "$INSTDIR\nsis_favicon.ico"
+  Delete "$INSTDIR\${UNINSTALLER_NAME}"
+  
   Delete "$AppData\${PRODUCT_NAME}\app\src\config.json"
   Delete "$AppData\${PRODUCT_NAME}\app\images\favicon.ico"
   ; ディレクトリを削除
