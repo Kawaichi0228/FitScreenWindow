@@ -19,11 +19,8 @@ Unicode true
 ; 必要な実行権限（user/admin）
 RequestExecutionLevel admin
 
-; ビルドファイルのディレクトリ
-!define BUILD_DIR "build"
-
 ; ファビコンのパス
-!define PATH_FAVICON "${BUILD_DIR}\app\images\favicon.ico"
+!define PATH_FAVICON "nsis_favicon.ico"
 
 ; インストーラーのアイコン
 !define MUI_ICON "${PATH_FAVICON}"
@@ -86,28 +83,33 @@ InstallDir "$PROGRAMFILES64\${PRODUCT_NAME}"
 
 ; セクション
 Section
-  ; インストーラーに組み込むファイル群
-  SetOutPath "$INSTDIR" ; 出力先を指定
+  ; インストーラーに組み込むファイルの出力先パス → 組み込む入力ファイルパス を定義
+  !define BUILD_DIR "build" ; ビルドファイルのディレクトリ
+  
+  SetOutPath "$INSTDIR"
+  File "nsis_favicon.ico"
+
+  SetOutPath "$AppData\${PRODUCT_NAME}" ; $AppData: "C:\Users\<UserName>\AppData\Roaming"
   File "${BUILD_DIR}\${PRODUCT_NAME}.exe"
 
-  SetOutPath "$INSTDIR\app\src"
+  SetOutPath "$AppData\${PRODUCT_NAME}\app\src"
   File "${BUILD_DIR}\app\src\config.json"
 
-  SetOutPath "$INSTDIR\app\images"
-  File "${PATH_FAVICON}"
+  SetOutPath "$AppData\${PRODUCT_NAME}\app\images"
+  File "${BUILD_DIR}\app\images\favicon.ico"
 
   ; アンインストーラを出力
-  WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}"
+  WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}" ; $INSTDIR: ユーザがインストーラー画面で設定したインストール先
   ; スタート メニューにショートカットを登録
   CreateDirectory "$SMPROGRAMS\FitScreenWindow"
   SetOutPath "$INSTDIR"
   ; デスクトップにショートカットを作成
-  CreateShortcut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
-  CreateShortcut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
+  CreateShortcut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$AppData\${PRODUCT_NAME}.exe" ""
+  CreateShortcut "$DESKTOP\${PRODUCT_NAME}.lnk" "$AppData\${PRODUCT_NAME}\${PRODUCT_NAME}.exe" ""
   ; レジストリに登録
   !define RegistryKey "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
   WriteRegStr HKLM ${RegistryKey} "UninstallString" "$INSTDIR\${UNINSTALLER_NAME}"
-  WriteRegStr HKLM ${RegistryKey} "DisplayIcon" "$\"$INSTDIR\app\images\favicon.ico$\""
+  WriteRegStr HKLM ${RegistryKey} "DisplayIcon" "$\"$INSTDIR\nsis_favicon.ico$\""
   WriteRegStr HKLM ${RegistryKey} "DisplayName" "${PRODUCT_NAME}"
   WriteRegStr HKLM ${RegistryKey} "Publisher" "${CREATOR_NAME}"
   
@@ -123,9 +125,12 @@ Section "Uninstall"
   ; アンインストーラを削除
   Delete "$INSTDIR\${UNINSTALLER_NAME}"
   ; ファイルを削除
-  Delete "$INSTDIR\${PRODUCT_NAME}.exe"
+  Delete "$AppData\${PRODUCT_NAME}\${PRODUCT_NAME}.exe"
+  Delete "$AppData\${PRODUCT_NAME}\app\src\config.json"
+  Delete "$AppData\${PRODUCT_NAME}\app\images\favicon.ico"
   ; ディレクトリを削除
   RMDir /r "$INSTDIR"
+  RMDir /r "$AppData\${PRODUCT_NAME}"
   ; スタート メニューから削除
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk"
   Delete "$DESKTOP\FitScreenWindow.lnk"
