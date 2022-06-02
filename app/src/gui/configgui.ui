@@ -32,7 +32,6 @@
     <font>
      <family>Segoe UI</family>
      <pointsize>10</pointsize>
-     <weight>50</weight>
      <italic>false</italic>
      <bold>false</bold>
     </font>
@@ -301,7 +300,6 @@ QComboBox QAbstractItemView {
             <font>
              <family>Segoe UI Semibold</family>
              <pointsize>-1</pointsize>
-             <weight>7</weight>
              <italic>false</italic>
              <bold>false</bold>
             </font>
@@ -384,7 +382,6 @@ QComboBox QAbstractItemView {
                  <font>
                   <family>Segoe UI</family>
                   <pointsize>10</pointsize>
-                  <weight>50</weight>
                   <italic>false</italic>
                   <bold>false</bold>
                  </font>
@@ -421,7 +418,6 @@ QComboBox QAbstractItemView {
                  <font>
                   <family>Segoe UI</family>
                   <pointsize>10</pointsize>
-                  <weight>50</weight>
                   <italic>false</italic>
                   <bold>false</bold>
                  </font>
@@ -458,7 +454,6 @@ QComboBox QAbstractItemView {
                  <font>
                   <family>Segoe UI</family>
                   <pointsize>10</pointsize>
-                  <weight>50</weight>
                   <italic>false</italic>
                   <bold>false</bold>
                  </font>
@@ -495,7 +490,6 @@ QComboBox QAbstractItemView {
                  <font>
                   <family>Segoe UI</family>
                   <pointsize>10</pointsize>
-                  <weight>50</weight>
                   <italic>false</italic>
                   <bold>false</bold>
                  </font>
@@ -545,7 +539,6 @@ QComboBox QAbstractItemView {
                  <font>
                   <family>Segoe UI</family>
                   <pointsize>10</pointsize>
-                  <weight>50</weight>
                   <italic>false</italic>
                   <bold>false</bold>
                  </font>
@@ -582,7 +575,6 @@ QComboBox QAbstractItemView {
                  <font>
                   <family>Segoe UI</family>
                   <pointsize>10</pointsize>
-                  <weight>50</weight>
                   <italic>false</italic>
                   <bold>false</bold>
                  </font>
@@ -823,7 +815,7 @@ background-repeat: no-repeat;</string>
                   <string notr="true">background: transparent;</string>
                  </property>
                  <property name="currentIndex">
-                  <number>0</number>
+                  <number>2</number>
                  </property>
                  <widget class="QWidget" name="page_size">
                   <property name="styleSheet">
@@ -922,7 +914,6 @@ background-repeat: no-repeat;</string>
                            <font>
                             <family>Segoe UI</family>
                             <pointsize>10</pointsize>
-                            <weight>50</weight>
                             <italic>false</italic>
                             <bold>false</bold>
                            </font>
@@ -953,7 +944,6 @@ background-repeat: no-repeat;</string>
                            <font>
                             <family>Segoe UI</family>
                             <pointsize>10</pointsize>
-                            <weight>50</weight>
                             <italic>false</italic>
                             <bold>false</bold>
                            </font>
@@ -1081,7 +1071,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1112,7 +1101,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1231,7 +1219,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1250,7 +1237,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1301,7 +1287,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1320,7 +1305,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1355,7 +1339,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1393,7 +1376,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1508,7 +1490,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1565,7 +1546,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1629,7 +1609,7 @@ background-repeat: no-repeat;</string>
                        <x>20</x>
                        <y>30</y>
                        <width>171</width>
-                       <height>141</height>
+                       <height>121</height>
                       </rect>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout">
@@ -1672,19 +1652,6 @@ background-repeat: no-repeat;</string>
                         </property>
                        </widget>
                       </item>
-                      <item>
-                       <widget class="QCheckBox" name="checkBox_windowleft_mod_win">
-                        <property name="autoFillBackground">
-                         <bool>false</bool>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true"/>
-                        </property>
-                        <property name="text">
-                         <string>Win</string>
-                        </property>
-                       </widget>
-                      </item>
                      </layout>
                     </widget>
                     <widget class="QWidget" name="horizontalLayoutWidget_3">
@@ -1703,7 +1670,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1734,7 +1700,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1885,7 +1850,7 @@ background-repeat: no-repeat;</string>
                        <x>20</x>
                        <y>30</y>
                        <width>171</width>
-                       <height>141</height>
+                       <height>121</height>
                       </rect>
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1928,19 +1893,6 @@ background-repeat: no-repeat;</string>
                         </property>
                        </widget>
                       </item>
-                      <item>
-                       <widget class="QCheckBox" name="checkBox_windowright_mod_win">
-                        <property name="autoFillBackground">
-                         <bool>false</bool>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true"/>
-                        </property>
-                        <property name="text">
-                         <string>Win</string>
-                        </property>
-                       </widget>
-                      </item>
                      </layout>
                     </widget>
                     <widget class="QWidget" name="horizontalLayoutWidget_5">
@@ -1959,7 +1911,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -1990,7 +1941,6 @@ background-repeat: no-repeat;</string>
                          <font>
                           <family>Segoe UI</family>
                           <pointsize>10</pointsize>
-                          <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
@@ -2151,7 +2101,6 @@ background-repeat: no-repeat;</string>
                  <font>
                   <family>Segoe UI</family>
                   <pointsize>-1</pointsize>
-                  <weight>50</weight>
                   <italic>false</italic>
                   <bold>false</bold>
                  </font>

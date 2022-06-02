@@ -50,7 +50,6 @@ class Config:
         mod_ctrl: bool
         mod_shift: bool
         mod_alt: bool
-        mod_win: bool
         hotkey: str
 
     @dataclass(frozen=False)
@@ -58,7 +57,6 @@ class Config:
         mod_ctrl: bool
         mod_shift: bool
         mod_alt: bool
-        mod_win: bool
         hotkey: str
         
     @staticmethod
@@ -77,12 +75,10 @@ class Config:
             Config.HotkeyWindowLeft.mod_ctrl
             Config.HotkeyWindowLeft.mod_shift
             Config.HotkeyWindowLeft.mod_alt
-            Config.HotkeyWindowLeft.mod_win
             Config.HotkeyWindowLeft.hotkey
             Config.HotkeyWindowRight.mod_ctrl
             Config.HotkeyWindowRight.mod_shift
             Config.HotkeyWindowRight.mod_alt
-            Config.HotkeyWindowRight.mod_win
             Config.HotkeyWindowRight.hotkey
 
         except AttributeError as e:
@@ -117,7 +113,6 @@ class Config:
         if HotkeyWindowLeftRight.mod_ctrl: modk.addCombination(modk.CTRLKEY)
         if HotkeyWindowLeftRight.mod_shift: modk.addCombination(modk.SHIFTKEY)
         if HotkeyWindowLeftRight.mod_alt: modk.addCombination(modk.ALTKEY)
-        if HotkeyWindowLeftRight.mod_win: modk.addCombination(modk.WINKEY)
         mod_combination = modk.getCombinationKeycode()
         
         # ホットキー
@@ -157,12 +152,10 @@ class ConfigDefault(IConfigSet):
         Config.HotkeyWindowLeft.mod_ctrl = False
         Config.HotkeyWindowLeft.mod_shift = True
         Config.HotkeyWindowLeft.mod_alt = True
-        Config.HotkeyWindowLeft.mod_win = False
         Config.HotkeyWindowLeft.hotkey = "Left"
         Config.HotkeyWindowRight.mod_ctrl = False
         Config.HotkeyWindowRight.mod_shift = True
         Config.HotkeyWindowRight.mod_alt = True
-        Config.HotkeyWindowRight.mod_win = False
         Config.HotkeyWindowRight.hotkey = "Right"
 
 
@@ -191,12 +184,10 @@ class ConfigJsonRepository(IConfigSet):
         Config.HotkeyWindowLeft.mod_ctrl = self.json_dict["hotkey_windowleft"]["mod_ctrl"]
         Config.HotkeyWindowLeft.mod_shift = self.json_dict["hotkey_windowleft"]["mod_shift"]
         Config.HotkeyWindowLeft.mod_alt = self.json_dict["hotkey_windowleft"]["mod_alt"]
-        Config.HotkeyWindowLeft.mod_win = self.json_dict["hotkey_windowleft"]["mod_win"]
         Config.HotkeyWindowLeft.hotkey = self.json_dict["hotkey_windowleft"]["hotkey"]
         Config.HotkeyWindowRight.mod_ctrl = self.json_dict["hotkey_windowright"]["mod_ctrl"]
         Config.HotkeyWindowRight.mod_shift = self.json_dict["hotkey_windowright"]["mod_shift"]
         Config.HotkeyWindowRight.mod_alt = self.json_dict["hotkey_windowright"]["mod_alt"]
-        Config.HotkeyWindowRight.mod_win = self.json_dict["hotkey_windowright"]["mod_win"]
         Config.HotkeyWindowRight.hotkey = self.json_dict["hotkey_windowright"]["hotkey"]
 
     def setupConfigJsonDictionary(self) -> None:
@@ -213,12 +204,10 @@ class ConfigJsonRepository(IConfigSet):
             self.json_dict["hotkey_windowleft"]["mod_ctrl"] = Config.HotkeyWindowLeft.mod_ctrl
             self.json_dict["hotkey_windowleft"]["mod_shift"] = Config.HotkeyWindowLeft.mod_shift
             self.json_dict["hotkey_windowleft"]["mod_alt"] = Config.HotkeyWindowLeft.mod_alt
-            self.json_dict["hotkey_windowleft"]["mod_win"] = Config.HotkeyWindowLeft.mod_win
             self.json_dict["hotkey_windowleft"]["hotkey"] = Config.HotkeyWindowLeft.hotkey
             self.json_dict["hotkey_windowright"]["mod_ctrl"] = Config.HotkeyWindowRight.mod_ctrl
             self.json_dict["hotkey_windowright"]["mod_shift"] = Config.HotkeyWindowRight.mod_shift
             self.json_dict["hotkey_windowright"]["mod_alt"] = Config.HotkeyWindowRight.mod_alt
-            self.json_dict["hotkey_windowright"]["mod_win"] = Config.HotkeyWindowRight.mod_win
             self.json_dict["hotkey_windowright"]["hotkey"] = Config.HotkeyWindowRight.hotkey
         except AttributeError:
             raise AttributeError("代入エラー: 代入対象のConfigの値に、Blank値が混入しています")
@@ -294,12 +283,10 @@ class ConfigGuiService(IConfigSet):
         Config.HotkeyWindowLeft.mod_ctrl = self.gui.ui.checkBox_windowleft_mod_ctrl.isChecked()
         Config.HotkeyWindowLeft.mod_shift = self.gui.ui.checkBox_windowleft_mod_shift.isChecked()
         Config.HotkeyWindowLeft.mod_alt = self.gui.ui.checkBox_windowleft_mod_alt.isChecked()
-        Config.HotkeyWindowLeft.mod_win = self.gui.ui.checkBox_windowleft_mod_win.isChecked()
         Config.HotkeyWindowLeft.hotkey = self.gui.ui.comboBox_Hotkey_WindowLeft.currentText()
         Config.HotkeyWindowRight.mod_ctrl = self.gui.ui.checkBox_windowright_mod_ctrl.isChecked()
         Config.HotkeyWindowRight.mod_shift = self.gui.ui.checkBox_windowright_mod_shift.isChecked()
         Config.HotkeyWindowRight.mod_alt = self.gui.ui.checkBox_windowright_mod_alt.isChecked()
-        Config.HotkeyWindowRight.mod_win = self.gui.ui.checkBox_windowright_mod_win.isChecked()
         Config.HotkeyWindowRight.hotkey = self.gui.ui.comboBox_Hotkey_WindowRight.currentText()
 
     # -------------------------------------------------------------------------
@@ -561,16 +548,12 @@ class ConfigGuiService(IConfigSet):
         checkbox_list.append(checkbox_item)
         checkbox_item = (self.gui.ui.checkBox_windowleft_mod_alt, Config.HotkeyWindowLeft.mod_alt)
         checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowleft_mod_win, Config.HotkeyWindowLeft.mod_win)
-        checkbox_list.append(checkbox_item)
         # - WindowRight
         checkbox_item = (self.gui.ui.checkBox_windowright_mod_ctrl, Config.HotkeyWindowRight.mod_ctrl)
         checkbox_list.append(checkbox_item)
         checkbox_item = (self.gui.ui.checkBox_windowright_mod_shift, Config.HotkeyWindowRight.mod_shift)
         checkbox_list.append(checkbox_item)
         checkbox_item = (self.gui.ui.checkBox_windowright_mod_alt, Config.HotkeyWindowRight.mod_alt)
-        checkbox_list.append(checkbox_item)
-        checkbox_item = (self.gui.ui.checkBox_windowright_mod_win, Config.HotkeyWindowRight.mod_win)
         checkbox_list.append(checkbox_item)
         # - setup
         self.gui.setupCheckBox(checkbox_list)

@@ -725,7 +725,7 @@ class Ui_ConfigGUI(object):
         self.groupBox_5.setGeometry(QRect(10, 10, 230, 221))
         self.verticalLayoutWidget = QWidget(self.groupBox_5)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(20, 30, 171, 141))
+        self.verticalLayoutWidget.setGeometry(QRect(20, 30, 171, 121))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -749,13 +749,6 @@ class Ui_ConfigGUI(object):
         self.checkBox_windowleft_mod_shift.setStyleSheet(u"")
 
         self.verticalLayout.addWidget(self.checkBox_windowleft_mod_shift)
-
-        self.checkBox_windowleft_mod_win = QCheckBox(self.verticalLayoutWidget)
-        self.checkBox_windowleft_mod_win.setObjectName(u"checkBox_windowleft_mod_win")
-        self.checkBox_windowleft_mod_win.setAutoFillBackground(False)
-        self.checkBox_windowleft_mod_win.setStyleSheet(u"")
-
-        self.verticalLayout.addWidget(self.checkBox_windowleft_mod_win)
 
         self.horizontalLayoutWidget_3 = QWidget(self.groupBox_5)
         self.horizontalLayoutWidget_3.setObjectName(u"horizontalLayoutWidget_3")
@@ -815,7 +808,7 @@ class Ui_ConfigGUI(object):
         self.groupBox_6.setGeometry(QRect(20, 10, 230, 221))
         self.verticalLayoutWidget_2 = QWidget(self.groupBox_6)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(20, 30, 171, 141))
+        self.verticalLayoutWidget_2.setGeometry(QRect(20, 30, 171, 121))
         self.verticalLayout_4 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -839,13 +832,6 @@ class Ui_ConfigGUI(object):
         self.checkBox_windowright_mod_shift.setStyleSheet(u"")
 
         self.verticalLayout_4.addWidget(self.checkBox_windowright_mod_shift)
-
-        self.checkBox_windowright_mod_win = QCheckBox(self.verticalLayoutWidget_2)
-        self.checkBox_windowright_mod_win.setObjectName(u"checkBox_windowright_mod_win")
-        self.checkBox_windowright_mod_win.setAutoFillBackground(False)
-        self.checkBox_windowright_mod_win.setStyleSheet(u"")
-
-        self.verticalLayout_4.addWidget(self.checkBox_windowright_mod_win)
 
         self.horizontalLayoutWidget_5 = QWidget(self.groupBox_6)
         self.horizontalLayoutWidget_5.setObjectName(u"horizontalLayoutWidget_5")
@@ -947,7 +933,7 @@ class Ui_ConfigGUI(object):
         self.retranslateUi(ConfigGUI)
         self.pushButton_size.pressed.connect(self.stackedWidget.update)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(ConfigGUI)
@@ -1010,7 +996,6 @@ class Ui_ConfigGUI(object):
         self.checkBox_windowleft_mod_ctrl.setText(QCoreApplication.translate("ConfigGUI", u"Ctrl", None))
         self.checkBox_windowleft_mod_alt.setText(QCoreApplication.translate("ConfigGUI", u"Alt", None))
         self.checkBox_windowleft_mod_shift.setText(QCoreApplication.translate("ConfigGUI", u"Shift", None))
-        self.checkBox_windowleft_mod_win.setText(QCoreApplication.translate("ConfigGUI", u"Win", None))
         self.labelBoxBlenderInstalation_13.setText(QCoreApplication.translate("ConfigGUI", u"\u901a\u5e38\u30ad\u30fc", None))
         self.comboBox_Hotkey_WindowLeft.setItemText(0, QCoreApplication.translate("ConfigGUI", u"Left", None))
         self.comboBox_Hotkey_WindowLeft.setItemText(1, QCoreApplication.translate("ConfigGUI", u"Test", None))
@@ -1033,7 +1018,6 @@ class Ui_ConfigGUI(object):
         self.checkBox_windowright_mod_ctrl.setText(QCoreApplication.translate("ConfigGUI", u"Ctrl", None))
         self.checkBox_windowright_mod_alt.setText(QCoreApplication.translate("ConfigGUI", u"Alt", None))
         self.checkBox_windowright_mod_shift.setText(QCoreApplication.translate("ConfigGUI", u"Shift", None))
-        self.checkBox_windowright_mod_win.setText(QCoreApplication.translate("ConfigGUI", u"Win", None))
         self.labelBoxBlenderInstalation_14.setText(QCoreApplication.translate("ConfigGUI", u"\u901a\u5e38\u30ad\u30fc", None))
         self.comboBox_Hotkey_WindowRight.setItemText(0, QCoreApplication.translate("ConfigGUI", u"Right", None))
         self.comboBox_Hotkey_WindowRight.setItemText(1, QCoreApplication.translate("ConfigGUI", u"Test", None))
