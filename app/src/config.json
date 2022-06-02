@@ -13,14 +13,14 @@
         "adjust_x_px": 10
     },
     "hotkey_windowleft": {
-        "mod_ctrl": false,
+        "mod_ctrl": true,
         "mod_shift": false,
         "mod_alt": true,
         "hotkey": "Left"
     },
     "hotkey_windowright": {
-        "mod_ctrl": false,
-        "mod_shift": true,
+        "mod_ctrl": true,
+        "mod_shift": false,
         "mod_alt": true,
         "hotkey": "Right"
     }
