@@ -11,7 +11,7 @@
       <h2 id="main-text2">for Windows</h2>
     
         <div id="button-wrap">
-          <a href="https://github.com/Kawaichi0228/FitScreenWindow/releases/download/v4.0/FitScreenWindow-4.0.zip">
+          <a href="https://github.com/Kawaichi0228/FitScreenWindow/releases/download/v4.0/FitScreenWindow-v4.0-Installer.zip">
             <button class="btn">Download v4.0</button>
           </a>
         </div>
