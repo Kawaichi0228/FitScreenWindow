@@ -8,6 +8,8 @@
 
     <div id="release-list">
       <ul>
+        <li><b>[更新日:2022/6/4 バージョン:4.0]</b>
+          <br>機能追加および仕様変更しました。</li>
         <li><b>[更新日:2022/5/16 バージョン:3.0]</b>
           <br>機能追加および仕様変更しました。</li>
         <li><b>[更新日:2022/5/11 バージョン:2.2]</b>
@@ -16,14 +18,10 @@
           <br>機能を追加しました。</li>
         <li><b>[更新日:2022/5/7 バージョン:2.0]</b>
           <br>機能追加および仕様変更しました。</li>
-        <li><b>[更新日:2022/5/3 バージョン:1.1]</b>
-          <br>軽微な不具合を修正しました。</li>
-        <li><b>[更新日:2022/4/30 バージョン:1.0]</b>
-          <br>初回版を公開しました。</li>
       </ul>
     </div>
-    
-    <span class="releases-description">(変更点の詳細等は
+    <span>and more...</span><br>
+    <span class="releases-description">(上記以前の変更及び変更点の詳細等は
       <a href="https://github.com/Kawaichi0228/FitScreenWindow/releases">
         GitHub
       </a>
