@@ -15,8 +15,7 @@ logger = getLogger("Log")
 from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
 from src.gui.guimain import RootGui, ConfigGui
-from src.lib.dialog import Dialog, ErrorDialog
-from src.lib.errorhandling import ErrorHandling
+from src.lib.dialog import Dialog
 from src.lib.const import CONFIG_JSON_PATH
 
 # -------------------------------------------------------------------------
@@ -142,9 +141,9 @@ class ConfigDefault(IConfigSet):
     def _setupConfigPython(self) -> None:
         Config.Size.resize_max_cnt = 4
         Config.Size.resize_add_width_px = 100
-        Config.Size.base_width_toleft_px = 700
-        Config.Size.base_width_toright_px = 700
-        Config.Size.adjust_width_px = 20
+        Config.Size.base_width_toleft_px = 800
+        Config.Size.base_width_toright_px = 800
+        Config.Size.adjust_width_px = 25
         Config.Size.is_subtract_taskbar = True
         Config.Size.is_reverse_direction_windowleft = False
         Config.Size.is_reverse_direction_windowright = False
@@ -166,9 +165,70 @@ class ConfigJsonRepository(IConfigSet):
         # jsonを読み込み、dictionaryとしてインスタンス変数化(永続化)
         jc = JsonController(CONFIG_JSON_PATH)
         self.__jc = jc
-        json_object = self.__read()
+
+        self.json_dict = {}
+
+        # jsonファイルを読み込む
+        try:
+            json_object = self.__jc.read()
+
+        except FileNotFoundError:
+            # ファイルが存在しない場合は初期値で新規作成
+            logger.info("config.jsonが見つかりません")
+            self.__createDefaultConfigJson()
+            json_object = self.__jc.read()
+
+        logger.info("config.jsonの読込が正常に完了しました")
+
         json_dict = self.__jc.getDictionary(json_object)
         self.json_dict = json_dict
+    
+    def __createDefaultConfigJson(self) -> None:
+        """config.jsonを新規作成"""
+        # いったんテンプレートを保存
+        config_dict = {
+            "size": {
+                "resize_max_cnt": "",
+                "resize_add_width_px": "",
+                "base_width_toleft_px": "",
+                "base_width_toright_px": "",
+                "adjust_width_px": "",
+                "is_subtract_taskbar": "",
+                "is_reverse_direction_windowleft": "",
+                "is_reverse_direction_windowright": ""
+            },
+            "position": {
+                "adjust_x_px": ""
+            },
+            "hotkey_windowleft": {
+                "mod_ctrl": "",
+                "mod_shift": "",
+                "mod_alt": "",
+                "hotkey": ""
+            },
+            "hotkey_windowright": {
+                "mod_ctrl": "",
+                "mod_shift": "",
+                "mod_alt": "",
+                "hotkey": ""
+            }
+        }
+        self.__jc.save(config_dict)
+        logger.info("blank値のconfig.jsonを新規作成しました")
+
+        # インスタンスDictへいったん渡す
+        self.json_dict = config_dict
+
+        # Configクラスの全プロパティを指定した初期値にセット
+        config_default = ConfigDefault()
+        config_default.setupConfigPython()
+
+        # Configクラスの全プロパティからインスタンスDictを書き換え
+        self.setupConfigJsonDictionary()
+
+        # 書き換えたインスタンスDictで上書き保存
+        self.__jc.save(self.json_dict)
+        logger.info("Default値でconfig.jsonを上書き保存しました")
 
     def _setupConfigPython(self) -> None:
         """config.pyをjsonで読みとった値で書き換え"""
@@ -211,16 +271,6 @@ class ConfigJsonRepository(IConfigSet):
             self.json_dict["hotkey_windowright"]["hotkey"] = Config.HotkeyWindowRight.hotkey
         except AttributeError:
             raise AttributeError("代入エラー: 代入対象のConfigの値に、Blank値が混入しています")
-
-    def __read(self) -> object:
-        # jsonファイルを読み込む
-        try:
-            json_obj = self.__jc.read()
-            logger.info("config.jsonの読込が正常に完了しました")
-        except FileNotFoundError:
-            ErrorDialog().showFileNotFound("config.json")
-            ErrorHandling().quitApp()
-        return json_obj
 
     def save(self) -> None:
         self.__jc.save(self.json_dict)

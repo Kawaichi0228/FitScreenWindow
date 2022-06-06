@@ -2,6 +2,7 @@
 # Python modules
 # -------------------------------------------------------------------------
 import os
+import getpass
 from enum import Enum, unique, auto
 
 # -------------------------------------------------------------------------
@@ -23,7 +24,7 @@ PROGRAM_NAME = "FitScreenWindow"
 EXECUTION_DIR = os.getcwd() # 実行ファイルのパスを取得
 
 ROMING_DIR_BEFORE = r"C:\Users"
-USER_NAME = os.getlogin()
+USER_NAME = getpass.getuser()
 ROMING_DIR_AFTER = r"AppData\Roaming"
 ROMING_DIR = f"{ROMING_DIR_BEFORE}\\{USER_NAME}\\{ROMING_DIR_AFTER}"
 
