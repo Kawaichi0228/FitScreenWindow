@@ -276,7 +276,7 @@ class ConfigJsonRepository(IConfigSet):
         self.__jc.save(self.json_dict)
 
 
-class ConfigGuiService(IConfigSet):
+class ConfigGuiUseCase(IConfigSet):
     """
     QtDesigner作成後に追加で設定する、個別のuiのsetup
         MEMO: .uiから.pyへ変換したpythonファイルから、このクラスの各setupメソッドへ
@@ -297,7 +297,7 @@ class ConfigGuiService(IConfigSet):
     PAGE_INDEX_HOTKEY = 2
     # -------------------------------------------------------------------------
 
-    def __init__(self, GlobalHotkeyService):
+    def __init__(self, GlobalHotkeyUseCase):
         root = RootGui()
         self.root = root
 
@@ -316,7 +316,7 @@ class ConfigGuiService(IConfigSet):
         # GlobalHotkeyServiceのインスタンスを引数経由で受け取る
         # (ApplicationServiceで既に生成されているインスタンスを渡すため、
         # カッコをつけていない(インスタンス化していない)
-        g_service = GlobalHotkeyService 
+        g_service = GlobalHotkeyUseCase
         self.g_service = g_service
 
     def _setupConfigPython(self) -> None:

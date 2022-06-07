@@ -19,7 +19,7 @@ from src.lib.tasktray import TaskMenuItem, CreateTaskTray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
 from src.lib.dialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
-from src.lib.config import Config, ConfigJsonRepository, ConfigGuiService
+from src.lib.config import Config, ConfigJsonRepository, ConfigGuiUseCase
 from src.lib.const import (
     MoveResizeDirection,
     PROGRAM_NAME,
@@ -30,7 +30,7 @@ from src.lib.const import (
 # -------------------------------------------------------------------------
 # Class
 # -------------------------------------------------------------------------
-class MoveResizeWindowService:
+class MoveResizeWindowUseCase:
     """ウィンドウ移動・リサイズの実行クラス"""
 
     def __init__(self) -> None:
@@ -78,14 +78,14 @@ class IThread(ABC):
     def stopThread(self) -> None: ...
 
 
-class GlobalHotkeyService(IThread):
+class GlobalHotkeyUseCase(IThread):
     def __init__(self) -> None:
         g = GlobalHotkey()
         self.g = g
 
     def startThread(self) -> None:
         """グローバルホットキー実行用のスレッド"""
-        mr = MoveResizeWindowService()
+        mr = MoveResizeWindowUseCase()
 
         # Config.pyに格納された各ホットキーの値をKeycodeへ変換し、dictとして取得
         keycombination_windowleft = Config.getKeycodeforHotkeyWindowLeft()
@@ -143,7 +143,7 @@ class GlobalHotkeyService(IThread):
         logger.info("グローバルホットキーのスレッドを停止しました")
 
 
-class TasktrayService(IThread):
+class TasktrayUseCase(IThread):
     def __init__(self) -> None:
         self.tooltip = PROGRAM_NAME
         self.favicon_path = FAVICON_IMAGE_PATH
@@ -178,29 +178,29 @@ class TasktrayService(IThread):
 
 class ApplicationService(IThread):
     def __init__(self) -> None:
-        g_service = GlobalHotkeyService()
-        self.g_service = g_service
+        g_usecase = GlobalHotkeyUseCase()
+        self.g_usecase = g_usecase
 
-        t_service = TasktrayService()
-        self.t_service = t_service
+        t_usecase = TasktrayUseCase()
+        self.t_usecase = t_usecase
 
-        gui_service = ConfigGuiService(self.g_service)
-        self.gui_service = gui_service
+        gui_usecase = ConfigGuiUseCase(self.g_usecase)
+        self.gui_usecase = gui_usecase
 
     def startThread(self) -> None:
         # グローバルホットキーのスレッドを開始
-        self.g_service.startThread()
+        self.g_usecase.startThread()
 
         # タスクトレイに表示させるitemを定義
-        self.t_service.addItem("設定", self.gui_service.start)
-        self.t_service.addItem("終了", self.stopThread)
+        self.t_usecase.addItem("設定", self.gui_usecase.start)
+        self.t_usecase.addItem("終了", self.stopThread)
 
         # タスクトレイのスレッドを開始
-        self.t_service.startThread()
+        self.t_usecase.startThread()
 
     def stopThread(self) -> None:
-        self.g_service.stopThread()
-        self.t_service.stopThread()
+        self.g_usecase.stopThread()
+        self.t_usecase.stopThread()
         ErrorHandling.quitApp()
 
     def run(self) -> None:
