@@ -12,10 +12,12 @@ class Dialog():
     #   全モジュールで1つしか生成できない(？)。エラー出る。
     #   ※wxPythonは、そもそもインスタンス化しなくてもMessageBoxを表示できる
     
-    def showOKOnlyExclamation(self, title, value) -> None:
+    @staticmethod
+    def showOKOnlyExclamation(title, value) -> None:
         wx.MessageBox(value, title, wx.OK|wx.ICON_EXCLAMATION)
 
-    def showOKCancelnfomation(self, value, title, is_cancel_default=False) -> bool:
+    @staticmethod
+    def showOKCancelnfomation(value, title, is_cancel_default=False) -> bool:
         if is_cancel_default:
             user_input = wx.MessageBox(value, title, wx.CANCEL|wx.ICON_INFORMATION|wx.CANCEL_DEFAULT)
         else:
@@ -32,13 +34,13 @@ class ErrorDialog():
     ERROR_FILENOTFOUND_SUFFIX = " が見つかりません"
 
     def showUnknown(self) -> None:
-        Dialog().showOKOnlyExclamation(
+        Dialog.showOKOnlyExclamation(
             self.ERROR_COMMON_TITLE,
             f"{self.ERROR_UNKNOWN_PREFIX}{self.ERROR_UNKNOWN_DESCRIPTION}"
         )
 
     def showFileNotFound(self, filename) -> None:
-        Dialog().showOKOnlyExclamation(
+        Dialog.showOKOnlyExclamation(
             self.ERROR_COMMON_TITLE, self.__formatFileNotFound(filename)
         )
 

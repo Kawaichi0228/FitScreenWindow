@@ -16,7 +16,7 @@ from src.lib.keylist import ModifireKey, Hotkey
 from src.lib.jsoncontroller import JsonController
 from src.gui.guimain import RootGui, ConfigGui
 from src.lib.dialog import Dialog
-from src.lib.const import CONFIG_JSON_PATH
+from src.lib.const import CONFIG_JSON_DIR, CONFIG_JSON_PATH
 
 # -------------------------------------------------------------------------
 # Class
@@ -168,14 +168,21 @@ class ConfigJsonRepository(IConfigSet):
 
         self.json_dict = {}
 
-        # jsonファイルを読み込む
         try:
+            # jsonファイルを読み込む
             json_object = self.__jc.read()
 
-        except FileNotFoundError:
-            # ファイルが存在しない場合は初期値で新規作成
+        except FileNotFoundError: # ファイルが存在しない場合
             logger.info("config.jsonが見つかりません")
+
+            # config.jsonのフォルダが存在しない場合は新規作成
+            if not os.path.exists(CONFIG_JSON_DIR):
+                os.mkdir(CONFIG_JSON_DIR)
+
+            # 初期値のconfig.jsonを新規作成
             self.__createDefaultConfigJson()
+
+            # jsonファイルを読み込む
             json_object = self.__jc.read()
 
         logger.info("config.jsonの読込が正常に完了しました")
@@ -316,6 +323,7 @@ class ConfigGuiUseCase(IConfigSet):
         # GlobalHotkeyServiceのインスタンスを引数経由で受け取る
         # (ApplicationServiceで既に生成されているインスタンスを渡すため、
         # カッコをつけていない(インスタンス化していない)
+        g_service = GlobalHotkeyUseCase
         g_service = GlobalHotkeyUseCase
         self.g_service = g_service
 

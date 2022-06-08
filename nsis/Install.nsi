@@ -90,23 +90,21 @@ InstallDir "$PROGRAMFILES64\${PRODUCT_NAME}"
 ; -------------------------------------------------------------------------
 Section
   ; インストーラーに組み込むファイルの出力先パス → 組み込む入力ファイルパス を定義
+  !define SMPROGRAMS_ALLUSER "C:\ProgramData\Microsoft\Windows\Start Menu\Programs"
   !define BUILD_DIR "build" ; ビルドファイルのディレクトリ
   
-  SetOutPath "$INSTDIR"
+  SetOutPath "$INSTDIR" ; INSTDIR: ユーザが画面で指定したインストール先ディレクトリ
   File "nsis_favicon.ico"
   File "${BUILD_DIR}\${PRODUCT_NAME}.exe"
-
-  SetOutPath "$AppData\${PRODUCT_NAME}\app\src" ; $AppData: "C:\Users\<UserName>\AppData\Roaming"
-  File "${BUILD_DIR}\app\src\config.json"
-
-  SetOutPath "$AppData\${PRODUCT_NAME}\app\images"
   File "${BUILD_DIR}\app\images\favicon.ico"
 
+  SetOutPath "$AppData\${PRODUCT_NAME}" ; $AppData: "C:\Users\<UserName>\AppData\Roaming"
+  File "${BUILD_DIR}\app\src\config.json"
+  
   ; アンインストーラを出力
   WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}" ; $INSTDIR: ユーザがインストーラー画面で設定したインストール先
 
   ; スタート メニューにショートカットを登録するため、ディレクトリを作成
-  !define SMPROGRAMS_ALLUSER "C:\ProgramData\Microsoft\Windows\Start Menu\Programs"
   CreateDirectory "${SMPROGRAMS_ALLUSER}\${PRODUCT_NAME}"
   ;!define STARTMENU_USER $SMPROGRAMS ; C:\Users\<USERNAME>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
   ;CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
@@ -133,16 +131,14 @@ SectionEnd
 ; アンインストールセクション
 ; -------------------------------------------------------------------------
 Section "Uninstall"
-  ; ファイルを削除
+  ; ファイルとディレクトリを削除
   Delete "$INSTDIR\${PRODUCT_NAME}.exe"
   Delete "$INSTDIR\nsis_favicon.ico"
+  Delete "$INSTDIR\favicon.ico"
   Delete "$INSTDIR\${UNINSTALLER_NAME}"
-  
-  Delete "$AppData\${PRODUCT_NAME}\app\src\config.json"
-  Delete "$AppData\${PRODUCT_NAME}\app\images\favicon.ico"
-
-  ; ディレクトリを削除
   RMDir /r "$INSTDIR"
+  
+  Delete "$AppData\${PRODUCT_NAME}\config.json"
   RMDir /r "$AppData\${PRODUCT_NAME}"
 
   ; スタート メニューからショートカットとディレクトリを削除
