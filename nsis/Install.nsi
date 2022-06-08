@@ -104,12 +104,19 @@ Section
 
   ; アンインストーラを出力
   WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}" ; $INSTDIR: ユーザがインストーラー画面で設定したインストール先
-  ; スタート メニューにショートカットを登録
-  CreateDirectory "$SMPROGRAMS\FitScreenWindow"
+
+  ; スタート メニューにショートカットを登録するため、ディレクトリを作成
+  !define SMPROGRAMS_ALLUSER "C:\ProgramData\Microsoft\Windows\Start Menu\Programs"
+  CreateDirectory "${SMPROGRAMS_ALLUSER}\${PRODUCT_NAME}"
+  ;!define STARTMENU_USER $SMPROGRAMS ; C:\Users\<USERNAME>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
+  ;CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
+  
+  ; スタートメニューとデスクトップにショートカットを作成
   SetOutPath "$INSTDIR"
-  ; デスクトップにショートカットを作成
-  CreateShortcut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
+  CreateShortcut "${SMPROGRAMS_ALLUSER}\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
+  ;CreateShortcut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
   CreateShortcut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\${PRODUCT_NAME}.exe" ""
+
   ; 「アンインストールと変更」に表示される各情報を定義(アンインストールのレジストリに登録)
   !define RegistryKey "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
   WriteRegStr HKLM ${RegistryKey} "UninstallString" "$INSTDIR\${UNINSTALLER_NAME}"
@@ -133,13 +140,18 @@ Section "Uninstall"
   
   Delete "$AppData\${PRODUCT_NAME}\app\src\config.json"
   Delete "$AppData\${PRODUCT_NAME}\app\images\favicon.ico"
+
   ; ディレクトリを削除
   RMDir /r "$INSTDIR"
   RMDir /r "$AppData\${PRODUCT_NAME}"
-  ; スタート メニューから削除
-  Delete "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk"
-  Delete "$DESKTOP\FitScreenWindow.lnk"
-  RMDir "$SMPROGRAMS\FitScreenWindow"
+
+  ; スタート メニューからショートカットとディレクトリを削除
+  Delete "${SMPROGRAMS_ALLUSER}\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk"
+  RMDir "${SMPROGRAMS_ALLUSER}\${PRODUCT_NAME}"
+
+  ; デスクトップからショートカットを削除
+  Delete "$DESKTOP\${PRODUCT_NAME}.lnk"
+
   ; レジストリ キーを削除
   DeleteRegKey HKLM ${RegistryKey}
 SectionEnd
