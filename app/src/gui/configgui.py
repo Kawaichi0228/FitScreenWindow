@@ -1037,6 +1037,6 @@ class Ui_ConfigGUI(object):
         self.comboBox_Hotkey_WindowRight.setItemText(15, QCoreApplication.translate("ConfigGUI", u"Test", None))
 
         self.label_settingmenu.setText(QCoreApplication.translate("ConfigGUI", u"Setting Menu", None))
-        self.label_version.setText(QCoreApplication.translate("ConfigGUI", u"v4.0", None))
+        self.label_version.setText(QCoreApplication.translate("ConfigGUI", u"v4.1", None))
     # retranslateUi
 

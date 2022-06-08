@@ -20,7 +20,7 @@ SetCompressor /solid lzma
 ; インストーラー名
 !define PRODUCT_NAME "FitScreenWindow"
 ; インストーラーのバージョン。
-!define PRODUCT_VERSION "4.0"
+!define PRODUCT_VERSION "4.1"
 ; 開発者
 !define CREATOR_NAME "Kawaichi"
 ; ウェブサイトのURL
