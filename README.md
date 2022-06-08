@@ -10,9 +10,9 @@ FitScreenWindowは、Windows用のウィンドウ移動・リサイズツール�
 
 ## 機能紹介
 
-<img src="demonstration.gif" width="600px">
+<img src="demonstration-moveresizewindow.gif" width="600px">
 
-選択中のアクティブなウィンドウに対して、ショートカットキーを押すごとに、画面の端に合わせて自動的に配置 & サイズを段階的に変化させます。
+選択中のアクティブなウィンドウに対して、ショートカットキーを押すごとに、画面の端に合わせて自動的に配置 & サイズを拡大または縮小します。
 
 <b>[初期ショートカットキー(変更可能)]</b>
 
@@ -20,6 +20,10 @@ FitScreenWindowは、Windows用のウィンドウ移動・リサイズツール�
 
 - 右方向へ配置：<b>Shift + Alt + →</b>
 
+***
+
+また、サイズやショートカットキーなどの各種設定は、タスクトレイからアプリを右クリックし、表示されたメニューの「設定」から変更可能です。
+<img src="demonstration-settingmenu.gif" width="600px">
 
 
 
