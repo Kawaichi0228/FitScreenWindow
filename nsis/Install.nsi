@@ -24,7 +24,7 @@ SetCompressor /solid lzma
 ; 開発者
 !define CREATOR_NAME "Kawaichi"
 ; ウェブサイトのURL
-!define URL_WEBSITE "https://kawaichi0228.github.io/FitScreenWindow/"
+!define URL_WEBSITE "https://fitscreenwindow.com/"
 
 ; -------------------------------------------------------------------------
 ; 各画像設定

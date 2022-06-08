@@ -37,4 +37,4 @@ FitScreenWindowは、Windows用のウィンドウ移動・リサイズツール�
 
 ## 公式サイト
 
-https://kawaichi0228.github.io/FitScreenWindow/
+https://fitscreenwindow.com/
