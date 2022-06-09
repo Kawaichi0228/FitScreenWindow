@@ -19,7 +19,7 @@ SetCompressor /solid lzma
 ; -------------------------------------------------------------------------
 ; インストーラー名
 !define PRODUCT_NAME "FitScreenWindow"
-; インストーラーのバージョン。
+; インストーラーのバージョン
 !define PRODUCT_VERSION "4.1"
 ; 開発者
 !define CREATOR_NAME "Kawaichi"
@@ -92,7 +92,7 @@ Section
   ; インストーラーに組み込むファイルの出力先パス → 組み込む入力ファイルパス を定義
   !define SMPROGRAMS_ALLUSER "C:\ProgramData\Microsoft\Windows\Start Menu\Programs"
   !define BUILD_DIR "build" ; ビルドファイルのディレクトリ
-  
+
   SetOutPath "$INSTDIR" ; INSTDIR: ユーザが画面で指定したインストール先ディレクトリ
   File "nsis_favicon.ico"
   File "${BUILD_DIR}\${PRODUCT_NAME}.exe"

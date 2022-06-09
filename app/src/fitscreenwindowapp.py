@@ -17,7 +17,7 @@ from src.lib.sizecalclator import SizeCalclatorAtCounter
 from src.lib.positioncalclator import PositionCalclator
 from src.lib.tasktray import TaskMenuItem, CreateTaskTray
 from src.lib.windowstate import getActiveWinHwnd, isExplorerWindow
-from src.lib.dialog import Dialog, ErrorDialog
+from src.lib.dialog import ErrorDialog
 from src.lib.errorhandling import ErrorHandling
 from src.lib.config import Config, ConfigJsonRepository, ConfigGuiUseCase
 from src.lib.const import (
