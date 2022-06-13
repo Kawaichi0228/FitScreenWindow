@@ -6,7 +6,7 @@
       <li class="card">
         <img class="card-img" src="../assets/demonstration.gif" alt="">
         <div class="card-text">
-          <p>選択中のアクティブなウィンドウに対して、ショートカットキーを押すごとに、画面の端に合わせて自動的に配置 & サイズを段階的に変化させます。</p>
+          <p>選択中のアクティブなウィンドウに対して、ショートカットキーを押すごとに、画面の端に合わせて自動的に配置 & サイズを拡大(縮小)します。</p>
           <div class="line"></div>
           <p><b>- 初期ショートカットキー(変更可能) -</b></p>
           <p class="demo-hotkey">左方向へ配置：<b>Shift + Alt + ←</b></p>
