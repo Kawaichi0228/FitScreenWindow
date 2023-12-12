@@ -25,7 +25,15 @@ FitScreenWindowは、Windows用のウィンドウ移動・リサイズツール�
 また、サイズやショートカットキーなどの各種設定は、タスクトレイからアプリを右クリックし、表示されたメニューの「設定」から変更可能です。
 <img src="demonstration-settingmenu.gif" width="600px">
 
+***
 
+## LT資料(2022年5月登壇)
+
+https://www.docswell.com/s/Kawaichi0228/51JE1L-2023-12-03-222909
+
+(LT資料の一部)
+
+<img src="lt-preview.jpg" width="600px">
 
 ***
 

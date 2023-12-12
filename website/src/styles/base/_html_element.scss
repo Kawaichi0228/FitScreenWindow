@@ -5,7 +5,7 @@
 
 // Webフォントのインポート
 // *** Google Fonts *** https://fonts.google.com/
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 @import url("https://use.fontawesome.com/releases/v5.6.4/css/all.css");
 
 body {
@@ -26,7 +26,7 @@ h2 {
 }
 
 div#SeparatorLine {
-  width: 60%;
+  max-width: 800px;
   margin: auto;
 
   hr {
