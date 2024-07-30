@@ -46,3 +46,9 @@ https://www.docswell.com/s/Kawaichi0228/51JE1L-2023-12-03-222909
 ## 公式サイト
 
 https://fitscreenwindow.com/
+
+***
+
+## 技術情報等
+
+https://kawaichi0228.com/product/fitscreenwindow
