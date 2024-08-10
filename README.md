@@ -1,54 +1,48 @@
-# Fit Screen Window
+<a href="https://fitscreenwindow.com"><img height="80" src="logo-social-and-promotion-for-github.png"></a>
 
-<img src="logo-promotion.png" width="600px">
 
-FitScreenWindowは、Windows用のウィンドウ移動・リサイズツールです。
+[![Twitter](https://img.shields.io/badge/twitter-@kawaichi228-55acee.svg?style=flat-square)](https://twitter.com/kawaichi228)
+[![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Kawaichi0228/FitScreenWindow/master/LICENSE)
 
-また、本アプリはPythonで開発されたオープンソースソフトウェアです。
+## FitScreenWindow
+
+A window moving/resizing tool for Windows.
+
+* [Official website (for Japanese Only)](https://fitscreenwindow.com)
+* [Technical information (for Japanese Only)](https://kawaichi0228.com/product/fitscreenwindow)
 
 ***
 
-## 機能紹介
+### Feature Overview
 
+- Automatically move and resize the active window to the edge of the screen each time you press a shortcut key.
 <img src="demonstration-moveresizewindow.gif" width="600px">
 
-選択中のアクティブなウィンドウに対して、ショートカットキーを押すごとに、画面の端に合わせて自動的に配置 & サイズを拡大または縮小します。
+#### [Initial shortcut key (changeable)]
+  - Placed towards the left：<b>Shift + Alt + Left</b>
+  - Placed towards the right：<b>Shift + Alt + Right</b>
 
-<b>[初期ショートカットキー(変更可能)]</b>
+---
 
-- 左方向へ配置：<b>Shift + Alt + ←</b>
-
-- 右方向へ配置：<b>Shift + Alt + →</b>
-
-***
-
-また、サイズやショートカットキーなどの各種設定は、タスクトレイからアプリを右クリックし、表示されたメニューの「設定」から変更可能です。
+- Various settings such as size and shortcut keys can be changed by right-clicking the app from the task tray and selecting "Settings" from the menu that appears.
 <img src="demonstration-settingmenu.gif" width="600px">
 
-***
+## Installation
 
-## LT資料(2022年5月登壇)
+1. Download the latest version from the [official website](https://fitscreenwindow.com) or [GitHub Releases](https://github.com/Kawaichi0228/FitScreenWindow/releases).
+2. Unzip the downloaded file, launch the NSIS installer, and follow the guide to install FitScreenWindow.
+3. Run "FitScreenWindow.exe".
+4. The app will start up and the icon will appear in the task tray.
+5. Right-click the icon in the task tray and select "Settings(設定)" to change the settings.
+6. To exit the app, right-click the icon in the task tray and select "Exit(終了)".
+7. To uninstall the app, launch the uninstaller.
 
-https://www.docswell.com/s/Kawaichi0228/51JE1L-2023-12-03-222909
+## Lightning Talk Notes(2022-05)
 
-(LT資料の一部)
+- [Slide](https://www.docswell.com/s/Kawaichi0228/51JE1L-2023-12-03-222909)
 
-<img src="lt-preview.jpg" width="600px">
+<img src="lt-preview.jpg" width="400px">
 
-***
+## License
 
-## 著作権
-
-[MIT License](https://opensource.org/licenses/MIT)
-
-***
-
-## 公式サイト
-
-https://fitscreenwindow.com/
-
-***
-
-## 技術情報等
-
-https://kawaichi0228.com/product/fitscreenwindow
+[MIT](https://github.com/Kawaichi0228/FitScreenWindow/blob/master/LICENSE)
