@@ -1,8 +1,12 @@
-<a href="https://fitscreenwindow.com"><img height="80" src="logo-social-and-promotion-for-github.png"></a>
+[![License][license]][license-url]
+[![Top Language][top-language]][top-language-url]
+[![Last Release][last-release]][last-release-url]
+[![Last Commit][last-commit]][last-commit-url]
 
-
-[![Twitter](https://img.shields.io/badge/twitter-@kawaichi228-55acee.svg?style=flat-square)](https://twitter.com/kawaichi228)
-[![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Kawaichi0228/FitScreenWindow/master/LICENSE)
+<p align="center">
+  <br />
+  <a title="Learn more about FitScreenWindow" href="https://fitscreenwindow.com"><img src="logo-social-and-promotion-for-github.png" alt="FitScreenWindow Logo" width="422px" /></a>
+</p>
 
 ## FitScreenWindow
 
@@ -37,12 +41,15 @@ A window moving/resizing tool for Windows.
 6. To exit the app, right-click the icon in the task tray and select "Exit(終了)".
 7. To uninstall the app, launch the uninstaller.
 
-## Lightning Talk Notes(2022-05)
-
-- [Slide](https://www.docswell.com/s/Kawaichi0228/51JE1L-2023-12-03-222909)
-
-<img src="lt-preview.jpg" width="400px">
-
 ## License
 
 [MIT](https://github.com/Kawaichi0228/FitScreenWindow/blob/master/LICENSE)
+
+[license]: http://img.shields.io/badge/license-mit-blue.svg?style=flat-square
+[license-url]: https://raw.githubusercontent.com/Kawaichi0228/FitScreenWindow/master/LICENSE
+[top-language]: https://img.shields.io/github/languages/top/Kawaichi0228/FitScreenWindow.svg
+[top-language-url]: https://github.com/Kawaichi0228/FitScreenWindow/search?l=python
+[last-commit]: https://img.shields.io/github/last-commit/Kawaichi0228/FitScreenWindow.svg
+[last-commit-url]: https://github.com/Kawaichi0228/FitScreenWindow/graphs/commit-activity
+[last-release]: https://img.shields.io/github/release-date/Kawaichi0228/FitScreenWindow.svg
+[last-release-url]: https://github.com/Kawaichi0228/FitScreenWindow/releases
