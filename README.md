@@ -5,14 +5,14 @@
 
 <p align="center">
   <br />
-  <a title="Learn more about FitScreenWindow" href="https://fitscreenwindow.com"><img src="logo-social-and-promotion-for-github.png" alt="FitScreenWindow Logo" width="422px" /></a>
+  <a title="Learn more about FitScreenWindow" href="https://kawaichi0228.github.io/FitScreenWindow/"><img src="logo-social-and-promotion-for-github.png" alt="FitScreenWindow Logo" width="422px" /></a>
 </p>
 
 ## FitScreenWindow
 
 A window moving/resizing tool for Windows.
 
-* [Official website (for Japanese Only)](https://fitscreenwindow.com)
+* [Official website (for Japanese Only)](https://kawaichi0228.github.io/FitScreenWindow/)
 * [Technical information (for Japanese Only)](https://kawaichi0228.com/product/fitscreenwindow)
 
 ***
@@ -33,7 +33,7 @@ A window moving/resizing tool for Windows.
 
 ## Installation
 
-1. Download the latest version from the [official website](https://fitscreenwindow.com) or [GitHub Releases](https://github.com/Kawaichi0228/FitScreenWindow/releases).
+1. Download the latest version from the [official website](https://kawaichi0228.github.io/FitScreenWindow/) or [GitHub Releases](https://github.com/Kawaichi0228/FitScreenWindow/releases).
 2. Unzip the downloaded file, launch the NSIS installer, and follow the guide to install FitScreenWindow.
 3. Run "FitScreenWindow.exe".
 4. The app will start up and the icon will appear in the task tray.
